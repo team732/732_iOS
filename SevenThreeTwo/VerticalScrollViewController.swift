@@ -113,9 +113,9 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
     // MARK: - SnapContainerViewControllerDelegate Methods
     
     func outerScrollViewShouldScroll() -> Bool {
-        if scrollView.contentOffset.y < middleVc.view.frame.origin.y || scrollView.contentOffset.y > 2*middleVc.view.frame.origin.y {
+        if scrollView.contentOffset.y != middleVc.view.frame.origin.y {
             return false
-        } else {
+        }else{
             return true
         }
     }
