@@ -38,7 +38,6 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
         container.leftVc = leftVC
         container.middleVc = middleVC
         container.rightVc = rightVC
-        container.bottomVc = bottomVC
         return container
     }
     

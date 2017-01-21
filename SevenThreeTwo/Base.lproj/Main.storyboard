@@ -93,7 +93,7 @@
         <!--Bottom View Controller-->
         <scene sceneID="0mu-XS-jHP">
             <objects>
-                <viewController storyboardIdentifier="bottom" id="zzd-zo-Z3u" customClass="BottomViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zzd-zo-Z3u" customClass="BottomViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Hl-ct-JIA"/>
                         <viewControllerLayoutGuide type="bottom" id="m92-tm-juZ"/>
