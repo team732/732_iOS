@@ -13,6 +13,11 @@
 		671469081E2FCDBF006925B7 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469071E2FCDBF006925B7 /* LeftViewController.swift */; };
 		6714690A1E2FCDD1006925B7 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469091E2FCDD1006925B7 /* TopViewController.swift */; };
 		6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6714690B1E2FCDDD006925B7 /* BottomViewController.swift */; };
+		672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */; };
+		672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */; };
+		672DD12A1E335043001022BF /* ImageFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1291E335043001022BF /* ImageFeedViewController.swift */; };
+		672DD12C1E335058001022BF /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12B1E335058001022BF /* Photo.swift */; };
+		672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12D1E3350ED001022BF /* UIView+Extensions.swift */; };
 		675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E181E2FB076000781DA /* AppDelegate.swift */; };
 		675A4E1B1E2FB076000781DA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E1A1E2FB076000781DA /* MainController.swift */; };
 		675A4E1E1E2FB076000781DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E1C1E2FB076000781DA /* Main.storyboard */; };
@@ -38,6 +43,11 @@
 		671469071E2FCDBF006925B7 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		671469091E2FCDD1006925B7 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		6714690B1E2FCDDD006925B7 /* BottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
+		672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptionCell.swift; sourceTree = "<group>"; };
+		672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleColumnLayoutAttributes.swift; sourceTree = "<group>"; };
+		672DD1291E335043001022BF /* ImageFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFeedViewController.swift; sourceTree = "<group>"; };
+		672DD12B1E335058001022BF /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		672DD12D1E3350ED001022BF /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		675A4E151E2FB076000781DA /* SevenThreeTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenThreeTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A4E181E2FB076000781DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		675A4E1A1E2FB076000781DA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -109,6 +119,11 @@
 				671469071E2FCDBF006925B7 /* LeftViewController.swift */,
 				671469091E2FCDD1006925B7 /* TopViewController.swift */,
 				6714690B1E2FCDDD006925B7 /* BottomViewController.swift */,
+				672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */,
+				672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */,
+				672DD1291E335043001022BF /* ImageFeedViewController.swift */,
+				672DD12B1E335058001022BF /* Photo.swift */,
+				672DD12D1E3350ED001022BF /* UIView+Extensions.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -173,11 +188,13 @@
 					675A4E141E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VANL3XS874;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					675A4E281E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = VANL3XS874;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 675A4E141E2FB076000781DA;
 					};
@@ -227,13 +244,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				672DD12C1E335058001022BF /* Photo.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
 				6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */,
 				671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */,
 				671469061E2FCDB1006925B7 /* RightViewController.swift in Sources */,
+				672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */,
 				671469081E2FCDBF006925B7 /* LeftViewController.swift in Sources */,
+				672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */,
+				672DD12A1E335043001022BF /* ImageFeedViewController.swift in Sources */,
 				675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */,
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
+				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
 				6714690A1E2FCDD1006925B7 /* TopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
