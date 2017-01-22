@@ -90,6 +90,7 @@ class MultipleColumnLayout: UICollectionViewLayout {
                     layoutAttributes.append(attributes)
                 }
             }
+            
             return layoutAttributes
     }
     
@@ -131,7 +132,7 @@ class MultipleColumnLayout: UICollectionViewLayout {
                 let height = cellPadding + photoHeight + annotationHeight + cellPadding
                 
                 let frame = CGRect(x: xOffsets[column],
-                                   y: yOffsets[column],
+                                   y: yOffsets[column]+UIScreen.main.bounds.size.height/2,
                                    width: columnWidth,
                                    height: height).insetBy(dx: cellPadding,
                                                            dy: cellPadding)

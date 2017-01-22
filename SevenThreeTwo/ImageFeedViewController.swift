@@ -11,13 +11,18 @@ import AVFoundation
 
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class ImageFeedViewController: UICollectionViewController {
+  
+    // 기기의 너비와 높이
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
     // MARK: Layout Concerns
     let cellStyle = BeigeRoundedPhotoCaptionCellStyle()
     let reuseIdentifier = "PhotoCaptionCell"
     let collectionViewBottomInset: CGFloat = 10
     let collectionViewSideInset: CGFloat = 5
-    let collectionViewTopInset: CGFloat =
-        UIApplication.shared.statusBarFrame.height
+    let collectionViewTopInset: CGFloat = UIApplication.shared.statusBarFrame.height
+
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
 
@@ -32,6 +37,7 @@ class ImageFeedViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         setUpUI()
     }
@@ -53,9 +59,10 @@ class ImageFeedViewController: UICollectionViewController {
     
     fileprivate func setUpUI() {
         // Set background
-        if let patternImage = UIImage(named: "pattern") {
-            view.backgroundColor = UIColor(patternImage: patternImage)
-        }
+//        if let patternImage = UIImage(named: "pattern") {
+//            view.backgroundColor = UIColor(patternImage: patternImage)
+//        }
+        view.backgroundColor = UIColor.white
         
         // Set title
         title = "Variable height layout"
@@ -75,6 +82,41 @@ class ImageFeedViewController: UICollectionViewController {
         
         layout.cellPadding = collectionViewSideInset
         layout.numberOfColumns = numberOfColumns
+        
+        let label = UILabel(frame: CGRect(x:width/2-50, y:height/5-50, width:100, height: 100))
+        label.textAlignment = NSTextAlignment.center
+        label.text = "공개된"
+        collectionView?.addSubview(label)
+        
+        
+        let label2 = UILabel(frame: CGRect(x:width/2-50, y:height/4-50, width:100, height: 100))
+        label2.textAlignment = NSTextAlignment.center
+        label2.text = "리스트"
+        collectionView?.addSubview(label2)
+        
+        
+        
+        let button = UIButton(type: .system) // let preferred over var here
+        
+        button.setTitle("명예의 전당", for: UIControlState.normal)
+        
+        button.frame = CGRect(x:width/2-50, y:height/3-50, width:100, height: 100)
+        
+        // button.addTarget(self, action: "Action:", for: UIControlEvents.touchUpInside)
+        collectionView?.addSubview(button)
+        
+        let items = ["최신순", "인기순"]
+        let customSC = UISegmentedControl(items: items)
+        customSC.selectedSegmentIndex = 0
+        customSC.frame = CGRect(x:0 , y:height/2.5,
+                                width:width-10, height:height/20)
+        customSC.layer.cornerRadius = 5.0  // Don't let background bleed
+        customSC.backgroundColor = UIColor.white
+        customSC.tintColor = UIColor.darkGray
+        
+        
+         collectionView?.addSubview(customSC)
+
         
         // Register cell identifier
         self.collectionView?.register(PhotoCaptionCell.self,
@@ -103,6 +145,7 @@ extension ImageFeedViewController {
         cell.setUpWithImage(photos[indexPath.item].image,
                             title: photos[indexPath.item].caption,
                             style: BeigeRoundedPhotoCaptionCellStyle())
+        
         
         return cell
     }

@@ -78,6 +78,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		670F7A6B1E346B1800E7CC01 /* PhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */,
+				672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */,
+				672DD1291E335043001022BF /* ImageFeedViewController.swift */,
+				672DD12B1E335058001022BF /* Photo.swift */,
+				672DD12D1E3350ED001022BF /* UIView+Extensions.swift */,
+			);
+			name = PhotoList;
+			sourceTree = "<group>";
+		};
 		671469041E2FCD40006925B7 /* SwipeController */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +120,7 @@
 		675A4E171E2FB076000781DA /* SevenThreeTwo */ = {
 			isa = PBXGroup;
 			children = (
+				670F7A6B1E346B1800E7CC01 /* PhotoList */,
 				671469041E2FCD40006925B7 /* SwipeController */,
 				675A4E181E2FB076000781DA /* AppDelegate.swift */,
 				675A4E1A1E2FB076000781DA /* MainController.swift */,
@@ -119,11 +132,6 @@
 				671469071E2FCDBF006925B7 /* LeftViewController.swift */,
 				671469091E2FCDD1006925B7 /* TopViewController.swift */,
 				6714690B1E2FCDDD006925B7 /* BottomViewController.swift */,
-				672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */,
-				672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */,
-				672DD1291E335043001022BF /* ImageFeedViewController.swift */,
-				672DD12B1E335058001022BF /* Photo.swift */,
-				672DD12D1E3350ED001022BF /* UIView+Extensions.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -395,11 +403,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj732.com;
+				PRODUCT_BUNDLE_IDENTIFIER = proj732.com.SevenThreeTwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -410,11 +419,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj732.com;
+				PRODUCT_BUNDLE_IDENTIFIER = proj732.com.SevenThreeTwo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -34,12 +34,10 @@ class PhotoCaptionCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     fileprivate lazy var mainView: UIView = {
         let view = UIStackView(arrangedSubviews: [self.imageView, self.captionView])
-        
         view.axis = UILayoutConstraintAxis.vertical
         view.distribution = UIStackViewDistribution.equalSpacing
         view.alignment = UIStackViewAlignment.fill
@@ -173,7 +171,7 @@ class PhotoCaptionCell: UICollectionViewCell {
     fileprivate func applyStyle(_ style: PhotoCaptionCellStyle) {
         backgroundColor = style.backgroundColor
         titleLabel.font = style.titleFont
-        
+        cornerRadius = style.cornerRadius
         // Update constraint constants
         titleLabelToCaptionViewConstraints[0].constant = style.titleInsets.top
         titleLabelToCaptionViewConstraints[1].constant = -style.titleInsets.bottom
