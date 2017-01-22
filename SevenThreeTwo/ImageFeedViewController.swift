@@ -143,8 +143,9 @@ extension ImageFeedViewController {
                 fatalError("Could not dequeue cell")
         }
         cell.setUpWithImage(photos[indexPath.item].image,
-                            title: photos[indexPath.item].caption,
+                            title: "",
                             style: BeigeRoundedPhotoCaptionCellStyle())
+        cell.layer.borderWidth = 1
         
         
         return cell
@@ -166,14 +167,14 @@ extension ImageFeedViewController: MultipleColumnLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForAnnotationAtIndexPath indexPath: IndexPath,
                         withWidth width: CGFloat) -> CGFloat {
-        
-        let rect = NSString(string: photos[indexPath.item].caption)
-            .boundingRect(
-                with: CGSize(width: width,
-                             height: CGFloat(MAXFLOAT)),
-                options: .usesLineFragmentOrigin,
-                attributes: [NSFontAttributeName: cellStyle.titleFont],
-                context: nil)
-        return ceil(rect.height + cellStyle.titleInsets.top + cellStyle.titleInsets.bottom)
+//        
+//        let rect = NSString(string: "")
+//            .boundingRect(
+//                with: CGSize(width: width,
+//                             height: CGFloat(MAXFLOAT)),
+//                options: .usesLineFragmentOrigin,
+//                attributes: [NSFontAttributeName: cellStyle.titleFont],
+//                context: nil)
+        return ceil(0)
     }
 }

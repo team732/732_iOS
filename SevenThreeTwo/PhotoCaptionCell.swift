@@ -139,7 +139,7 @@ class PhotoCaptionCell: UICollectionViewCell {
     func setUpWithImage(_ image: UIImage, title: String, style: PhotoCaptionCellStyle) {
         imageView.image = image
         titleLabel.text = title
-        
+        titleLabel.textAlignment = NSTextAlignment.center
         // Keep track of set up status, because we're reusing cells
         guard didSetUpView else {
             setUpView(style)
@@ -218,8 +218,8 @@ protocol PhotoCaptionCellStyle {
 }
 
 struct BeigeRoundedPhotoCaptionCellStyle: PhotoCaptionCellStyle {
-    let backgroundColor = UIColor.green.withAlphaComponent(0.2)
-    let cornerRadius: CGFloat = 5
+    let backgroundColor = UIColor.white
+    let cornerRadius: CGFloat = 0
     let titleFont = UIFont(name: "Avenir", size: 12) ?? UIFont.systemFont(ofSize: 12)
     let titleInsets = UIEdgeInsetsMake(5, 5, 5, 5)
 }

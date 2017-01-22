@@ -27,19 +27,17 @@ let comments = [
 
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class Photo: NSObject {
-    var caption: String
     var image: UIImage
     
-    init(caption: String, image: UIImage) {
-        self.caption = caption
+    init(image: UIImage) {
         self.image = image
     }
     
     class func allPhotos() -> [Photo] {
         var photos = [Photo]()
         for i in 1..<10 {
-            let caption = comments[Int(arc4random_uniform(UInt32(comments.count) - UInt32(1)))]
-            photos.append(Photo(caption: caption, image: UIImage(named: "otter-\(i).jpg")!))
+//            let caption = comments[Int(arc4random_uniform(UInt32(comments.count) - UInt32(1)))]
+            photos.append(Photo( image: UIImage(named: "otter-\(i).jpg")!))
         }
         return photos
     }
