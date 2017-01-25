@@ -12,12 +12,16 @@ import Fusuma
 
 class MainController: UIViewController, FusumaDelegate {
     
-    
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
 
     
     @IBOutlet weak var showButton: UIButton!
+    @IBOutlet weak var publicListBtn: UIButton!
+    @IBOutlet weak var privateListBtn: UIButton!
     var imageMain : UIImage!
     
+
  
     
     
@@ -26,6 +30,17 @@ class MainController: UIViewController, FusumaDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         showButton.layer.cornerRadius = 2.0
+        showButton.frame = CGRect(x:width/2-40, y:height/1.15-40, width:80, height: 80)
+//        publicListBtn.frame = CGRect(x:width/2+80, y:height/1.15-40, width:70, height: 80)
+//        privateListBtn.frame = CGRect(x:width/5-40, y:height/1.15-40, width:70, height: 80)
+    }
+    
+    
+    @IBAction func publicBtnClicked(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func privateBtnClicked(_ sender: UIButton) {
         
     }
     

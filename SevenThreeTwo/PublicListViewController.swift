@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 // Inspired by: RayWenderlich.com pinterest-basic-layout
-class ImageFeedViewController: UICollectionViewController {
+class PublicListViewController: UICollectionViewController {
   
     // 기기의 너비와 높이
     let width = UIScreen.main.bounds.size.width
@@ -89,7 +89,7 @@ class ImageFeedViewController: UICollectionViewController {
         collectionView?.addSubview(label)
         
         
-        let label2 = UILabel(frame: CGRect(x:width/2-50, y:height/4-50, width:100, height: 100))
+        let label2 = UILabel(frame: CGRect(x:width/2-50, y:height/4-60, width:100, height: 100))
         label2.textAlignment = NSTextAlignment.center
         label2.text = "리스트"
         collectionView?.addSubview(label2)
@@ -108,8 +108,8 @@ class ImageFeedViewController: UICollectionViewController {
         let items = ["최신순", "인기순"]
         let customSC = UISegmentedControl(items: items)
         customSC.selectedSegmentIndex = 0
-        customSC.frame = CGRect(x:0 , y:height/2.5,
-                                width:width-10, height:height/20)
+        customSC.frame = CGRect(x:5 , y:height/2.5,
+                                width:width-20, height:height/20)
         customSC.layer.cornerRadius = 5.0  // Don't let background bleed
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
@@ -126,7 +126,7 @@ class ImageFeedViewController: UICollectionViewController {
 
 // MARK: UICollectionViewDelegate
 
-extension ImageFeedViewController {
+extension PublicListViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
@@ -154,7 +154,7 @@ extension ImageFeedViewController {
 
 // MARK: MultipleColumnLayoutDelegate
 
-extension ImageFeedViewController: MultipleColumnLayoutDelegate {
+extension PublicListViewController: MultipleColumnLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         heightForPhotoAtIndexPath indexPath: IndexPath,
