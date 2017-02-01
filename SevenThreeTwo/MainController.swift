@@ -17,12 +17,8 @@ class MainController: UIViewController, FusumaDelegate {
 
     
     @IBOutlet weak var showButton: UIButton!
-    @IBOutlet weak var publicListBtn: UIButton!
-    @IBOutlet weak var privateListBtn: UIButton!
-    var imageMain : UIImage!
     
-
- 
+    var imageMain : UIImage!
     
     
     override func viewDidLoad() {
@@ -36,13 +32,6 @@ class MainController: UIViewController, FusumaDelegate {
     }
     
     
-    @IBAction func publicBtnClicked(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func privateBtnClicked(_ sender: UIButton) {
-        
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

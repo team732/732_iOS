@@ -24,6 +24,7 @@
 		675A4E201E2FB076000781DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E1F1E2FB076000781DA /* Assets.xcassets */; };
 		675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E211E2FB076000781DA /* LaunchScreen.storyboard */; };
 		675A4E2E1E2FB076000781DA /* SevenThreeTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */; };
+		6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6789A3F81E417D3E009374BD /* DeviceResize.swift */; };
 		F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		675A4E291E2FB076000781DA /* SevenThreeTwoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SevenThreeTwoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenThreeTwoTests.swift; sourceTree = "<group>"; };
 		675A4E2F1E2FB076000781DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceResize.swift; sourceTree = "<group>"; };
 		98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenThreeTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E967A2C2716E71DB391C0DFD /* Pods-SevenThreeTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenThreeTwo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SevenThreeTwo/Pods-SevenThreeTwo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 				675A4E241E2FB076000781DA /* Info.plist */,
 				671469091E2FCDD1006925B7 /* TopViewController.swift */,
 				6714690B1E2FCDDD006925B7 /* BottomViewController.swift */,
+				6789A3F81E417D3E009374BD /* DeviceResize.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */,
 				672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */,
 				672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */,
+				6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */,
 				675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */,
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
 				372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */,
