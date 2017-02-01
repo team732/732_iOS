@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "pattern.png",
+      "filename" : "soap-bubble-1958841_1280.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "soap-bubble-1958841_1280-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "soap-bubble-1958841_1280-2.jpg",
       "scale" : "3x"
     }
   ],

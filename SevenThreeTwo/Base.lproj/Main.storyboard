@@ -82,54 +82,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main" translatesAutoresizingMaskIntoConstraints="NO" id="J1x-oR-5UN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-Du-z1Z">
-                                <rect key="frame" x="151" y="316" width="73" height="34"/>
+                                <rect key="frame" x="151" y="549" width="73" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="showButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6bf-jK-Cgs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2O-bQ-Mk7">
-                                <rect key="frame" x="47" y="521" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="xY8-U1-h6b" kind="presentation" identifier="mainToCamera" id="3JW-cM-vk4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTv-RU-yYi">
-                                <rect key="frame" x="283" y="144" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="publicBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RYI-kO-Op6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAG-04-ZEl">
-                                <rect key="frame" x="47" y="144" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="privateBtnClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CSY-vG-tqn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="J1x-oR-5UN" secondAttribute="trailing" id="QeH-OT-SX2"/>
-                            <constraint firstItem="moc-k2-6wr" firstAttribute="top" secondItem="J1x-oR-5UN" secondAttribute="bottom" id="bdg-fn-Eul"/>
-                            <constraint firstItem="J1x-oR-5UN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gOx-2z-kOG"/>
-                            <constraint firstItem="J1x-oR-5UN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jJS-kA-5SM"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="privateListBtn" destination="LAG-04-ZEl" id="IK8-ZY-aJX"/>
-                        <outlet property="publicListBtn" destination="gTv-RU-yYi" id="rXB-oe-4DF"/>
                         <outlet property="showButton" destination="Sy0-Du-z1Z" id="4eG-3N-4YL"/>
                     </connections>
                 </viewController>
@@ -234,7 +198,4 @@
             <point key="canvasLocation" x="770" y="65"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="main" width="187" height="324"/>
-    </resources>
 </document>
