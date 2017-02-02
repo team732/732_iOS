@@ -49,7 +49,7 @@ class PastViewController: UIViewController {
         subscribeBtn.setTitle("받아보기 모음", for: .normal)
         subscribeBtn.setTitleColor(UIColor.black, for: .normal)
         subscribeBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 18*widthRatio)
-        
+        subscribeBtn.titleLabel!.font = subscribeBtn.titleLabel!.font.withSize(18*widthRatio)
         self.view.addSubview(subscribeBtn)
         
         drawLine(startX: 170, startY: 271, width: 36, height: 1, border: false, color: UIColor.black)
@@ -59,7 +59,8 @@ class PastViewController: UIViewController {
         pastMissionBtn.setTitle("과거 미션들", for: .normal)
         pastMissionBtn.setTitleColor(UIColor.black, for: .normal)
         pastMissionBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 18*widthRatio)
-        
+        pastMissionBtn.titleLabel!.font = pastMissionBtn.titleLabel!.font.withSize(18*widthRatio)
+
         self.view.addSubview(pastMissionBtn)
         
         drawLine(startX: 170, startY: 367 , width: 36, height: 1, border: false, color: UIColor.black)
@@ -69,7 +70,8 @@ class PastViewController: UIViewController {
         hotPicBtn.setTitle("명예의 전당", for: .normal)
         hotPicBtn.setTitleColor(UIColor.black, for: .normal)
         hotPicBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 18*widthRatio)
-        
+        hotPicBtn.titleLabel!.font = hotPicBtn.titleLabel!.font.withSize(18*widthRatio)
+
         self.view.addSubview(hotPicBtn)
         
         let mainLogo = UIImageView(frame: CGRect(x: (117*widthRatio), y: (539*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
