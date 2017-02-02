@@ -9,6 +9,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Login Main View Controller-->
+        <scene sceneID="uRt-8c-zNz">
+            <objects>
+                <viewController id="VZe-QI-tDe" customClass="LoginMainViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tbg-sw-J1z"/>
+                        <viewControllerLayoutGuide type="bottom" id="DIB-b0-IIt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ocg-oW-Qe9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U4R-DG-LlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-790" y="-626"/>
+        </scene>
         <!--Past View Controller-->
         <scene sceneID="iOH-dn-FDy">
             <objects>
@@ -171,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cI3-Qp-txi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769" y="904"/>
+            <point key="canvasLocation" x="768.79999999999995" y="903.59820089955031"/>
         </scene>
         <!--Public List View Controller-->
         <scene sceneID="7pO-15-dHg">

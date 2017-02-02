@@ -23,7 +23,7 @@ class PrivateListViewController: UICollectionViewController {
     let reuseIdentifier = "PhotoCaptionCell"
     let collectionViewBottomInset: CGFloat = 3
     let collectionViewSideInset: CGFloat = 3
-    let collectionViewTopInset: CGFloat = UIApplication.shared.statusBarFrame.height
+    let collectionViewTopInset: CGFloat = 0
     
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()

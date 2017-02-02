@@ -61,7 +61,6 @@ class DetailMissionViewController: UIViewController {
         dateLabel.textAlignment = .center
         dateLabel.textColor = UIColor.white
         dateLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 11*widthRatio)
-
         dateLabel.font = dateLabel.font.withSize(11*widthRatio)
         
         self.view.addSubview(dateLabel)
@@ -72,7 +71,9 @@ class DetailMissionViewController: UIViewController {
         subLabel.text = receivedLbl.text
         subLabel.textAlignment = .center
         subLabel.textColor = UIColor.white
-        subLabel.font = UIFont(name: "아리따-돋움(OTF)-SemiBold", size: 22*widthRatio)
+        subLabel.font = UIFont(name: "아리따-돋움(OTF)-SemiBold", size: 40*widthRatio)
+        subLabel.font = subLabel.font.withSize(22*widthRatio)
+
         self.view.addSubview(subLabel)
     }
     

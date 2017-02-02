@@ -26,8 +26,10 @@ class PastViewController: UIViewController {
         widthRatio = userDevice.userDeviceWidth()
 
         viewSetUp()
-    }
 
+    }
+    
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
    

@@ -11,17 +11,21 @@ import AVFoundation
 
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class PublicListViewController: UICollectionViewController {
-  
-    // 기기의 너비와 높이
-    let width = UIScreen.main.bounds.size.width
-    let height = UIScreen.main.bounds.size.height
+    
+    let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
+    
+    // test에 내꺼 넣고 user은 저렇게 가도 된다
+    
+    var heightRatio: CGFloat = 0.0
+    var widthRatio: CGFloat = 0.0
+
     
     // MARK: Layout Concerns
     let cellStyle = BeigeRoundedPhotoCaptionCellStyle()
     let reuseIdentifier = "PhotoCaptionCell"
-    let collectionViewBottomInset: CGFloat = 10
-    let collectionViewSideInset: CGFloat = 5
-    let collectionViewTopInset: CGFloat = UIApplication.shared.statusBarFrame.height
+    let collectionViewBottomInset: CGFloat = 3
+    let collectionViewSideInset: CGFloat = 3
+    let collectionViewTopInset: CGFloat = 0
 
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
@@ -38,6 +42,8 @@ class PublicListViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        heightRatio = userDevice.userDeviceHeight()
+        widthRatio = userDevice.userDeviceWidth()
         
         setUpUI()
     }
@@ -58,12 +64,7 @@ class PublicListViewController: UICollectionViewController {
     // MARK: Private
     
     fileprivate func setUpUI() {
-        // Set background
-//        if let patternImage = UIImage(named: "pattern") {
-//            view.backgroundColor = UIColor(patternImage: patternImage)
-//        }
-        view.backgroundColor = UIColor.white
-        
+        self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         // Set title
         title = "Variable height layout"
         
@@ -83,44 +84,79 @@ class PublicListViewController: UICollectionViewController {
         layout.cellPadding = collectionViewSideInset
         layout.numberOfColumns = numberOfColumns
         
-        let label = UILabel(frame: CGRect(x:width/2-50, y:height/5-50, width:100, height: 100))
-        label.textAlignment = NSTextAlignment.center
-        label.text = "공개된"
-        collectionView?.addSubview(label)
         
+        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (92*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoLeft.image = UIImage(named: "gotoLeft")
+        gotoLeft.sizeToFit()
+        collectionView?.addSubview(gotoLeft)
         
-        let label2 = UILabel(frame: CGRect(x:width/2-50, y:height/4-60, width:100, height: 100))
-        label2.textAlignment = NSTextAlignment.center
-        label2.text = "리스트"
-        collectionView?.addSubview(label2)
+        let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
+        labelPic.text = "공개된"
+        labelPic.textAlignment = .center
+        labelPic.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelPic.font = labelPic.font.withSize(24*widthRatio)
+        collectionView?.addSubview(labelPic)
         
+        let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
+        labelList.text = "리스트"
+        labelList.textAlignment = .center
+        labelList.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelList.font = labelList.font.withSize(24*widthRatio)
+        collectionView?.addSubview(labelList)
+       
+        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
+        todayhotpic.image = UIImage(named: "todayhotpic")
+        collectionView?.addSubview(todayhotpic)
         
+        let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 198*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
+        cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
+        cameraBtn.setImage(UIImage(named:"camera"), for: .normal)
+        collectionView?.addSubview(cameraBtn)
         
-        let button = UIButton(type: .system) // let preferred over var here
+        let shotLabel = UILabel(frame: CGRect(x: 168.5*widthRatio, y: 226*heightRatio, width: 40*widthRatio, height: 11*heightRatio))
+        shotLabel.text = "촬영하기"
+        shotLabel.textAlignment = .center
+        shotLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 11*widthRatio)
+        shotLabel.font = labelList.font.withSize(11*widthRatio)
+        collectionView?.addSubview(shotLabel)
         
-        button.setTitle("명예의 전당", for: UIControlState.normal)
-        
-        button.frame = CGRect(x:width/2-50, y:height/3-50, width:100, height: 100)
-        
-        // button.addTarget(self, action: "Action:", for: UIControlEvents.touchUpInside)
-        collectionView?.addSubview(button)
         
         let items = ["최신순", "인기순"]
         let customSC = UISegmentedControl(items: items)
         customSC.selectedSegmentIndex = 0
-        customSC.frame = CGRect(x:5 , y:height/2.5,
-                                width:width-20, height:height/20)
-        customSC.layer.cornerRadius = 5.0  // Don't let background bleed
+        customSC.frame = CGRect(x: 85*widthRatio, y:276*heightRatio,
+                                width:200.6*widthRatio, height: 28*heightRatio)
+        customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
         
         
-         collectionView?.addSubview(customSC)
-
+        collectionView?.addSubview(customSC)
+        
+        drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor.black)
+        
         
         // Register cell identifier
         self.collectionView?.register(PhotoCaptionCell.self,
                                       forCellWithReuseIdentifier: self.reuseIdentifier)
+    }
+    
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
+        
+        var line: UIView!
+        
+        if border{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width, height: height*heightRatio))
+        }else{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
+        }
+        line.backgroundColor = color
+        
+        self.collectionView?.addSubview(line)
+    }
+
+    func cameraButtonAction() {
+        
     }
 }
 
