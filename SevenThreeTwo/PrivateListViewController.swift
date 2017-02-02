@@ -11,15 +11,18 @@ import AVFoundation
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class PrivateListViewController: UICollectionViewController {
     
-    // 기기의 너비와 높이
-    let width = UIScreen.main.bounds.size.width
-    let height = UIScreen.main.bounds.size.height
+    let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
+    
+    // test에 내꺼 넣고 user은 저렇게 가도 된다
+    
+    var heightRatio: CGFloat = 0.0
+    var widthRatio: CGFloat = 0.0
     
     // MARK: Layout Concerns
     let cellStyle = BeigeRoundedPhotoCaptionCellStyle()
     let reuseIdentifier = "PhotoCaptionCell"
-    let collectionViewBottomInset: CGFloat = 10
-    let collectionViewSideInset: CGFloat = 5
+    let collectionViewBottomInset: CGFloat = 3
+    let collectionViewSideInset: CGFloat = 3
     let collectionViewTopInset: CGFloat = UIApplication.shared.statusBarFrame.height
     
     var numberOfColumns: Int = 2
@@ -37,6 +40,9 @@ class PrivateListViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        heightRatio = userDevice.userDeviceHeight()
+        widthRatio = userDevice.userDeviceWidth()
         
         
         setUpUI()
@@ -59,12 +65,9 @@ class PrivateListViewController: UICollectionViewController {
     // MARK: Private
     
     fileprivate func setUpUI() {
-        // Set background
-        //        if let patternImage = UIImage(named: "pattern") {
-        //            view.backgroundColor = UIColor(patternImage: patternImage)
-        //        }
-        view.backgroundColor = UIColor.white
-        
+
+        self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+
         // Set title
         title = "Variable height layout"
         
@@ -84,35 +87,76 @@ class PrivateListViewController: UICollectionViewController {
         layout.cellPadding = collectionViewSideInset
         layout.numberOfColumns = numberOfColumns
         
-        let label = UILabel(frame: CGRect(x:width/2-50, y:height/5-50, width:100, height: 100))
-        label.textAlignment = NSTextAlignment.center
-        label.text = "내사진"
-        collectionView?.addSubview(label)
+        let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
+        labelPic.text = "내사진"
+        labelPic.textAlignment = .center
+        labelPic.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelPic.font = labelPic.font.withSize(24*widthRatio)
+        collectionView?.addSubview(labelPic)
+        
+        let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
+        labelList.text = "리스트"
+        labelList.textAlignment = .center
+        labelList.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelList.font = labelList.font.withSize(24*widthRatio)
+        collectionView?.addSubview(labelList)
+        
+        let gotoRight = UIImageView(frame: CGRect(x: (318*widthRatio), y: (98*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoRight.image = UIImage(named: "gotoright")
+        gotoRight.sizeToFit()
+        collectionView?.addSubview(gotoRight)
+        
+        let settingBtn = UIButton(frame: CGRect(x: 173*widthRatio , y: 176*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        settingBtn.addTarget(self, action: #selector(settingButtonAction), for: .touchUpInside)
+        settingBtn.setImage(UIImage(named:"setting"), for: .normal)
+        collectionView?.addSubview(settingBtn)
+
+        let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 206*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
+        settingLabel.text = "설정"
+        settingLabel.textAlignment = .center
+        settingLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 11*widthRatio)
+        settingLabel.font = labelList.font.withSize(11*widthRatio)
+        collectionView?.addSubview(settingLabel)
         
         
-        let label2 = UILabel(frame: CGRect(x:width/2-50, y:height/4-60, width:100, height: 100))
-        label2.textAlignment = NSTextAlignment.center
-        label2.text = "리스트"
-        collectionView?.addSubview(label2)
         
-        
-        
-        let items = ["모든사진", "비공개사진"]
+        let items = ["모두 공개", "비공개"]
         let customSC = UISegmentedControl(items: items)
         customSC.selectedSegmentIndex = 0
-        customSC.frame = CGRect(x:5 , y:height/2.5,
-                                width:width-20, height:height/20)
-        customSC.layer.cornerRadius = 5.0  // Don't let background bleed
+        customSC.frame = CGRect(x: 85*widthRatio, y:276*heightRatio,
+                                width:200.6*widthRatio, height: 28*heightRatio)
+        customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
         
         
         collectionView?.addSubview(customSC)
         
+        drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor.black)
+        
+        
         
         // Register cell identifier
         self.collectionView?.register(PhotoCaptionCell.self,
                                       forCellWithReuseIdentifier: self.reuseIdentifier)
+    }
+    
+    func settingButtonAction(){
+        print("!!!!!!")
+    }
+    
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
+        
+        var line: UIView!
+        
+        if border{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width, height: height*heightRatio))
+        }else{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
+        }
+        line.backgroundColor = color
+        
+        self.collectionView?.addSubview(line)
     }
 }
 
@@ -160,14 +204,7 @@ extension PrivateListViewController: MultipleColumnLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForAnnotationAtIndexPath indexPath: IndexPath,
                         withWidth width: CGFloat) -> CGFloat {
-        //
-        //        let rect = NSString(string: "")
-        //            .boundingRect(
-        //                with: CGSize(width: width,
-        //                             height: CGFloat(MAXFLOAT)),
-        //                options: .usesLineFragmentOrigin,
-        //                attributes: [NSFontAttributeName: cellStyle.titleFont],
-        //                context: nil)
+
         return ceil(0)
     }
 }

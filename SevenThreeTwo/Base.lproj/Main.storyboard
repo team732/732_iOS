@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Top View Controller-->
+        <!--Past View Controller-->
         <scene sceneID="iOH-dn-FDy">
             <objects>
-                <viewController storyboardIdentifier="top" id="3bL-8m-T0U" customClass="TopViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="top" id="3bL-8m-T0U" customClass="PastViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y8Y-x8-cO8"/>
                         <viewControllerLayoutGuide type="bottom" id="05H-i7-QYT"/>
@@ -20,21 +20,12 @@
                     <view key="view" contentMode="scaleToFill" id="1ot-ar-uFo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4k-6D-yNq">
-                                <rect key="frame" x="230" y="603" width="29" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBj-dl-NHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="-741"/>
+            <point key="canvasLocation" x="73" y="-633"/>
         </scene>
         <!--Private List View Controller-->
         <scene sceneID="xRh-r4-Suc">

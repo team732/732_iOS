@@ -60,16 +60,19 @@ class DetailMissionViewController: UIViewController {
         dateLabel.text = useDate() + "의 미션"
         dateLabel.textAlignment = .center
         dateLabel.textColor = UIColor.white
+        dateLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 11*widthRatio)
+
         dateLabel.font = dateLabel.font.withSize(11*widthRatio)
+        
         self.view.addSubview(dateLabel)
         
-        drawLine(startX: 169, startY: 263, width: 36, height: 3,border:false, color: UIColor.white)
+        drawLine(startX: 169, startY: 263, width: 36, height: 1,border:false, color: UIColor.white)
     
         let subLabel = UILabel(frame: CGRect(x: (122*widthRatio), y: (305*heightRatio), width: 132*widthRatio, height: 52*heightRatio))
         subLabel.text = receivedLbl.text
         subLabel.textAlignment = .center
         subLabel.textColor = UIColor.white
-        subLabel.font = subLabel.font.withSize(22*widthRatio)
+        subLabel.font = UIFont(name: "아리따-돋움(OTF)-SemiBold", size: 22*widthRatio)
         self.view.addSubview(subLabel)
     }
     

@@ -128,15 +128,16 @@ class MainController: UIViewController, FusumaDelegate {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let startLabel = UILabel(frame: CGRect(x: (119*widthRatio), y: (65*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
-        startLabel.text = "당신의 하루를 시작하는"
-        startLabel.textAlignment = .center
-        startLabel.font = startLabel.font.withSize(14*widthRatio)
-        self.view.addSubview(startLabel)
+        let mainLogo = UIImageView(frame: CGRect(x: (119*widthRatio), y: (65*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
+        mainLogo.image = UIImage(named: "mainLogo")
+        self.view.addSubview(mainLogo)
+        
         
         let logoLandScape = UIImageView(frame: CGRect(x: (147*widthRatio), y: (96*heightRatio), width: 90*widthRatio, height: 61*heightRatio))
         logoLandScape.image = UIImage(named: "logoLandScape")
         self.view.addSubview(logoLandScape)
+        
+        addCameraLansImage()
         
         drawLine(startX: 0, startY: 328, width: 56, height: 1,border: false, color: UIColor.black)
         drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false, color: UIColor.black)
@@ -217,7 +218,9 @@ class MainController: UIViewController, FusumaDelegate {
         subLabel.text = "인간의 욕심은 끝이없고"
         subLabel.textColor = UIColor.white
         subLabel.textAlignment = .center
+        subLabel.font = UIFont(name: "아리따-돋움(OTF)-SemiBold", size: 22*widthRatio)
         subLabel.font = subLabel.font.withSize(22*widthRatio)
+
         self.view.addSubview(subLabel)
         
     }
@@ -225,6 +228,27 @@ class MainController: UIViewController, FusumaDelegate {
     
     func imageTapped(img: AnyObject){
         self.performSegue(withIdentifier: "mainToDetail", sender: self)
+    }
+    
+    func addCameraLansImage(){
+        let oneRec = UIImageView(frame: CGRect(x: (20*widthRatio), y: (157*heightRatio), width: 12*widthRatio, height: 12*heightRatio))
+        oneRec.image = UIImage(named: "Rec1")
+        self.view.addSubview(oneRec)
+        
+        let twoRec = UIImageView(frame: CGRect(x: (343*widthRatio), y: (157*heightRatio), width: 12*widthRatio, height: 12*heightRatio))
+        twoRec.image = UIImage(named: "Rec2")
+        self.view.addSubview(twoRec)
+        
+        let threeRec = UIImageView(frame: CGRect(x: (20*widthRatio), y: (489*heightRatio), width: 12*widthRatio, height: 12*heightRatio))
+        threeRec.image = UIImage(named: "Rec3")
+        self.view.addSubview(threeRec)
+        
+        let fourRec = UIImageView(frame: CGRect(x: (343*widthRatio), y: (489*heightRatio), width: 12*widthRatio, height: 12*heightRatio))
+        fourRec.image = UIImage(named: "Rec4")
+        self.view.addSubview(fourRec)
+        
+        
+        
     }
     
     
