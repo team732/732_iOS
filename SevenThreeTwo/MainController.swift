@@ -18,7 +18,8 @@ class MainController: UIViewController, FusumaDelegate {
     
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
-    
+    var subImage: UIImageView!
+    var subLabel: UILabel!
     
     
     @IBOutlet weak var showButton: UIButton!
@@ -121,16 +122,7 @@ class MainController: UIViewController, FusumaDelegate {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "mainToCamera"
-        {
-            let destination = segue.destination as! CameraViewController
-            
-            destination.receivedImg = imageMain
-        }
-    }
-    
+ 
     
     func viewSetUp() {
         
@@ -139,16 +131,16 @@ class MainController: UIViewController, FusumaDelegate {
         let startLabel = UILabel(frame: CGRect(x: (119*widthRatio), y: (65*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
         startLabel.text = "당신의 하루를 시작하는"
         startLabel.textAlignment = .center
-        startLabel.font = startLabel.font.withSize(14*heightRatio)
+        startLabel.font = startLabel.font.withSize(14*widthRatio)
         self.view.addSubview(startLabel)
         
         let logoLandScape = UIImageView(frame: CGRect(x: (147*widthRatio), y: (96*heightRatio), width: 90*widthRatio, height: 61*heightRatio))
         logoLandScape.image = UIImage(named: "logoLandScape")
         self.view.addSubview(logoLandScape)
         
-        drawLine(startX: 0, startY: 328, width: 56, height: 1)
-        drawLine(startX: 319, startY: 328, width: 56, height: 1)
-        drawLine(startX: 185, startY: 460, width: 1, height: 125)
+        drawLine(startX: 0, startY: 328, width: 56, height: 1,border: false, color: UIColor.black)
+        drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false, color: UIColor.black)
+        drawLine(startX: 185, startY: 460, width: 1, height: 125, border:true, color: UIColor.black)
 
         let gotoLeft = UIImageView(frame: CGRect(x: (23*widthRatio), y: (323*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.image = UIImage(named: "gotoleft")
@@ -170,16 +162,16 @@ class MainController: UIViewController, FusumaDelegate {
         
     }
     
-    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat){
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
         
         var line: UIView!
         
-        if width == 1 {
+        if border{
             line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width, height: height*heightRatio))
-        }else {
-              line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
+        }else{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
         }
-        line.backgroundColor = UIColor.black
+        line.backgroundColor = color
         
         self.view.addSubview(line)
     }
@@ -200,24 +192,57 @@ class MainController: UIViewController, FusumaDelegate {
     func subjectImage(){
         
         //서버에서 불러와서 이미지 세팅
-        let subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
+        subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
         subImage.image = UIImage(named: "subimage")
-        subImage.alpha = 0.5
+        
         subImage.layer.masksToBounds = false
         subImage.layer.cornerRadius = subImage.frame.height/2
         subImage.clipsToBounds = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(imageTapped(img:)))
+        subImage.isUserInteractionEnabled = true
+        subImage.addGestureRecognizer(tapGestureRecognizer)
+ 
+        let coverLayer = CALayer()
+        coverLayer.frame = subImage.bounds;
+        coverLayer.backgroundColor = UIColor.black.cgColor
+        coverLayer.opacity = 0.3
+        subImage.layer.addSublayer(coverLayer)
+        
         
         self.view.addSubview(subImage)
         
         //서버에서 주제 던져서 세팅
         
-        let startLabel = UILabel(frame: CGRect(x: (122*widthRatio), y: (305*heightRatio), width: 132*widthRatio, height: 52*heightRatio))
-        startLabel.text = "인간의 욕심은 끝이없고"
-        startLabel.textAlignment = .center
-        startLabel.font = startLabel.font.withSize(22*heightRatio)
-        self.view.addSubview(startLabel)
-
-        
+        subLabel = UILabel(frame: CGRect(x: (122*widthRatio), y: (305*heightRatio), width: 132*widthRatio, height: 52*heightRatio))
+        subLabel.text = "인간의 욕심은 끝이없고"
+        subLabel.textColor = UIColor.white
+        subLabel.textAlignment = .center
+        subLabel.font = subLabel.font.withSize(22*widthRatio)
+        self.view.addSubview(subLabel)
         
     }
+    
+    
+    func imageTapped(img: AnyObject){
+        self.performSegue(withIdentifier: "mainToDetail", sender: self)
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "mainToCamera"
+        {
+            let destination = segue.destination as! CameraViewController
+            
+            destination.receivedImg = imageMain
+        }
+        else if segue.identifier == "mainToDetail"
+        {
+            let destination = segue.destination as! DetailMissionViewController
+            destination.receivedImg = self.subImage.image!
+            destination.receivedLbl = self.subLabel
+        }
+    }
+    
 }

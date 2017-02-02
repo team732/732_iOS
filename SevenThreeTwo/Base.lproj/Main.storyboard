@@ -95,6 +95,7 @@
                     </view>
                     <connections>
                         <outlet property="showButton" destination="Sy0-Du-z1Z" id="4eG-3N-4YL"/>
+                        <segue destination="ycY-sY-QWc" kind="show" identifier="mainToDetail" id="Kfu-AY-ecQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -162,6 +163,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0h6-Qu-bdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="73" y="904"/>
+        </scene>
+        <!--Detail Mission View Controller-->
+        <scene sceneID="qWN-YZ-U4Z">
+            <objects>
+                <viewController id="ycY-sY-QWc" customClass="DetailMissionViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c4w-gf-UoW"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Wg-QW-pDL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I9i-L6-nrF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cI3-Qp-txi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="904"/>
         </scene>
         <!--Public List View Controller-->
         <scene sceneID="7pO-15-dHg">
