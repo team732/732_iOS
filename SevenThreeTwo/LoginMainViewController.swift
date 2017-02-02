@@ -35,6 +35,10 @@ class LoginMainViewController: UIViewController {
     }
     
     func viewSetUp(){
+        
+        self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        
+        
         let logoLandScape = UIImageView(frame: CGRect(x: (160*widthRatio), y: (91*heightRatio), width: 63*widthRatio, height: 43*heightRatio))
         logoLandScape.image = UIImage(named: "logoLandScape")
         self.view.addSubview(logoLandScape)
@@ -53,21 +57,37 @@ class LoginMainViewController: UIViewController {
         
         let loginBtn = UIButton(frame: CGRect(x: 72*widthRatio , y: 365*heightRatio, width: 232*widthRatio, height: 51*heightRatio))
         loginBtn.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
-        loginBtn.setImage(UIImage(named:"camera"), for: .normal)
+        loginBtn.setImage(UIImage(named:"login"), for: .normal)
         self.view.addSubview(loginBtn)
         
         let joinBtn = UIButton(frame: CGRect(x: 72*widthRatio , y: 294*heightRatio, width: 232*widthRatio, height: 51*heightRatio))
         joinBtn.addTarget(self, action: #selector(joinButtonAction), for: .touchUpInside)
-        joinBtn.setImage(UIImage(named:"camera"), for: .normal)
+        joinBtn.setImage(UIImage(named:"join"), for: .normal)
         self.view.addSubview(joinBtn)
         
     }
     
     func loginButtonAction(){
+    
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        let left = storyboard.instantiateViewController(withIdentifier: "left")
+        let middle = storyboard.instantiateViewController(withIdentifier: "middle")
+        let right = storyboard.instantiateViewController(withIdentifier: "right")
+        let top = storyboard.instantiateViewController(withIdentifier: "top")
+        
+        let snapContainer = SnapContainerViewController.containerViewWith(left,
+                                                                          middleVC: middle,
+                                                                          rightVC: right,
+                                                                          topVC: top,
+                                                                          bottomVC: nil)
+       
+        // 로그인 서버에서 시켜라~
+        self.present(snapContainer, animated: true, completion: nil)
+
     }
     func joinButtonAction(){
-        
+        self.performSegue(withIdentifier: "joinToId", sender: self)
     }
     
     
@@ -86,15 +106,8 @@ class LoginMainViewController: UIViewController {
     }
 
     
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

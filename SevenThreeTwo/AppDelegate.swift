@@ -17,21 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let left = storyboard.instantiateViewController(withIdentifier: "left")
-        let middle = storyboard.instantiateViewController(withIdentifier: "middle")
-        let right = storyboard.instantiateViewController(withIdentifier: "right")
-        let top = storyboard.instantiateViewController(withIdentifier: "top")
-        
-        let snapContainer = SnapContainerViewController.containerViewWith(left,
-                                                                          middleVC: middle,
-                                                                          rightVC: right,
-                                                                          topVC: top,
-                                                                          bottomVC: nil)
-        
-        self.window?.rootViewController = snapContainer
-        self.window?.makeKeyAndVisible()
+        // 토큰 유효하면 이곳에서 바로 메인으로 넘어가게해야한다
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let left = storyboard.instantiateViewController(withIdentifier: "left")
+//        let middle = storyboard.instantiateViewController(withIdentifier: "middle")
+//        let right = storyboard.instantiateViewController(withIdentifier: "right")
+//        let top = storyboard.instantiateViewController(withIdentifier: "top")
+//        
+//        let snapContainer = SnapContainerViewController.containerViewWith(left,
+//                                                                          middleVC: middle,
+//                                                                          rightVC: right,
+//                                                                          topVC: top,
+//                                                                          bottomVC: nil)
+//        
+//        self.window?.rootViewController = snapContainer
+//        self.window?.makeKeyAndVisible()
         return true
     }
 

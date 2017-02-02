@@ -30,6 +30,11 @@
 		67AE846C1E4349F200BAF314 /* ARITA-SEMIBOLD.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84671E4349F200BAF314 /* ARITA-SEMIBOLD.otf */; };
 		67AE846D1E4349F200BAF314 /* ARITA-THIN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84681E4349F200BAF314 /* ARITA-THIN.otf */; };
 		67AE84711E43534600BAF314 /* LoginMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84701E43534600BAF314 /* LoginMainViewController.swift */; };
+		67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84721E43706600BAF314 /* JoinInputIDViewController.swift */; };
+		67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84741E437E3000BAF314 /* JoinInputPwViewController.swift */; };
+		67AE84771E43881300BAF314 /* JoinInputPwCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84761E43881300BAF314 /* JoinInputPwCheckViewController.swift */; };
+		67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84781E438F8000BAF314 /* JoinInputNicknameViewController.swift */; };
+		67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */; };
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67EB38441E41BBC700A8E89A /* Assets.xcassets */; };
 		F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
@@ -74,6 +79,11 @@
 		67AE84671E4349F200BAF314 /* ARITA-SEMIBOLD.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-SEMIBOLD.otf"; sourceTree = "<group>"; };
 		67AE84681E4349F200BAF314 /* ARITA-THIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-THIN.otf"; sourceTree = "<group>"; };
 		67AE84701E43534600BAF314 /* LoginMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginMainViewController.swift; sourceTree = "<group>"; };
+		67AE84721E43706600BAF314 /* JoinInputIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputIDViewController.swift; sourceTree = "<group>"; };
+		67AE84741E437E3000BAF314 /* JoinInputPwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputPwViewController.swift; sourceTree = "<group>"; };
+		67AE84761E43881300BAF314 /* JoinInputPwCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputPwCheckViewController.swift; sourceTree = "<group>"; };
+		67AE84781E438F8000BAF314 /* JoinInputNicknameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputNicknameViewController.swift; sourceTree = "<group>"; };
+		67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputEmailViewController.swift; sourceTree = "<group>"; };
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67EB38441E41BBC700A8E89A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenThreeTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +238,11 @@
 			isa = PBXGroup;
 			children = (
 				67AE84701E43534600BAF314 /* LoginMainViewController.swift */,
+				67AE84721E43706600BAF314 /* JoinInputIDViewController.swift */,
+				67AE84741E437E3000BAF314 /* JoinInputPwViewController.swift */,
+				67AE84761E43881300BAF314 /* JoinInputPwCheckViewController.swift */,
+				67AE84781E438F8000BAF314 /* JoinInputNicknameViewController.swift */,
+				67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */,
 			);
 			name = "Login&JoinView";
 			sourceTree = "<group>";
@@ -415,6 +430,8 @@
 				672DD12C1E335058001022BF /* Photo.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
 				6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */,
+				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
+				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
 				671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */,
 				672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */,
 				67AE84711E43534600BAF314 /* LoginMainViewController.swift in Sources */,
@@ -422,12 +439,15 @@
 				672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */,
 				6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */,
 				67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */,
+				67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */,
 				675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */,
+				67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */,
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
 				372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */,
 				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
 				67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */,
 				6714690A1E2FCDD1006925B7 /* PastViewController.swift in Sources */,
+				67AE84771E43881300BAF314 /* JoinInputPwCheckViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
