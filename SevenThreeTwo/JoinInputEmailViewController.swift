@@ -90,6 +90,10 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         checkBtn.setImage(UIImage(named:"check"), for: .normal)
         self.view.addSubview(checkBtn)
         
+        let skipBtn = UIButton(frame: CGRect(x: 260*widthRatio , y: 75*heightRatio, width: 61*widthRatio, height: 15*heightRatio))
+        skipBtn.addTarget(self, action: #selector(checkButtonAction), for: .touchUpInside)
+        skipBtn.setImage(UIImage(named:"skip"), for: .normal)
+        self.view.addSubview(skipBtn)
     }
     
     func backButtonAction(){
@@ -115,13 +119,14 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         
         var checkNick :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
         
-        //서버에서 아이디가 중복된게 있으면 duplicatedId 를 isHidden 을 false
+        //서버에서 아이디가 중복된게 있으면 duplicatedId 를 isHidden 을 false 단 공백은 제외
         if emailTextField.text == "a" {
             duplicatedEmail.isHidden = false
         }else{
             
             // 이곳에서 서버에 저장시키고 다시 로그인 화면으로 돌아간다.
             // receivedId, receivedPw, receivedNickname, emailTextField.text
+            duplicatedEmail.isHidden = true
             self.emailTextField.endEditing(true)
             self.performSegue(withIdentifier: "emailToLogin", sender: self)
         }

@@ -22,7 +22,7 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
     var pwCheckTextField : UITextField!
     
     var pwHideBtn : UIButton!
-    
+    var checkPw : UILabel!
     var passwordIshidden = true
     
     override func viewDidLoad() {
@@ -53,7 +53,6 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
         backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
         
         self.view.addSubview(backBtn)
         
@@ -61,12 +60,20 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         pwCheckLabel.text = "비밀번호 확인"
         pwCheckLabel.textAlignment = .center
         pwCheckLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        pwCheckLabel.font = pwCheckLabel.font.withSize(15*widthRatio)
         self.view.addSubview(pwCheckLabel)
         
+        checkPw = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
+        checkPw.text = "비밀번호를 다시 입력해 주세요."
+        checkPw.textAlignment = .center
+        checkPw.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        checkPw.isHidden = true
+        checkPw.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        self.view.addSubview(checkPw)
+
+        
         pwCheckTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
-        pwCheckTextField.placeholder = "비밀번호를 다시 입력하시오.(영어 대소문자,숫자 조합6~16자리)"
-        pwCheckTextField.font = UIFont.systemFont(ofSize: 12*widthRatio)
+        pwCheckTextField.placeholder = "비밀번호를 확인해 주세요."
+        pwCheckTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         pwCheckTextField.autocorrectionType = UITextAutocorrectionType.no
         pwCheckTextField.keyboardType = UIKeyboardType.default
         pwCheckTextField.returnKeyType = UIReturnKeyType.done
@@ -147,9 +154,10 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         
         if pwCheckTextField.text == receivedPw{
            // 비밀번호가 이전꺼와 동일하면 넘기고 아니면 안된다.
+            checkPw.isHidden = true
             self.performSegue(withIdentifier: "pwCheckToNick", sender: self)
         }else{
-            
+            checkPw.isHidden = false
         }
     }
     

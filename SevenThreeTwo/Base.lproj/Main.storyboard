@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="3326" y="-645"/>
         </scene>
-        <!--Past View Controller-->
+        <!--Top Menu View Controller-->
         <scene sceneID="iOH-dn-FDy">
             <objects>
-                <viewController storyboardIdentifier="top" id="3bL-8m-T0U" customClass="PastViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="top" id="3bL-8m-T0U" customClass="TopMenuViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y8Y-x8-cO8"/>
                         <viewControllerLayoutGuide type="bottom" id="05H-i7-QYT"/>
@@ -248,7 +248,7 @@
         <scene sceneID="xRh-r4-Suc">
             <objects>
                 <collectionViewController storyboardIdentifier="left" id="fJU-Lj-n4c" customClass="PrivateListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lYv-aP-wph">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lYv-aP-wph">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -395,7 +395,7 @@
         <scene sceneID="7pO-15-dHg">
             <objects>
                 <collectionViewController storyboardIdentifier="right" id="Bnz-Il-u6K" customClass="PublicListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IdA-bb-rXr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="IdA-bb-rXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

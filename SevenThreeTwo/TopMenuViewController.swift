@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PastViewController: UIViewController {
+class TopMenuViewController: UIViewController {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -39,11 +39,12 @@ class PastViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let copyRightImg = UIImageView(frame: CGRect(x: (156*widthRatio), y: (90*heightRatio), width: 64*widthRatio, height: 14*heightRatio))
+        let copyRightImg = UIImageView(frame: CGRect(x: (156*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 14*heightRatio))
         copyRightImg.image = UIImage(named: "copyright")
         self.view.addSubview(copyRightImg)
         
-        drawRectangle(startX: 52, startY: 154, width: 271, height: 327)
+        drawRectangle(startX:47, startY: 195, width: 282, height:339)
+        drawRectangle(startX: 52, startY: 201, width: 271, height: 327)
 
         
         let subscribeBtn = UIButton(frame: CGRect(x: 137*widthRatio , y: 211*heightRatio, width: 103*widthRatio, height: 18*heightRatio))
@@ -76,23 +77,11 @@ class PastViewController: UIViewController {
 
         self.view.addSubview(hotPicBtn)
         
-        let mainLogo = UIImageView(frame: CGRect(x: (117*widthRatio), y: (539*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
-        mainLogo.image = UIImage(named: "mainLogo")
-        self.view.addSubview(mainLogo)
         
-        let logoLandScape = UIImageView(frame: CGRect(x: (145*widthRatio), y: (570*heightRatio), width: 90*widthRatio, height: 61*heightRatio))
-        logoLandScape.image = UIImage(named: "logoLandScape")
-        self.view.addSubview(logoLandScape)
-        
-        
-        let oneRec = UIImageView(frame: CGRect(x: (32*widthRatio), y: (631*heightRatio), width: 12*widthRatio, height: 12*heightRatio))
-        oneRec.image = UIImage(named: "Rec1")
-        self.view.addSubview(oneRec)
-        
-        let twoRec = UIImageView(frame: CGRect(x: (331*widthRatio), y: (631*heightRatio), width: 12*widthRatio, height: 12*heightRatio))
-        twoRec.image = UIImage(named: "Rec2")
-        self.view.addSubview(twoRec)
-  
+        let downBtn = UIImageView(frame: CGRect(x: (176*widthRatio), y: (600*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        downBtn.image = UIImage(named: "godown")
+        downBtn.sizeToFit()
+        self.view.addSubview(downBtn)
         
         
     }

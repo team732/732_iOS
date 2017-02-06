@@ -13,7 +13,7 @@
 		67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67092A961E386B3000DB9A27 /* PrivateListViewController.swift */; };
 		671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469001E2FCBF5006925B7 /* SnapContainerViewController.swift */; };
 		671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */; };
-		6714690A1E2FCDD1006925B7 /* PastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469091E2FCDD1006925B7 /* PastViewController.swift */; };
+		6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469091E2FCDD1006925B7 /* TopMenuViewController.swift */; };
 		6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6714690B1E2FCDDD006925B7 /* BottomViewController.swift */; };
 		672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */; };
 		672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */; };
@@ -60,7 +60,7 @@
 		67092A961E386B3000DB9A27 /* PrivateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateListViewController.swift; sourceTree = "<group>"; };
 		671469001E2FCBF5006925B7 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
-		671469091E2FCDD1006925B7 /* PastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastViewController.swift; sourceTree = "<group>"; };
+		671469091E2FCDD1006925B7 /* TopMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuViewController.swift; sourceTree = "<group>"; };
 		6714690B1E2FCDDD006925B7 /* BottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
 		672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptionCell.swift; sourceTree = "<group>"; };
 		672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleColumnLayoutAttributes.swift; sourceTree = "<group>"; };
@@ -141,7 +141,9 @@
 		67092A941E3860F900DB9A27 /* TopView */ = {
 			isa = PBXGroup;
 			children = (
-				671469091E2FCDD1006925B7 /* PastViewController.swift */,
+				671469091E2FCDD1006925B7 /* TopMenuViewController.swift */,
+				37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */,
+				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
 			);
 			name = TopView;
 			sourceTree = "<group>";
@@ -213,8 +215,6 @@
 				67EB38441E41BBC700A8E89A /* Assets.xcassets */,
 				6714690B1E2FCDDD006925B7 /* BottomViewController.swift */,
 				6789A3F81E417D3E009374BD /* DeviceResize.swift */,
-				37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */,
-				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -454,7 +454,7 @@
 				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
 				67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */,
 				37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */,
-				6714690A1E2FCDD1006925B7 /* PastViewController.swift in Sources */,
+				6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */,
 				67AE84771E43881300BAF314 /* JoinInputPwCheckViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

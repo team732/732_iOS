@@ -58,7 +58,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         
         idTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
         idTextField.placeholder = "아이디를 입력해 주세요 (영문,숫자 조합 6~16자리)"
-        idTextField.font = UIFont.systemFont(ofSize: 13*widthRatio)
+        idTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         idTextField.autocorrectionType = UITextAutocorrectionType.no
         idTextField.keyboardType = UIKeyboardType.default
         idTextField.returnKeyType = UIReturnKeyType.done
@@ -117,6 +117,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
             duplicatedId.isHidden = false
         }else{
             self.idTextField.endEditing(true)
+            duplicatedId.isHidden = true
             performSegue(withIdentifier: "JoinIdToPwSegue", sender: self)
         }
         //없으면 넘어가면 돼

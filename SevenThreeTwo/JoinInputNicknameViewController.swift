@@ -56,7 +56,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         
         self.view.addSubview(backBtn)
         
-        let nickLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 41*widthRatio, height: 15*heightRatio))
+        let nickLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 50*widthRatio, height: 15*heightRatio))
         nickLabel.text = "닉네임"
         nickLabel.textAlignment = .center
         nickLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
@@ -65,7 +65,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         
         nickTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
         nickTextField.placeholder = "닉네임을 입력해 주세요(1~12자리)"
-        nickTextField.font = UIFont.systemFont(ofSize: 13*widthRatio)
+        nickTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         nickTextField.autocorrectionType = UITextAutocorrectionType.no
         nickTextField.keyboardType = UIKeyboardType.default
         nickTextField.returnKeyType = UIReturnKeyType.done
@@ -118,6 +118,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         if nickTextField.text == "a" {
             duplicatedNick.isHidden = false
         }else{
+            duplicatedNick.isHidden = true
             self.nickTextField.endEditing(true)
             self.performSegue(withIdentifier: "nickToEmail", sender: self)
         }
