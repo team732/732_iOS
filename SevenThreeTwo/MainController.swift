@@ -215,7 +215,8 @@ class MainController: UIViewController, FusumaDelegate {
         //서버에서 주제 던져서 세팅
         
         subLabel = UILabel(frame: CGRect(x: (122*widthRatio), y: (305*heightRatio), width: 132*widthRatio, height: 52*heightRatio))
-        subLabel.text = "인간의 욕심은 끝이없고"
+        subLabel.numberOfLines = 0
+        subLabel.text = "인간의 욕심은\n끝이없고"
         subLabel.textColor = UIColor.white
         subLabel.textAlignment = .center
         subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)

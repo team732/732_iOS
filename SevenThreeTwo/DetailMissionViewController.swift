@@ -68,6 +68,7 @@ class DetailMissionViewController: UIViewController {
         drawLine(startX: 169, startY: 263, width: 36, height: 1,border:false, color: UIColor.white)
     
         let subLabel = UILabel(frame: CGRect(x: (122*widthRatio), y: (305*heightRatio), width: 132*widthRatio, height: 52*heightRatio))
+        subLabel.numberOfLines = 0
         subLabel.text = receivedLbl.text
         subLabel.textAlignment = .center
         subLabel.textColor = UIColor.white
