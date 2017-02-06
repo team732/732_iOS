@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F74991E35EA8600A26CA0 /* CameraViewController.swift */; };
+		37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */; };
+		37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */; };
 		67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67092A961E386B3000DB9A27 /* PrivateListViewController.swift */; };
 		671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469001E2FCBF5006925B7 /* SnapContainerViewController.swift */; };
 		671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */; };
@@ -53,6 +55,8 @@
 /* Begin PBXFileReference section */
 		34543005D58CF0DF3B38A3BD /* Pods-SevenThreeTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenThreeTwo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SevenThreeTwo/Pods-SevenThreeTwo.release.xcconfig"; sourceTree = "<group>"; };
 		372F74991E35EA8600A26CA0 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionViewController.swift; sourceTree = "<group>"; };
+		37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67092A961E386B3000DB9A27 /* PrivateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateListViewController.swift; sourceTree = "<group>"; };
 		671469001E2FCBF5006925B7 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				67EB38441E41BBC700A8E89A /* Assets.xcassets */,
 				6714690B1E2FCDDD006925B7 /* BottomViewController.swift */,
 				6789A3F81E417D3E009374BD /* DeviceResize.swift */,
+				37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */,
+				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -317,7 +323,7 @@
 				TargetAttributes = {
 					675A4E141E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = VANL3XS874;
+						DevelopmentTeam = 537GQ2WKJ4;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -440,12 +446,14 @@
 				6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */,
 				67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */,
 				67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */,
+				37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */,
 				675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */,
 				67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */,
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
 				372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */,
 				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
 				67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */,
+				37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */,
 				6714690A1E2FCDD1006925B7 /* PastViewController.swift in Sources */,
 				67AE84771E43881300BAF314 /* JoinInputPwCheckViewController.swift in Sources */,
 			);
@@ -588,11 +596,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VANL3XS874;
+				DEVELOPMENT_TEAM = 537GQ2WKJ4;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj732.com.SevenThreeTwoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -605,11 +613,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VANL3XS874;
+				DEVELOPMENT_TEAM = 537GQ2WKJ4;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj732.com.SevenThreeTwoApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

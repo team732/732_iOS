@@ -102,7 +102,7 @@ class PastViewController: UIViewController {
     }
     
     func pastMissionButtonAction(){
-        
+        performSegue(withIdentifier: "pastToPast", sender: self)
     }
     
     func hotPicButtonAction(){

@@ -30,6 +30,94 @@
             </objects>
             <point key="canvasLocation" x="-1060" y="-678"/>
         </scene>
+        <!--Past Mission View Controller-->
+        <scene sceneID="DpT-cO-ARs">
+            <objects>
+                <viewController id="bOA-x6-2cu" customClass="PastMissionViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gnt-oW-mRZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="gDl-kD-kTH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KwZ-kM-qcu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fuJ-wk-SRt">
+                                <rect key="frame" x="0.0" y="141" width="375" height="526"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Afs-UM-maa">
+                                    <size key="itemSize" width="263" height="263"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Q8f-zO-l3U" customClass="PastMissionCollectionViewCell" customModule="SevenThreeTwo" customModuleProvider="target">
+                                        <rect key="frame" x="56" y="0.0" width="263" height="263"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otter-6" translatesAutoresizingMaskIntoConstraints="NO" id="d29-W0-yh7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017년 1월 21일의 미션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scp-1i-Wat">
+                                                    <rect key="frame" x="0.0" y="103" width="263" height="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인간의 욕심은 끝이없고" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReL-nd-1Y2">
+                                                    <rect key="frame" x="0.0" y="143" width="263" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="d29-W0-yh7" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="3p9-sg-7MT"/>
+                                            <constraint firstAttribute="bottom" secondItem="d29-W0-yh7" secondAttribute="bottom" id="8Zx-wI-dQb"/>
+                                            <constraint firstItem="ReL-nd-1Y2" firstAttribute="top" secondItem="Scp-1i-Wat" secondAttribute="bottom" constant="29" id="F0q-eD-doK"/>
+                                            <constraint firstItem="Scp-1i-Wat" firstAttribute="top" secondItem="Q8f-zO-l3U" secondAttribute="top" constant="103" id="FrV-Iy-afE"/>
+                                            <constraint firstItem="d29-W0-yh7" firstAttribute="top" secondItem="Q8f-zO-l3U" secondAttribute="top" id="Lic-MY-WuD"/>
+                                            <constraint firstAttribute="trailing" secondItem="ReL-nd-1Y2" secondAttribute="trailing" id="Nrx-lh-ii1"/>
+                                            <constraint firstAttribute="bottom" secondItem="Scp-1i-Wat" secondAttribute="bottom" constant="149" id="bYF-3e-n8u"/>
+                                            <constraint firstItem="ReL-nd-1Y2" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="bsw-Uy-GfH"/>
+                                            <constraint firstAttribute="trailing" secondItem="Scp-1i-Wat" secondAttribute="trailing" id="fYx-zx-YCn"/>
+                                            <constraint firstItem="Scp-1i-Wat" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="oAO-Zq-JUO"/>
+                                            <constraint firstAttribute="trailing" secondItem="d29-W0-yh7" secondAttribute="trailing" id="vQD-E5-02C"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="date" destination="Scp-1i-Wat" id="4He-Ia-4El"/>
+                                            <outlet property="image" destination="d29-W0-yh7" id="h4w-h7-02y"/>
+                                            <outlet property="mission" destination="ReL-nd-1Y2" id="H13-GN-25i"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="bOA-x6-2cu" id="DP1-Z3-rxZ"/>
+                                    <outlet property="delegate" destination="bOA-x6-2cu" id="tJu-dF-t5Q"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fuJ-wk-SRt" firstAttribute="leading" secondItem="KwZ-kM-qcu" secondAttribute="leading" id="QnJ-4J-IWs"/>
+                            <constraint firstItem="gDl-kD-kTH" firstAttribute="top" secondItem="fuJ-wk-SRt" secondAttribute="bottom" id="RXs-Qz-ioE"/>
+                            <constraint firstItem="fuJ-wk-SRt" firstAttribute="top" secondItem="Gnt-oW-mRZ" secondAttribute="bottom" constant="121" id="eaf-fm-BqG"/>
+                            <constraint firstAttribute="trailing" secondItem="fuJ-wk-SRt" secondAttribute="trailing" id="uRM-CO-Yyo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="fuJ-wk-SRt" id="yIj-YB-sdl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ztZ-0h-SRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2110" y="-679"/>
+        </scene>
         <!--Join InputID View Controller-->
         <scene sceneID="vC7-aQ-aWj">
             <objects>
@@ -148,6 +236,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="bOA-x6-2cu" kind="show" identifier="pastToPast" id="cVU-vJ-jAT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBj-dl-NHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -213,6 +304,7 @@
                     <connections>
                         <outlet property="showButton" destination="Sy0-Du-z1Z" id="4eG-3N-4YL"/>
                         <segue destination="ycY-sY-QWc" kind="show" identifier="mainToDetail" id="Kfu-AY-ecQ"/>
+                        <segue destination="xY8-U1-h6b" kind="show" identifier="mainToCamera" id="PyZ-DJ-6da"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -334,4 +426,7 @@
             <point key="canvasLocation" x="770" y="65"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="otter-6" width="1280" height="847"/>
+    </resources>
 </document>
