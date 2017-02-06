@@ -44,7 +44,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         backBtn.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
-        backBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
         
         self.view.addSubview(backBtn)
@@ -52,7 +52,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         let idLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 41*widthRatio, height: 15*heightRatio))
         idLabel.text = "아이디"
         idLabel.textAlignment = .center
-        idLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        idLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         idLabel.font = idLabel.font.withSize(15*widthRatio)
         self.view.addSubview(idLabel)
         
@@ -73,7 +73,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         duplicatedId.textAlignment = .center
         duplicatedId.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         duplicatedId.isHidden = true
-        duplicatedId.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 13*widthRatio)
+        duplicatedId.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         duplicatedId.font = duplicatedId.font.withSize(13*widthRatio)
         self.view.addSubview(duplicatedId)
         

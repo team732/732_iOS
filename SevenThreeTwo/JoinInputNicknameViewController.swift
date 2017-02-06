@@ -51,7 +51,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         backBtn.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
-        backBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
         
         self.view.addSubview(backBtn)
@@ -59,7 +59,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         let nickLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 41*widthRatio, height: 15*heightRatio))
         nickLabel.text = "닉네임"
         nickLabel.textAlignment = .center
-        nickLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        nickLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         nickLabel.font = nickLabel.font.withSize(15*widthRatio)
         self.view.addSubview(nickLabel)
         
@@ -80,7 +80,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         duplicatedNick.textAlignment = .center
         duplicatedNick.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         duplicatedNick.isHidden = true
-        duplicatedNick.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 13*widthRatio)
+        duplicatedNick.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         duplicatedNick.font = duplicatedNick.font.withSize(13*widthRatio)
         self.view.addSubview(duplicatedNick)
         

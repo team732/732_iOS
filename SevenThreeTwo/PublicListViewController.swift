@@ -93,14 +93,14 @@ class PublicListViewController: UICollectionViewController {
         let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelPic.text = "공개된"
         labelPic.textAlignment = .center
-        labelPic.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelPic.font = labelPic.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelPic)
         
         let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelList.text = "리스트"
         labelList.textAlignment = .center
-        labelList.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelList.font = labelList.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelList)
        
@@ -116,7 +116,7 @@ class PublicListViewController: UICollectionViewController {
         let shotLabel = UILabel(frame: CGRect(x: 168.5*widthRatio, y: 226*heightRatio, width: 40*widthRatio, height: 11*heightRatio))
         shotLabel.text = "촬영하기"
         shotLabel.textAlignment = .center
-        shotLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 11*widthRatio)
+        shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         shotLabel.font = labelList.font.withSize(11*widthRatio)
         collectionView?.addSubview(shotLabel)
         

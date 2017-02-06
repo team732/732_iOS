@@ -52,7 +52,7 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         backBtn.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
-        backBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
         
         self.view.addSubview(backBtn)
@@ -60,7 +60,7 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         let pwCheckLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 100*widthRatio, height: 15*heightRatio))
         pwCheckLabel.text = "비밀번호 확인"
         pwCheckLabel.textAlignment = .center
-        pwCheckLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        pwCheckLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         pwCheckLabel.font = pwCheckLabel.font.withSize(15*widthRatio)
         self.view.addSubview(pwCheckLabel)
         
@@ -88,7 +88,7 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         pwHideBtn.addTarget(self, action: #selector(pwHideButtonAction), for: .touchUpInside)
         pwHideBtn.setTitle("보기", for: .normal)
         pwHideBtn.setTitleColor(UIColor.black, for: .normal)
-        pwHideBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        pwHideBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         pwHideBtn.titleLabel!.font = pwHideBtn.titleLabel!.font.withSize(15*widthRatio)
         pwHideBtn.isHidden = true
         self.view.addSubview(pwHideBtn)

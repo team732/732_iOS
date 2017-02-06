@@ -50,7 +50,7 @@ class PastViewController: UIViewController {
         subscribeBtn.addTarget(self, action: #selector(subscribeButtonAction), for: .touchUpInside)
         subscribeBtn.setTitle("받아보기 모음", for: .normal)
         subscribeBtn.setTitleColor(UIColor.black, for: .normal)
-        subscribeBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 18*widthRatio)
+        subscribeBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
         subscribeBtn.titleLabel!.font = subscribeBtn.titleLabel!.font.withSize(18*widthRatio)
         self.view.addSubview(subscribeBtn)
         
@@ -60,7 +60,7 @@ class PastViewController: UIViewController {
         pastMissionBtn.addTarget(self, action: #selector(pastMissionButtonAction), for: .touchUpInside)
         pastMissionBtn.setTitle("과거 미션들", for: .normal)
         pastMissionBtn.setTitleColor(UIColor.black, for: .normal)
-        pastMissionBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 18*widthRatio)
+        pastMissionBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
         pastMissionBtn.titleLabel!.font = pastMissionBtn.titleLabel!.font.withSize(18*widthRatio)
 
         self.view.addSubview(pastMissionBtn)
@@ -71,7 +71,7 @@ class PastViewController: UIViewController {
         hotPicBtn.addTarget(self, action: #selector(hotPicButtonAction), for: .touchUpInside)
         hotPicBtn.setTitle("명예의 전당", for: .normal)
         hotPicBtn.setTitleColor(UIColor.black, for: .normal)
-        hotPicBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 18*widthRatio)
+        hotPicBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
         hotPicBtn.titleLabel!.font = hotPicBtn.titleLabel!.font.withSize(18*widthRatio)
 
         self.view.addSubview(hotPicBtn)

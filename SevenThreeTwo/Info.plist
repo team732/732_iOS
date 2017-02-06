@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Arita-dotum-Bold_OTF.otf</string>
+		<string>Arita-dotum-Light_OTF.otf</string>
+		<string>Arita-dotum-Medium_OTF.otf</string>
+		<string>Arita-dotum-SemiBold_OTF.otf</string>
+		<string>Arita-dotum-Thin_OTF.otf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

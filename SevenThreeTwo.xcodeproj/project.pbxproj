@@ -24,11 +24,11 @@
 		675A4E2E1E2FB076000781DA /* SevenThreeTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */; };
 		6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6789A3F81E417D3E009374BD /* DeviceResize.swift */; };
 		67AE84591E43486400BAF314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84571E43486400BAF314 /* Main.storyboard */; };
-		67AE84691E4349F200BAF314 /* ARITA-BOLD.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84641E4349F200BAF314 /* ARITA-BOLD.otf */; };
-		67AE846A1E4349F200BAF314 /* ARITA-LIGHT.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84651E4349F200BAF314 /* ARITA-LIGHT.otf */; };
-		67AE846B1E4349F200BAF314 /* ARITA-MEDIUM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84661E4349F200BAF314 /* ARITA-MEDIUM.otf */; };
-		67AE846C1E4349F200BAF314 /* ARITA-SEMIBOLD.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84671E4349F200BAF314 /* ARITA-SEMIBOLD.otf */; };
-		67AE846D1E4349F200BAF314 /* ARITA-THIN.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84681E4349F200BAF314 /* ARITA-THIN.otf */; };
+		67AE84691E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */; };
+		67AE846A1E4349F200BAF314 /* Arita-dotum-Light_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84651E4349F200BAF314 /* Arita-dotum-Light_OTF.otf */; };
+		67AE846B1E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84661E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf */; };
+		67AE846C1E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84671E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf */; };
+		67AE846D1E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84681E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf */; };
 		67AE84711E43534600BAF314 /* LoginMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84701E43534600BAF314 /* LoginMainViewController.swift */; };
 		67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84721E43706600BAF314 /* JoinInputIDViewController.swift */; };
 		67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84741E437E3000BAF314 /* JoinInputPwViewController.swift */; };
@@ -73,11 +73,11 @@
 		675A4E2F1E2FB076000781DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceResize.swift; sourceTree = "<group>"; };
 		67AE84581E43486400BAF314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		67AE84641E4349F200BAF314 /* ARITA-BOLD.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-BOLD.otf"; sourceTree = "<group>"; };
-		67AE84651E4349F200BAF314 /* ARITA-LIGHT.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-LIGHT.otf"; sourceTree = "<group>"; };
-		67AE84661E4349F200BAF314 /* ARITA-MEDIUM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-MEDIUM.otf"; sourceTree = "<group>"; };
-		67AE84671E4349F200BAF314 /* ARITA-SEMIBOLD.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-SEMIBOLD.otf"; sourceTree = "<group>"; };
-		67AE84681E4349F200BAF314 /* ARITA-THIN.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ARITA-THIN.otf"; sourceTree = "<group>"; };
+		67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Bold_OTF.otf"; sourceTree = "<group>"; };
+		67AE84651E4349F200BAF314 /* Arita-dotum-Light_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Light_OTF.otf"; sourceTree = "<group>"; };
+		67AE84661E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Medium_OTF.otf"; sourceTree = "<group>"; };
+		67AE84671E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-SemiBold_OTF.otf"; sourceTree = "<group>"; };
+		67AE84681E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Thin_OTF.otf"; sourceTree = "<group>"; };
 		67AE84701E43534600BAF314 /* LoginMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginMainViewController.swift; sourceTree = "<group>"; };
 		67AE84721E43706600BAF314 /* JoinInputIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputIDViewController.swift; sourceTree = "<group>"; };
 		67AE84741E437E3000BAF314 /* JoinInputPwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputPwViewController.swift; sourceTree = "<group>"; };
@@ -225,11 +225,11 @@
 		67AE846E1E434AB600BAF314 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				67AE84641E4349F200BAF314 /* ARITA-BOLD.otf */,
-				67AE84651E4349F200BAF314 /* ARITA-LIGHT.otf */,
-				67AE84661E4349F200BAF314 /* ARITA-MEDIUM.otf */,
-				67AE84671E4349F200BAF314 /* ARITA-SEMIBOLD.otf */,
-				67AE84681E4349F200BAF314 /* ARITA-THIN.otf */,
+				67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */,
+				67AE84651E4349F200BAF314 /* Arita-dotum-Light_OTF.otf */,
+				67AE84661E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf */,
+				67AE84671E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf */,
+				67AE84681E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf */,
 			);
 			name = Font;
 			sourceTree = "<group>";
@@ -354,13 +354,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67AE84691E4349F200BAF314 /* ARITA-BOLD.otf in Resources */,
-				67AE846A1E4349F200BAF314 /* ARITA-LIGHT.otf in Resources */,
-				67AE846B1E4349F200BAF314 /* ARITA-MEDIUM.otf in Resources */,
+				67AE84691E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf in Resources */,
+				67AE846A1E4349F200BAF314 /* Arita-dotum-Light_OTF.otf in Resources */,
+				67AE846B1E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf in Resources */,
 				67AE84591E43486400BAF314 /* Main.storyboard in Resources */,
 				675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */,
-				67AE846C1E4349F200BAF314 /* ARITA-SEMIBOLD.otf in Resources */,
-				67AE846D1E4349F200BAF314 /* ARITA-THIN.otf in Resources */,
+				67AE846C1E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf in Resources */,
+				67AE846D1E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf in Resources */,
 				67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

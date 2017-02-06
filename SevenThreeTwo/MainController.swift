@@ -218,9 +218,8 @@ class MainController: UIViewController, FusumaDelegate {
         subLabel.text = "인간의 욕심은 끝이없고"
         subLabel.textColor = UIColor.white
         subLabel.textAlignment = .center
-        subLabel.font = UIFont(name: "Arita-dotum-Bold_OTF", size: 22*widthRatio)
-        subLabel.font = subLabel.font.withSize(22*widthRatio)
-
+        subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
+    
         self.view.addSubview(subLabel)
         
     }
@@ -268,5 +267,7 @@ class MainController: UIViewController, FusumaDelegate {
             destination.receivedLbl = self.subLabel
         }
     }
+    
+    
     
 }

@@ -52,7 +52,7 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         backBtn.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
-        backBtn.titleLabel!.font =  UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
         
         self.view.addSubview(backBtn)
@@ -60,7 +60,7 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         let emailLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 50*widthRatio, height: 15*heightRatio))
         emailLabel.text = "이메일"
         emailLabel.textAlignment = .center
-        emailLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 15*widthRatio)
+        emailLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         emailLabel.font = emailLabel.font.withSize(15*widthRatio)
         self.view.addSubview(emailLabel)
         
@@ -81,7 +81,7 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         duplicatedEmail.textAlignment = .center
         duplicatedEmail.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         duplicatedEmail.isHidden = true
-        duplicatedEmail.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 13*widthRatio)
+        duplicatedEmail.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         duplicatedEmail.font = duplicatedEmail.font.withSize(13*widthRatio)
         self.view.addSubview(duplicatedEmail)
         

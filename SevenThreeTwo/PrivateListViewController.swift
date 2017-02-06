@@ -90,14 +90,14 @@ class PrivateListViewController: UICollectionViewController {
         let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelPic.text = "내사진"
         labelPic.textAlignment = .center
-        labelPic.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelPic.font = labelPic.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelPic)
         
         let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelList.text = "리스트"
         labelList.textAlignment = .center
-        labelList.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 24*widthRatio)
+        labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelList.font = labelList.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelList)
         
@@ -114,7 +114,7 @@ class PrivateListViewController: UICollectionViewController {
         let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 206*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
         settingLabel.text = "설정"
         settingLabel.textAlignment = .center
-        settingLabel.font = UIFont(name: "아리따-돋움(OTF)-Medium", size: 11*widthRatio)
+        settingLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         settingLabel.font = labelList.font.withSize(11*widthRatio)
         collectionView?.addSubview(settingLabel)
         
