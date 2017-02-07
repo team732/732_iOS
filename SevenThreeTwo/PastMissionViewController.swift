@@ -11,8 +11,6 @@ import UIKit
 class PastMissionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     
-    
-    
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
     var heightRatio: CGFloat = 0.0
@@ -22,27 +20,20 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     // 기기의 너비와 높이
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-
-    @IBOutlet weak var collectionView: UICollectionView!
     
     var sampleImages:[UIImage] = [UIImage(named:"otter-3")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
     var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션"]
     var sampleMissions:[String] = ["미션1","미션2","미션3"]
     
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         setUi()
-        
-        //drawLine(startX: date.frame.width*widthRatio+35, startY: date.frame.height*heightRatio+24, width: 36, height: 3, border: false, color: UIColor.white)
-        
-        
-       
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,43 +54,36 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
 
     func setUi(){
     
-        let back = UIButton(type: .system) // let preferred over var here
-        
-        //button.setTitle("명예의 전당", for: UIControlState.normal)
+        let back = UIButton()
         
         back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24, height: 24)
         back.setImage(UIImage(named:"gotoleft"), for: .normal)
         back.sizeToFit()
-        //back.tintColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1.0)
-        // button.addTarget(self, action: "Action:", for: UIControlEvents.touchUpInside)
-        //back.tag = BUTTON.MENU
-        //back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
-        //collectionView?.addSubview(menu)
+       
+        back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
+        
         view.addSubview(back)
         
-        let titleLabel = UILabel(frame: CGRect(x: (137*widthRatio), y: (73*heightRatio), width: 110*widthRatio, height: 22*heightRatio))
+        let titleLabel = UILabel(frame: CGRect(x: (137*widthRatio), y: (73*heightRatio), width: 101*widthRatio, height: 22*heightRatio))
         titleLabel.text = "과거 미션들"
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
-        titleLabel.font = titleLabel.font.withSize(22*widthRatio)
         
-        self.view.addSubview(titleLabel)
+        view.addSubview(titleLabel)
         
-        let list = UIButton(type: .system) // let preferred over var here
-        
-        //button.setTitle("명예의 전당", for: UIControlState.normal)
+        let list = UIButton()
         
         list.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24, height: 24)
         list.setImage(UIImage(named:"list"), for: .normal)
         list.sizeToFit()
-        //back.tintColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1.0)
-        // button.addTarget(self, action: "Action:", for: UIControlEvents.touchUpInside)
-        //back.tag = BUTTON.MENU
-        //back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
-        //collectionView?.addSubview(menu)
+        
         view.addSubview(list)
+     }
     
+    func buttonPressed(sender: UIButton!) {
+        
+        dismiss(animated: true, completion: nil)
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
@@ -113,6 +97,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         }
         line.backgroundColor = color
         
+        
         self.collectionView?.addSubview(line)
     }
 
@@ -121,7 +106,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return sampleMissions.count
     } //  셀 개수
     
     // make a cell for each cell index path
@@ -129,16 +114,10 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
-
-
-
+        
         cell.image.image = sampleImages[indexPath.row]
         cell.date.text = sampleDates[indexPath.row]
         cell.mission.text = sampleMissions[indexPath.row]
-
-        //let imgSize = cell.imgView.image?.size
-        
-        //cell.imgRatio = (imgSize?.width)! / (imgSize?.height)!
         
         drawLine(startX: cell.frame.origin.x+114, startY: cell.frame.origin.y+127, width: 36, height: 1, border: false, color: UIColor.white)
         
@@ -148,19 +127,15 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        //let imgSize = sampleImages[indexPath.row].size
-        //let imgRatio = (imgSize.height) / (imgSize.width)
-        
-        
-        
         return CGSize(width: 263 * heightRatio, height: 263 * heightRatio)
-    } // 셀의 높이
+    } // 셀의 사이즈
     
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 24
     } // 셀의 간격
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //closeInfoView()
     } // 셀 선택시
