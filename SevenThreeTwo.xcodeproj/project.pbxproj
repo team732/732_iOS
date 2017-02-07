@@ -21,6 +21,9 @@
 		672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1291E335043001022BF /* PublicListViewController.swift */; };
 		672DD12C1E335058001022BF /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12B1E335058001022BF /* Photo.swift */; };
 		672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12D1E3350ED001022BF /* UIView+Extensions.swift */; };
+		673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */; };
+		673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */; };
+		673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD921E4A3C4000FB4152 /* ApiManager.swift */; };
 		675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E181E2FB076000781DA /* AppDelegate.swift */; };
 		675A4E1B1E2FB076000781DA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E1A1E2FB076000781DA /* MainController.swift */; };
 		675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E211E2FB076000781DA /* LaunchScreen.storyboard */; };
@@ -69,6 +72,9 @@
 		672DD1291E335043001022BF /* PublicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicListViewController.swift; sourceTree = "<group>"; };
 		672DD12B1E335058001022BF /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		672DD12D1E3350ED001022BF /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectListViewController.swift; sourceTree = "<group>"; };
+		673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
+		673DCD921E4A3C4000FB4152 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		675A4E151E2FB076000781DA /* SevenThreeTwo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SevenThreeTwo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A4E181E2FB076000781DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		675A4E1A1E2FB076000781DA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				672DD1291E335043001022BF /* PublicListViewController.swift */,
+				673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */,
+				673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */,
 			);
 			name = RightView;
 			sourceTree = "<group>";
@@ -179,6 +187,14 @@
 			name = SwipeController;
 			sourceTree = "<group>";
 		};
+		673DCD911E4A3C2C00FB4152 /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				673DCD921E4A3C4000FB4152 /* ApiManager.swift */,
+			);
+			name = Api;
+			sourceTree = "<group>";
+		};
 		675A4E0C1E2FB076000781DA = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				675A4E181E2FB076000781DA /* AppDelegate.swift */,
+				673DCD911E4A3C2C00FB4152 /* Api */,
 				67AE846E1E434AB600BAF314 /* Font */,
 				67AE846F1E43531B00BAF314 /* Login&JoinView */,
 				67092A911E38607C00DB9A27 /* MainView */,
@@ -437,7 +454,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				672DD12C1E335058001022BF /* Photo.swift in Sources */,
+				673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
+				673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */,
 				6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */,
 				672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */,
 				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
@@ -449,6 +468,7 @@
 				672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */,
 				6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */,
 				67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */,
+				673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */,
 				67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */,
 				37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */,
 				675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */,
