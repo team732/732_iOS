@@ -1,15 +1,23 @@
 PODS:
   - Alamofire (4.0.1)
   - Fusuma (0.5.3)
+  - ImageSlideshow (1.0.0):
+    - ImageSlideshow/Core (= 1.0.0)
+  - ImageSlideshow/Core (1.0.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - Fusuma
+  - ImageSlideshow (~> 1.0.0)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Fusuma: 02ffb3a9943792519f2c0972263b750acb550a49
+  ImageSlideshow: 2787e10e202b79ecf5348a205c539fcc5bb8e62b
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 8a2c5b0e1e9b9def0df14f13691d3505449d6cd4
+PODFILE CHECKSUM: f6d05f57b947d3d48af2734a2c4fef680283426e
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

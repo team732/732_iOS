@@ -15,6 +15,7 @@
 		671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */; };
 		6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469091E2FCDD1006925B7 /* TopMenuViewController.swift */; };
 		6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6714690B1E2FCDDD006925B7 /* BottomViewController.swift */; };
+		672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672739751E49E0F1009490A8 /* HotPicViewController.swift */; };
 		672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */; };
 		672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */; };
 		672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1291E335043001022BF /* PublicListViewController.swift */; };
@@ -62,6 +63,7 @@
 		671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		671469091E2FCDD1006925B7 /* TopMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuViewController.swift; sourceTree = "<group>"; };
 		6714690B1E2FCDDD006925B7 /* BottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
+		672739751E49E0F1009490A8 /* HotPicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotPicViewController.swift; sourceTree = "<group>"; };
 		672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptionCell.swift; sourceTree = "<group>"; };
 		672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleColumnLayoutAttributes.swift; sourceTree = "<group>"; };
 		672DD1291E335043001022BF /* PublicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicListViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				671469091E2FCDD1006925B7 /* TopMenuViewController.swift */,
 				37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */,
 				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
+				672739751E49E0F1009490A8 /* HotPicViewController.swift */,
 			);
 			name = TopView;
 			sourceTree = "<group>";
@@ -393,7 +396,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		85D683099119C75F225D7C2D /* [CP] Copy Pods Resources */ = {
@@ -436,6 +439,7 @@
 				672DD12C1E335058001022BF /* Photo.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
 				6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */,
+				672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */,
 				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
 				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
 				671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */,

@@ -95,7 +95,7 @@ class TopMenuViewController: UIViewController {
     }
     
     func hotPicButtonAction(){
-        
+        performSegue(withIdentifier: "pastToHotpic", sender: self)
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){

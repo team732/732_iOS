@@ -222,6 +222,34 @@
             </objects>
             <point key="canvasLocation" x="3326" y="-645"/>
         </scene>
+        <!--Hot Pic View Controller-->
+        <scene sceneID="32u-lI-Zko">
+            <objects>
+                <viewController id="VHf-zA-zXI" customClass="HotPicViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zRC-sK-9S6"/>
+                        <viewControllerLayoutGuide type="bottom" id="bcu-iZ-8Lf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zqT-eT-gcW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeB-aM-u4f" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                <rect key="frame" x="16" y="369" width="343" height="278"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="slideshow" destination="VeB-aM-u4f" id="oEo-0b-jdn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="URD-N3-XY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2580" y="77.811094452773617"/>
+        </scene>
         <!--Top Menu View Controller-->
         <scene sceneID="iOH-dn-FDy">
             <objects>
@@ -237,6 +265,7 @@
                     </view>
                     <connections>
                         <segue destination="bOA-x6-2cu" kind="show" identifier="pastToPast" id="cVU-vJ-jAT"/>
+                        <segue destination="VHf-zA-zXI" kind="show" identifier="pastToHotpic" id="lpE-bN-Q2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBj-dl-NHM" userLabel="First Responder" sceneMemberID="firstResponder"/>

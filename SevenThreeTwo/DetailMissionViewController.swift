@@ -72,8 +72,7 @@ class DetailMissionViewController: UIViewController {
         subLabel.text = receivedLbl.text
         subLabel.textAlignment = .center
         subLabel.textColor = UIColor.white
-        subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 40*widthRatio)
-        subLabel.font = subLabel.font.withSize(22*widthRatio)
+        subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
 
         self.view.addSubview(subLabel)
     }

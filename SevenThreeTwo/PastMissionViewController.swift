@@ -54,9 +54,11 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
 
     func setUi(){
     
+        self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        
         let back = UIButton()
         
-        back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24, height: 24)
+        back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         back.setImage(UIImage(named:"gotoleft"), for: .normal)
         back.sizeToFit()
        
@@ -68,13 +70,14 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         titleLabel.text = "과거 미션들"
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black
+        titleLabel.addTextSpacing(spacing: -1)
         titleLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         
         view.addSubview(titleLabel)
         
         let list = UIButton()
         
-        list.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24, height: 24)
+        list.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         list.setImage(UIImage(named:"list"), for: .normal)
         list.sizeToFit()
         
