@@ -29,7 +29,9 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
+        
         self.makeItCircle()
+        
     }
     
     func makeItCircle() {
@@ -40,4 +42,4 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
       //image.clipsToBounds = false
         
     }
-}
+        }

@@ -38,6 +38,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         widthRatio = userDevice.userDeviceWidth()
         setUi()
         
+        //drawLine(startX: date.frame.width*widthRatio+35, startY: date.frame.height*heightRatio+24, width: 36, height: 3, border: false, color: UIColor.white)
         
         
        
@@ -68,6 +69,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24, height: 24)
         back.setImage(UIImage(named:"gotoleft"), for: .normal)
+        back.sizeToFit()
         //back.tintColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1.0)
         // button.addTarget(self, action: "Action:", for: UIControlEvents.touchUpInside)
         //back.tag = BUTTON.MENU
@@ -75,9 +77,45 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         //collectionView?.addSubview(menu)
         view.addSubview(back)
         
+        let titleLabel = UILabel(frame: CGRect(x: (137*widthRatio), y: (73*heightRatio), width: 110*widthRatio, height: 22*heightRatio))
+        titleLabel.text = "과거 미션들"
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.black
+        titleLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
+        titleLabel.font = titleLabel.font.withSize(22*widthRatio)
         
+        self.view.addSubview(titleLabel)
+        
+        let list = UIButton(type: .system) // let preferred over var here
+        
+        //button.setTitle("명예의 전당", for: UIControlState.normal)
+        
+        list.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24, height: 24)
+        list.setImage(UIImage(named:"list"), for: .normal)
+        list.sizeToFit()
+        //back.tintColor = UIColor(red: 156/255, green: 156/255, blue: 156/255, alpha: 1.0)
+        // button.addTarget(self, action: "Action:", for: UIControlEvents.touchUpInside)
+        //back.tag = BUTTON.MENU
+        //back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
+        //collectionView?.addSubview(menu)
+        view.addSubview(list)
     
     }
+    
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
+        
+        var line: UIView!
+        
+        if border{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width, height: height*heightRatio))
+        }else{
+            line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
+        }
+        line.backgroundColor = color
+        
+        self.collectionView?.addSubview(line)
+    }
+
     
     // MARK: - UICollectionViewDataSource protocol
     
@@ -97,11 +135,12 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         cell.image.image = sampleImages[indexPath.row]
         cell.date.text = sampleDates[indexPath.row]
         cell.mission.text = sampleMissions[indexPath.row]
-        
 
         //let imgSize = cell.imgView.image?.size
         
         //cell.imgRatio = (imgSize?.width)! / (imgSize?.height)!
+        
+        drawLine(startX: cell.frame.origin.x+114, startY: cell.frame.origin.y+127, width: 36, height: 1, border: false, color: UIColor.white)
         
         return cell
     }   // 셀의 내용
@@ -118,8 +157,9 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     } // 셀의 높이
     
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 24
     } // 셀의 간격
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //closeInfoView()
