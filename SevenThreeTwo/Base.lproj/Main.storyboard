@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ynv-v1-AD0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VZe-QI-tDe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -62,6 +62,10 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otter-6" translatesAutoresizingMaskIntoConstraints="NO" id="d29-W0-yh7">
                                                     <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ox-8Y-oIi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017년 1월 21일의 미션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scp-1i-Wat">
                                                     <rect key="frame" x="0.0" y="103" width="263" height="13.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -77,18 +81,23 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="7Ox-8Y-oIi" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="1y8-ZI-Hqb"/>
                                             <constraint firstItem="d29-W0-yh7" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="3p9-sg-7MT"/>
                                             <constraint firstAttribute="bottom" secondItem="d29-W0-yh7" secondAttribute="bottom" id="8Zx-wI-dQb"/>
                                             <constraint firstItem="ReL-nd-1Y2" firstAttribute="top" secondItem="Scp-1i-Wat" secondAttribute="bottom" constant="29" id="F0q-eD-doK"/>
                                             <constraint firstItem="Scp-1i-Wat" firstAttribute="top" secondItem="Q8f-zO-l3U" secondAttribute="top" constant="103" id="FrV-Iy-afE"/>
                                             <constraint firstItem="d29-W0-yh7" firstAttribute="top" secondItem="Q8f-zO-l3U" secondAttribute="top" id="Lic-MY-WuD"/>
                                             <constraint firstAttribute="trailing" secondItem="ReL-nd-1Y2" secondAttribute="trailing" id="Nrx-lh-ii1"/>
+                                            <constraint firstItem="7Ox-8Y-oIi" firstAttribute="top" secondItem="Q8f-zO-l3U" secondAttribute="top" id="WJa-h8-cIL"/>
                                             <constraint firstItem="ReL-nd-1Y2" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="bsw-Uy-GfH"/>
                                             <constraint firstAttribute="trailing" secondItem="Scp-1i-Wat" secondAttribute="trailing" id="fYx-zx-YCn"/>
                                             <constraint firstItem="Scp-1i-Wat" firstAttribute="leading" secondItem="Q8f-zO-l3U" secondAttribute="leading" id="oAO-Zq-JUO"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Ox-8Y-oIi" secondAttribute="bottom" id="r0L-3H-i3Z"/>
                                             <constraint firstAttribute="trailing" secondItem="d29-W0-yh7" secondAttribute="trailing" id="vQD-E5-02C"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Ox-8Y-oIi" secondAttribute="trailing" id="w2K-1V-g80"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="cover" destination="7Ox-8Y-oIi" id="pdk-Ve-CxO"/>
                                             <outlet property="date" destination="Scp-1i-Wat" id="4He-Ia-4El"/>
                                             <outlet property="image" destination="d29-W0-yh7" id="h4w-h7-02y"/>
                                             <outlet property="mission" destination="ReL-nd-1Y2" id="H13-GN-25i"/>
@@ -276,7 +285,7 @@
         <scene sceneID="xRh-r4-Suc">
             <objects>
                 <collectionViewController storyboardIdentifier="left" id="fJU-Lj-n4c" customClass="PrivateListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lYv-aP-wph">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lYv-aP-wph">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -423,7 +432,7 @@
         <scene sceneID="7pO-15-dHg">
             <objects>
                 <collectionViewController storyboardIdentifier="right" id="Bnz-Il-u6K" customClass="PublicListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IdA-bb-rXr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="IdA-bb-rXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

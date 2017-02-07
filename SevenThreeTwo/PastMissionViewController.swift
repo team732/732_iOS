@@ -21,18 +21,30 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
-    var sampleImages:[UIImage] = [UIImage(named:"otter-3")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
-    var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션"]
-    var sampleMissions:[String] = ["미션1","미션2","미션3"]
-    
+    var sampleImages:[UIImage] = [UIImage(named:"otter-1")!,UIImage(named:"otter-2")!,UIImage(named:"otter-3")!,UIImage(named:"otter-4")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
+    var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션","2017년 1월 23일의 미션","2017년 1월 24일의 미션","2017년 1월 25일의 미션"]
+    var sampleMissions:[String] = ["미션1","미션2","미션3","미션4","미션5","미션6"]
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //for animation
+    let back = UIButton()
+    let list = UIButton()
+    var titleLabel = UILabel()
+    
+    
+    var lastOffsetY: CGFloat?
+    var frameBack: CGRect?
+    var frameTitle : CGRect?
+    var frameList : CGRect?
+    var frameCollectionView : CGRect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
+        collectionView.bounces = false
         setUi()
     }
 
@@ -55,8 +67,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     func setUi(){
     
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        
-        let back = UIButton()
+        collectionView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         back.setImage(UIImage(named:"gotoleft"), for: .normal)
@@ -66,7 +77,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         view.addSubview(back)
         
-        let titleLabel = UILabel(frame: CGRect(x: (137*widthRatio), y: (73*heightRatio), width: 101*widthRatio, height: 22*heightRatio))
+        titleLabel.frame = CGRect(x: (137*widthRatio), y: (73*heightRatio), width: 101*widthRatio, height: 22*heightRatio)
         titleLabel.text = "과거 미션들"
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.black
@@ -75,13 +86,17 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         view.addSubview(titleLabel)
         
-        let list = UIButton()
-        
         list.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         list.setImage(UIImage(named:"list"), for: .normal)
         list.sizeToFit()
         
         view.addSubview(list)
+        
+        //for animation
+        frameBack = back.frame
+        frameTitle = titleLabel.frame
+        frameList = list.frame
+        frameCollectionView = collectionView.frame
      }
     
     func buttonPressed(sender: UIButton!) {
@@ -143,111 +158,49 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         //closeInfoView()
     } // 셀 선택시
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        
+        lastOffsetY = scrollView.contentOffset.y
+        
+        //print(lastOffsetY)
+        
+    }
+    //scrollview
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let hide = scrollView.contentOffset.y >= self.lastOffsetY!-50
+        
+        if hide {
+            closeInfoView()
+        } else {
+            openInfoView()
+        }
+    }
+    //30 ,321, 137
+    func closeInfoView() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+            self.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
+            self.titleLabel.addTextSpacing(spacing: -1)
+            self.collectionView.frame = CGRect(x: (0*self.widthRatio), y: (64*self.heightRatio), width: self.view.frame.width*self.widthRatio, height: self.view.frame.height*self.heightRatio - 64 )
+            
+        })
+        
+        
+    }
+    
+    func openInfoView() {
+        UIView.animate(withDuration: 1.0, animations: {
+            
+            self.back.frame = self.frameBack!
+            self.list.frame = self.frameList!
+            self.titleLabel.frame = self.frameTitle!
+            self.collectionView.frame = self.frameCollectionView!
+            
+        })
+    }
+
 
 }
-
-//extension PastMissionViewController:  {
-//    
-//    
-//    // MARK: - UICollectionViewDataSource protocol
-//    
-//    // tell the collection view how many cells to make
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 3
-//    } //  셀 개수
-//    
-//    // make a cell for each cell index path
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//        // get a reference to our storyboard cell
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
-//        cell.image.image = sampleImages[indexPath.row]
-//        cell.date.text = "2017년 1월 21일의 미션"
-//        cell.mission.text = sampleMissions[indexPath.row]
-//        
-//        //let imgSize = cell.imgView.image?.size
-//        
-//        //cell.imgRatio = (imgSize?.width)! / (imgSize?.height)!
-//        
-//        return cell
-//    }   // 셀의 내용
-//    
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//        let imgSize = sampleImages[indexPath.row].size
-//        let imgRatio = (imgSize.height) / (imgSize.width)
-//        
-//        
-//        
-//        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width * imgRatio)
-//    } // 셀의 높이
-//    
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 8
-//    } // 셀의 간격
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        //closeInfoView()
-//    } // 셀 선택시
-//    
-//    
-//    
-//    
-//    
-//    
-////    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-////        
-////        lastOffsetY = scrollView.contentOffset.y
-////        
-////        //print(lastOffsetY)
-////        
-////    }
-////    
-////    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-////        let hide = scrollView.contentOffset.y > self.lastOffsetY!
-////        
-////        if hide {
-////            closeInfoView()
-////        } else {
-////            openInfoView()
-////        }
-////    }
-////    
-////    func closeInfoView() {
-////        UIView.animate(withDuration: 0.9, animations: {
-////            self.infoView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 64)
-////            self.profileImageView.frame = CGRect(x: self.view.frame.width / 2, y: 20, width: 0, height: 0)
-////            self.profileNameLabel.center = CGPoint(x: 188, y: 48)
-////            self.collectionView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
-////            self.jobLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0)
-////            self.segmentedControl.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0)
-////            
-////            self.jobLabel.alpha = 0
-////            self.segmentedControl.alpha = 0
-////            self.profileImageView.alpha = 0
-////            
-////            self.reviewView.frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
-////        })
-////        
-////        
-////    }
-////    
-////    func openInfoView() {
-////        UIView.animate(withDuration: 0.9, animations: {
-////            self.infoView.frame = self.frameInfoView!
-////            self.profileImageView.frame = self.frameProfileImageView!
-////            self.profileNameLabel.frame = self.frameNameLabel!
-////            self.collectionView.frame = self.frameCollectionView!
-////            self.reviewView.frame = self.frameCollectionView!
-////            
-////            self.jobLabel.frame = self.frameJobLabel!
-////            self.segmentedControl.frame = self.frameSegControl!
-////            
-////            self.jobLabel.alpha = 1
-////            self.segmentedControl.alpha = 1
-////            self.profileImageView.alpha = 1
-////            
-////        })
-//}
 

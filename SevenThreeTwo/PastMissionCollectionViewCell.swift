@@ -22,6 +22,7 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var mission: UILabel!
+    @IBOutlet weak var cover: UIView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -38,6 +39,9 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
         
         image.layer.masksToBounds = true
         image.layer.cornerRadius = (image.frame.width * widthRatio) / 2
+        
+        cover.layer.masksToBounds = true
+        cover.layer.cornerRadius = (cover.frame.width * widthRatio) / 2
         
       //image.clipsToBounds = false
         
