@@ -8,7 +8,10 @@
 
 import UIKit
 
-class PastMissionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class PastMissionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+    
+    
+    
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -23,11 +26,13 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var collectionView: UICollectionView!
     
     var sampleImages:[UIImage] = [UIImage(named:"otter-3")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
+    var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션"]
     var sampleMissions:[String] = ["미션1","미션2","미션3"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
@@ -86,12 +91,13 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
+
+
+
         cell.image.image = sampleImages[indexPath.row]
-        cell.date.text = "2017년 1월 21일의 미션"
+        cell.date.text = sampleDates[indexPath.row]
         cell.mission.text = sampleMissions[indexPath.row]
-        cell.image.layer.masksToBounds = false
-        cell.image.layer.cornerRadius = cell.image.frame.width / 2
-        cell.image.clipsToBounds = true
+        
 
         //let imgSize = cell.imgView.image?.size
         
@@ -103,12 +109,12 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let imgSize = sampleImages[indexPath.row].size
-        let imgRatio = (imgSize.height) / (imgSize.width)
+        //let imgSize = sampleImages[indexPath.row].size
+        //let imgRatio = (imgSize.height) / (imgSize.width)
         
         
         
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width * imgRatio)
+        return CGSize(width: 263 * heightRatio, height: 263 * heightRatio)
     } // 셀의 높이
     
     
