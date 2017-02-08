@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F74991E35EA8600A26CA0 /* CameraViewController.swift */; };
+		3757A5651E4B3F3900BFC24D /* PastTextListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */; };
+		3757A5671E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */; };
 		37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */; };
 		37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */; };
 		67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67092A961E386B3000DB9A27 /* PrivateListViewController.swift */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		34543005D58CF0DF3B38A3BD /* Pods-SevenThreeTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenThreeTwo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SevenThreeTwo/Pods-SevenThreeTwo.release.xcconfig"; sourceTree = "<group>"; };
 		372F74991E35EA8600A26CA0 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListViewController.swift; sourceTree = "<group>"; };
+		3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListCollectionViewCell.swift; sourceTree = "<group>"; };
 		37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionViewController.swift; sourceTree = "<group>"; };
 		37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67092A961E386B3000DB9A27 /* PrivateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateListViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */,
 				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
 				672739751E49E0F1009490A8 /* HotPicViewController.swift */,
+				3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */,
+				3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */,
 			);
 			name = TopView;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 				673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
 				673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */,
+				3757A5651E4B3F3900BFC24D /* PastTextListViewController.swift in Sources */,
 				672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */,
 				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
 				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
@@ -472,6 +479,7 @@
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
 				372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */,
 				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
+				3757A5671E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift in Sources */,
 				67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */,
 				37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */,
 				6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */,

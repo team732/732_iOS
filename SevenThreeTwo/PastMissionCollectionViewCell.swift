@@ -30,6 +30,14 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
+        date.frame = CGRect(x: (0*widthRatio), y: (103*self.heightRatio), width: 263*widthRatio, height: 11*heightRatio )
+        date.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        date.textAlignment = .center
+        
+        
+        mission.frame = CGRect(x: (0*widthRatio), y: (143*self.heightRatio), width: 263*widthRatio, height: 18*heightRatio )
+        mission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
+        mission.textAlignment = .center
         
         self.makeItCircle()
         
@@ -38,10 +46,11 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
     func makeItCircle() {
         
         image.layer.masksToBounds = true
-        image.layer.cornerRadius = (image.frame.width * widthRatio) / 2
+        image.layer.cornerRadius = (263*widthRatio ) / 2
+        //image.clipsToBounds = true
         
         cover.layer.masksToBounds = true
-        cover.layer.cornerRadius = (cover.frame.width * widthRatio) / 2
+        cover.layer.cornerRadius = (263*widthRatio ) / 2
         
       //image.clipsToBounds = false
         
