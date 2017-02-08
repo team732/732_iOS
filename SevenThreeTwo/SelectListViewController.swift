@@ -18,9 +18,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var myPicView: UIView!
     
-    var nickname : [String] = ["민섭","한경","유선","유섭"]
+    var nickname : [String] = ["민섭민섭민섭민섭민섭민섭","한경","유선","유섭"]
     var date : [String] = ["2017년 1월 1일","2017년 2월 1일","2017년 2월 3일","2017년 2월 8일"]
-    var comment : [String] = ["야 수달귀엽다!","그러게 개졸귀","수달리","수달래"]
+    var comment : [String] = ["수달귀엽다!","졸귀","수달리","수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         self.myPicView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
+        let line1 = drawLine(startX: 20, startY: 40, width: 335, height: 1, border: false, color: UIColor.black)
+        let line2 = drawLine(startX: 20, startY: 40, width: 1, height: 87, border: true, color: UIColor.black)
+        let line3 = drawLine(startX: 354, startY: 40, width: 1, height: 87, border: true, color: UIColor.black)
+        
+        self.view.addSubview(line1)
+        self.view.addSubview(line2)
+        self.view.addSubview(line3)
         
         let cancelBtn = UIButton(frame: CGRect(x: 176*widthRatio , y: 70*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         cancelBtn.setImage(UIImage(named: "cancel"), for: UIControlState.normal)
@@ -60,16 +67,16 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.myPicView.addSubview(firstLine)
         
-        let subLabel = UILabel(frame: CGRect(x: (106*widthRatio), y: (76*heightRatio), width: 125*widthRatio, height: 49*heightRatio))
+        let subLabel = UILabel(frame: CGRect(x: (106*widthRatio), y: (76*heightRatio), width: 126*widthRatio, height: 49*heightRatio))
         subLabel.numberOfLines = 0
-        subLabel.text = "인간의 욕심은\n끝이 없고"
+        subLabel.text = "수달의 욕심은\n끝이 없고"
         subLabel.textAlignment = .center
         subLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         
         self.myPicView.addSubview(subLabel)
 
         let selectedPic = UIImageView()
-        selectedPic.image = UIImage(named: "otter-1")
+        selectedPic.image = UIImage(named: "otter-4")
         
         let imageWidth = Float((selectedPic.image?.size.width)!)
         let imageHeight = Float((selectedPic.image?.size.height)!)
@@ -100,8 +107,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
        
         myTableView.frame = CGRect(x: 20*widthRatio, y: 117*heightRatio, width: 335*widthRatio, height: UIScreen.main.bounds.size.height-117*heightRatio)
         
-        myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
         
+        myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
+
+        myPicView.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+        myPicView.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
     }
     
     func cancelButtonAction(){
@@ -147,36 +157,64 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as! CommentViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentViewCell
+        
+        
         cell.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        cell.nickname.text = nickname[indexPath.row]
+        cell.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
+        cell.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+        
+        cell.nickLabel.text = nickname[indexPath.item]
+        cell.dateLabel.text = date[indexPath.item]
+        cell.commentLabel.text = comment[indexPath.item]
+        
+        cell.commentLabel.sizeToFit()
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88*heightRatio;
+        return 88*heightRatio
     }
     
-    
+  
     func tableViewSetUp(){
-        
-        myTableView.layer.borderWidth = 1
-        myTableView.layoutMargins = UIEdgeInsets.zero
+
         myTableView.separatorInset = UIEdgeInsets.init(top: 0, left: 16*widthRatio, bottom: 0, right: 16*widthRatio)
         myTableView.showsVerticalScrollIndicator = false
-        myTableView.delegate = self;
-        myTableView.dataSource = self;
+        myTableView.delegate = self
+        myTableView.dataSource = self
         myTableView.bounces = false
+
     }
+    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension CALayer {
+    
+    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+        
+        let border = CALayer()
+        
+        switch edge {
+        case UIRectEdge.top:
+            border.frame = CGRect(x:0, y:0, width:self.frame.height, height:thickness)
+            break
+        case UIRectEdge.bottom:
+            border.frame = CGRect(x:0, y:self.frame.height - thickness, width:UIScreen.main.bounds.width, height:thickness)
+            break
+        case UIRectEdge.left:
+            border.frame = CGRect(x:0, y:0, width:thickness, height:self.frame.height)
+            break
+        case UIRectEdge.right:
+            border.frame = CGRect(x:self.frame.width - thickness, y:0, width:thickness, height:self.frame.height)
+            break
+        default:
+            break
+        }
+        
+        border.backgroundColor = color.cgColor;
+        
+        self.addSublayer(border)
     }
-    */
-
+    
 }

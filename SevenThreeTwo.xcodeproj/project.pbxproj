@@ -14,7 +14,6 @@
 		671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469001E2FCBF5006925B7 /* SnapContainerViewController.swift */; };
 		671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */; };
 		6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671469091E2FCDD1006925B7 /* TopMenuViewController.swift */; };
-		6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6714690B1E2FCDDD006925B7 /* BottomViewController.swift */; };
 		672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672739751E49E0F1009490A8 /* HotPicViewController.swift */; };
 		672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */; };
 		672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */; };
@@ -65,7 +64,6 @@
 		671469001E2FCBF5006925B7 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		671469021E2FCC22006925B7 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		671469091E2FCDD1006925B7 /* TopMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopMenuViewController.swift; sourceTree = "<group>"; };
-		6714690B1E2FCDDD006925B7 /* BottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
 		672739751E49E0F1009490A8 /* HotPicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotPicViewController.swift; sourceTree = "<group>"; };
 		672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptionCell.swift; sourceTree = "<group>"; };
 		672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleColumnLayoutAttributes.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 				67AE84571E43486400BAF314 /* Main.storyboard */,
 				675A4E241E2FB076000781DA /* Info.plist */,
 				67EB38441E41BBC700A8E89A /* Assets.xcassets */,
-				6714690B1E2FCDDD006925B7 /* BottomViewController.swift */,
 				6789A3F81E417D3E009374BD /* DeviceResize.swift */,
 			);
 			path = SevenThreeTwo;
@@ -343,7 +340,7 @@
 				TargetAttributes = {
 					675A4E141E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 537GQ2WKJ4;
+						DevelopmentTeam = VANL3XS874;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -457,7 +454,6 @@
 				673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
 				673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */,
-				6714690C1E2FCDDD006925B7 /* BottomViewController.swift in Sources */,
 				672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */,
 				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
 				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
@@ -561,7 +557,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -605,7 +601,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -618,13 +614,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E967A2C2716E71DB391C0DFD /* Pods-SevenThreeTwo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 537GQ2WKJ4;
+				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.732;
+				PRODUCT_BUNDLE_IDENTIFIER = proj.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -635,13 +632,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34543005D58CF0DF3B38A3BD /* Pods-SevenThreeTwo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 537GQ2WKJ4;
+				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.732;
+				PRODUCT_BUNDLE_IDENTIFIER = proj.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
