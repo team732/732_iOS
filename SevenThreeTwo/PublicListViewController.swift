@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 // Inspired by: RayWenderlich.com pinterest-basic-layout
-class PublicListViewController: UICollectionViewController {
+class PublicListViewController:  UICollectionViewController {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -186,6 +186,18 @@ extension PublicListViewController {
         
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
+        SelectListViewController.receivedCid = indexPath.item
+        self.present(selectVC, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
 }
 
 // MARK: MultipleColumnLayoutDelegate

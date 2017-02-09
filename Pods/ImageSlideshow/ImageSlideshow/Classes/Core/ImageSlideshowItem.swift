@@ -10,6 +10,14 @@ import UIKit
 /// Used to wrap a single slideshow item and allow zooming on it
 open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
     
+    
+    let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
+    
+    // test에 내꺼 넣고 user은 저렇게 가도 된다
+    
+    var heightRatio: CGFloat = 0.0
+    var widthRatio: CGFloat = 0.0
+    
     open let imageView = UIImageView()
     
     /// Input Source for the item
@@ -57,8 +65,11 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
         tapRecognizer.numberOfTapsRequired = 2
         imageView.addGestureRecognizer(tapRecognizer)
         gestureRecognizer = tapRecognizer
+     
+        heightRatio = userDevice.userDeviceHeight()
+        widthRatio = userDevice.userDeviceWidth()
+        
     }
-    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -69,8 +80,8 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
         if !zoomEnabled {
             
             
-            imageView.frame.size.width = 257
-            imageView.frame.size.height = 257
+            imageView.frame.size.width = 257 * widthRatio
+            imageView.frame.size.height = 257 * heightRatio
             imageView.layer.masksToBounds = false
             imageView.layer.cornerRadius = imageView.frame.size.height/2
             imageView.clipsToBounds = true
@@ -202,3 +213,70 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
     }
     
 }
+
+
+struct ScreenSize
+{
+    static let SCREEN_WIDTH = UIScreen.main.bounds.size.width
+    static let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
+}
+
+struct DeviceType
+{
+    static let IPHONE_4 = (width:Float(320.0), height:Float(480.0))
+    static let IPHONE_5 = (width:Float(320.0), height:Float(568.0))
+    static let IPHONE_SE = (width:Float(320.0), height:Float(568.0))
+    static let IPHONE_6 = (width: Float(375.0), height:Float(667.0))
+    static let IPHONE_6_P = (width: Float(414.0), height:Float(736.0))
+    static let IPHONE_7 = (width: Float(375.0), height:Float(667.0))
+    static let IPHONE_7_P = (width: Float(414.0), height:Float(736.0))
+}
+
+
+
+class DeviceResize {
+    
+    var testDevice : (width: Float, height: Float) = (width: 0,height: 0)
+    var userDevice : (width: Float, height: Float) = (width: 0,height: 0)
+    
+    
+    init(testDeviceModel: (width: Float, height: Float),userDeviceModel: (width: Float, height: Float)){
+        
+        testDevice = modelName(model :testDeviceModel)!
+        userDevice = modelName(model :userDeviceModel)!
+        
+    }
+    
+    func modelName(model :(width: Float,height:Float)) -> (width: Float, height: Float)?{
+        let modelNameList : [(width: Float, height: Float)] = [
+            DeviceType.IPHONE_4,
+            DeviceType.IPHONE_5,
+            DeviceType.IPHONE_SE,
+            DeviceType.IPHONE_6,
+            DeviceType.IPHONE_6_P,
+            DeviceType.IPHONE_7,
+            DeviceType.IPHONE_7_P,
+            ]
+        for modelName in modelNameList {
+            if modelName.height == model.height{
+                return modelName
+            }
+        }
+        return nil
+    }
+    
+    func userDeviceHeight() -> CGFloat{
+        
+        let heightRatio = CGFloat(self.userDevice.height / self.testDevice.height)
+        
+        return heightRatio
+    }
+    
+    func userDeviceWidth() -> CGFloat{
+        let widthRatio = CGFloat(self.userDevice.width / self.testDevice.width)
+        
+        return widthRatio
+    }
+}
+
+

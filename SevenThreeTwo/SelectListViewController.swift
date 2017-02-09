@@ -20,7 +20,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     var nickname : [String] = ["민섭민섭민섭민섭민섭민섭","한경","유선","유섭"]
     var date : [String] = ["2017년 1월 1일","2017년 2월 1일","2017년 2월 3일","2017년 2월 8일"]
-    var comment : [String] = ["수달귀엽다!","졸귀","수달리","수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래"]
+    var comment : [String] = ["","졸귀졸귀졸귀졸귀졸귀졸귀졸귀\n졸귀졸귀졸귀","오오오오오우우우우아하하하하\n오오오오오우우우우아하하하하\n오오오오오우우우우아하하하하\n응ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ","수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래"]
+    
+    static var receivedCid : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         heightRatio = userDevice.userDeviceHeight()
         tableViewSetUp()
         viewSetUp()
+        
+        print(SelectListViewController.receivedCid)
     }
 
     override func didReceiveMemoryWarning() {
@@ -151,14 +155,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-
+        
         return self.nickname.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentViewCell
-        
         
         cell.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         cell.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
@@ -169,11 +172,33 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         cell.commentLabel.text = comment[indexPath.item]
         
         cell.commentLabel.sizeToFit()
+        
+        
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88*heightRatio
+        
+        let commentLabelHeight = UILabel()
+        commentLabelHeight.text = comment[indexPath.item]
+        commentLabelHeight.frame.size.width = 295*widthRatio
+        commentLabelHeight.numberOfLines = 0
+        commentLabelHeight.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        commentLabelHeight.sizeToFit()
+    
+//        var commentHeight = (47 + commentLabelHeight.frame.size.height) * heightRatio
+        var commentHeight = ( 55 + commentLabelHeight.frame.size.height) * heightRatio
+//
+//        if commentLabelHeight.frame.size.height == 0 || commentLabelHeight.frame.size.height == 26 * heightRatio{
+//            commentHeight = 73 * heightRatio
+//        }
+        
+        if commentLabelHeight.frame.size.height == 0 {
+            commentHeight = 73 * heightRatio
+        }
+        
+        return commentHeight
     }
     
   
@@ -184,8 +209,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         myTableView.delegate = self
         myTableView.dataSource = self
         myTableView.bounces = false
-
     }
+    
+    
     
 }
 

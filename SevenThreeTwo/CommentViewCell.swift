@@ -23,6 +23,7 @@ class CommentViewCell: UITableViewCell {
     var commentLabel = UILabel()
     
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -37,9 +38,9 @@ class CommentViewCell: UITableViewCell {
         
         commentLabel.frame.origin = CGPoint(x: 20*widthRatio, y: 42*heightRatio)
         commentLabel.frame.size.width = 295*widthRatio
-        commentLabel.frame.size.height = 88*heightRatio
         commentLabel.numberOfLines = 0
         commentLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+ 
         
         contentView.addSubview(dateLabel)
         contentView.addSubview(nickLabel)

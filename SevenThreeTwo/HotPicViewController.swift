@@ -66,8 +66,8 @@ class HotPicViewController: UIViewController {
         
         slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         //slideshow.pageControlPosition = PageControlPosition.underScrollView
-        //slideshow.pageControl.currentPageIndicatorTintColor = UIColor.black;
-        //slideshow.pageControl.pageIndicatorTintColor = UIColor.lightGray;
+        slideshow.pageControl.currentPageIndicatorTintColor = UIColor.clear
+        slideshow.pageControl.pageIndicatorTintColor = UIColor.clear
         slideshow.setImageInputs(localSource)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
         slideshow.addGestureRecognizer(recognizer)
