@@ -62,7 +62,8 @@ class HotPicViewController: UIViewController {
         
         localSource = [ImageSource(image: image!), ImageSource(image:image2!), ImageSource(image:image3!)]
         
-        slideshow.frame = CGRect(x: 20*widthRatio, y: 330*heightRatio, width: 335*widthRatio, height: 288*heightRatio)
+        slideshow.frame = CGRect(x: 20*widthRatio, y: 315*heightRatio, width: 335*widthRatio, height: 288*heightRatio)
+        
         
         slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         //slideshow.pageControlPosition = PageControlPosition.underScrollView

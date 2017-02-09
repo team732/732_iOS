@@ -212,7 +212,6 @@ open class ImageSlideshow: UIView {
             view.removeFromSuperview()
         }
         self.slideshowItems = []
-        
         var i = 0
         for image in scrollViewImages {
             let item = ImageSlideshowItem(image: image, zoomEnabled: self.zoomEnabled)

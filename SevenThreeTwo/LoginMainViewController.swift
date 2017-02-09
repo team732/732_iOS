@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginMainViewController: UIViewController {
+class LoginMainViewController: UIViewController , UITextFieldDelegate{
 
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -16,12 +16,13 @@ class LoginMainViewController: UIViewController {
     
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
+    var idTextField : UITextField!
+    var pwTextField : UITextField!
+    let placeholderColor : UIColor = UIColor(red: 67/255, green: 68/255, blue: 67/255, alpha: 0.56)
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
@@ -34,36 +35,76 @@ class LoginMainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func viewSetUp(){
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         
-        let logoLandScape = UIImageView(frame: CGRect(x: (160*widthRatio), y: (91*heightRatio), width: 63*widthRatio, height: 43*heightRatio))
-        logoLandScape.image = UIImage(named: "logoLandScape")
+        
+        
+        let logoLandScape = UIImageView(frame: CGRect(x: (168*widthRatio), y: (118*heightRatio), width: 41*widthRatio, height: 99*heightRatio))
+        logoLandScape.image = UIImage(named: "logoPortrait")
         self.view.addSubview(logoLandScape)
-     
-        drawLine(startX: 187, startY: 134, width: 1, height: 61, border: true, color: UIColor.black)
         
-        drawLine(startX: 0, startY: 355, width: 58, height: 1, border: false, color: UIColor.black)
         
-        drawLine(startX: 319, startY: 355, width: 56, height: 1, border: false, color: UIColor.black)
-        
-        drawLine(startX: 186, startY: 500, width: 1, height: 113, border: true, color: UIColor.black)
-        
-        let mainLogo = UIImageView(frame: CGRect(x: (114*widthRatio), y: (206*heightRatio), width: 147*widthRatio, height: 15*heightRatio))
-        mainLogo.image = UIImage(named: "mainLogo")
-        self.view.addSubview(mainLogo)
-        
-        let loginBtn = UIButton(frame: CGRect(x: 72*widthRatio , y: 365*heightRatio, width: 232*widthRatio, height: 51*heightRatio))
+        let loginBtn = UIButton(frame: CGRect(x: 20*widthRatio , y: 435*heightRatio, width: 335*widthRatio, height: 48*heightRatio))
         loginBtn.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
         loginBtn.setImage(UIImage(named:"login"), for: .normal)
         self.view.addSubview(loginBtn)
         
-        let joinBtn = UIButton(frame: CGRect(x: 72*widthRatio , y: 294*heightRatio, width: 232*widthRatio, height: 51*heightRatio))
+        
+        
+        idTextField = UITextField(frame: CGRect(x: 21*widthRatio, y: 333*heightRatio, width: 334*widthRatio, height: 28*heightRatio))
+        idTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
+        idTextField.autocorrectionType = UITextAutocorrectionType.no
+        idTextField.attributedPlaceholder = NSAttributedString(string: "아이디 혹은 이메일", attributes: [NSForegroundColorAttributeName: placeholderColor])
+        idTextField.textAlignment = .center
+        idTextField.keyboardType = UIKeyboardType.default
+        idTextField.returnKeyType = UIReturnKeyType.done
+        idTextField.delegate = self
+        
+        self.view.addSubview(idTextField)
+        
+        drawLine(startX: 21, startY: 361, width: 334, height: 1, border: false, color: UIColor.black)
+
+        
+       
+        pwTextField = UITextField(frame: CGRect(x: 20*widthRatio, y: 387*heightRatio, width: 334*widthRatio, height: 28*heightRatio))
+        pwTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
+        pwTextField.autocorrectionType = UITextAutocorrectionType.no
+        pwTextField.keyboardType = UIKeyboardType.default
+        pwTextField.returnKeyType = UIReturnKeyType.done
+        pwTextField.delegate = self
+        pwTextField.attributedPlaceholder = NSAttributedString(string: "패스워드", attributes: [NSForegroundColorAttributeName: placeholderColor])
+        pwTextField.isSecureTextEntry = true
+        pwTextField.textAlignment = .center
+        self.view.addSubview(pwTextField)
+        
+
+        
+        
+        
+        drawLine(startX: 21, startY: 415, width: 334, height: 1, border: false, color: UIColor.black)
+        
+        
+        let joinBtn = UIButton(frame: CGRect(x: 20*widthRatio , y: 597*heightRatio, width: 335*widthRatio, height: 48*heightRatio))
         joinBtn.addTarget(self, action: #selector(joinButtonAction), for: .touchUpInside)
         joinBtn.setImage(UIImage(named:"join"), for: .normal)
         self.view.addSubview(joinBtn)
+        
+        let missingPw = UIButton(frame: CGRect(x: 118*widthRatio, y: 513*heightRatio, width: 142*widthRatio, height: 12*heightRatio))
+        missingPw.setTitle("혹시 패스워드를 잊으셨나요?", for: .normal)
+        missingPw.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
+        missingPw.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 0.56), for: .normal)
+        missingPw.titleLabel?.addTextSpacing(spacing: -0.1*widthRatio)
+        missingPw.titleLabel?.textAlignment = .center
+        self.view.addSubview(missingPw)
+        
         
     }
     
@@ -88,6 +129,12 @@ class LoginMainViewController: UIViewController {
     }
     func joinButtonAction(){
         self.performSegue(withIdentifier: "joinToId", sender: self)
+    }
+    
+   
+    
+    func findPwButtonAction(){
+        
     }
     
     

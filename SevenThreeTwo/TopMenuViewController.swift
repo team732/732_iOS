@@ -47,7 +47,7 @@ class TopMenuViewController: UIViewController {
         drawRectangle(startX: 52, startY: 201, width: 271, height: 327)
 
         
-        let subscribeBtn = UIButton(frame: CGRect(x: 137*widthRatio , y: 211*heightRatio, width: 103*widthRatio, height: 18*heightRatio))
+        let subscribeBtn = UIButton(frame: CGRect(x: 136*widthRatio , y: 258*heightRatio, width: 103*widthRatio, height: 18*heightRatio))
         subscribeBtn.addTarget(self, action: #selector(subscribeButtonAction), for: .touchUpInside)
         subscribeBtn.setTitle("받아보기 모음", for: .normal)
         subscribeBtn.setTitleColor(UIColor.black, for: .normal)
@@ -55,9 +55,9 @@ class TopMenuViewController: UIViewController {
         subscribeBtn.titleLabel!.font = subscribeBtn.titleLabel!.font.withSize(18*widthRatio)
         self.view.addSubview(subscribeBtn)
         
-        drawLine(startX: 170, startY: 271, width: 36, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: 170, startY: 318, width: 36, height: 1, border: false, color: UIColor.black)
         
-        let pastMissionBtn = UIButton(frame: CGRect(x: 145*widthRatio , y: 311*heightRatio, width: 87*widthRatio, height: 18*heightRatio))
+        let pastMissionBtn = UIButton(frame: CGRect(x: 145*widthRatio , y: 358*heightRatio, width: 87*widthRatio, height: 18*heightRatio))
         pastMissionBtn.addTarget(self, action: #selector(pastMissionButtonAction), for: .touchUpInside)
         pastMissionBtn.setTitle("과거 미션들", for: .normal)
         pastMissionBtn.setTitleColor(UIColor.black, for: .normal)
@@ -66,9 +66,9 @@ class TopMenuViewController: UIViewController {
 
         self.view.addSubview(pastMissionBtn)
         
-        drawLine(startX: 170, startY: 367 , width: 36, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: 170, startY: 414 , width: 36, height: 1, border: false, color: UIColor.black)
         
-        let hotPicBtn = UIButton(frame: CGRect(x: 145*widthRatio , y: 407*heightRatio, width: 88*widthRatio, height: 18*heightRatio))
+        let hotPicBtn = UIButton(frame: CGRect(x: 144*widthRatio , y: 454*heightRatio, width: 88*widthRatio, height: 18*heightRatio))
         hotPicBtn.addTarget(self, action: #selector(hotPicButtonAction), for: .touchUpInside)
         hotPicBtn.setTitle("명예의 전당", for: .normal)
         hotPicBtn.setTitleColor(UIColor.black, for: .normal)

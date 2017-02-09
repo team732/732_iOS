@@ -109,13 +109,17 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.myPicView.addSubview(lastLine)
        
-        myTableView.frame = CGRect(x: 20*widthRatio, y: 117*heightRatio, width: 335*widthRatio, height: UIScreen.main.bounds.size.height-117*heightRatio)
+        myTableView.frame = CGRect(x: 20*widthRatio, y: 117*heightRatio, width: 335*widthRatio, height: UIScreen.main.bounds.size.height-137*heightRatio)
         
         
         myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
 
         myPicView.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
         myPicView.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+        
+        let bottomLine = drawLine(startX: 20 , startY: 647, width: 335, height: 1, border: false, color: UIColor.black)
+        
+        self.view.addSubview(bottomLine)
     }
     
     func cancelButtonAction(){
