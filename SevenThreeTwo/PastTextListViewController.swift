@@ -28,7 +28,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     
     //for animation
     let back = PastMissionViewController.back
-    let list = PastMissionViewController.list
+    //let list = PastMissionViewController.list
     
     var titleLabel = PastMissionViewController.titleLabel
     
@@ -39,6 +39,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
 //    var frameList : CGRect?
 //    var frameCollectionView : CGRect?
     static var container : UIView!
+    static var list : UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +66,10 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(PastTextListViewController.container.frame)
-        PastTextListViewController.container.addSubview(self.collectionView)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        print(PastTextListViewController.container.frame)
+//        //PastTextListViewController.container.addSubview(self.collectionView)
+//    }
     
     func viewSetUp(){
         
@@ -171,7 +172,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     func closeInfoView() {
         UIView.animate(withDuration: 0.5, animations: {
             self.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            self.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+            PastTextListViewController.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
             self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
             self.titleLabel.addTextSpacing(spacing: -1)
             PastTextListViewController.container.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: 603*self.heightRatio )
@@ -187,7 +188,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         UIView.animate(withDuration: 1.0, animations: {
             
             self.back.frame = CGRect(x:30*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            self.list.frame = CGRect(x:321*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+            PastTextListViewController.list.frame = CGRect(x:321*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
             self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (73*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
             
         

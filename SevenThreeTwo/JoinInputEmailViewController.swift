@@ -90,7 +90,7 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         checkBtn.setImage(UIImage(named:"check"), for: .normal)
         self.view.addSubview(checkBtn)
         
-        let skipBtn = UIButton(frame: CGRect(x: 260*widthRatio , y: 75*heightRatio, width: 61*widthRatio, height: 15*heightRatio))
+        let skipBtn = UIButton(frame: CGRect(x: 275*widthRatio , y: 75*heightRatio, width: 61*widthRatio, height: 15*heightRatio))
         skipBtn.addTarget(self, action: #selector(checkButtonAction), for: .touchUpInside)
         skipBtn.setImage(UIImage(named:"skip"), for: .normal)
         self.view.addSubview(skipBtn)

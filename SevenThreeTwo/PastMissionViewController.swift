@@ -32,9 +32,11 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
    
     @IBOutlet var containerView: UIView!
     
+    @IBOutlet var listBtn: UIButton!
+    
     //for animation
     static let back = UIButton()
-    static let list = UIButton()
+    //static var list : CGRect?
     static var titleLabel = UILabel()
     
     
@@ -67,6 +69,8 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         //self.collectionView.alpha = 1
         //self.listView.alpha = 0
         setUi()
+        
+        PastTextListViewController.list = self.listBtn
     }
     
     
@@ -108,28 +112,25 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         view.addSubview(PastMissionViewController.titleLabel)
         
-        PastMissionViewController.list.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
-        PastMissionViewController.list.setImage(UIImage(named:"list"), for: .normal)
-        PastMissionViewController.list.sizeToFit()
+        
+        
+        listBtn.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
+        listBtn.setImage(UIImage(named:"list"), for: .normal)
+        listBtn.sizeToFit()
         //#
-        PastMissionViewController.list.addTarget(self, action:#selector(listButtonPressed(sender:)), for: .touchUpInside)
-        view.addSubview(PastMissionViewController.list)
+        //listBtn.addTarget(self, action:#selector(listButtonPressed(sender:)), for: .touchUpInside)
+        //view.addSubview(listBtn)
         
         //for animation
         frameBack = PastMissionViewController.back.frame
         frameTitle = PastMissionViewController.titleLabel.frame
-        frameList = PastMissionViewController.list.frame
+        frameList = listBtn.frame
         frameCollectionView = collectionView.frame
+        
+        
     }
     
-    func buttonPressed(sender: UIButton!) {
-        
-        PastMissionViewController.selectedIndex = 0
-        dismiss(animated: true, completion: nil)
-        
-    }
-    //#
-    func listButtonPressed(sender: UIButton!) {
+    @IBAction func listButtonClicked(_ sender: UIButton) {
         
         switch PastMissionViewController.selectedIndex {
         case 0: //
@@ -137,8 +138,8 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
                 self.collectionView.alpha = 0
                 self.listView.alpha = 1
                 
-            PastMissionViewController.list.setImage(UIImage(named:"listRound"), for: .normal)
-                PastMissionViewController.list.sizeToFit()
+                self.listBtn.setImage(UIImage(named:"listRound"), for: .normal)
+                self.listBtn.sizeToFit()
             })
             PastMissionViewController.selectedIndex = 1
             break
@@ -146,15 +147,50 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
             UIView.animate(withDuration: 0.3, animations: {
                 self.collectionView.alpha = 1
                 self.listView.alpha = 0
-                PastMissionViewController.list.setImage(UIImage(named:"list"), for: .normal)
-                PastMissionViewController.list.sizeToFit()
+                self.listBtn.setImage(UIImage(named:"list"), for: .normal)
+                self.listBtn.sizeToFit()
             })
             PastMissionViewController.selectedIndex = 0
             break
         default:
             return
         }
+
+        
     }
+    func buttonPressed(sender: UIButton!) {
+        
+        PastMissionViewController.selectedIndex = 0
+        dismiss(animated: true, completion: nil)
+        
+    }
+    //#
+//    func listButtonPressed(sender: UIButton!) {
+//        
+//        switch PastMissionViewController.selectedIndex {
+//        case 0: //
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.collectionView.alpha = 0
+//                self.listView.alpha = 1
+//                
+//            self.listBtn.setImage(UIImage(named:"listRound"), for: .normal)
+//                self.listBtn.sizeToFit()
+//            })
+//            PastMissionViewController.selectedIndex = 1
+//            break
+//        case 1: //
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.collectionView.alpha = 1
+//                self.listView.alpha = 0
+//                self.listBtn.setImage(UIImage(named:"list"), for: .normal)
+//                self.listBtn.sizeToFit()
+//            })
+//            PastMissionViewController.selectedIndex = 0
+//            break
+//        default:
+//            return
+//        }
+//    }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
         
@@ -237,7 +273,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     func closeInfoView() {
         UIView.animate(withDuration: 0.5, animations: {
             PastMissionViewController.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            PastMissionViewController.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+            self.listBtn.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
             PastMissionViewController.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
             PastMissionViewController.titleLabel.addTextSpacing(spacing: -1)
             self.collectionView.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: self.view.frame.height - 64*self.heightRatio )
@@ -251,7 +287,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         UIView.animate(withDuration: 1.0, animations: {
             
             PastMissionViewController.back.frame = self.frameBack!
-            PastMissionViewController.list.frame = self.frameList!
+            self.listBtn.frame = self.frameList!
             PastMissionViewController.titleLabel.frame = self.frameTitle!
             self.collectionView.frame = CGRect(x: (0), y: (141*self.heightRatio), width: self.view.frame.width, height: self.view.frame.height  )
             //self.frameCollectionView!
