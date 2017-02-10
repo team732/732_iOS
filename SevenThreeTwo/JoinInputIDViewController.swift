@@ -17,11 +17,29 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
     
-    var duplicatedId : UILabel!
+    var checkIdLabel : UILabel!
     var idTextField : UITextField!
+    
+    var apiManager : ApiManager!
+    
+    var checkId : Bool=true {
+        didSet{
+            if checkId {
+                checkIdLabel.textAlignment = .center
+                checkIdLabel.text = "중복되는 아이디가 존재합니다"
+                checkIdLabel.isHidden = false
+            }else {
+                self.idTextField.endEditing(true)
+                checkIdLabel.isHidden = true
+                performSegue(withIdentifier: "JoinIdToPwSegue", sender: self)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
@@ -57,7 +75,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(idLabel)
         
         idTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
-        idTextField.placeholder = "아이디를 입력해 주세요 (영문,숫자 조합 6~16자리)"
+        idTextField.placeholder = "아이디를 입력해주세요 (영문,숫자 조합 6~16자리)"
         idTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         idTextField.autocorrectionType = UITextAutocorrectionType.no
         idTextField.keyboardType = UIKeyboardType.default
@@ -68,14 +86,12 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
     
         drawLine(startX: 35, startY: 201, width: 305, height: 1, border: false, color: UIColor.black)
 
-        duplicatedId = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
-        duplicatedId.text = "중복되는 아이디가 존재 합니다."
-        duplicatedId.textAlignment = .center
-        duplicatedId.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
-        duplicatedId.isHidden = true
-        duplicatedId.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        duplicatedId.font = duplicatedId.font.withSize(13*widthRatio)
-        self.view.addSubview(duplicatedId)
+        checkIdLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
+        checkIdLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        checkIdLabel.isHidden = true
+        checkIdLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        checkIdLabel.font = checkIdLabel.font.withSize(13*widthRatio)
+        self.view.addSubview(checkIdLabel)
         
         let checkBtn = UIButton(frame: CGRect(x: 35*widthRatio , y: 245*heightRatio, width: 305*widthRatio, height: 41*heightRatio))
         checkBtn.addTarget(self, action: #selector(checkButtonAction), for: .touchUpInside)
@@ -110,17 +126,8 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
     
     func checkButtonAction(){
         
-        var checkId :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
+        checkDuplicated()
         
-        //서버에서 아이디가 중복된게 있으면 duplicatedId 를 isHidden 을 false
-        if idTextField.text == "a" {
-            duplicatedId.isHidden = false
-        }else{
-            self.idTextField.endEditing(true)
-            duplicatedId.isHidden = true
-            performSegue(withIdentifier: "JoinIdToPwSegue", sender: self)
-        }
-        //없으면 넘어가면 돼
     }
 
    
@@ -130,6 +137,20 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
             let destination = segue.destination as! JoinInputPwViewController
 
             destination.receivedId = idTextField.text!
+        }
+    }
+    
+    func checkDuplicated() {
+    
+        if let userId = idTextField.text, userId != "" {
+            apiManager = ApiManager(path: "/id/"+userId+"/checking", method: .get, parameters: [:],header: [:])
+            apiManager.requsetCheckDuplicated(completion: { (isDuplicated) in
+                self.checkId = isDuplicated["data"]["isDuplicated"].boolValue
+            })
+        }else{
+            checkIdLabel.textAlignment = .left
+            checkIdLabel.text = "  아이디를 입력해주세요."
+            checkIdLabel.isHidden = false
         }
     }
  

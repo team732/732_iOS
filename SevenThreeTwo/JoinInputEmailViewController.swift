@@ -22,10 +22,33 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
     var widthRatio: CGFloat = 0.0
 
     var emailTextField: UITextField!
-    var duplicatedEmail : UILabel!
+    var checkEmailLabel : UILabel!
+    var apiManager : ApiManager!
+    
+    
+    var checkEmail :Bool = true{
+        didSet{
+            if checkEmail{
+                
+                checkEmailLabel.text = "중복되는 이메일이 존재 합니다."
+                checkEmailLabel.textAlignment = .center
+                checkEmailLabel.isHidden = false
+
+            }else{
+                
+                checkEmailLabel.isHidden = true
+                self.emailTextField.endEditing(true)
+                joinOurService(id: receivedId, password: receivedPw, nickname: receivedNickname, email: emailTextField.text!)
+                self.performSegue(withIdentifier: "emailToLogin", sender: self)
+
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
@@ -76,14 +99,12 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         
         drawLine(startX: 35, startY: 201, width: 305, height: 1, border: false, color: UIColor.black)
         
-        duplicatedEmail = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
-        duplicatedEmail.text = "중복되는 이메일이 존재 합니다."
-        duplicatedEmail.textAlignment = .center
-        duplicatedEmail.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
-        duplicatedEmail.isHidden = true
-        duplicatedEmail.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        duplicatedEmail.font = duplicatedEmail.font.withSize(13*widthRatio)
-        self.view.addSubview(duplicatedEmail)
+        checkEmailLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
+        checkEmailLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        checkEmailLabel.isHidden = true
+        checkEmailLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        checkEmailLabel.font = checkEmailLabel.font.withSize(13*widthRatio)
+        self.view.addSubview(checkEmailLabel)
         
         let checkBtn = UIButton(frame: CGRect(x: 35*widthRatio , y: 245*heightRatio, width: 305*widthRatio, height: 41*heightRatio))
         checkBtn.addTarget(self, action: #selector(checkButtonAction), for: .touchUpInside)
@@ -91,7 +112,7 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(checkBtn)
         
         let skipBtn = UIButton(frame: CGRect(x: 275*widthRatio , y: 75*heightRatio, width: 61*widthRatio, height: 15*heightRatio))
-        skipBtn.addTarget(self, action: #selector(checkButtonAction), for: .touchUpInside)
+        skipBtn.addTarget(self, action: #selector(skipButtonAction), for: .touchUpInside)
         skipBtn.setImage(UIImage(named:"skip"), for: .normal)
         self.view.addSubview(skipBtn)
     }
@@ -116,26 +137,65 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
     }
     
     func checkButtonAction(){
+    
+        checkDuplicated()
+
         
-        var checkEmail :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
+    }
+    
+    func checkDuplicated(){
         
-        //서버에서 이메일이 중복된게 있으면 duplicatedId 를 isHidden 을 false 단 공백은 제외
-        if emailTextField.text == "a" {
-            duplicatedEmail.isHidden = false
+        if let userEmail = emailTextField.text ,userEmail != ""{
+            apiManager = ApiManager(path: "/email/"+userEmail+"/checking", method: .get, parameters: [:],header:[:])
+            apiManager.requsetCheckDuplicated(completion: { (isDuplicated) in
+                
+                
+                if  isDuplicated["meta"]["code"].intValue != -27 {
+                    self.checkEmail = isDuplicated["data"]["isDuplicated"].boolValue
+                }else{
+                    self.checkEmailLabel.text = " 이메일 형식이 아닙니다."
+                    self.checkEmailLabel.textAlignment = .left
+                    self.checkEmailLabel.isHidden = false
+                }
+            })
         }else{
-            
-            // 이곳에서 서버에 저장시키고 다시 로그인 화면으로 돌아간다.
-            // receivedId, receivedPw, receivedNickname, emailTextField.text
-            duplicatedEmail.isHidden = true
-            self.emailTextField.endEditing(true)
-            self.performSegue(withIdentifier: "emailToLogin", sender: self)
+            self.checkEmailLabel.text = " 이메일 형식이 아닙니다."
+            self.checkEmailLabel.textAlignment = .left
+            self.checkEmailLabel.isHidden = false
         }
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //emailToLogin
+    func skipButtonAction(){
         
+        
+        joinOurService(id: receivedId, password: receivedPw, nickname: receivedNickname,email: nil)
+        self.performSegue(withIdentifier: "emailToLogin", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //emailToLogin
+    }
+    
+    func joinOurService(id: String,password: String, nickname: String, email: String?){
+        
+        apiManager = ApiManager(path: "/users", method: .post, parameters: ["loginId":id,"password":password,"reEnterPassword":password,"nickname":nickname], header: [:])
+
+        if email != nil {
+            let email = email!
+            apiManager.parameters.updateValue(email, forKey: "email")
+        }
+        apiManager.requestJoin { (isJoin) in
+            
+            //여기가 토큰 받는다~
+            print(isJoin)
+            
+            let userToken = isJoin["data"]["token"].stringValue
+            
+            //이거 프리퍼런스에 저장 해야한다
+        }
+        // request
         
     }
  

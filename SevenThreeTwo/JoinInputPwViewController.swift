@@ -20,6 +20,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
     var receivedId: String = ""
     
     var pwTextField : UITextField!
+    var checkPw: UILabel!
     
     var pwHideBtn : UIButton!
     
@@ -75,6 +76,15 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         pwTextField.isSecureTextEntry = true
         self.view.addSubview(pwTextField)
         
+        
+        checkPw = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
+        checkPw.text = " 비밀번호를 입력해 주세요."
+        checkPw.textAlignment = .left
+        checkPw.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        checkPw.isHidden = true
+        checkPw.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        self.view.addSubview(checkPw)
+        
         drawLine(startX: 35, startY: 201, width: 305, height: 1, border: false, color: UIColor.black)
         
         
@@ -119,9 +129,12 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
     }
     
     func checkButtonAction(){
-        
-        self.performSegue(withIdentifier: "pwCheck", sender: self)
-        // 세그에 저장시키고 넘겨라
+        if (pwTextField.text?.isEmpty)! {
+            checkPw.isHidden = false
+        }else{
+            checkPw.isHidden = true
+            self.performSegue(withIdentifier: "pwCheck", sender: self)
+        }// 세그에 저장시키고 넘겨라
     }
     
     func pwHideButtonAction(){

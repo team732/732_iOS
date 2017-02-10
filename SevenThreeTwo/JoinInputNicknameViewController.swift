@@ -13,7 +13,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
     var receivedId :String!
     var receivedPw :String!
     
-    var duplicatedNick : UILabel!
+    var checkNickLabel : UILabel!
     var nickTextField : UITextField!
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
@@ -22,6 +22,23 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
     
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
+    
+    var apiManager: ApiManager!
+    
+    var checkNickname:Bool = false{
+        didSet{
+            if checkNickname{
+                checkNickLabel.text = "중복되는 닉네임이 존재 합니다."
+                checkNickLabel.textAlignment = .center
+                checkNickLabel.isHidden = false
+            }else{
+                checkNickLabel.isHidden = true
+                self.nickTextField.endEditing(true)
+                self.performSegue(withIdentifier: "nickToEmail", sender: self)
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,16 +90,16 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         
         self.view.addSubview(nickTextField)
         
+        
+        
         drawLine(startX: 35, startY: 201, width: 305, height: 1, border: false, color: UIColor.black)
         
-        duplicatedNick = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
-        duplicatedNick.text = "중복되는 닉네임이 존재 합니다."
-        duplicatedNick.textAlignment = .center
-        duplicatedNick.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
-        duplicatedNick.isHidden = true
-        duplicatedNick.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        duplicatedNick.font = duplicatedNick.font.withSize(13*widthRatio)
-        self.view.addSubview(duplicatedNick)
+        checkNickLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
+        checkNickLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        checkNickLabel.isHidden = true
+        checkNickLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        checkNickLabel.font = checkNickLabel.font.withSize(13*widthRatio)
+        self.view.addSubview(checkNickLabel)
         
         let checkBtn = UIButton(frame: CGRect(x: 35*widthRatio , y: 245*heightRatio, width: 305*widthRatio, height: 41*heightRatio))
         checkBtn.addTarget(self, action: #selector(checkButtonAction), for: .touchUpInside)
@@ -111,16 +128,8 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
     
     func checkButtonAction(){
         
-        var checkNick :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
         
-        //서버에서 닉네임 중복된게 있으면 duplicatedId 를 isHidden 을 false
-        if nickTextField.text == "a" {
-            duplicatedNick.isHidden = false
-        }else{
-            duplicatedNick.isHidden = true
-            self.nickTextField.endEditing(true)
-            self.performSegue(withIdentifier: "nickToEmail", sender: self)
-        }
+        checkDuplicated()
 
     }
 
@@ -134,6 +143,21 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
             destination.receivedPw = self.receivedPw
             destination.receivedNickname = self.nickTextField.text!
         }
+    }
+    
+    func checkDuplicated(){
+        
+        if let userNickname = nickTextField.text, userNickname != "" {
+            apiManager = ApiManager(path: "/nickname/"+userNickname+"/checking", method: .get, parameters: [:], header: [:])
+            apiManager.requsetCheckDuplicated(completion: { (isDuplicated) in
+                self.checkNickname = isDuplicated["data"]["isDuplicated"].boolValue
+            })
+        }else{
+            checkNickLabel.text = " 닉네임을 입력해주세요."
+            checkNickLabel.textAlignment = .left
+            checkNickLabel.isHidden = false
+        }
+
     }
  
 

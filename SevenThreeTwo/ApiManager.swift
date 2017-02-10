@@ -9,17 +9,20 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-private let server = "http://52.175.155.109"
+private let server = "http://52.79.178.255"
 
 class ApiManager {
     let url: String
     let method: HTTPMethod
-    let parameters: Parameters
+    var parameters: Parameters
+    let encoding = URLEncoding.default
+    let header: HTTPHeaders
     
-    init(path: String, method: HTTPMethod = .get, parameters: Parameters = [:]) {
+    init(path: String, method: HTTPMethod, parameters: Parameters = [:],header: HTTPHeaders) {
         url = server + path
         self.method = method
         self.parameters = parameters
+        self.header = header
     }
     
     //completion:(String) -> Void (ex)
@@ -65,6 +68,39 @@ class ApiManager {
         }
     }
     
+    func requsetCheckDuplicated(completion : @escaping (JSON)->Void){
+        Alamofire.request(url).responseJSON{ response in
+            switch(response.result){
+                case .success(_):
+                    if let json = response.result.value {
+                        let resp = JSON(json)
+                        completion(resp)
+                    }
+                    break
+                case .failure(_):
+                    break
+            }
+        }
+    }
+    
+    func requestJoin(completion : @escaping (JSON)->Void){
+        print(url)
+        print(method)
+        print(parameters)
+        Alamofire.request(url, method: method, parameters: parameters).responseJSON{ response in
+            switch(response.result){
+                case .success(_):
+                    if let json = response.result.value {
+                        let resp = JSON(json)
+                        completion(resp)
+                    }
+                    break
+                case .failure(_):
+                    break
+                
+            }
+        }
+    }
     
     
     /*
@@ -74,10 +110,5 @@ class ApiManager {
      print(info) -> info 는 JSON 형식 (@escaping 옆 () 안에 String 을 넣어주면 info 는 String으로 반환 단, completion안에도 String으로 넣어줘야함. 즉 이곳에서 내가 원하는 값으로 반환 받는것
      }
      */
-    
-    
-    
-    
-    
     
 }
