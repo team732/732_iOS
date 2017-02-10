@@ -41,6 +41,7 @@ class TopMenuViewController: UIViewController {
         
         let copyRightImg = UIImageView(frame: CGRect(x: (156*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 14*heightRatio))
         copyRightImg.image = UIImage(named: "copyright")
+        copyRightImg.sizeToFit()
         self.view.addSubview(copyRightImg)
         
         drawRectangle(startX:47, startY: 195, width: 282, height:339)

@@ -6,6 +6,8 @@
 //  Copyright © 2017년 윤민섭. All rights reserved.
 //
 
+import UIKit
+
 class PublicList: NSObject {
     
     public var contentId : Int?

@@ -90,7 +90,6 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(checkBtn)
         
     }
-    
     func backButtonAction(){
         self.nickTextField.endEditing(true)
         self.dismiss(animated: true, completion: nil)
@@ -114,7 +113,7 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         
         var checkNick :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
         
-        //서버에서 아이디가 중복된게 있으면 duplicatedId 를 isHidden 을 false
+        //서버에서 닉네임 중복된게 있으면 duplicatedId 를 isHidden 을 false
         if nickTextField.text == "a" {
             duplicatedNick.isHidden = false
         }else{

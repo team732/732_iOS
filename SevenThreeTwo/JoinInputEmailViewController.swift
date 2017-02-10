@@ -117,9 +117,9 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
     
     func checkButtonAction(){
         
-        var checkNick :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
+        var checkEmail :Bool = false // 서버에서 확인하는 함수를 불린값으로 리턴
         
-        //서버에서 아이디가 중복된게 있으면 duplicatedId 를 isHidden 을 false 단 공백은 제외
+        //서버에서 이메일이 중복된게 있으면 duplicatedId 를 isHidden 을 false 단 공백은 제외
         if emailTextField.text == "a" {
             duplicatedEmail.isHidden = false
         }else{
