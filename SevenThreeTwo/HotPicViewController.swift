@@ -27,7 +27,9 @@ class HotPicViewController: UIViewController {
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
 
-    
+    var ranking : UIImageView!
+
+    var rankingImg : [String] = ["honor_1st","honor_2nd","honor_3rd","honor_4th","honor_5th","honor_6th","honor_7th","honor_8th","honor_9th","honor_10th"]
 
     open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         get {
@@ -66,10 +68,10 @@ class HotPicViewController: UIViewController {
         
         
         slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        //slideshow.pageControlPosition = PageControlPosition.underScrollView
-        slideshow.pageControl.currentPageIndicatorTintColor = UIColor.clear
-        slideshow.pageControl.pageIndicatorTintColor = UIColor.clear
         slideshow.setImageInputs(localSource)
+        slideshow.currentPageChanged = { (page) in
+            self.ranking.image = UIImage(named: self.rankingImg[page])
+        }
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
         slideshow.addGestureRecognizer(recognizer)
         
@@ -132,6 +134,10 @@ class HotPicViewController: UIViewController {
         drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true, color: UIColor.black)
         drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true, color: UIColor.black)
         
+        
+        ranking = UIImageView(frame: CGRect(x: 162*widthRatio, y: 174*heightRatio, width: 52*widthRatio, height: 52*heightRatio))
+        ranking.image = UIImage(named: rankingImg[0])
+        self.view.addSubview(ranking)
         
         // 서버에서 날짜, 그날의 주제 가져와야함 , 작성자
         let missionDateLabel = UILabel(frame: CGRect(x: 135*widthRatio, y: 242*heightRatio, width: 107*widthRatio, height: 11*heightRatio))

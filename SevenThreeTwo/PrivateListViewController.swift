@@ -29,7 +29,7 @@ class PrivateListViewController: UICollectionViewController {
     let layout = MultipleColumnLayout()
     
     // MARK: Data
-    fileprivate let photos = Photo.allPhotos()
+    fileprivate let photos = PrivatePhoto.allPhotos()
     
     
     required init(coder aDecoder: NSCoder) {

@@ -25,36 +25,32 @@ class ApiManager {
     }
     
     //completion:(String) -> Void (ex)
-    func request(completion : @escaping (JSON)->Void){
-        Alamofire.request(url,method: method,parameters: parameters).responseJSON{ response in
-            //            let info = JSON(response.result.value!)
-            //            completion(info)
+    func requestContents(completion : @escaping ([PublicList])->Void){
+        Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
             case .success(_):
-                if response.result.value != nil{
+                if let json = response.result.value{
+                    let resp = JSON(json)
                     
-                    //print(response.result.value!)
-                    
-                    let json = JSON(response.result.value!)
-                    
+                    print(resp["data"]["contents"].count)
                     //print(json)
                     //print(json["data"]["contents"][0].arrayValue)
                     
-                    print(json["data"]["contents"].array!.count)
-                    print(json["pagination"]["nextUrl"].string!)
-                    
-                    print(json["data"]["contents"][0]["contentId"].int!.description)
-                    print(json["data"]["contents"][0]["content"]["picture"].string!)
-                    print(json["data"]["contents"][0]["content"]["text"].string!)
-                    print(json["data"]["contents"][0]["userId"].int!.description)
-                    
-                    print(json["data"]["contents"][0]["nickname"].string!)
-                    print(json["data"]["contents"][0]["popularity"].int!.description)
-                    print(json["data"]["contents"][0]["missionId"].int!.description)
-                    print(json["data"]["contents"][0]["createdAt"].string!)
-                    print(json["data"]["contents"][0]["likeCount"].int!.description)
-                    print(json["data"]["contents"][0]["mission"]["text"].string!)
-                    
+//                    print(json["data"]["contents"].array!.count)
+//                    print(json["pagination"]["nextUrl"].string!)
+//                    
+//                    print(json["data"]["contents"][0]["contentId"].int!.description)
+//                    print(json["data"]["contents"][0]["content"]["picture"].string!)
+//                    print(json["data"]["contents"][0]["content"]["text"].string!)
+//                    print(json["data"]["contents"][0]["userId"].int!.description)
+//                    
+//                    print(json["data"]["contents"][0]["nickname"].string!)
+//                    print(json["data"]["contents"][0]["popularity"].int!.description)
+//                    print(json["data"]["contents"][0]["missionId"].int!.description)
+//                    print(json["data"]["contents"][0]["createdAt"].string!)
+//                    print(json["data"]["contents"][0]["likeCount"].int!.description)
+//                    print(json["data"]["contents"][0]["mission"]["text"].string!)
+//                    
                     
                 }
                 break
