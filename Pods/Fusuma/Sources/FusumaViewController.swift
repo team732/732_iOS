@@ -64,9 +64,9 @@ public var fusumaVideoStopImage : UIImage? = nil
 
 public var fusumaCropImage: Bool = true
 
-public var fusumaCameraRollTitle = "CAMERA ROLL"
-public var fusumaCameraTitle = "PHOTO"
-public var fusumaVideoTitle = "VIDEO"
+public var fusumaCameraRollTitle = ""//"CAMERA ROLL"
+public var fusumaCameraTitle = ""//"PHOTO"
+public var fusumaVideoTitle = ""//"VIDEO"
 public var fusumaTitleFont = UIFont(name: "AvenirNext-DemiBold", size: 15)
 
 public var fusumaTintIcons : Bool = true
@@ -134,8 +134,10 @@ public class FusumaViewController: UIViewController {
         albumView.delegate  = self
         videoView.delegate = self
         
-        menuView.backgroundColor = fusumaBackgroundColor
-        menuView.addBottomBorder(UIColor.black, width: 1.0)
+        menuView.tintColor = UIColor.clear
+        menuView.backgroundColor = UIColor.clear
+        //menuView.backgroundColor = fusumaBackgroundColor
+        //menuView.addBottomBorder(UIColor.black, width: 1.0)
         
         let bundle = Bundle(for: self.classForCoder)
         
@@ -166,7 +168,11 @@ public class FusumaViewController: UIViewController {
             closeButton.setImage(closeImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             closeButton.setImage(closeImage?.withRenderingMode(.alwaysTemplate), for: .highlighted)
             closeButton.setImage(closeImage?.withRenderingMode(.alwaysTemplate), for: .selected)
-            closeButton.tintColor = fusumaBaseTintColor
+            closeButton.tintColor = UIColor.white//fusumaBaseTintColor
+            closeButton.layer.shadowColor = UIColor.black.cgColor
+            closeButton.layer.shadowRadius = 3
+            closeButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+            closeButton.layer.shadowOpacity = 1.0
             
             videoButton.setImage(videoImage, for: UIControlState())
             videoButton.setImage(videoImage, for: .highlighted)
@@ -175,7 +181,14 @@ public class FusumaViewController: UIViewController {
             videoButton.adjustsImageWhenHighlighted = false
             
             doneButton.setImage(checkImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-            doneButton.tintColor = fusumaBaseTintColor
+            doneButton.tintColor = UIColor.white//fusumaBaseTintColor
+            doneButton.layer.shadowColor = UIColor.black.cgColor
+            doneButton.layer.shadowRadius = 3
+            doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+            doneButton.layer.shadowOpacity = 1.0
+            
+            
+            
             
         } else {
             
@@ -511,6 +524,6 @@ private extension FusumaViewController {
         
         button.tintColor = fusumaTintColor
         
-        button.addBottomBorder(fusumaTintColor, width: 3)
+        //button.addBottomBorder(fusumaTintColor, width: 3)
     }
 }
