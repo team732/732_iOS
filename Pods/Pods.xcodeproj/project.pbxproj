@@ -18,6 +18,7 @@
 		337EBB7E279C5D1697601D3C6A696A46 /* FusumaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199A52E8B38FA81FEC03FA0C86143D91 /* FusumaViewController.swift */; };
 		340A2E53268508AFD17E72150E6B6BE4 /* ZoomAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E594AF583FE5908F20513CD0514F43 /* ZoomAnimatedTransitioning.swift */; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BD8B4AA8301334586BA5352E4A3EB3 /* TaskDelegate.swift */; };
+		379895091E4F7EEA0058013E /* DeviceResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379895081E4F7EEA0058013E /* DeviceResize.swift */; };
 		37D4EF5938F8495CE32638F8BEB53550 /* FSAlbumViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5357E2A3819952475DB760958F6CDF6B /* FSAlbumViewCell.swift */; };
 		484B8C39828B296D71146C51A0904FC7 /* Fusuma-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6B08F31034D1068451195249DCD4C3 /* Fusuma-dummy.m */; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424339FC38CAE51FB2ECA681105B524D /* Request.swift */; };
@@ -123,6 +124,7 @@
 		284D33A2059A0F7D9C4D75280820164A /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		2850D15D42C4101FF06CFF1AA7CFA588 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		2CE322C6B2DE9DA3A6D9E315ED4FDA46 /* InputSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InputSource.swift; path = ImageSlideshow/Classes/Core/InputSource.swift; sourceTree = "<group>"; };
+		379895081E4F7EEA0058013E /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceResize.swift; sourceTree = "<group>"; };
 		3CE4A5DC6C888C1324ECD46E0B8E2A5F /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		3D54C0232522BCEE7208722E9D65B8AA /* Fusuma.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fusuma.xcconfig; sourceTree = "<group>"; };
 		40DC60CC8FD4396019BE5266393D30B9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 		7FCC09C6221B6585B702975C9E8F3A68 /* Fusuma */ = {
 			isa = PBXGroup;
 			children = (
+				379895081E4F7EEA0058013E /* DeviceResize.swift */,
 				E6B3721506BF1234192075BFC87FA92C /* FSAlbumView.swift */,
 				5357E2A3819952475DB760958F6CDF6B /* FSAlbumViewCell.swift */,
 				F7D8E1D7A2A8FE836F23DCC51E68CA9B /* FSCameraView.swift */,
@@ -754,6 +757,7 @@
 				37D4EF5938F8495CE32638F8BEB53550 /* FSAlbumViewCell.swift in Sources */,
 				E8CD91CC081DE8166DB3964B70DD91F3 /* FSCameraView.swift in Sources */,
 				97D850D3836A89967D5A350E84996568 /* FSConstants.swift in Sources */,
+				379895091E4F7EEA0058013E /* DeviceResize.swift in Sources */,
 				76C218BD1C4FED73A5D8DE0B44133A10 /* FSImageCropView.swift in Sources */,
 				5876F184D9754E4DFBAD67EEF32FCF9C /* FSVideoCameraView.swift in Sources */,
 				484B8C39828B296D71146C51A0904FC7 /* Fusuma-dummy.m in Sources */,

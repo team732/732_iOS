@@ -89,6 +89,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bottomView" destination="oUi-qP-Neb" id="UiO-N0-zsL"/>
                 <outlet property="croppedAspectRatioConstraint" destination="dsr-FI-2Hq" id="dCb-jy-WZQ"/>
                 <outlet property="flashButton" destination="De1-Cg-kBb" id="vgA-Pn-IaF"/>
                 <outlet property="flipButton" destination="cf2-eo-TZZ" id="m0O-6p-tPs"/>
