@@ -15,14 +15,15 @@ class CheckTokenViewController: UIViewController {
     var launchTimer = Timer()
     var count = 0
     var launchSec = 0.0
+    var imageView : UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let launchGif = UIImage.gifImageWithName(name: "launchSplash")
-        let imageView = UIImageView(image: launchGif)
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-        self.view.addSubview(imageView)
+        //let launchGif = UIImage.gifImageWithName(name: "launchSplash")
+//        imageView = UIImageView(image: launchGif)
+//        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+//        self.view.addSubview(imageView)
         
     }
     
