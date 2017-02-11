@@ -9,22 +9,39 @@
 import UIKit
 
 class CheckTokenViewController: UIViewController {
-
+    
     let userToken = UserDefaults.standard
     var apiManager : ApiManager!
+    var launchTimer = Timer()
+    var count = 0
+    var launchSec = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                // Do any additional setup after loading the view.
+        
+        let launchGif = UIImage.gifImageWithName(name: "launchSplash")
+        let imageView = UIImageView(image: launchGif)
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        self.view.addSubview(imageView)
+        
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
-        checkToken()
+        launchTimer.invalidate()
+        launchTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(CheckTokenViewController.counter), userInfo: nil, repeats:true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func counter(){
+        launchSec += 1
+        if launchSec > 2 {
+            checkToken()
+        }
     }
     
     func checkToken(){
