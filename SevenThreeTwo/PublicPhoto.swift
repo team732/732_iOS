@@ -16,28 +16,30 @@ class PublicPhoto: NSObject {
     var apiManager : ApiManager!
     var image: UIImage
     let userToken = UserDefaults.standard.string(forKey: "token")
+    var photos = [PublicPhoto]()
+
     
     init(image: UIImage) {
         self.image = image
     }
     
+   
     
-    func allPhotos() -> [PublicPhoto] {
+    func loadContents() {
         
-        loadContents()
-        
-        var photos = [PublicPhoto]()
-        
-        for i in 1..<10 {
-            photos.append(PublicPhoto( image: UIImage(named: "otter-\(i).jpg")!))
-        }
-        return photos
-    }
-    
-    func loadContents(){
         apiManager = ApiManager(path: "/contents", method: .get, parameters: [:], header: ["authorization":userToken!])
-        apiManager.requestContents { (JSON) in
-            print(JSON)
+        //        OperationQueue.main.addOperation(){
+        self.apiManager.requestContents { (contentPhoto) in
+            for i in 0..<contentPhoto.count{
+                self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
+            }
         }
     }
 }
+
+
+/*
+ func loadEx(){
+ photos.append(PublicPhoto(image: UIImage(data: NSData(contentsOf: NSURL(string: )))))
+ }*/
+

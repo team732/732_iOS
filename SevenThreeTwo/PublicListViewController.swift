@@ -31,9 +31,10 @@ class PublicListViewController:  UICollectionViewController {
     let layout = MultipleColumnLayout()
     
     let publicPhoto = PublicPhoto(image : UIImage(named: "otter-1")!)
-    
+    var apiManager : ApiManager!
+    let userToken = UserDefaults.standard.string(forKey: "token")
     // MARK: Data
-    var photos : [PublicPhoto]!
+    var photos : [PublicPhoto] = []
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -46,8 +47,16 @@ class PublicListViewController:  UICollectionViewController {
         
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        photos = self.publicPhoto.allPhotos()
-        setUpUI()
+        
+        apiManager = ApiManager(path: "/contents", method: .get, parameters: [:], header: ["authorization":userToken!])
+        self.setUpUI()
+        //        OperationQueue.main.addOperation(){
+        self.apiManager.requestContents { (contentPhoto) in
+            for i in 0..<contentPhoto.count{
+                self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
+            }
+            self.collectionView?.reloadData()
+        }
     }
     
     override func viewWillTransition(
