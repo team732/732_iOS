@@ -83,8 +83,9 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
             shotButton.setImage(shotImage, for: UIControlState())
         }
 
-        
         self.isHidden = false
+        self.shotButton.isEnabled = true
+        photoCount = 0
         
         // AVCapture
         session = AVCaptureSession()
@@ -199,6 +200,11 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
     
     @IBAction func shotButtonPressed(_ sender: UIButton) {
         
+        if (photoCount > 0) {
+            return
+        }
+        photoCount += 1
+        
         guard let imageOutput = imageOutput else {
             
             return
@@ -254,7 +260,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                     
                     
                                         
-                    DispatchQueue.main.async(execute: { () -> Void in
+                    //DispatchQueue.main.async { () -> Void in
                         
                         viewController!.doneButton.tintColor = UIColor.white
                         viewController!.doneButton.layer.shadowColor = UIColor.black.cgColor
@@ -271,6 +277,8 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                         } else {
                             //delegate.cameraShotFinished(image)
                             photoFlag = !photoFlag
+                            self.shotButton.isEnabled = false
+                            photoCount -= 1
                             delegate.cameraDidShot(image)
                         }
                         
@@ -278,7 +286,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                         self.device      = nil
                         self.imageOutput = nil
                         
-                    })
+                    //}
                 }
                 
             })
