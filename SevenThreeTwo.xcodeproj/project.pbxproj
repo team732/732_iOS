@@ -69,7 +69,7 @@
 		372F74991E35EA8600A26CA0 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListViewController.swift; sourceTree = "<group>"; };
 		3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListCollectionViewCell.swift; sourceTree = "<group>"; };
-		379895061E4F689A0058013E /* launchSplash.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = launchSplash.gif; sourceTree = "<group>"; };
+		379895061E4F689A0058013E /* launchSplash.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = launchSplash.gif; path = SevenThreeTwo/launchSplash.gif; sourceTree = "<group>"; };
 		37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionViewController.swift; sourceTree = "<group>"; };
 		37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67092A961E386B3000DB9A27 /* PrivateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateListViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		675A4E291E2FB076000781DA /* SevenThreeTwoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SevenThreeTwoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenThreeTwoTests.swift; sourceTree = "<group>"; };
 		675A4E2F1E2FB076000781DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceResize.swift; sourceTree = "<group>"; };
+		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceResize.swift; path = SevenThreeTwo/DeviceResize.swift; sourceTree = "<group>"; };
 		67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckTokenViewController.swift; sourceTree = "<group>"; };
 		67AE84581E43486400BAF314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Bold_OTF.otf"; sourceTree = "<group>"; };
@@ -258,7 +258,6 @@
 				67AE84571E43486400BAF314 /* Main.storyboard */,
 				675A4E241E2FB076000781DA /* Info.plist */,
 				67EB38441E41BBC700A8E89A /* Assets.xcassets */,
-				6789A3F81E417D3E009374BD /* DeviceResize.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -277,7 +276,6 @@
 			children = (
 				67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */,
 				67AE84651E4349F200BAF314 /* Arita-dotum-Light_OTF.otf */,
-				379895061E4F689A0058013E /* launchSplash.gif */,
 				67AE84661E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf */,
 				67AE84671E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf */,
 				67AE84681E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf */,
@@ -302,6 +300,8 @@
 		67B74AC41E4F56EC007F92CA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				6789A3F81E417D3E009374BD /* DeviceResize.swift */,
+				379895061E4F689A0058013E /* launchSplash.gif */,
 				67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */,
 			);
 			name = Extension;

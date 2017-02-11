@@ -14,7 +14,7 @@ class CheckTokenViewController: UIViewController {
     var apiManager : ApiManager!
     var launchTimer = Timer()
     var count = 0
-    var launchSec = 0
+    var launchSec = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +28,21 @@ class CheckTokenViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         launchTimer.invalidate()
-        launchTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(CheckTokenViewController.counter), userInfo: nil, repeats:true)
+        launchTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(CheckTokenViewController.counter), userInfo: nil, repeats:true)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // 3.2초
     
     
     func counter(){
-        launchSec += 1
-        if launchSec > 2 {
+        launchSec += 0.1
+        if launchSec > 3.4 {
             checkToken()
+            launchTimer.invalidate()
         }
     }
     
