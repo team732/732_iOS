@@ -44,6 +44,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
     var flashOffImage: UIImage?
     var flashOnImage: UIImage?
     
+    
     static func instance() -> FSCameraView {
         
         return UINib(nibName: "FSCameraView", bundle: Bundle(for: self.classForCoder())).instantiate(withOwner: self, options: nil)[0] as! FSCameraView
@@ -254,6 +255,15 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                     
                                         
                     DispatchQueue.main.async(execute: { () -> Void in
+                        
+                        viewController!.doneButton.tintColor = UIColor.white
+                        viewController!.doneButton.layer.shadowColor = UIColor.black.cgColor
+                        viewController!.doneButton.layer.shadowRadius = 1
+                        viewController!.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+                        viewController!.doneButton.layer.shadowOpacity = 1.0
+                        viewController!.doneButton.isEnabled = true
+                        viewController!.doneButton.isUserInteractionEnabled = true
+                        
                         if fusumaCropImage {
                             let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
                             delegate.cameraDidShot(resizedImage)

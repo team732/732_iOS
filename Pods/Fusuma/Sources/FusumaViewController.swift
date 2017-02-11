@@ -75,6 +75,8 @@ public var fusumaTintIcons : Bool = true
 public var takenPhoto : UIImage? = nil
 public var photoFlag : Bool = false
 
+public var viewController : FusumaViewController? = nil
+
 public enum FusumaModeOrder {
     case cameraFirst
     case libraryFirst
@@ -136,6 +138,8 @@ public class FusumaViewController: UIViewController {
         if let view = UINib(nibName: "FusumaViewController", bundle: Bundle(for: self.classForCoder)).instantiate(withOwner: self, options: nil).first as? UIView {
             
             self.view = view
+            
+            viewController = self
         }
     }
     
@@ -338,8 +342,20 @@ public class FusumaViewController: UIViewController {
             })
         } else if (self.mode == .camera) {
             
+            self.doneButton.tintColor = UIColor.clear
+            self.doneButton.isEnabled = false
+            self.doneButton.isUserInteractionEnabled = false
+            
             if ( photoFlag ) {
                 photoFlag = !photoFlag
+                
+                self.doneButton.tintColor = UIColor.white
+                self.doneButton.layer.shadowColor = UIColor.black.cgColor
+                self.doneButton.layer.shadowRadius = 1
+                self.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+                self.doneButton.layer.shadowOpacity = 1.0
+                self.doneButton.isEnabled = true
+                self.doneButton.isUserInteractionEnabled = true
                 
                 cameraView.initialize()
                 changeMode(FusumaMode.camera)
@@ -359,11 +375,21 @@ public class FusumaViewController: UIViewController {
     
     @IBAction func libraryButtonPressed(_ sender: UIButton) {
         
+        self.doneButton.tintColor = UIColor.white
+        self.doneButton.layer.shadowColor = UIColor.black.cgColor
+        self.doneButton.layer.shadowRadius = 1
+        self.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+        self.doneButton.layer.shadowOpacity = 1.0
+        self.doneButton.isEnabled = true
+        self.doneButton.isUserInteractionEnabled = true
         changeMode(FusumaMode.library)
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
         
+        self.doneButton.tintColor = UIColor.clear
+        self.doneButton.isEnabled = false
+        self.doneButton.isUserInteractionEnabled = false
         changeMode(FusumaMode.camera)
     }
     
