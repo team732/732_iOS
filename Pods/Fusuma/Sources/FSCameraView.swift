@@ -14,6 +14,16 @@ import AVFoundation
 }
 
 final class FSCameraView: UIView, UIGestureRecognizerDelegate {
+    let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
+    
+    var heightRatio: CGFloat = 0.0
+    var widthRatio: CGFloat = 0.0
+    
+    
+    // 기기의 너비와 높이
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
 
     @IBOutlet weak var previewViewContainer: UIView!
     @IBOutlet weak var shotButton: UIButton!
@@ -21,7 +31,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
     @IBOutlet weak var flipButton: UIButton!
     @IBOutlet weak var croppedAspectRatioConstraint: NSLayoutConstraint!
     @IBOutlet weak var fullAspectRatioConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var bottomView: UIView!
     weak var delegate: FSCameraViewDelegate? = nil
     
     var session: AVCaptureSession?
@@ -44,6 +54,9 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
             
             return
         }
+        
+        heightRatio = userDevice.userDeviceHeight()
+        widthRatio = userDevice.userDeviceWidth()
         
         self.backgroundColor = fusumaBackgroundColor
         
@@ -129,7 +142,21 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
         //뷰 영역 정하기
         self.previewViewContainer.frame.origin = CGPoint(x:0,y:0)
        // self.previewViewContainer.frame = CGRect(x:0,y:0,width:375,height:500)
+        
+        //MARK: 라인 그리기
+        var line: UIView!
+        
+        
+        line = UIView(frame: CGRect(x: 0*widthRatio, y: 100*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
+        
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
+        
+        
+        
+        self.bottomView.addSubview(line)
     }
+    
+    
     
     func willEnterForegroundNotification(_ notification: Notification) {
         

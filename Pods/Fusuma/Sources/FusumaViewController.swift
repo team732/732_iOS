@@ -87,6 +87,16 @@ public enum FusumaMode {
 //@objc public class FusumaViewController: UIViewController, FSCameraViewDelegate, FSAlbumViewDelegate {
 public class FusumaViewController: UIViewController {
     
+    let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
+    
+    var heightRatio: CGFloat = 0.0
+    var widthRatio: CGFloat = 0.0
+    
+    
+    // 기기의 너비와 높이
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
     public var hasVideo = false
     public var cropHeightRatio: CGFloat = 1
     
@@ -129,8 +139,11 @@ public class FusumaViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        heightRatio = userDevice.userDeviceHeight()
+        widthRatio = userDevice.userDeviceWidth()
         
         self.view.backgroundColor = fusumaBackgroundColor
+        
         
         cameraView.delegate = self
         albumView.delegate  = self
@@ -260,6 +273,19 @@ public class FusumaViewController: UIViewController {
             cameraView.fullAspectRatioConstraint.isActive = true
             cameraView.croppedAspectRatioConstraint?.isActive = false
         }
+    }
+    
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
+        print("drawline")
+        var line: UIView!
+        
+        
+        line = UIView(frame: CGRect(x: startX, y: startY, width: width, height: height))
+        
+        line.backgroundColor = color
+        
+        
+        self.view.addSubview(line)
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -556,6 +582,7 @@ private extension FusumaViewController {
             photo.setImage(libraryImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
         }else if flag == 1{
         
+            drawLine(startX: 0*widthRatio, startY: 606*heightRatio, width: 375*widthRatio, height: 1*heightRatio, color: UIColor.black)
             library.tintColor = fusumaTintColor
             library.setImage(photoImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             photo.setImage(cameraImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
