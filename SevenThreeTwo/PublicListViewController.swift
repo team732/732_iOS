@@ -29,9 +29,11 @@ class PublicListViewController:  UICollectionViewController {
 
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
-
+    
+    let publicPhoto = PublicPhoto(image : UIImage(named: "otter-1")!)
+    
     // MARK: Data
-    fileprivate let photos = Photo.allPhotos()
+    var photos : [PublicPhoto]!
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -44,7 +46,7 @@ class PublicListViewController:  UICollectionViewController {
         
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        
+        photos = self.publicPhoto.allPhotos()
         setUpUI()
     }
     

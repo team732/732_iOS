@@ -23,7 +23,7 @@
 		672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */; };
 		672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */; };
 		672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1291E335043001022BF /* PublicListViewController.swift */; };
-		672DD12C1E335058001022BF /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12B1E335058001022BF /* Photo.swift */; };
+		672DD12C1E335058001022BF /* PublicPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12B1E335058001022BF /* PublicPhoto.swift */; };
 		672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12D1E3350ED001022BF /* UIView+Extensions.swift */; };
 		673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */; };
 		673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */; };
@@ -48,6 +48,7 @@
 		67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */; };
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */; };
+		67B74AC81E4F8F63007F92CA /* PrivatePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */; };
 		67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67EB38441E41BBC700A8E89A /* Assets.xcassets */; };
 		F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
 /* End PBXBuildFile section */
@@ -80,7 +81,7 @@
 		672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptionCell.swift; sourceTree = "<group>"; };
 		672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleColumnLayoutAttributes.swift; sourceTree = "<group>"; };
 		672DD1291E335043001022BF /* PublicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicListViewController.swift; sourceTree = "<group>"; };
-		672DD12B1E335058001022BF /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		672DD12B1E335058001022BF /* PublicPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicPhoto.swift; sourceTree = "<group>"; };
 		672DD12D1E3350ED001022BF /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectListViewController.swift; sourceTree = "<group>"; };
 		673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputEmailViewController.swift; sourceTree = "<group>"; };
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
+		67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatePhoto.swift; sourceTree = "<group>"; };
 		67EB38441E41BBC700A8E89A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenThreeTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E967A2C2716E71DB391C0DFD /* Pods-SevenThreeTwo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenThreeTwo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SevenThreeTwo/Pods-SevenThreeTwo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				672DD1291E335043001022BF /* PublicListViewController.swift */,
+				672DD12B1E335058001022BF /* PublicPhoto.swift */,
 				673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */,
 				673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */,
 				3703F2801E4CF75D00C470B9 /* CommentViewController.swift */,
@@ -165,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				67092A961E386B3000DB9A27 /* PrivateListViewController.swift */,
+				67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */,
 			);
 			name = LeftView;
 			sourceTree = "<group>";
@@ -195,7 +199,6 @@
 			children = (
 				672DD1251E334FFE001022BF /* PhotoCaptionCell.swift */,
 				672DD1271E33502B001022BF /* MultipleColumnLayoutAttributes.swift */,
-				672DD12B1E335058001022BF /* Photo.swift */,
 				672DD12D1E3350ED001022BF /* UIView+Extensions.swift */,
 			);
 			name = PhotoList;
@@ -490,7 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67A4608E1E4F324B00929AE1 /* CheckTokenViewController.swift in Sources */,
-				672DD12C1E335058001022BF /* Photo.swift in Sources */,
+				672DD12C1E335058001022BF /* PublicPhoto.swift in Sources */,
 				673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
 				673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */,
@@ -514,6 +517,7 @@
 				3703F2811E4CF75D00C470B9 /* CommentViewController.swift in Sources */,
 				67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */,
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
+				67B74AC81E4F8F63007F92CA /* PrivatePhoto.swift in Sources */,
 				372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */,
 				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
 				3757A5671E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift in Sources */,
