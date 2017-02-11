@@ -73,6 +73,9 @@ public var fusumaTitleFont = UIFont(name: "AvenirNext-DemiBold", size: 15)
 public var fusumaTintIcons : Bool = true
 
 public var takenPhoto : UIImage? = nil
+public var photoFlag : Bool = false
+
+public var viewController : FusumaViewController? = nil
 
 public enum FusumaModeOrder {
     case cameraFirst
@@ -135,6 +138,8 @@ public class FusumaViewController: UIViewController {
         if let view = UINib(nibName: "FusumaViewController", bundle: Bundle(for: self.classForCoder)).instantiate(withOwner: self, options: nil).first as? UIView {
             
             self.view = view
+            
+            viewController = self
         }
     }
     
@@ -274,6 +279,9 @@ public class FusumaViewController: UIViewController {
             cameraView.fullAspectRatioConstraint.isActive = true
             cameraView.croppedAspectRatioConstraint?.isActive = false
         }
+
+        //donebutton
+        //doneButton.isHidden = true
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
@@ -334,7 +342,31 @@ public class FusumaViewController: UIViewController {
             })
         } else if (self.mode == .camera) {
             
-            print("camera")
+            self.doneButton.tintColor = UIColor.clear
+            self.doneButton.isEnabled = false
+            self.doneButton.isUserInteractionEnabled = false
+            
+            if ( photoFlag ) {
+                photoFlag = !photoFlag
+                
+                self.doneButton.tintColor = UIColor.white
+                self.doneButton.layer.shadowColor = UIColor.black.cgColor
+                self.doneButton.layer.shadowRadius = 1
+                self.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+                self.doneButton.layer.shadowOpacity = 1.0
+                self.doneButton.isEnabled = true
+                self.doneButton.isUserInteractionEnabled = true
+                
+                cameraView.initialize()
+                changeMode(FusumaMode.camera)
+            } else {
+                self.dismiss(animated: true, completion: {
+                    
+                    self.delegate?.fusumaClosed()
+                })
+            }
+            
+            
             // 사진 다시 찍기.
         }
         
@@ -343,11 +375,21 @@ public class FusumaViewController: UIViewController {
     
     @IBAction func libraryButtonPressed(_ sender: UIButton) {
         
+        self.doneButton.tintColor = UIColor.white
+        self.doneButton.layer.shadowColor = UIColor.black.cgColor
+        self.doneButton.layer.shadowRadius = 1
+        self.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+        self.doneButton.layer.shadowOpacity = 1.0
+        self.doneButton.isEnabled = true
+        self.doneButton.isUserInteractionEnabled = true
         changeMode(FusumaMode.library)
     }
     
     @IBAction func photoButtonPressed(_ sender: UIButton) {
         
+        self.doneButton.tintColor = UIColor.clear
+        self.doneButton.isEnabled = false
+        self.doneButton.isUserInteractionEnabled = false
         changeMode(FusumaMode.camera)
     }
     
@@ -489,6 +531,7 @@ extension FusumaViewController: FSAlbumViewDelegate, FSCameraViewDelegate, FSVid
     func cameraDidShot(_ image: UIImage) {
         
         DispatchQueue.main.async(execute: {
+            //self.doneButton.isHidden = false
             takenPhoto = image
         })
     }
@@ -563,7 +606,7 @@ private extension FusumaViewController {
         case .camera:
             titleLabel.text = NSLocalizedString(fusumaCameraTitle, comment: fusumaCameraTitle)
             
-            
+            //doneButton.isHidden = true
             highlightButton(libraryButton,cameraButton,1)
             self.view.bringSubview(toFront: cameraShotContainer)
             cameraView.startCamera()

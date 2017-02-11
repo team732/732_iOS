@@ -44,6 +44,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
     var flashOffImage: UIImage?
     var flashOnImage: UIImage?
     
+    
     static func instance() -> FSCameraView {
         
         return UINib(nibName: "FSCameraView", bundle: Bundle(for: self.classForCoder())).instantiate(withOwner: self, options: nil)[0] as! FSCameraView
@@ -254,12 +255,22 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                     
                                         
                     DispatchQueue.main.async(execute: { () -> Void in
+                        
+                        viewController!.doneButton.tintColor = UIColor.white
+                        viewController!.doneButton.layer.shadowColor = UIColor.black.cgColor
+                        viewController!.doneButton.layer.shadowRadius = 1
+                        viewController!.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
+                        viewController!.doneButton.layer.shadowOpacity = 1.0
+                        viewController!.doneButton.isEnabled = true
+                        viewController!.doneButton.isUserInteractionEnabled = true
+                        
                         if fusumaCropImage {
                             let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
                             delegate.cameraDidShot(resizedImage)
                             //delegate.cameraShotFinished(resizedImage)
                         } else {
                             //delegate.cameraShotFinished(image)
+                            photoFlag = !photoFlag
                             delegate.cameraDidShot(image)
                         }
                         
@@ -364,9 +375,16 @@ extension FSCameraView {
     
     @objc func focus(_ recognizer: UITapGestureRecognizer) {
         
+        
+        print("focus1!!!!!!")
         let point = recognizer.location(in: self)
         let viewsize = self.bounds.size
-        let newPoint = CGPoint(x: point.y/viewsize.height, y: 1.0-point.x/viewsize.width)
+        let newPoint = CGPoint(x: point.y/viewsize.height , y: 1.0-point.x/viewsize.width)
+        
+        print(point)
+        print(viewsize)
+        print(newPoint)
+        
         
         let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
@@ -381,12 +399,13 @@ extension FSCameraView {
         
         if device?.isFocusModeSupported(AVCaptureFocusMode.autoFocus) == true {
 
+            print("aaaaa")
             device?.focusMode = AVCaptureFocusMode.autoFocus
             device?.focusPointOfInterest = newPoint
         }
 
         if device?.isExposureModeSupported(AVCaptureExposureMode.continuousAutoExposure) == true {
-            
+            print("bbbbb")
             device?.exposureMode = AVCaptureExposureMode.continuousAutoExposure
             device?.exposurePointOfInterest = newPoint
         }
@@ -396,7 +415,7 @@ extension FSCameraView {
         self.focusView?.alpha = 0.0
         self.focusView?.center = point
         self.focusView?.backgroundColor = UIColor.clear
-        self.focusView?.layer.borderColor = fusumaBaseTintColor.cgColor
+        self.focusView?.layer.borderColor = UIColor.yellow.cgColor//fusumaBaseTintColor.cgColor
         self.focusView?.layer.borderWidth = 1.0
         self.focusView!.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         self.addSubview(self.focusView!)
