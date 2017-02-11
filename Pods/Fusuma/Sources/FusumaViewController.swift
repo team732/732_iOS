@@ -28,7 +28,6 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     }
 }
 
-
 public protocol FusumaDelegate: class {
     // MARK: Required
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode)
@@ -72,6 +71,8 @@ public var fusumaVideoTitle = ""//"VIDEO"
 public var fusumaTitleFont = UIFont(name: "AvenirNext-DemiBold", size: 15)
 
 public var fusumaTintIcons : Bool = true
+
+public var takenPhoto : UIImage? = nil
 
 public enum FusumaModeOrder {
     case cameraFirst
@@ -186,7 +187,7 @@ public class FusumaViewController: UIViewController {
             closeButton.setImage(closeImage?.withRenderingMode(.alwaysTemplate), for: .selected)
             closeButton.tintColor = UIColor.white//fusumaBaseTintColor
             closeButton.layer.shadowColor = UIColor.black.cgColor
-            closeButton.layer.shadowRadius = 3
+            closeButton.layer.shadowRadius = 1
             closeButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
             closeButton.layer.shadowOpacity = 1.0
             
@@ -199,7 +200,7 @@ public class FusumaViewController: UIViewController {
             doneButton.setImage(checkImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             doneButton.tintColor = UIColor.white//fusumaBaseTintColor
             doneButton.layer.shadowColor = UIColor.black.cgColor
-            doneButton.layer.shadowRadius = 3
+            doneButton.layer.shadowRadius = 1
             doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
             doneButton.layer.shadowOpacity = 1.0
             
@@ -324,10 +325,20 @@ public class FusumaViewController: UIViewController {
     }
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: {
+        
+        if (self.mode == .library) {
+            print("library")
+            self.dismiss(animated: true, completion: {
+                
+                self.delegate?.fusumaClosed()
+            })
+        } else if (self.mode == .camera) {
             
-            self.delegate?.fusumaClosed()
-        })
+            print("camera")
+            // 사진 다시 찍기.
+        }
+        
+        
     }
     
     @IBAction func libraryButtonPressed(_ sender: UIButton) {
@@ -376,22 +387,85 @@ public class FusumaViewController: UIViewController {
                                                       contentMode: .aspectFill, options: options) {
                                                         result, info in
                                                         
+                                                        /*
                                                         DispatchQueue.main.async(execute: {
                                                             self.delegate?.fusumaImageSelected(result!, source: self.mode)
                                                             
                                                             self.dismiss(animated: true, completion: {
                                                                 self.delegate?.fusumaDismissedWithImage(result!, source: self.mode)
                                                             })
-                                                        })
+                                                        })*/
+                                                        
+                                                        if (self.mode == .library) {
+                                                            print("library")
+                                                            DispatchQueue.main.async(execute: {
+                                                                self.delegate?.fusumaImageSelected(result!, source: self.mode)
+                                                                
+                                                                
+                                                                self.dismiss(animated: true, completion: {
+                                                                    self.delegate?.fusumaDismissedWithImage(result!, source: self.mode)
+                                                                })
+                                                                
+                                                            })
+                                                        } else if (self.mode == .camera) {
+                                                            
+                                                            print("camera")
+                                                            DispatchQueue.main.async(execute: {
+                                                                
+                                                                
+                                                                self.delegate?.fusumaImageSelected(takenPhoto!, source: self.mode)
+                                                                
+                                                                
+                                                                self.dismiss(animated: true, completion: {
+                                                                    self.delegate?.fusumaDismissedWithImage(takenPhoto!, source: self.mode)
+                                                                    
+                                                                    
+                                                                })
+                                                                
+                                                            })
+                                                        }
                 }
             })
         } else {
             print("no image crop ")
+            
+            
+            if (self.mode == .library) {
+                print("library")
+                DispatchQueue.main.async(execute: {
+                    
+                    self.delegate?.fusumaImageSelected((view?.image)!, source: self.mode)
+                    
+                    self.dismiss(animated: true, completion: {
+                        self.delegate?.fusumaDismissedWithImage((view?.image)!, source: self.mode)
+                    })
+                    
+                })
+            } else if (self.mode == .camera) {
+                
+                print("camera")
+                DispatchQueue.main.async(execute: {
+                    
+                    
+                    self.delegate?.fusumaImageSelected(takenPhoto!, source: self.mode)
+                    
+                    
+                    self.dismiss(animated: true, completion: {
+                        self.delegate?.fusumaDismissedWithImage(takenPhoto!, source: self.mode)
+                        
+                        
+                    })
+                    
+                })
+            }
+
+            /*
             delegate?.fusumaImageSelected((view?.image)!, source: mode)
             
             self.dismiss(animated: true, completion: {
                 self.delegate?.fusumaDismissedWithImage((view?.image)!, source: self.mode)
             })
+ */
         }
     }
     
@@ -409,6 +483,13 @@ extension FusumaViewController: FSAlbumViewDelegate, FSCameraViewDelegate, FSVid
         self.dismiss(animated: true, completion: {
             
             self.delegate?.fusumaDismissedWithImage(image, source: self.mode)
+        })
+    }
+    
+    func cameraDidShot(_ image: UIImage) {
+        
+        DispatchQueue.main.async(execute: {
+            takenPhoto = image
         })
     }
     
