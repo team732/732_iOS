@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 @objc protocol FSCameraViewDelegate: class {
+    func cameraDidShot(_ image: UIImage)
     func cameraShotFinished(_ image: UIImage)
 }
 
@@ -255,9 +256,11 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                     DispatchQueue.main.async(execute: { () -> Void in
                         if fusumaCropImage {
                             let resizedImage = UIImage(cgImage: imageRef!, scale: sw/iw, orientation: image.imageOrientation)
-                            delegate.cameraShotFinished(resizedImage)
+                            delegate.cameraDidShot(resizedImage)
+                            //delegate.cameraShotFinished(resizedImage)
                         } else {
-                            delegate.cameraShotFinished(image)
+                            //delegate.cameraShotFinished(image)
+                            delegate.cameraDidShot(image)
                         }
                         
                         self.session     = nil
