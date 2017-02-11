@@ -146,7 +146,7 @@ public class FusumaViewController: UIViewController {
         // Get the custom button images if they're set
         let albumImage = fusumaAlbumImage != nil ? fusumaAlbumImage : UIImage(named: "ic_insert_photo", in: bundle, compatibleWith: nil)
         //ic_photo_camera
-        let cameraImage = fusumaCameraImage != nil ? fusumaCameraImage : UIImage(named: "photonone", in: bundle, compatibleWith: nil)
+        let cameraImage = fusumaCameraImage != nil ? fusumaCameraImage : UIImage(named: "ic_photo_camera", in: bundle, compatibleWith: nil)
         
         let videoImage = fusumaVideoImage != nil ? fusumaVideoImage : UIImage(named: "ic_videocam", in: bundle, compatibleWith: nil)
         
