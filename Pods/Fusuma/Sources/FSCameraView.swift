@@ -256,7 +256,7 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
                                         
                     DispatchQueue.main.async(execute: { () -> Void in
                         
-                        viewController!.doneButton.tintColor = UIColor.white
+                        viewController!.ㅁ.tintColor = UIColor.white
                         viewController!.doneButton.layer.shadowColor = UIColor.black.cgColor
                         viewController!.doneButton.layer.shadowRadius = 1
                         viewController!.doneButton.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
