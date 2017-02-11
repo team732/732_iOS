@@ -73,6 +73,7 @@ public var fusumaTitleFont = UIFont(name: "AvenirNext-DemiBold", size: 15)
 public var fusumaTintIcons : Bool = true
 
 public var takenPhoto : UIImage? = nil
+public var photoFlag : Bool = false
 
 public enum FusumaModeOrder {
     case cameraFirst
@@ -274,6 +275,9 @@ public class FusumaViewController: UIViewController {
             cameraView.fullAspectRatioConstraint.isActive = true
             cameraView.croppedAspectRatioConstraint?.isActive = false
         }
+
+        //donebutton
+        //doneButton.isHidden = true
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
@@ -334,7 +338,19 @@ public class FusumaViewController: UIViewController {
             })
         } else if (self.mode == .camera) {
             
-            print("camera")
+            if ( photoFlag ) {
+                photoFlag = !photoFlag
+                
+                cameraView.initialize()
+                changeMode(FusumaMode.camera)
+            } else {
+                self.dismiss(animated: true, completion: {
+                    
+                    self.delegate?.fusumaClosed()
+                })
+            }
+            
+            
             // 사진 다시 찍기.
         }
         
@@ -489,6 +505,7 @@ extension FusumaViewController: FSAlbumViewDelegate, FSCameraViewDelegate, FSVid
     func cameraDidShot(_ image: UIImage) {
         
         DispatchQueue.main.async(execute: {
+            //self.doneButton.isHidden = false
             takenPhoto = image
         })
     }
@@ -563,7 +580,7 @@ private extension FusumaViewController {
         case .camera:
             titleLabel.text = NSLocalizedString(fusumaCameraTitle, comment: fusumaCameraTitle)
             
-            
+            //doneButton.isHidden = true
             highlightButton(libraryButton,cameraButton,1)
             self.view.bringSubview(toFront: cameraShotContainer)
             cameraView.startCamera()
