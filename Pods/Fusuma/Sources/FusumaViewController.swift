@@ -59,6 +59,8 @@ public var fusumaFlashOffImage : UIImage? = nil
 public var fusumaFlipImage : UIImage? = nil
 public var fusumaShotImage : UIImage? = nil
 
+public var fusumaPhotoImage : UIImage? = nil
+public var fusumaLibraryImage : UIImage? = nil
 public var fusumaVideoStartImage : UIImage? = nil
 public var fusumaVideoStopImage : UIImage? = nil
 
@@ -143,6 +145,7 @@ public class FusumaViewController: UIViewController {
         
         // Get the custom button images if they're set
         let albumImage = fusumaAlbumImage != nil ? fusumaAlbumImage : UIImage(named: "ic_insert_photo", in: bundle, compatibleWith: nil)
+        //ic_photo_camera
         let cameraImage = fusumaCameraImage != nil ? fusumaCameraImage : UIImage(named: "ic_photo_camera", in: bundle, compatibleWith: nil)
         
         let videoImage = fusumaVideoImage != nil ? fusumaVideoImage : UIImage(named: "ic_videocam", in: bundle, compatibleWith: nil)
@@ -434,22 +437,33 @@ private extension FusumaViewController {
         dishighlightButtons()
         updateDoneButtonVisibility()
         
+        
+        let bundle = Bundle(for: self.classForCoder)
+        
+        let libraryImage = fusumaLibraryImage != nil ? fusumaLibraryImage : UIImage(named: "photonone", in: bundle, compatibleWith: nil)
+        let photoImage = fusumaPhotoImage != nil ? fusumaPhotoImage : UIImage(named: "albumnone", in: bundle, compatibleWith: nil)
+        
+        //cameraButton.setImage(photoImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        //libraryButton.setImage(libraryImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        
         switch mode {
         case .library:
             titleLabel.text = NSLocalizedString(fusumaCameraRollTitle, comment: fusumaCameraRollTitle)
             
-            highlightButton(libraryButton)
+            
+            highlightButton(libraryButton,cameraButton,0)
             self.view.bringSubview(toFront: photoLibraryViewerContainer)
         case .camera:
             titleLabel.text = NSLocalizedString(fusumaCameraTitle, comment: fusumaCameraTitle)
             
-            highlightButton(cameraButton)
+            
+            highlightButton(libraryButton,cameraButton,1)
             self.view.bringSubview(toFront: cameraShotContainer)
             cameraView.startCamera()
         case .video:
             titleLabel.text = fusumaVideoTitle
             
-            highlightButton(videoButton)
+            //highlightButton(videoButton)
             self.view.bringSubview(toFront: videoShotContainer)
             videoView.startCamera()
         }
@@ -520,9 +534,32 @@ private extension FusumaViewController {
         
     }
     
-    func highlightButton(_ button: UIButton) {
+    func highlightButton(_ library: UIButton, _ photo: UIButton,_ flag : Int) {
         
-        button.tintColor = fusumaTintColor
+        
+        
+        let bundle = Bundle(for: self.classForCoder)
+        
+        let libraryImage = fusumaLibraryImage != nil ? fusumaLibraryImage : UIImage(named: "photonone", in: bundle, compatibleWith: nil)
+        let photoImage = fusumaPhotoImage != nil ? fusumaPhotoImage : UIImage(named: "albumnone", in: bundle, compatibleWith: nil)
+        
+        let albumImage = fusumaAlbumImage != nil ? fusumaAlbumImage : UIImage(named: "ic_insert_photo", in: bundle, compatibleWith: nil)
+        
+        let cameraImage = fusumaCameraImage != nil ? fusumaCameraImage : UIImage(named: "ic_photo_camera", in: bundle, compatibleWith: nil)
+        
+        //cameraButton.setImage(photoImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        //libraryButton.setImage(libraryImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        if flag == 0 {
+           
+            photo.tintColor = fusumaTintColor
+            library.setImage(albumImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+            photo.setImage(libraryImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        }else if flag == 1{
+        
+            library.tintColor = fusumaTintColor
+            library.setImage(photoImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+            photo.setImage(cameraImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+        }
         
         //button.addBottomBorder(fusumaTintColor, width: 3)
     }
