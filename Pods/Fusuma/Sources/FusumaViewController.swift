@@ -74,6 +74,7 @@ public var fusumaTintIcons : Bool = true
 
 public var takenPhoto : UIImage? = nil
 public var photoFlag : Bool = false
+public var photoCount = 0
 
 public var viewController : FusumaViewController? = nil
 
@@ -342,12 +343,17 @@ public class FusumaViewController: UIViewController {
             })
         } else if (self.mode == .camera) {
             
-            self.doneButton.tintColor = UIColor.clear
-            self.doneButton.isEnabled = false
-            self.doneButton.isUserInteractionEnabled = false
-            
             if ( photoFlag ) {
                 photoFlag = !photoFlag
+                
+                self.doneButton.tintColor = UIColor.clear
+                self.doneButton.isEnabled = false
+                self.doneButton.isUserInteractionEnabled = false
+                
+                cameraView.initialize()
+                changeMode(FusumaMode.camera)
+                
+            } else {
                 
                 self.doneButton.tintColor = UIColor.white
                 self.doneButton.layer.shadowColor = UIColor.black.cgColor
@@ -357,17 +363,12 @@ public class FusumaViewController: UIViewController {
                 self.doneButton.isEnabled = true
                 self.doneButton.isUserInteractionEnabled = true
                 
-                cameraView.initialize()
-                changeMode(FusumaMode.camera)
-            } else {
                 self.dismiss(animated: true, completion: {
                     
                     self.delegate?.fusumaClosed()
                 })
             }
             
-            
-            // 사진 다시 찍기.
         }
         
         
@@ -609,6 +610,7 @@ private extension FusumaViewController {
             //doneButton.isHidden = true
             highlightButton(libraryButton,cameraButton,1)
             self.view.bringSubview(toFront: cameraShotContainer)
+            cameraView.initialize()
             cameraView.startCamera()
         case .video:
             titleLabel.text = fusumaVideoTitle
