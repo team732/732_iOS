@@ -42,25 +42,6 @@ class ApiManager {
                     }
                     
                     completion(publicList)
-                    //print(json)
-                    //print(json["data"]["contents"][0].arrayValue)
-                    
-//                    print(json["data"]["contents"].array!.count)
-//                    print(json["pagination"]["nextUrl"].string!)
-//                    
-//                    print(json["data"]["contents"][0]["contentId"].int!.description)
-//                    print(json["data"]["contents"][0]["content"]["picture"].string!)
-//                    print(json["data"]["contents"][0]["content"]["text"].string!)
-//                    print(json["data"]["contents"][0]["userId"].int!.description)
-//                    
-//                    print(json["data"]["contents"][0]["nickname"].string!)
-//                    print(json["data"]["contents"][0]["popularity"].int!.description)
-//                    print(json["data"]["contents"][0]["missionId"].int!.description)
-//                    print(json["data"]["contents"][0]["createdAt"].string!)
-//                    print(json["data"]["contents"][0]["likeCount"].int!.description)
-//                    print(json["data"]["contents"][0]["mission"]["text"].string!)
-//                    
-                    
                 }
                 break
                 

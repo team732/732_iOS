@@ -142,6 +142,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                     case 0:
                         self.checkUserLabel.text = ""
                         let userToken = UserDefaults.standard
+                        print(isLogin["data"]["token"].stringValue)
                         userToken.set(isLogin["data"]["token"].stringValue, forKey: "token")
                         self.present(snapContainer, animated: true, completion: nil)
                         //로그인성공

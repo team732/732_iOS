@@ -20,10 +20,10 @@ class CheckTokenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //let launchGif = UIImage.gifImageWithName(name: "launchSplash")
-//        imageView = UIImageView(image: launchGif)
-//        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-//        self.view.addSubview(imageView)
+        let launchGif = UIImage.gifImageWithName(name: "launchSplash")
+        imageView = UIImageView(image: launchGif)
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        self.view.addSubview(imageView)
         
     }
     
@@ -42,6 +42,8 @@ class CheckTokenViewController: UIViewController {
     func counter(){
         launchSec += 0.05
         if launchSec > 2 {
+            self.imageView.removeFromSuperview()
+            self.imageView = nil
             checkToken()
             launchTimer.invalidate()
         }
@@ -68,6 +70,7 @@ class CheckTokenViewController: UIViewController {
                                                                                       rightVC: right,
                                                                                       topVC: top,
                                                                                       bottomVC: nil)
+                    
                     self.present(snapContainer, animated: false, completion: nil)
                 }else{
                     self.performSegue(withIdentifier: "tokenToLogin", sender: nil)

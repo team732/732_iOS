@@ -35,9 +35,9 @@ class MainController: UIViewController, FusumaDelegate {
         
         viewSetUp()
      
-        let token = UserDefaults.standard
-        print(token.string(forKey: "token"))
     }
+    
+    
     
     
     
