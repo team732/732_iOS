@@ -74,7 +74,6 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    print(resp)
                     switch (resp["meta"]["code"].intValue){
                     case 0:
                         //토큰을 주고

@@ -105,10 +105,16 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         goodCountLabel.text = "좋아요 \(goodCount)개"
         self.myPicView.addSubview(goodCountLabel)
         
-        let commentBtn = UIButton(frame: CGRect(x: 40*widthRatio, y: 496*heightRatio, width: 58*widthRatio, height: 13*heightRatio))
+        let commentBtn = UIButton(frame: CGRect(x: 291*widthRatio, y: 496*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         commentBtn.addTarget(self, action:#selector(commentButtonAction), for: .touchUpInside)
-        commentBtn.setTitle("댓글달기", for: .normal)
+        commentBtn.setImage(UIImage(named: "btnCreatewords"), for: .normal)
         self.myPicView.addSubview(commentBtn)
+        
+        
+        let likeBtn = UIButton(frame: CGRect(x: 247*widthRatio, y: 496*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        likeBtn.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
+        likeBtn.setImage(UIImage(named: "btnLike"), for: .normal)
+        self.myPicView.addSubview(likeBtn)
         
         let lastLine = drawLine(startX: 20, startY: 531, width: 295, height: 1, border: false, color: UIColor.black)
         
@@ -127,12 +133,17 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.view.addSubview(bottomLine)
     }
     
+   
     func cancelButtonAction(){
         self.dismiss(animated: true, completion: nil)
     }
     
     func commentButtonAction(){
         performSegue(withIdentifier: "comment", sender: self)
+    }
+    
+    func likeButtonAction(){
+        
     }
     
     func useDate() -> String{

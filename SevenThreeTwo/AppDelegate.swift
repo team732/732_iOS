@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if isToken != "OPEN_LOGINVC" {
                     self.userToken.set(isToken, forKey: "token")
                 }else {
-                    tokenInvalidAlert()
+                    self.tokenInvalidAlert()
                 }
             }
         }

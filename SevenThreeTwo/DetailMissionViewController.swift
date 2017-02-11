@@ -56,7 +56,7 @@ class DetailMissionViewController: UIViewController {
         
         self.view.addSubview(cancelBtn)
 
-        let dateLabel = UILabel(frame: CGRect(x: (134*widthRatio), y: (239*heightRatio), width: 107*widthRatio, height: 11*heightRatio))
+        let dateLabel = UILabel(frame: CGRect(x: (127*widthRatio), y: (239*heightRatio), width: 121*widthRatio, height: 11*heightRatio))
         dateLabel.text = useDate() + "의 미션"
         dateLabel.textAlignment = .center
         dateLabel.textColor = UIColor.white
@@ -67,7 +67,7 @@ class DetailMissionViewController: UIViewController {
         
         drawLine(startX: 169, startY: 263, width: 36, height: 1,border:false, color: UIColor.white)
     
-        let subLabel = UILabel(frame: CGRect(x: (122*widthRatio), y: (305*heightRatio), width: 132*widthRatio, height: 52*heightRatio))
+        let subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (286*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         subLabel.numberOfLines = 0
         subLabel.text = receivedLbl.text
         subLabel.textAlignment = .center

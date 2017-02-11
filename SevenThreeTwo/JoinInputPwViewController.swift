@@ -180,7 +180,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         
         
         let password = password
-        let capitalLetterRegEx  = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,16}$"
+        let capitalLetterRegEx  = "^[A-Za-z0-9]{6,16}$"
         let texttest = NSPredicate(format:"SELF MATCHES %@", capitalLetterRegEx)
         let capitalresult = texttest.evaluate(with: password)
         

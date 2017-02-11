@@ -96,7 +96,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         
         let writeCompleteBtn = UIButton(frame: CGRect(x: 16*widthRatio , y: 257*heightRatio, width: 303*widthRatio, height: 48*heightRatio))
         writeCompleteBtn.addTarget(self, action: #selector(completeButtonAction), for: .touchUpInside)
-        writeCompleteBtn.setImage(UIImage(named:"login"), for: .normal)
+        writeCompleteBtn.setImage(UIImage(named:"checkBtn"), for: .normal)
         commentView.addSubview(writeCompleteBtn)
         
         

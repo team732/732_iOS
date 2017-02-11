@@ -106,12 +106,17 @@ class PrivateListViewController: UICollectionViewController {
         gotoRight.sizeToFit()
         collectionView?.addSubview(gotoRight)
         
-        let settingBtn = UIButton(frame: CGRect(x: 173*widthRatio , y: 176*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        let traceImg = UIImageView(frame: CGRect(x: 140*widthRatio, y: 147*heightRatio, width: 91*widthRatio, height: 12*heightRatio))
+        traceImg.image = UIImage(named: "trace")
+        traceImg.sizeToFit()
+        collectionView?.addSubview(traceImg)
+        
+        let settingBtn = UIButton(frame: CGRect(x: 173*widthRatio , y: 196*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         settingBtn.addTarget(self, action: #selector(settingButtonAction), for: .touchUpInside)
         settingBtn.setImage(UIImage(named:"setting"), for: .normal)
         collectionView?.addSubview(settingBtn)
 
-        let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 206*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
+        let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 226*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
         settingLabel.text = "설정"
         settingLabel.textAlignment = .center
         settingLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
