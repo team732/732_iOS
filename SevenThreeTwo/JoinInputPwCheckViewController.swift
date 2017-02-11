@@ -96,7 +96,6 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         pwHideBtn.setTitle("보기", for: .normal)
         pwHideBtn.setTitleColor(UIColor.black, for: .normal)
         pwHideBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        pwHideBtn.titleLabel!.font = pwHideBtn.titleLabel!.font.withSize(15*widthRatio)
         pwHideBtn.isHidden = true
         self.view.addSubview(pwHideBtn)
         

@@ -18,7 +18,10 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
     var widthRatio: CGFloat = 0.0
     var idTextField : UITextField!
     var pwTextField : UITextField!
+    var checkUserLabel : UILabel!
     let placeholderColor : UIColor = UIColor(red: 67/255, green: 68/255, blue: 67/255, alpha: 0.56)
+    
+    var apiManager : ApiManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +88,15 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         pwTextField.textAlignment = .center
         self.view.addSubview(pwTextField)
         
+        
+        checkUserLabel = UILabel(frame: CGRect(x: 118*widthRatio, y: 299*heightRatio, width: 141*widthRatio, height: 12*heightRatio))
+        checkUserLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        checkUserLabel.isHidden = true
+        checkUserLabel.text = ""
+        checkUserLabel.textAlignment = .center
+        checkUserLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
+        self.view.addSubview(checkUserLabel)
+
 
         
         
@@ -109,7 +121,6 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
     }
     
     func loginButtonAction(){
-    
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let left = storyboard.instantiateViewController(withIdentifier: "left")
@@ -122,9 +133,37 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                                                                           rightVC: right,
                                                                           topVC: top,
                                                                           bottomVC: nil)
-       
-        // 로그인 서버에서 시켜라~
-        self.present(snapContainer, animated: true, completion: nil)
+               
+            apiManager = ApiManager(path: "/users/732/token", method: .post, parameters:["loginId":idTextField.text!,"password":pwTextField.text!], header: [:])
+            apiManager.requestLogin(completion: { (isLogin) in
+                self.checkUserLabel.isHidden = false
+                print(isLogin)
+                switch (isLogin["meta"]["code"]){
+                    case 0:
+                        self.checkUserLabel.text = ""
+                        let userToken = UserDefaults.standard
+                        userToken.set(isLogin["data"]["token"].stringValue, forKey: "token")
+                        self.present(snapContainer, animated: true, completion: nil)
+                        //로그인성공
+                        break
+                    case -10:
+                        self.checkUserLabel.text = "존재하지 않는 사용자입니다"
+                        //존재하지 않는 사용자
+                        break
+                    case -31:
+                        self.checkUserLabel.text = "존재하지 않는 아이디입니다"
+                        //아이디가 없음
+                        break
+                    case -32:
+                        self.checkUserLabel.text = "비밀번호를 확인해주세요"
+                        //비밀번호가 틀림
+                        break
+                    default:
+                        break
+                }
+            })
+        
+        
 
     }
     func joinButtonAction(){

@@ -69,7 +69,6 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
         backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
         
         self.view.addSubview(backBtn)
         
@@ -77,7 +76,6 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
         nickLabel.text = "닉네임"
         nickLabel.textAlignment = .center
         nickLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        nickLabel.font = nickLabel.font.withSize(15*widthRatio)
         self.view.addSubview(nickLabel)
         
         nickTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
@@ -147,13 +145,16 @@ class JoinInputNicknameViewController: UIViewController,UITextFieldDelegate {
     
     func checkDuplicated(){
         
-        if let userNickname = nickTextField.text, userNickname != "" {
+        
+        if let userNickname = nickTextField.text, userNickname.characters.count > 0, userNickname.characters.count < 13{
             apiManager = ApiManager(path: "/nickname/"+userNickname+"/checking", method: .get, parameters: [:], header: [:])
             apiManager.requsetCheckDuplicated(completion: { (isDuplicated) in
                 self.checkNickname = isDuplicated["data"]["isDuplicated"].boolValue
             })
-        }else{
-            checkNickLabel.text = " 닉네임을 입력해주세요."
+        }
+        else{
+            
+            checkNickLabel.text = " 글자 수를 확인해주세요."
             checkNickLabel.textAlignment = .left
             checkNickLabel.isHidden = false
         }

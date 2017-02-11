@@ -12,12 +12,11 @@ import SwiftyJSON
 private let server = "http://52.79.178.255"
 
 class ApiManager {
-    let url: String
+    var url: String
     let method: HTTPMethod
     var parameters: Parameters
-    let encoding = URLEncoding.default
     let header: HTTPHeaders
-    
+    let encode = URLEncoding.default
     init(path: String, method: HTTPMethod, parameters: Parameters = [:],header: HTTPHeaders) {
         url = server + path
         self.method = method
@@ -68,7 +67,35 @@ class ApiManager {
         }
     }
     
+    func requestToken(completion : @escaping (String)->Void){
+        
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    print(resp)
+                    switch (resp["meta"]["code"].intValue){
+                    case 0:
+                        //토큰을 주고
+                        completion(resp["data"]["token"].stringValue)
+                        break
+                    default:
+                        //로그인으로
+                        completion("OPEN_LOGINVC")
+                        break
+                    }
+                }
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     func requsetCheckDuplicated(completion : @escaping (JSON)->Void){
+        
+        url = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)!
         Alamofire.request(url).responseJSON{ response in
             switch(response.result){
                 case .success(_):
@@ -84,9 +111,7 @@ class ApiManager {
     }
     
     func requestJoin(completion : @escaping (JSON)->Void){
-        print(url)
-        print(method)
-        print(parameters)
+
         Alamofire.request(url, method: method, parameters: parameters).responseJSON{ response in
             switch(response.result){
                 case .success(_):
@@ -102,6 +127,22 @@ class ApiManager {
         }
     }
     
+    
+    func requestLogin(completion : @escaping (JSON)->Void){
+        
+        Alamofire.request(url, method: method, parameters: parameters).responseJSON { (response) in
+            switch(response.result){
+                case .success(_):
+                    if let json = response.result.value {
+                        let resp = JSON(json)
+                        completion(resp)
+                    }
+                    break
+                case .failure(_):
+                    break
+            }
+        }
+    }
     
     /*
      사용 하는 컨트롤러에서

@@ -32,6 +32,7 @@
 		675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E211E2FB076000781DA /* LaunchScreen.storyboard */; };
 		675A4E2E1E2FB076000781DA /* SevenThreeTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */; };
 		6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6789A3F81E417D3E009374BD /* DeviceResize.swift */; };
+		67A4608E1E4F324B00929AE1 /* CheckTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */; };
 		67AE84591E43486400BAF314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84571E43486400BAF314 /* Main.storyboard */; };
 		67AE84691E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */; };
 		67AE846A1E4349F200BAF314 /* Arita-dotum-Light_OTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84651E4349F200BAF314 /* Arita-dotum-Light_OTF.otf */; };
@@ -90,6 +91,7 @@
 		675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenThreeTwoTests.swift; sourceTree = "<group>"; };
 		675A4E2F1E2FB076000781DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceResize.swift; sourceTree = "<group>"; };
+		67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckTokenViewController.swift; sourceTree = "<group>"; };
 		67AE84581E43486400BAF314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67AE84641E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Bold_OTF.otf"; sourceTree = "<group>"; };
 		67AE84651E4349F200BAF314 /* Arita-dotum-Light_OTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Arita-dotum-Light_OTF.otf"; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				67AE84761E43881300BAF314 /* JoinInputPwCheckViewController.swift */,
 				67AE84781E438F8000BAF314 /* JoinInputNicknameViewController.swift */,
 				67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */,
+				67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */,
 			);
 			name = "Login&JoinView";
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A4608E1E4F324B00929AE1 /* CheckTokenViewController.swift in Sources */,
 				672DD12C1E335058001022BF /* Photo.swift in Sources */,
 				673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */,
 				675A4E1B1E2FB076000781DA /* MainController.swift in Sources */,
@@ -645,7 +649,7 @@
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj.732.com;
+				PRODUCT_BUNDLE_IDENTIFIER = proj.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -663,7 +667,7 @@
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj.732.com;
+				PRODUCT_BUNDLE_IDENTIFIER = proj.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

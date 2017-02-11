@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VZe-QI-tDe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f96-8p-eH1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,7 +12,7 @@
         <!--Login Main View Controller-->
         <scene sceneID="uRt-8c-zNz">
             <objects>
-                <viewController id="VZe-QI-tDe" customClass="LoginMainViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginMainViewController" id="VZe-QI-tDe" customClass="LoginMainViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tbg-sw-J1z"/>
                         <viewControllerLayoutGuide type="bottom" id="DIB-b0-IIt"/>
@@ -247,6 +247,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpe-Uv-Maa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3326" y="-645"/>
+        </scene>
+        <!--Check Token View Controller-->
+        <scene sceneID="oW3-y1-f3g">
+            <objects>
+                <viewController id="f96-8p-eH1" customClass="CheckTokenViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LhT-o4-9Uj"/>
+                        <viewControllerLayoutGuide type="bottom" id="wSb-BF-6S7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SmB-XL-o0K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="VZe-QI-tDe" kind="show" identifier="tokenToLogin" animates="NO" id="MYY-Ax-zaQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LlP-AM-QOU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2581" y="-1663"/>
         </scene>
         <!--Hot Pic View Controller-->
         <scene sceneID="32u-lI-Zko">
@@ -576,4 +597,7 @@
     <resources>
         <image name="otter-6" width="1280" height="847"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="MYY-Ax-zaQ"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -90,7 +90,6 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         checkIdLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         checkIdLabel.isHidden = true
         checkIdLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        checkIdLabel.font = checkIdLabel.font.withSize(13*widthRatio)
         self.view.addSubview(checkIdLabel)
         
         let checkBtn = UIButton(frame: CGRect(x: 35*widthRatio , y: 245*heightRatio, width: 305*widthRatio, height: 41*heightRatio))
@@ -142,15 +141,23 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
     
     func checkDuplicated() {
     
-        if let userId = idTextField.text, userId != "" {
+        if let userId = idTextField.text , userId != ""{
             apiManager = ApiManager(path: "/id/"+userId+"/checking", method: .get, parameters: [:],header: [:])
             apiManager.requsetCheckDuplicated(completion: { (isDuplicated) in
-                self.checkId = isDuplicated["data"]["isDuplicated"].boolValue
+                
+                
+                if isDuplicated["meta"]["code"].intValue != -10 {
+                    self.checkId = isDuplicated["data"]["isDuplicated"].boolValue
+                } else {
+                    self.checkIdLabel.textAlignment = .left
+                    self.checkIdLabel.text = "  아이디 형식을 확인해주세요."
+                    self.checkIdLabel.isHidden = false
+                }
             })
         }else{
-            checkIdLabel.textAlignment = .left
-            checkIdLabel.text = "  아이디를 입력해주세요."
-            checkIdLabel.isHidden = false
+            self.checkIdLabel.textAlignment = .left
+            self.checkIdLabel.text = "  아이디 형식을 확인해주세요."
+            self.checkIdLabel.isHidden = false
         }
     }
  

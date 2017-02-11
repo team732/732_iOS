@@ -25,7 +25,6 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
     var checkEmailLabel : UILabel!
     var apiManager : ApiManager!
     
-    
     var checkEmail :Bool = true{
         didSet{
             if checkEmail{
@@ -39,7 +38,6 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
                 checkEmailLabel.isHidden = true
                 self.emailTextField.endEditing(true)
                 joinOurService(id: receivedId, password: receivedPw, nickname: receivedNickname, email: emailTextField.text!)
-                self.performSegue(withIdentifier: "emailToLogin", sender: self)
 
             }
         }
@@ -53,6 +51,8 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         widthRatio = userDevice.userDeviceWidth()
         
         viewSetUp()
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -76,15 +76,13 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         backBtn.setTitle("뒤로", for: .normal)
         backBtn.setTitleColor(UIColor.black, for: .normal)
         backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        backBtn.titleLabel!.font = backBtn.titleLabel!.font.withSize(15*widthRatio)
-        
+
         self.view.addSubview(backBtn)
         
         let emailLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 50*widthRatio, height: 15*heightRatio))
         emailLabel.text = "이메일"
         emailLabel.textAlignment = .center
         emailLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        emailLabel.font = emailLabel.font.withSize(15*widthRatio)
         self.view.addSubview(emailLabel)
         
         emailTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 337*widthRatio, height: 13*heightRatio))
@@ -103,7 +101,6 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         checkEmailLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         checkEmailLabel.isHidden = true
         checkEmailLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        checkEmailLabel.font = checkEmailLabel.font.withSize(13*widthRatio)
         self.view.addSubview(checkEmailLabel)
         
         let checkBtn = UIButton(frame: CGRect(x: 35*widthRatio , y: 245*heightRatio, width: 305*widthRatio, height: 41*heightRatio))
@@ -170,7 +167,6 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         
         
         joinOurService(id: receivedId, password: receivedPw, nickname: receivedNickname,email: nil)
-        self.performSegue(withIdentifier: "emailToLogin", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -188,16 +184,29 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         }
         apiManager.requestJoin { (isJoin) in
             
-            //여기가 토큰 받는다~
-            print(isJoin)
+            let userToken = UserDefaults.standard
+            userToken.set(isJoin["data"]["token"].stringValue, forKey: "token")
             
-            let userToken = isJoin["data"]["token"].stringValue
             
-            //이거 프리퍼런스에 저장 해야한다
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let left = storyboard.instantiateViewController(withIdentifier: "left")
+            let middle = storyboard.instantiateViewController(withIdentifier: "middle")
+            let right = storyboard.instantiateViewController(withIdentifier: "right")
+            let top = storyboard.instantiateViewController(withIdentifier: "top")
+            
+            let snapContainer = SnapContainerViewController.containerViewWith(left,
+                                                                              middleVC: middle,
+                                                                              rightVC: right,
+                                                                              topVC: top,
+                                                                              bottomVC: nil)
+            self.present(snapContainer, animated: true, completion: nil)
         }
         // request
         
     }
+    
+    
  
 
 }

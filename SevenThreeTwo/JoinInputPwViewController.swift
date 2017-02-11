@@ -78,7 +78,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         
         
         checkPw = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
-        checkPw.text = " 비밀번호를 입력해 주세요."
+        checkPw.text = " 비밀번호 형식을 확인해주세요."
         checkPw.textAlignment = .left
         checkPw.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         checkPw.isHidden = true
@@ -129,7 +129,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
     }
     
     func checkButtonAction(){
-        if (pwTextField.text?.isEmpty)! {
+        if !regexPassword(pwTextField.text!) {
             checkPw.isHidden = false
         }else{
             checkPw.isHidden = true
@@ -173,6 +173,21 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         }
         
     }
+    
+    
+    
+    func regexPassword(_ password : String) -> Bool{
+        
+        
+        let password = password
+        let capitalLetterRegEx  = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,16}$"
+        let texttest = NSPredicate(format:"SELF MATCHES %@", capitalLetterRegEx)
+        let capitalresult = texttest.evaluate(with: password)
+        
+        return capitalresult
+        
+    }
+
  
 
 }
