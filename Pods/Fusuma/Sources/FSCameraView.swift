@@ -125,6 +125,10 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
         self.startCamera()
         
         NotificationCenter.default.addObserver(self, selector: #selector(FSCameraView.willEnterForegroundNotification(_:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
+        //뷰 영역 정하기
+        self.previewViewContainer.frame.origin = CGPoint(x:0,y:0)
+       // self.previewViewContainer.frame = CGRect(x:0,y:0,width:375,height:500)
     }
     
     func willEnterForegroundNotification(_ notification: Notification) {

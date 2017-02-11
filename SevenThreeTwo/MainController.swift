@@ -53,8 +53,8 @@ class MainController: UIViewController, FusumaDelegate {
         //        fusumaCropImage = false
         
         fusuma.delegate = self
-        fusuma.cropHeightRatio = 1.0
-        
+        fusuma.cropHeightRatio = 1.34
+        fusumaCropImage = false
         fusumaTintColor = UIColor.darkGray
         fusumaBackgroundColor = UIColor.white
         //
