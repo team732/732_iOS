@@ -30,12 +30,12 @@ class PublicListViewController:  UICollectionViewController {
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
     
-    let publicPhoto = PublicPhoto(image : UIImage(named: "otter-1")!)
     var apiManager : ApiManager!
     let users = UserDefaults.standard
+    var userToken : String!
     // MARK: Data
     var photos : [PublicPhoto] = []
-    
+    var paginationUrl : String!
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
         super.init(collectionViewLayout: layout)
@@ -44,21 +44,25 @@ class PublicListViewController:  UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userToken = users.string(forKey: "token")
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         setUpUI()
+        loadPic(path: "/contents?missionDate=2017-02-11&limit=10")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        let userToken = users.string(forKey: "token")
-//        apiManager = ApiManager(path: "/contents", method: .get, parameters: [:], header: ["authorization":userToken!])
-//        apiManager.requestContents { (contentPhoto) in
-//            for i in 0..<contentPhoto.count{
-//                self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
-//            }
-//            self.collectionView?.reloadData()
-//        }
-
+    
+    func loadPic(path : String){
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestContents(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentPhoto) in
+            for i in 0..<contentPhoto.count{
+                self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
+            }
+            
+            self.collectionView?.reloadData()
+        }
     }
     
     
@@ -194,14 +198,23 @@ extension PublicListViewController {
             else {
                 fatalError("Could not dequeue cell")
         }
-        cell.setUpWithImage(photos[indexPath.item].image,
+        
+        cell.setUpWithImage(self.photos[indexPath.row].image,
                             title: "",
                             style: BeigeRoundedPhotoCaptionCellStyle())
         cell.layer.borderWidth = 1
         
         
+        if indexPath.row == self.photos.count - 2{
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadPic(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
+        }
+        
+        
         return cell
     }
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -209,6 +222,8 @@ extension PublicListViewController {
         SelectListViewController.receivedCid = indexPath.item
         self.present(selectVC, animated: true, completion: nil)
     }
+    
+    
     
     
     

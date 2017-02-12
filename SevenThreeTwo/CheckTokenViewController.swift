@@ -41,7 +41,7 @@ class CheckTokenViewController: UIViewController {
     
     func counter(){
         launchSec += 0.05
-        if launchSec > 2 {
+        if launchSec > 2.2 {
             self.imageView.removeFromSuperview()
             self.imageView = nil
             checkToken()

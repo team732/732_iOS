@@ -24,22 +24,4 @@ class PublicPhoto: NSObject {
     }
     
    
-    
-    func loadContents() {
-        
-        apiManager = ApiManager(path: "/contents", method: .get, parameters: [:], header: ["authorization":userToken!])
-        //        OperationQueue.main.addOperation(){
-        self.apiManager.requestContents { (contentPhoto) in
-            for i in 0..<contentPhoto.count{
-                self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
-            }
-        }
-    }
 }
-
-
-/*
- func loadEx(){
- photos.append(PublicPhoto(image: UIImage(data: NSData(contentsOf: NSURL(string: )))))
- }*/
-

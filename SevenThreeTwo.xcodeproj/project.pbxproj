@@ -381,7 +381,7 @@
 				TargetAttributes = {
 					675A4E141E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = NE9YAC47HN;
+						DevelopmentTeam = VANL3XS874;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -666,11 +666,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NE9YAC47HN;
+				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj.732.ds;
+				PRODUCT_BUNDLE_IDENTIFIER = proj.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -684,11 +684,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = NE9YAC47HN;
+				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = proj.732.ds;
+				PRODUCT_BUNDLE_IDENTIFIER = proj.732;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
