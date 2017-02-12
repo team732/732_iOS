@@ -41,7 +41,7 @@ class PhotoCaptionCell: UICollectionViewCell {
         view.axis = UILayoutConstraintAxis.vertical
         view.distribution = UIStackViewDistribution.equalSpacing
         view.alignment = UIStackViewAlignment.fill
-        view.isLayoutMarginsRelativeArrangement = true
+        view.isLayoutMarginsRelativeArrangement = false
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

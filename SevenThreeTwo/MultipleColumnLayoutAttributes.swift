@@ -102,6 +102,11 @@ class MultipleColumnLayout: UICollectionViewLayout {
             return attributes
     }
     
+    override func invalidateLayout() {
+        self.cache.removeAll()
+        super.invalidateLayout()
+    }
+    
     override func prepare() {
         if cache.isEmpty {
             guard let collectionView = collectionView else {

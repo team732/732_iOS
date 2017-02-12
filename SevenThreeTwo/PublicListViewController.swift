@@ -9,8 +9,9 @@
 import UIKit
 import AVFoundation
 
+
 // Inspired by: RayWenderlich.com pinterest-basic-layout
-class PublicListViewController:  UICollectionViewController {
+class PublicListViewController:  UICollectionViewController{
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -36,6 +37,8 @@ class PublicListViewController:  UICollectionViewController {
     // MARK: Data
     var photos : [PublicPhoto] = []
     var paginationUrl : String!
+    var isPagination = false
+    
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
         super.init(collectionViewLayout: layout)
@@ -52,6 +55,8 @@ class PublicListViewController:  UICollectionViewController {
     }
     
     
+    
+    
     func loadPic(path : String){
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
@@ -60,11 +65,12 @@ class PublicListViewController:  UICollectionViewController {
             for i in 0..<contentPhoto.count{
                 self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
             }
-            
+            self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
         }
     }
     
+        
     
     override func viewWillTransition(
         to size: CGSize,
@@ -176,7 +182,11 @@ class PublicListViewController:  UICollectionViewController {
     }
 
     func cameraButtonAction() {
-        
+        DispatchQueue.main.async { 
+            let startIndex = self.paginationUrl.index(self.paginationUrl.startIndex, offsetBy: 20)
+            self.loadPic(path: (self.paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
+            
+        }
     }
 }
 
@@ -192,28 +202,23 @@ extension PublicListViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath
         ) -> UICollectionViewCell {
-        guard let cell = collectionView
+        let cell = collectionView
             .dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier,
                                  for: indexPath) as? PhotoCaptionCell
-            else {
-                fatalError("Could not dequeue cell")
-        }
         
-        cell.setUpWithImage(self.photos[indexPath.row].image,
+        
+        cell?.setUpWithImage(self.photos[indexPath.row].image,
                             title: "",
                             style: BeigeRoundedPhotoCaptionCellStyle())
-        cell.layer.borderWidth = 1
-        
-        
+        cell?.layer.borderWidth = 1
         if indexPath.row == self.photos.count - 2{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadPic(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
         }
         
-        
-        return cell
+        return cell!
     }
-    
+
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -222,10 +227,6 @@ extension PublicListViewController {
         SelectListViewController.receivedCid = indexPath.item
         self.present(selectVC, animated: true, completion: nil)
     }
-    
-    
-    
-    
     
     
     

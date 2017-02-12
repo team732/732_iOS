@@ -13,11 +13,7 @@ import UIKit
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class PublicPhoto: NSObject {
     
-    var apiManager : ApiManager!
     var image: UIImage
-    let userToken = UserDefaults.standard.string(forKey: "token")
-    var photos = [PublicPhoto]()
-
     
     init(image: UIImage) {
         self.image = image

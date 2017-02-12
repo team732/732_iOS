@@ -26,20 +26,25 @@ class ApiManager {
     
     //completion:(String) -> Void (ex)
     func requestContents(pagination : @escaping (String)-> Void,completion : @escaping ([PublicList])->Void){
+        print(url)
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
                 
             case .success(_):
                 if let json = response.result.value{
                     let resp = JSON(json)
+                    print(resp)
                     var publicList = [PublicList]()
                     let contents = resp["data"]["contents"]
                     for idx in 0..<contents.count {
                         let content = PublicList(contentId: contents[idx]["contentId"].intValue, contentPicture: contents[idx]["content"]["picture"].stringValue, contentText: contents[idx]["content"]["text"].stringValue, userId: contents[idx]["content"]["text"].intValue, nickname: contents[idx]["userId"].stringValue, popularity: contents[idx]["nickname"].intValue, missionId: contents[idx]["missionId"].intValue, createdAt: contents[idx]["createAt"].stringValue, likeCount: contents[idx]["lickCount"].intValue, missionText: contents[idx]["mission"]["text"].stringValue)
                         publicList += [content]
                     }
+                    
                     pagination(resp["pagination"]["nextUrl"].stringValue)
                     completion(publicList)
+                    
+                    
                     
                 }
                 break
