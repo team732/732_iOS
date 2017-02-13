@@ -32,6 +32,7 @@ class CameraViewController: UIViewController {
     
     var receivedImg : UIImage = UIImage(named : "otter-3")!
 
+   
     
     
     override func viewDidLoad() {
@@ -43,7 +44,7 @@ class CameraViewController: UIViewController {
         widthRatio = userDevice.userDeviceWidth()
         
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (375*1.34)*heightRatio)
+        imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (500)*heightRatio)
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 18*widthRatio, height: 18*heightRatio)
         
@@ -56,29 +57,67 @@ class CameraViewController: UIViewController {
         
         nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 33*widthRatio, height: 18*heightRatio)
         
-        nextBtn.setImage(UIImage(named:"nextShadow"), for: .normal)
+        nextBtn.setImage(UIImage(named:"share"), for: .normal)
         nextBtn.tintColor = UIColor.white
         nextBtn.layer.shadowColor = UIColor.black.cgColor
         nextBtn.layer.shadowRadius = 1
         nextBtn.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
         nextBtn.layer.shadowOpacity = 1.0
         
-        inputText.frame = CGRect(x: (0*widthRatio), y: (440*heightRatio), width: 375*widthRatio, height: (227-59)*heightRatio)
-        
+        inputText.frame = CGRect(x: (16*widthRatio), y: (516*heightRatio), width: 343*widthRatio, height: (106)*heightRatio)
+        inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+
 
         
         var line: UIView!
         
         
-        line = UIView(frame: CGRect(x: 0*widthRatio, y: 606*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
+        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
         
         line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
         
         
         
         view.addSubview(line)
+        
+        // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
+        NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
        
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
+        inputText.endEditing(true) // textBox는 textFiled 오브젝트 outlet 연동할때의 이름.
+        //self.bottomConstraint.constant = 0
+    }
+    // 키보드가 보여지면..
+    func keyboardWillShow(notification:NSNotification) {
+        adjustingHeight(show: false, notification: notification)
+    }
+    
+    // 키보드가 사라지면..
+    func keyboardWillHide(notification:NSNotification) {
+        adjustingHeight(show: true, notification: notification)
+        
+    }
+    
+    // 높이를 조정한다 ..
+    func adjustingHeight(show:Bool, notification:NSNotification) {
+        var userInfo = notification.userInfo!
+        let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
+            
+            self.view.frame.origin.y += changeInHeight
+            
+        })
+        
+    }
+
+    
     override func viewDidAppear(_ animated: Bool) {
         
         imageView.image = receivedImg
@@ -91,6 +130,55 @@ class CameraViewController: UIViewController {
     
     @IBAction func closeBtn(_ sender: UIButton) {
         
-        dismiss(animated: true, completion: nil)
+        
+        let alertView = UIAlertController(title: "", message: "지금 나가면 메인으로 나가게 됩니다.", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "나가기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            alertView.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+        
+        alertView.addAction(action)
+        alertView.addAction(cancelAction)
+        
+        alertWindow(alertView: alertView)
+
+    }
+    @IBAction func nextBtn(_ sender: UIButton) {
+        
+        let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
+        
+        let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            
+            print("공유하기")
+            alertView.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            
+            print("나만보기")
+            alertView.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+        
+        alertView.addAction(shareAction)
+        alertView.addAction(cancelAction)
+        alertView.addAction(noShareAction)
+        
+        alertWindow(alertView: alertView)
+
+    }
+    
+    func alertWindow(alertView: UIAlertController){
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
     }
 }
