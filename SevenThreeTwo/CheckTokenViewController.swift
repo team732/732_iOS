@@ -54,7 +54,6 @@ class CheckTokenViewController: UIViewController {
     func checkToken(){
         let token = userToken.string(forKey: "token")
         if token != nil{
-            print(token!)
             apiManager = ApiManager(path: "/token", method: .get, parameters: [:], header: ["authorization":token!])
             
             apiManager.requestToken { (isToken) in

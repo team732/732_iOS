@@ -25,16 +25,18 @@ class MainController: UIViewController, FusumaDelegate {
     @IBOutlet weak var showButton: UIButton!
     
     var imageMain : UIImage!
-    
+    var users = UserDefaults.standard
+    var userToken : String!
+    var apiManager : ApiManager2!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        
+        userToken = users.string(forKey: "token")
         viewSetUp()
-     
+        
     }
     
     
@@ -194,8 +196,15 @@ class MainController: UIViewController, FusumaDelegate {
     
     func subjectImage(){
         
-        //서버에서 불러와서 이미지 세팅
         subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
+        subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
+        
+        apiManager = ApiManager2(path: "/missions", method: .get, header: ["authorization":userToken!])
+        apiManager.requestMissions { (JSON) in
+            //서버에서 불러와서 이미지 세팅
+            //서버에서 불러와서 주제 세팅
+        }
+        
         subImage.image = UIImage(named: "subimage")
         
         subImage.layer.masksToBounds = false
@@ -216,7 +225,6 @@ class MainController: UIViewController, FusumaDelegate {
         
         //서버에서 주제 던져서 세팅
         
-        subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         subLabel.numberOfLines = 0
         subLabel.text = "인간의 욕심은 정말로 정말로 정말로"
         subLabel.textColor = UIColor.white
