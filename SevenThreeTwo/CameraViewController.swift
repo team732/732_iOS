@@ -77,20 +77,22 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         backBtn.layer.shadowOpacity = 1.0
         
         
-        inputText.frame = CGRect(x: (16*widthRatio), y: (516*heightRatio), width: 343*widthRatio, height: (106)*heightRatio)
+        inputText.frame = CGRect(x: (16*widthRatio), y: (508*heightRatio), width: 343*widthRatio, height: (114-3)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         inputText.text = placeHolderText
         
-        nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 33*widthRatio, height: 18*heightRatio)
+        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
+        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        nextBtn.setTitle("게시글 공유", for: .normal)
+        nextBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0), for: .normal)
+        nextBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
         
-        nextBtn.setImage(UIImage(named:"share"), for: .normal)
-        nextBtn.tintColor = UIColor.white
-        nextBtn.layer.shadowColor = UIColor.black.cgColor
-        nextBtn.layer.shadowRadius = 1
-        nextBtn.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
-        nextBtn.layer.shadowOpacity = 1.0
+        nextBtn.layer.borderWidth = 1
+        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
+
+  
 
         
 //        var line: UIView!
@@ -200,12 +202,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         if token != nil{
             
+            self.apiManager = ApiManager(path: "/missions/1/contents", method: .post, parameters: [:], header: ["authorization":token!])
+            
             let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
             
             let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
                 print("공유하기")
-                self.apiManager = ApiManager(path: "/missions/1/contents", method: .post, parameters: [:], header: ["authorization":token!])
                 
                 self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
@@ -216,15 +219,20 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                                 self.dismiss(animated: true, completion: nil)
                             })
                 
-                
-                
             })
             
             let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
                 print("나만보기")
-                alertView.dismiss(animated: true, completion: nil)
-                self.dismiss(animated: true, completion: nil)
+                
+                self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:false, completion: { (result) in
+                    
+                    print("resultCode : \(result)")
+                    //서버 통신이 끝나야 메인으로 돌아감.
+                    
+                    alertView.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
+                })
             })
             
             let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }

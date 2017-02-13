@@ -423,7 +423,8 @@ extension FSCameraView {
         self.focusView?.alpha = 0.0
         self.focusView?.center = point
         self.focusView?.backgroundColor = UIColor.clear
-        self.focusView?.layer.borderColor = UIColor.yellow.cgColor//fusumaBaseTintColor.cgColor
+        self.focusView?.layer.borderColor = UIColor(red: 255/255, green: 204/255, blue: 0/255, alpha: 1.0).cgColor
+        //UIColor.yellow.cgColor//fusumaBaseTintColor.cgColor
         self.focusView?.layer.borderWidth = 1.0
         self.focusView!.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         self.addSubview(self.focusView!)
