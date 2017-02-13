@@ -47,6 +47,7 @@
 		67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE84781E438F8000BAF314 /* JoinInputNicknameViewController.swift */; };
 		67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */; };
 		67AFFDFE1E5225B90088D860 /* ApiManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFFDFD1E5225B90088D860 /* ApiManager2.swift */; };
+		67AFFE011E5247050088D860 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFFE001E5247050088D860 /* SettingViewController.swift */; };
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */; };
 		67B74AC81E4F8F63007F92CA /* PrivatePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */; };
@@ -111,6 +112,7 @@
 		67AE84781E438F8000BAF314 /* JoinInputNicknameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputNicknameViewController.swift; sourceTree = "<group>"; };
 		67AE847A1E4394DF00BAF314 /* JoinInputEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinInputEmailViewController.swift; sourceTree = "<group>"; };
 		67AFFDFD1E5225B90088D860 /* ApiManager2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager2.swift; sourceTree = "<group>"; };
+		67AFFE001E5247050088D860 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatePhoto.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				67092A951E38610900DB9A27 /* BottomView */,
 				67092A931E3860E000DB9A27 /* LeftView */,
 				67092A921E3860B400DB9A27 /* RightView */,
+				67AFFDFF1E5246D90088D860 /* SettingView */,
 				670F7A6B1E346B1800E7CC01 /* PhotoList */,
 				671469041E2FCD40006925B7 /* SwipeController */,
 				675A4E211E2FB076000781DA /* LaunchScreen.storyboard */,
@@ -304,6 +307,14 @@
 				67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */,
 			);
 			name = "Login&JoinView";
+			sourceTree = "<group>";
+		};
+		67AFFDFF1E5246D90088D860 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				67AFFE001E5247050088D860 /* SettingViewController.swift */,
+			);
+			name = SettingView;
 			sourceTree = "<group>";
 		};
 		67B74AC41E4F56EC007F92CA /* Extension */ = {
@@ -521,6 +532,7 @@
 				673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */,
 				67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */,
 				37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */,
+				67AFFE011E5247050088D860 /* SettingViewController.swift in Sources */,
 				675A4E191E2FB076000781DA /* AppDelegate.swift in Sources */,
 				3703F2811E4CF75D00C470B9 /* CommentViewController.swift in Sources */,
 				67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */,

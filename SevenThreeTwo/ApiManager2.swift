@@ -168,6 +168,9 @@ class ApiManager2 {
         }
     }
     
+    
+    // 여기가 수정해야할 부분
+    
     func requestWriteComment(completion : @escaping (Int)->Void){
         
         Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { response in
@@ -184,6 +187,23 @@ class ApiManager2 {
             
         }
     }
+    
+    func requestMissions(completion : @escaping (JSON) -> Void){
+        Alamofire.request(url,method: method, headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    print(resp)
+                }
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    
     
     /*
      사용 하는 컨트롤러에서
