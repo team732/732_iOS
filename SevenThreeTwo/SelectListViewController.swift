@@ -54,14 +54,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
         userToken = users.string(forKey: "token")
-        
-        
+        self.myTableView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
         loadContent()
-        tableViewSetUp()
         viewSetUp()
+        tableViewSetUp()
     }
     
     
@@ -80,7 +79,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 self.isLiked = false
             }
             self.likeCount = infoContent.likeCount!
-            
             self.myTableView.reloadData()
         }
     }
@@ -133,13 +131,16 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myPicView.addSubview(subLabel)
 
         selectedPic.image = SelectListViewController.receivedCimg
-        let imageWidth = Float((selectedPic.image?.size.width)!)
-        let imageHeight = Float((selectedPic.image?.size.height)!)
+        let imageWidth = CGFloat((selectedPic.image?.size.width)!)
+        let imageHeight = CGFloat((selectedPic.image?.size.height)!)
         print(imageWidth,imageHeight)
+        
+        
+        
         if imageWidth > imageHeight {
             self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 193*heightRatio, width: 320*widthRatio, height: 247*heightRatio)
         }else if imageWidth < imageHeight{
-            self.selectedPic.frame = CGRect(x: 45*widthRatio, y: 156*heightRatio, width: 247*widthRatio, height: 321*heightRatio)
+            self.selectedPic.frame = CGRect(x: (myPicView.frame.width/2 - (321*imageWidth/imageHeight*widthRatio/2) - 20)*widthRatio, y: 156*heightRatio, width: (321*imageWidth/imageHeight)*widthRatio, height: 321*heightRatio)
         }else{
             self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 156*heightRatio, width: 320*widthRatio, height: 320*heightRatio)
         }
@@ -287,6 +288,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         myTableView.delegate = self
         myTableView.dataSource = self
         myTableView.bounces = false
+        myTableView.isHidden = false
     }
     
     
