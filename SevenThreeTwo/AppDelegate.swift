@@ -35,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         
-        let token = userToken.string(forKey: "token")
-        if token != nil{
+        let token = self.userToken.string(forKey: "token")
+        if token != nil {
             self.apiManager = ApiManager(path: "/token", method: .get, parameters: [:], header: ["authorization":token!])
             self.apiManager.requestToken { (isToken) in
                 if isToken != "OPEN_LOGINVC" {
@@ -46,10 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
-        
-        
-        
         // 다시 들어올 때
     }
     
@@ -57,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         // 앱이 활성화 될 때
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

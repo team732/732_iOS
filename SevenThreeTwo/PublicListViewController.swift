@@ -38,7 +38,6 @@ class PublicListViewController:  UICollectionViewController{
     var photos : [PublicPhoto] = []
     var paginationUrl : String!
     var isPagination = false
-  
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -52,27 +51,25 @@ class PublicListViewController:  UICollectionViewController{
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         setUpUI()
-        loadPic(path: "/contents?missionDate=2017-02-11&limit=10")
+        loadPic(path: "/contents?missionDate=2017-02-11&limit=20")
+        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.refreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.refreshPic), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     
-    
-    
     func refreshPic(){
-        self.viewDidLoad()
+        print("here")
+        self.photos.removeAll()
+        self.loadPic(path: "/contents?missionDate=2017-02-11&limit=20")
     }
     
     
     func loadPic(path : String){
-        print("loadPic")
-        print("userToken",userToken!)
+        userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
-            self.photos.removeAll()
             for i in 0..<contentPhoto.count{
                 self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!, contentId: contentPhoto[i].contentId!))
             }
