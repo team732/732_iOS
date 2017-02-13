@@ -48,13 +48,15 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var likeBtn : UIButton!
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.myTableView.isHidden = true
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
-        userToken = users.string(forKey: "token")
-        self.myTableView.isHidden = true
+        
+        // 옵저버를 보내 얘가 언제 불리나.. 체크한다.
+        NotificationCenter.default.addObserver(self, selector: #selector(SelectListViewController.reLoadComment),name:NSNotification.Name(rawValue: "reload"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,8 +65,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         tableViewSetUp()
     }
     
+    func reLoadComment(){
+        self.loadContent()
+    }
+    
     
     func loadContent(){
+        userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
         apiManager.requestSelectContent { (infoContent) in
             for idx in 0..<infoContent.replies!.count{

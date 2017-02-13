@@ -39,6 +39,11 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        //사라질때 reload 라는 옵저버를 보낸다.
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -114,6 +119,8 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     }
     
     func completeButtonAction(){
+        
+        
         //서버에 댓글 작성하고 dismiss
         self.commentTextView.endEditing(true)
         self.dismiss(animated: true, completion: nil)
