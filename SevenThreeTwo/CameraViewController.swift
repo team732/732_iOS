@@ -76,6 +76,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         backBtn.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
         backBtn.layer.shadowOpacity = 1.0
         
+        
+        inputText.frame = CGRect(x: (16*widthRatio), y: (516*heightRatio), width: 343*widthRatio, height: (106)*heightRatio)
+        inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        inputText.text = placeHolderText
+        
         nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 33*widthRatio, height: 18*heightRatio)
         
         nextBtn.setImage(UIImage(named:"share"), for: .normal)
@@ -84,24 +91,17 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         nextBtn.layer.shadowRadius = 1
         nextBtn.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
         nextBtn.layer.shadowOpacity = 1.0
-        
-        inputText.frame = CGRect(x: (16*widthRatio), y: (516*heightRatio), width: 343*widthRatio, height: (106)*heightRatio)
-        inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        inputText.text = placeHolderText
 
         
-        var line: UIView!
-        
-        
-        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
-        
-        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
-        
-        
-        
-        view.addSubview(line)
+//        var line: UIView!
+//        
+//        
+//        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
+//        
+//        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
+//        
+//        
+//        view.addSubview(line)
         
         // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
