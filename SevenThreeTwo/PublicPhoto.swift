@@ -14,9 +14,11 @@ import UIKit
 class PublicPhoto: NSObject {
     
     var image: UIImage
+    var contentId : Int
     
-    init(image: UIImage) {
+    init(image: UIImage, contentId: Int) {
         self.image = image
+        self.contentId = contentId
     }
     
    

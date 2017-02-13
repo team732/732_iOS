@@ -29,7 +29,7 @@ class CheckTokenViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         launchTimer.invalidate()
-        launchTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(CheckTokenViewController.counter), userInfo: nil, repeats:true)
+        launchTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(CheckTokenViewController.counter), userInfo: nil, repeats:true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,8 +40,8 @@ class CheckTokenViewController: UIViewController {
     
     
     func counter(){
-        launchSec += 0.05
-        if launchSec > 2.2 {
+        launchSec += 0.1
+        if launchSec > 3.5 {
             self.imageView.removeFromSuperview()
             self.imageView = nil
             checkToken()

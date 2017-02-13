@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SevenThreeTwo/ApiManager.swift"
-            timestampString = "508598915.904845"
+            timestampString = "508675337.909716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "requestJoin(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -295,54 +295,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SevenThreeTwo/ApiManager.swift"
-            timestampString = "508598373.691568"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "requestContents(pagination:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SevenThreeTwo/ApiManager.swift"
-            timestampString = "508598915.904845"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "requestContents(pagination:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SevenThreeTwo/ApiManager.swift"
-            timestampString = "508598915.904845"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "requestContents(pagination:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "SevenThreeTwo/MultipleColumnLayoutAttributes.swift"
             timestampString = "508605493.158778"
             startingColumnNumber = "9223372036854775807"
@@ -351,6 +303,84 @@
             endingLineNumber = "107"
             landmarkName = "invalidateLayout()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SevenThreeTwo/SelectListViewController.swift"
+            timestampString = "508670431.175453"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "SelectListViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SevenThreeTwo.SelectListViewController.selectedPic.getter : __ObjC.UIImageView"
+                  moduleName = "SevenThreeTwo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yoon/Documents/IOS_Projects/7h32m/SevenThreeTwo/SelectListViewController.swift"
+                  timestampString = "508670431.824355"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SevenThreeTwo.SelectListViewController.selectedPic.setter : __ObjC.UIImageView"
+                  moduleName = "SevenThreeTwo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yoon/Documents/IOS_Projects/7h32m/SevenThreeTwo/SelectListViewController.swift"
+                  timestampString = "508670431.826351"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SevenThreeTwo.SelectListViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; SevenThreeTwo.SelectListViewController"
+                  moduleName = "SevenThreeTwo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yoon/Documents/IOS_Projects/7h32m/SevenThreeTwo/SelectListViewController.swift"
+                  timestampString = "508670431.828385"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "721">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SevenThreeTwo.SelectListViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;SevenThreeTwo.SelectListViewController&gt;"
+                  moduleName = "SevenThreeTwo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yoon/Documents/IOS_Projects/7h32m/SevenThreeTwo/SelectListViewController.swift"
+                  timestampString = "508670431.832236"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "616">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

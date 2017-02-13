@@ -15,9 +15,10 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
     var commentTextView :UITextView!
+    
+ 
     var commentSize:CGFloat = 0.0 {
         didSet(oldValue){
-            print(oldValue)
             if oldValue > commentTextView.frame.size.height {
                 commentTextView.frame.origin.y -= (oldValue - commentTextView.frame.size.height)
                 commentTextView.frame.size.height = oldValue
@@ -35,8 +36,9 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         widthRatio = userDevice.userDeviceWidth()
         
         viewSetUp()
-        // Do any additional setup after loading the view.
+    
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -133,13 +135,37 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
-        commentSize = commentTextView.contentSize.height
+        
+        if(textView.text.characters.count < 141){
+            commentSize = commentTextView.contentSize.height
+        }else{
+            overTextCharAlert()
+        }
     }
     
+   
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"{
             textView.resignFirstResponder()
         }
         return true
     }
+    
+    
+    func overTextCharAlert(){
+        let alertView = UIAlertController(title: "", message: "과도한 댓글은 좋지 않습니다.", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            self.commentTextView.text.characters.removeLast()
+        })
+        
+        alertView.addAction(action)
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+    
+
 }

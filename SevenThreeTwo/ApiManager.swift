@@ -26,7 +26,7 @@ class ApiManager {
     
     //completion:(String) -> Void (ex)
     func requestContents(pagination : @escaping (String)-> Void,completion : @escaping ([PublicList])->Void){
-        print(url)
+        
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
                 
@@ -44,8 +44,6 @@ class ApiManager {
                     pagination(resp["pagination"]["nextUrl"].stringValue)
                     completion(publicList)
                     
-                    
-                    
                 }
                 break
                 
@@ -54,6 +52,45 @@ class ApiManager {
                 
             }
         }
+    }
+    
+    func requestContentLiked(completion : @escaping (Bool)->Void){
+        Alamofire.request(url,method: method, headers: header).responseJSON { response in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value{
+                    let resp = JSON(json)
+                    if resp["meta"]["code"].intValue == 0 {
+                        completion(true)
+                    }else{
+                        completion(false)
+                    }
+                }
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    func requestSelectContent(completion : @escaping (Content)->Void){
+        Alamofire.request(url, method: method, headers: header).responseJSON { response in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value{
+                    let resp = JSON(json)
+                    let detailContent = resp["data"]["content"]
+                    let infoContent = Content(contentId: detailContent["contentId"].intValue, contentPicture: detailContent["content"]["picture"].stringValue, contentText: detailContent["content"]["text"].stringValue, userId: detailContent["userId"].intValue, nickname: detailContent["nickname"].stringValue, isMine: detailContent["isMine"].boolValue, isLiked: detailContent["isLiked"].intValue, replies: detailContent["replies"], missionId: detailContent["missionId"].intValue, createdAt: detailContent["createdAt"].stringValue, likeCount: detailContent["likeCount"].intValue, missionText: detailContent["mission"]["text"].stringValue)
+                    
+                    
+                    completion(infoContent)
+                }
+                break
+            case .failure(_):
+                break
+            }
+        }
+        
     }
     
     func requestToken(completion : @escaping (String)->Void){

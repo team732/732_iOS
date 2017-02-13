@@ -47,6 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        
+        
+        
         // 다시 들어올 때
     }
     

@@ -17,23 +17,76 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var myPicView: UIView!
+    var apiManager : ApiManager!
+    let users = UserDefaults.standard
+    var userToken : String!
     
-    var nickname : [String] = ["민섭민섭민섭민섭민섭민섭","한경","유선","유섭"]
-    var date : [String] = ["2017년 1월 1일","2017년 2월 1일","2017년 2월 3일","2017년 2월 8일"]
-    var comment : [String] = ["","졸귀졸귀졸귀졸귀졸귀졸귀졸귀\n졸귀졸귀졸귀","오오오오오우우우우아하하하하\n오오오오오우우우우아하하하하\n오오오오오우우우우아하하하하\n응ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ","수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래수달래"]
     
+    var nickname : [String] = []
+    var date : [String] = []
+    var comment : [String] = []
+    var likeCountLabel : UILabel!
+    
+    var likeCount : Int = 0 {
+        didSet{
+            likeCountLabel.text = "좋아요 \(likeCount)개"
+        }
+    }
+    var isLiked : Bool = true {
+        willSet(newValue){
+            if newValue{
+                likeBtn.setImage(UIImage(named: "btnLikeTouchdown"), for: .normal)
+                likeCount += 1
+            }else{
+                likeBtn.setImage(UIImage(named: "btnLike"), for: .normal)
+                likeCount -= 1
+            }
+        }
+    }
+    
+    var selectedPic = UIImageView()
+    var likeBtn : UIButton!
     static var receivedCid : Int = 0
-    
+    static var receivedCimg : UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
+        userToken = users.string(forKey: "token")
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadContent()
         tableViewSetUp()
         viewSetUp()
-        
-        print(SelectListViewController.receivedCid)
     }
+    
+    
+    func loadContent(){
+        apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
+        apiManager.requestSelectContent { (infoContent) in
+            for idx in 0..<infoContent.replies!.count{
+                self.nickname.append(infoContent.replies![idx]["nickname"].stringValue)
+                self.date.append(infoContent.replies![idx]["createdAt"].stringValue)
+                self.comment.append(infoContent.replies![idx]["reply"]["text"].stringValue)
+            }
+            print(infoContent.likeCount!)
+            if infoContent.isLiked == 1 {
+                self.isLiked = true
+            }else{
+                self.isLiked = false
+            }
+            self.likeCount = infoContent.likeCount!
+            
+            self.myTableView.reloadData()
+        }
+    }
+    
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -59,7 +112,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtn)
         
-        let dateLabel = UILabel(frame: CGRect(x: (115*widthRatio), y: (20*heightRatio), width: 107*widthRatio, height: 11*heightRatio))
+        let dateLabel = UILabel(frame: CGRect(x: (111*widthRatio), y: (20*heightRatio), width: 115*widthRatio, height: 11*heightRatio))
         dateLabel.text = useDate() + "의 미션"
         dateLabel.textAlignment = .center
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
@@ -79,31 +132,26 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.myPicView.addSubview(subLabel)
 
-        let selectedPic = UIImageView()
-        selectedPic.image = UIImage(named: "otter-4")
-        
+        selectedPic.image = SelectListViewController.receivedCimg
         let imageWidth = Float((selectedPic.image?.size.width)!)
         let imageHeight = Float((selectedPic.image?.size.height)!)
-        
+        print(imageWidth,imageHeight)
         if imageWidth > imageHeight {
-            selectedPic.frame = CGRect(x: 8*widthRatio, y: 193*heightRatio, width: 320*widthRatio, height: 247*heightRatio)
+            self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 193*heightRatio, width: 320*widthRatio, height: 247*heightRatio)
         }else if imageWidth < imageHeight{
-            selectedPic.frame = CGRect(x: 45*widthRatio, y: 156*heightRatio, width: 247*widthRatio, height: 321*heightRatio)
+            self.selectedPic.frame = CGRect(x: 45*widthRatio, y: 156*heightRatio, width: 247*widthRatio, height: 321*heightRatio)
         }else{
-            selectedPic.frame = CGRect(x: 8*widthRatio, y: 156*heightRatio, width: 320*widthRatio, height: 320*heightRatio)
+            self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 156*heightRatio, width: 320*widthRatio, height: 320*heightRatio)
         }
-        
+
         self.myPicView.addSubview(selectedPic)
 
         //서버에서 좋아요 개수 받아온다.
-        let goodCount : Int = 3
         
+        likeCountLabel = UILabel(frame: CGRect(x: 20*widthRatio, y: 500*heightRatio, width: 100*widthRatio, height: 13*heightRatio))
         
-        let goodCountLabel = UILabel(frame: CGRect(x: 20*widthRatio, y: 496*heightRatio, width: 58*widthRatio, height: 13*heightRatio))
-        
-        goodCountLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        goodCountLabel.text = "좋아요 \(goodCount)개"
-        self.myPicView.addSubview(goodCountLabel)
+        likeCountLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        self.myPicView.addSubview(likeCountLabel)
         
         let commentBtn = UIButton(frame: CGRect(x: 291*widthRatio, y: 496*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         commentBtn.addTarget(self, action:#selector(commentButtonAction), for: .touchUpInside)
@@ -111,9 +159,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myPicView.addSubview(commentBtn)
         
         
-        let likeBtn = UIButton(frame: CGRect(x: 247*widthRatio, y: 496*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        likeBtn = UIButton(frame: CGRect(x: 247*widthRatio, y: 496*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         likeBtn.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
-        likeBtn.setImage(UIImage(named: "btnLike"), for: .normal)
         self.myPicView.addSubview(likeBtn)
         
         let lastLine = drawLine(startX: 20, startY: 531, width: 295, height: 1, border: false, color: UIColor.black)
@@ -143,7 +190,19 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     func likeButtonAction(){
-        
+        apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)/like", method: .post, header: ["authorization":userToken])
+        apiManager.requestContentLiked { (isClickedLike) in
+            if isClickedLike{
+                print("성공")
+                if self.isLiked {
+                    self.isLiked = false
+                }else{
+                    self.isLiked = true
+                }
+            }else{
+                print("실패")
+            }
+        }
     }
     
     func useDate() -> String{
@@ -211,13 +270,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         commentLabelHeight.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         commentLabelHeight.sizeToFit()
     
-//        var commentHeight = (47 + commentLabelHeight.frame.size.height) * heightRatio
         var commentHeight = ( 55 + commentLabelHeight.frame.size.height) * heightRatio
-//
-//        if commentLabelHeight.frame.size.height == 0 || commentLabelHeight.frame.size.height == 26 * heightRatio{
-//            commentHeight = 73 * heightRatio
-//        }
-        
+
         if commentLabelHeight.frame.size.height == 0 {
             commentHeight = 73 * heightRatio
         }

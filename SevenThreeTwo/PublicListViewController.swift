@@ -38,6 +38,7 @@ class PublicListViewController:  UICollectionViewController{
     var photos : [PublicPhoto] = []
     var paginationUrl : String!
     var isPagination = false
+  
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -52,23 +53,33 @@ class PublicListViewController:  UICollectionViewController{
         widthRatio = userDevice.userDeviceWidth()
         setUpUI()
         loadPic(path: "/contents?missionDate=2017-02-11&limit=10")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.refreshPic), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
     
     
+    func refreshPic(){
+        self.photos.removeAll()
+        self.viewDidLoad()
+    }
     
     
     func loadPic(path : String){
+        print("loadPic")
+        print("userToken",userToken!)
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
             for i in 0..<contentPhoto.count{
-                self.photos.append(PublicPhoto( image: UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!))
+                self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!, contentId: contentPhoto[i].contentId!))
             }
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
         }
     }
+    
+   
     
         
     
@@ -182,11 +193,8 @@ class PublicListViewController:  UICollectionViewController{
     }
 
     func cameraButtonAction() {
-        DispatchQueue.main.async { 
-            let startIndex = self.paginationUrl.index(self.paginationUrl.startIndex, offsetBy: 20)
-            self.loadPic(path: (self.paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
-            
-        }
+     
+        
     }
 }
 
@@ -196,6 +204,8 @@ extension PublicListViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
+        
+        print("photos.count", photos.count)
         return photos.count
     }
     
@@ -206,6 +216,7 @@ extension PublicListViewController {
             .dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier,
                                  for: indexPath) as? PhotoCaptionCell
         
+        print(self.photos[indexPath.item].contentId, " content id")
         
         cell?.setUpWithImage(self.photos[indexPath.row].image,
                             title: "",
@@ -223,7 +234,8 @@ extension PublicListViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
-        SelectListViewController.receivedCid = indexPath.item
+        SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
+        SelectListViewController.receivedCimg = self.photos[indexPath.item].image
         self.present(selectVC, animated: true, completion: nil)
     }
     
@@ -246,14 +258,7 @@ extension PublicListViewController: MultipleColumnLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForAnnotationAtIndexPath indexPath: IndexPath,
                         withWidth width: CGFloat) -> CGFloat {
-//        
-//        let rect = NSString(string: "")
-//            .boundingRect(
-//                with: CGSize(width: width,
-//                             height: CGFloat(MAXFLOAT)),
-//                options: .usesLineFragmentOrigin,
-//                attributes: [NSFontAttributeName: cellStyle.titleFont],
-//                context: nil)
+
         return ceil(0)
     }
 }
