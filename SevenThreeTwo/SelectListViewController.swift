@@ -72,7 +72,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 self.date.append(infoContent.replies![idx]["createdAt"].stringValue)
                 self.comment.append(infoContent.replies![idx]["reply"]["text"].stringValue)
             }
-            print(infoContent.likeCount!)
             if infoContent.isLiked == 1 {
                 self.isLiked = true
             }else{
@@ -133,7 +132,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         selectedPic.image = SelectListViewController.receivedCimg
         let imageWidth = CGFloat((selectedPic.image?.size.width)!)
         let imageHeight = CGFloat((selectedPic.image?.size.height)!)
-        print(imageWidth,imageHeight)
         
         
         

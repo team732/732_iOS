@@ -204,7 +204,6 @@ extension PublicListViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
         
-        print("photos.count", photos.count)
         return photos.count
     }
     
@@ -215,7 +214,6 @@ extension PublicListViewController {
             .dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier,
                                  for: indexPath) as? PhotoCaptionCell
         
-        print(self.photos[indexPath.item].contentId, " content id")
         
         cell?.setUpWithImage(self.photos[indexPath.row].image,
                             title: "",

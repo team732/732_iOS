@@ -33,7 +33,6 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value{
                     let resp = JSON(json)
-                    print(resp)
                     var publicList = [PublicList]()
                     let contents = resp["data"]["contents"]
                     for idx in 0..<contents.count {

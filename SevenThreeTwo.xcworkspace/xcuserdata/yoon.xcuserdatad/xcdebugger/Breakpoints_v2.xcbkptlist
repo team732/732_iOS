@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SevenThreeTwo/ApiManager.swift"
-            timestampString = "508675337.909716"
+            timestampString = "508693943.394532"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "requestJoin(completion:)"
             landmarkType = "7">
          </BreakpointContent>
