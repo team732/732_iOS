@@ -403,7 +403,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzW-3w-RrP">
-                                <rect key="frame" x="164" y="595" width="46" height="30"/>
+                                <rect key="frame" x="16" y="52" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="closeBtn:" destination="xY8-U1-h6b" eventType="touchUpInside" id="HLj-dF-6Jw"/>
@@ -413,9 +413,12 @@
                                 <rect key="frame" x="313" y="52" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="nextBtn:" destination="xY8-U1-h6b" eventType="touchUpInside" id="HTV-vJ-8BI"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uj1-lw-sEP">
-                                <rect key="frame" x="0.0" y="429" width="240" height="128"/>
+                                <rect key="frame" x="67" y="606" width="240" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -433,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLN-GA-0vB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-564" y="904"/>
+            <point key="canvasLocation" x="-564" y="903.59820089955031"/>
         </scene>
         <!--Detail Mission View Controller-->
         <scene sceneID="qWN-YZ-U4Z">
