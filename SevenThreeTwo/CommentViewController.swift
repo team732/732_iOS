@@ -15,6 +15,9 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
     var commentTextView :UITextView!
+    var users = UserDefaults.standard
+    var userToken : String!
+    var apiManager : ApiManager2!
     
  
     var commentSize:CGFloat = 0.0 {
@@ -34,7 +37,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        
+        userToken = users.string(forKey: "token")
         viewSetUp()
     
     }
@@ -120,10 +123,23 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     
     func completeButtonAction(){
         
+        apiManager = ApiManager2(path: "/contents/\(SelectListViewController.receivedCid)/replies", method: .post, parameters: ["reply":self.commentTextView.text], header: ["authorization":userToken])
+        apiManager.requestWriteComment { (isComment) in
+            switch isComment {
+            case 0:
+                self.commentTextView.endEditing(true)
+                self.dismiss(animated: true, completion: nil)
+                break
+            case -10:
+                self.textviewRangeAlert(overMsg: false,message: "빈 댓글은 좋지 않습니다.")
+                break
+            default:
+                break
+            }
+        }
         
         //서버에 댓글 작성하고 dismiss
-        self.commentTextView.endEditing(true)
-        self.dismiss(animated: true, completion: nil)
+       
     }
 
 
@@ -146,7 +162,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         if(textView.text.characters.count < 141){
             commentSize = commentTextView.contentSize.height
         }else{
-            overTextCharAlert()
+            textviewRangeAlert(overMsg: true,message: "과도한 댓글은 좋지 않습니다.")
         }
     }
     
@@ -159,11 +175,13 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     }
     
     
-    func overTextCharAlert(){
-        let alertView = UIAlertController(title: "", message: "과도한 댓글은 좋지 않습니다.", preferredStyle: .alert)
+    func textviewRangeAlert(overMsg : Bool,message: String){
+        let alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-            self.commentTextView.text.characters.removeLast()
+            if overMsg{
+                self.commentTextView.text.characters.removeLast()
+            }
         })
         
         alertView.addAction(action)

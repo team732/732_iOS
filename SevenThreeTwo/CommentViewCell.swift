@@ -37,10 +37,9 @@ class CommentViewCell: UITableViewCell {
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 10*widthRatio)
         
         commentLabel.frame.origin = CGPoint(x: 20*widthRatio, y: 42*heightRatio)
-        commentLabel.frame.size.width = 295*widthRatio
-        commentLabel.numberOfLines = 0
         commentLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
- 
+        commentLabel.numberOfLines = 0
+        commentLabel.sizeToFit()
         
         contentView.addSubview(dateLabel)
         contentView.addSubview(nickLabel)

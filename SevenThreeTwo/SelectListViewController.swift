@@ -27,6 +27,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var comment : [String] = []
     var likeCountLabel : UILabel!
     
+    var commentLabelHeight = UILabel()
+
     var likeCount : Int = 0 {
         didSet{
             likeCountLabel.text = "좋아요 \(likeCount)개"
@@ -66,7 +68,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     func reLoadComment(){
-        self.loadContent()
+        nickname.removeAll()
+        date.removeAll()
+        comment.removeAll()
+        loadContent()
     }
     
     
@@ -139,7 +144,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         selectedPic.image = SelectListViewController.receivedCimg
         let imageWidth = CGFloat((selectedPic.image?.size.width)!)
         let imageHeight = CGFloat((selectedPic.image?.size.height)!)
-        
         
         
         if imageWidth > imageHeight {
@@ -259,28 +263,30 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         cell.nickLabel.text = nickname[indexPath.item]
         cell.dateLabel.text = date[indexPath.item]
         cell.commentLabel.text = comment[indexPath.item]
-        
+        cell.commentLabel.frame.size.width = 295*widthRatio
         cell.commentLabel.sizeToFit()
-        
-        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let commentLabelHeight = UILabel()
-        commentLabelHeight.text = comment[indexPath.item]
+        
+        
+        commentLabelHeight.text = comment[indexPath.row]
+        commentLabelHeight.frame.origin = CGPoint(x: 20*widthRatio, y: 42*heightRatio)
         commentLabelHeight.frame.size.width = 295*widthRatio
         commentLabelHeight.numberOfLines = 0
         commentLabelHeight.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         commentLabelHeight.sizeToFit()
-    
+        
         var commentHeight = ( 55 + commentLabelHeight.frame.size.height) * heightRatio
 
         if commentLabelHeight.frame.size.height == 0 {
             commentHeight = 73 * heightRatio
         }
+        
+        
         
         return commentHeight
     }
