@@ -43,7 +43,7 @@ class CameraViewController: UIViewController {
         widthRatio = userDevice.userDeviceWidth()
         
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: 440*heightRatio)
+        imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (375*1.34)*heightRatio)
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 18*widthRatio, height: 18*heightRatio)
         
