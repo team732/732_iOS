@@ -25,7 +25,7 @@ extension UIImage {
     }
 }
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController,UITextViewDelegate {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -50,6 +50,8 @@ class CameraViewController: UIViewController {
 
     var apiManager : ApiManager!
     let userToken = UserDefaults.standard
+    
+    let placeHolderText : String = "140자 이내로 작성해주세요."
    
     
     
@@ -86,7 +88,8 @@ class CameraViewController: UIViewController {
         inputText.frame = CGRect(x: (16*widthRatio), y: (516*heightRatio), width: 343*widthRatio, height: (106)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-
+        inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        inputText.text = placeHolderText
 
         
         var line: UIView!
@@ -135,7 +138,33 @@ class CameraViewController: UIViewController {
         })
         
     }
+    //MARK: textView에 placeholder 넣기
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n"{
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
 
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if textView.text == placeHolderText{
+        
+            textView.textColor = UIColor.black
+            textView.text = ""
+        }
+        textView.becomeFirstResponder()
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        if textView.text == ""{
+            textView.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+            textView.text = placeHolderText
+        }
+        textView.resignFirstResponder()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         
