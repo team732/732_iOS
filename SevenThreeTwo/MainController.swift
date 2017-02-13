@@ -27,7 +27,7 @@ class MainController: UIViewController, FusumaDelegate {
     var imageMain : UIImage!
     var users = UserDefaults.standard
     var userToken : String!
-    var apiManager : ApiManager2!
+    var apiManager : ApiManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,7 +199,7 @@ class MainController: UIViewController, FusumaDelegate {
         subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
         subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         
-        apiManager = ApiManager2(path: "/missions", method: .get, header: ["authorization":userToken!])
+        apiManager = ApiManager(path: "/missions", method: .get, header: ["authorization":userToken!])
         apiManager.requestMissions { (JSON) in
             //서버에서 불러와서 이미지 세팅
             //서버에서 불러와서 주제 세팅

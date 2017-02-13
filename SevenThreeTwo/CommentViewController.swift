@@ -17,7 +17,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     var commentTextView :UITextView!
     var users = UserDefaults.standard
     var userToken : String!
-    var apiManager : ApiManager2!
+    var apiManager : ApiManager!
     
  
     var commentSize:CGFloat = 0.0 {
@@ -123,7 +123,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
     
     func completeButtonAction(){
         
-        apiManager = ApiManager2(path: "/contents/\(SelectListViewController.receivedCid)/replies", method: .post, parameters: ["reply":self.commentTextView.text], header: ["authorization":userToken])
+        apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)/replies", method: .post, parameters: ["reply":self.commentTextView.text], header: ["authorization":userToken])
         apiManager.requestWriteComment { (isComment) in
             switch isComment {
             case 0:
