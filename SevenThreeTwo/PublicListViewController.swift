@@ -58,8 +58,9 @@ class PublicListViewController:  UICollectionViewController{
     }
     
     
+    
+    
     func refreshPic(){
-        self.photos.removeAll()
         self.viewDidLoad()
     }
     
@@ -71,6 +72,7 @@ class PublicListViewController:  UICollectionViewController{
         apiManager.requestContents(pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
+            self.photos.removeAll()
             for i in 0..<contentPhoto.count{
                 self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!, contentId: contentPhoto[i].contentId!))
             }
