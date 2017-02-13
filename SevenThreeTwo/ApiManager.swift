@@ -168,6 +168,43 @@ class ApiManager {
         }
     }
     
+    func requestUpload(imageData:Data, text:String, share:Bool, completion : @escaping (String)->Void){
+        
+        
+        Alamofire.upload(
+            multipartFormData: { multipartFormData in
+                
+                multipartFormData.append(text.data(using: .utf8)!, withName: "text")
+                multipartFormData.append(share.description.data(using: .utf8)!, withName: "isPublic")
+                multipartFormData.append(imageData, withName: "photo",fileName: "default.jpeg", mimeType: "image/jpeg")
+                
+        },
+            to: url,
+            headers:header,
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseJSON { response in
+                        //debugPrint(response)
+                        //print(response)
+                        
+                        let resp = JSON(response.result.value!)
+                        
+                        completion(resp["meta"]["code"].stringValue)
+                        //print(json["meta"]["message"].stringValue)
+                        //print(json["meta"]["code"].stringValue)
+                        
+                        
+                    }
+                case .failure(let encodingError):
+                    print(encodingError)
+                }
+        }
+        )
+        
+        
+        
+    }
     /*
      사용 하는 컨트롤러에서
      

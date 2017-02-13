@@ -8,6 +8,22 @@
 
 import UIKit
 
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
 
 class CameraViewController: UIViewController {
     
@@ -32,6 +48,8 @@ class CameraViewController: UIViewController {
     
     var receivedImg : UIImage = UIImage(named : "otter-3")!
 
+    var apiManager : ApiManager!
+    let userToken = UserDefaults.standard
    
     
     
@@ -149,30 +167,46 @@ class CameraViewController: UIViewController {
     }
     @IBAction func nextBtn(_ sender: UIButton) {
         
-        let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
+        let token = userToken.string(forKey: "token")
         
-        let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+        if token != nil{
             
-            print("공유하기")
-            alertView.dismiss(animated: true, completion: nil)
-            self.dismiss(animated: true, completion: nil)
-        })
-        
-        let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
             
-            print("나만보기")
-            alertView.dismiss(animated: true, completion: nil)
-            self.dismiss(animated: true, completion: nil)
-        })
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
-        
-        alertView.addAction(shareAction)
-        alertView.addAction(cancelAction)
-        alertView.addAction(noShareAction)
-        
-        alertWindow(alertView: alertView)
-
+            let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+                print("공유하기")
+                self.apiManager = ApiManager(path: "/missions/1/contents", method: .post, parameters: [:], header: ["authorization":token!])
+                
+                self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
+                    
+                                print("resultCode : \(result)")
+                                //서버 통신이 끝나야 메인으로 돌아감.
+                    
+                                alertView.dismiss(animated: true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
+                            })
+                
+                
+                
+            })
+            
+            let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                
+                print("나만보기")
+                alertView.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+            })
+            
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+            
+            alertView.addAction(shareAction)
+            alertView.addAction(cancelAction)
+            alertView.addAction(noShareAction)
+            
+            alertWindow(alertView: alertView)
+            
+        }
     }
     
     func alertWindow(alertView: UIAlertController){
@@ -181,5 +215,31 @@ class CameraViewController: UIViewController {
         alertWindow.windowLevel = UIWindowLevelAlert + 1
         alertWindow.makeKeyAndVisible()
         alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+    
+    func resizing(_ image: UIImage) -> Data?{
+        var resizedData: NSData? = nil
+        let imgData: NSData = UIImagePNGRepresentation(image)! as NSData
+        
+        print("imgData.length : \(imgData.length)")
+        
+        if imgData.length > 200000{
+            print("aaaa")
+            let resizedImage = image.resized(withPercentage: 0.5)
+            
+            resizedData = UIImagePNGRepresentation(resizedImage!)! as NSData
+            
+            if (resizedData?.length)! > 200000{
+                print("bbb")
+                return resizing(resizedImage!)
+                
+            }
+            
+        }
+        
+        print("img size :\(imgData.length)")
+        print("resizedImg size :\(resizedData?.length)")
+        return imgData as Data
+        
     }
 }
