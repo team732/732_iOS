@@ -708,7 +708,7 @@ private extension FusumaViewController {
             photo.setImage(libraryImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
         }else if flag == 1{
         
-            drawLine(startX: 0*widthRatio, startY: 606*heightRatio, width: 375*widthRatio, height: 1*heightRatio, color: UIColor.black)
+            drawLine(startX: 0*widthRatio, startY: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0))
             library.tintColor = fusumaTintColor
             library.setImage(photoImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             photo.setImage(cameraImage?.withRenderingMode(.alwaysTemplate), for: UIControlState())

@@ -144,19 +144,19 @@ final class FSCameraView: UIView, UIGestureRecognizerDelegate {
         
         //뷰 영역 정하기
         self.previewViewContainer.frame.origin = CGPoint(x:0,y:0)
-       // self.previewViewContainer.frame = CGRect(x:0,y:0,width:375,height:500)
+        //self.previewViewContainer.frame = CGRect(x:0,y:0,width:375,height:500)
         
         //MARK: 라인 그리기
-        var line: UIView!
-        
-        
-        line = UIView(frame: CGRect(x: 0*widthRatio, y: 100*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
-        
-        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
-        
-        
-        
-        self.bottomView.addSubview(line)
+//        var line: UIView!
+//        
+//        
+//        line = UIView(frame: CGRect(x: 0*widthRatio, y: 100*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
+//        
+//        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
+//        
+//        
+//        
+//        self.bottomView.addSubview(line)
     }
     
     
