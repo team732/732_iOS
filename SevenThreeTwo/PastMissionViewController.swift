@@ -50,6 +50,14 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var listView: UIView!
     static var selectedIndex : Int = 0
     
+    //
+    var apiManager : ApiManager!
+    let users = UserDefaults.standard
+    var userToken : String!
+    // MARK: Data
+    var pastMissions : [PastMission] = []
+    var paginationUrl : String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,6 +79,23 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         setUi()
         
         PastTextListViewController.list = self.listBtn
+        
+        userToken = users.string(forKey: "token")
+        
+        loadMission(path: "/missions?offset=2017-02-11&limit=10")// 수정필요
+    }
+    
+    func loadMission(path : String){
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestPastMissions(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentMission) in
+            for i in 0..<contentMission.count{
+                self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate))
+            }
+            
+            self.collectionView?.reloadData()
+        }
     }
     
     
@@ -210,7 +235,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleMissions.count
+        return pastMissions.count
     } //  셀 개수
     
     // make a cell for each cell index path
@@ -219,18 +244,24 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
         
-        cell.image.image = sampleImages[indexPath.row]
-        cell.date.text = sampleDates[indexPath.row]
-        
+        cell.image.image = sampleImages[0]
+        cell.date.text = pastMissions[indexPath.row].missionDate
+        cell.mission.text = pastMissions[indexPath.row].mission
         
         //        cell.mission.frame = CGRect(x: (cell.frame.origin.x+101*widthRatio), y: (cell.frame.origin.y+284*heightRatio), width: 174*widthRatio, height: 18*heightRatio)
         //print(cell.frame.origin.x)
         //print(cell.frame.origin.y)
         //cell.mission.frame = CGRect(x: (cell.frame.origin.x-48), y: (cell.frame.origin.y+143*heightRatio), width: 263*widthRatio, height: 18*heightRatio)
         //cell.mission.textAlignment = .center
-        cell.mission.text = sampleMissions[indexPath.row]
+        
         
         drawLine(startX: cell.frame.origin.x+114*widthRatio, startY: cell.frame.origin.y+127*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.white)
+        
+        if indexPath.row == self.pastMissions.count - 2{
+            //print("-2-2-2")
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadMission(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
+        }
         
         return cell
     }   // 셀의 내용
