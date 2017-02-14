@@ -14,6 +14,8 @@
 		3757A5671E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */; };
 		378CF6FA1E53643300C72AE9 /* PastMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378CF6F91E53643300C72AE9 /* PastMission.swift */; };
 		379895071E4F689A0058013E /* launchSplash.gif in Resources */ = {isa = PBXBuildFile; fileRef = 379895061E4F689A0058013E /* launchSplash.gif */; };
+		37E624DC1E5380C400D862B6 /* PastMissionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E624DB1E5380C400D862B6 /* PastMissionDetailViewController.swift */; };
+		37E624DE1E5382F200D862B6 /* PastMissionPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E624DD1E5382F200D862B6 /* PastMissionPic.swift */; };
 		37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */; };
 		37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */; };
 		67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67092A961E386B3000DB9A27 /* PrivateListViewController.swift */; };
@@ -77,6 +79,8 @@
 		3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListCollectionViewCell.swift; sourceTree = "<group>"; };
 		378CF6F91E53643300C72AE9 /* PastMission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMission.swift; sourceTree = "<group>"; };
 		379895061E4F689A0058013E /* launchSplash.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = launchSplash.gif; path = SevenThreeTwo/launchSplash.gif; sourceTree = "<group>"; };
+		37E624DB1E5380C400D862B6 /* PastMissionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionDetailViewController.swift; sourceTree = "<group>"; };
+		37E624DD1E5382F200D862B6 /* PastMissionPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionPic.swift; sourceTree = "<group>"; };
 		37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionViewController.swift; sourceTree = "<group>"; };
 		37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67092A961E386B3000DB9A27 /* PrivateListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateListViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				672739751E49E0F1009490A8 /* HotPicViewController.swift */,
 				3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */,
 				3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */,
+				37E624DB1E5380C400D862B6 /* PastMissionDetailViewController.swift */,
+				37E624DD1E5382F200D862B6 /* PastMissionPic.swift */,
 			);
 			name = TopView;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */,
 				672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */,
 				67AE84711E43534600BAF314 /* LoginMainViewController.swift in Sources */,
+				37E624DE1E5382F200D862B6 /* PastMissionPic.swift in Sources */,
 				672DD1261E334FFE001022BF /* PhotoCaptionCell.swift in Sources */,
 				3703F27E1E4CF68B00C470B9 /* PublicList.swift in Sources */,
 				672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */,
@@ -536,6 +543,7 @@
 				67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */,
 				67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */,
 				673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */,
+				37E624DC1E5380C400D862B6 /* PastMissionDetailViewController.swift in Sources */,
 				67AE847B1E4394DF00BAF314 /* JoinInputEmailViewController.swift in Sources */,
 				37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */,
 				67AFFE011E5247050088D860 /* SettingViewController.swift in Sources */,

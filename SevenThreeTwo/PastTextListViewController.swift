@@ -41,6 +41,15 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     static var container : UIView!
     static var list : UIButton!
     
+    //
+    var apiManager : ApiManager!
+    let users = UserDefaults.standard
+    var userToken : String!
+    // MARK: Data
+    var pastMissions : [PastMission] = []
+    var paginationUrl : String!
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,9 +59,11 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         //frameBack = back.frame
         
         viewSetUp()
-        print("1")
+        print("textlist")
         
+        userToken = users.string(forKey: "token")
         
+        loadMission(path: "/missions?offset=2017-02-11&limit=10")// 수정필요
         
         
 //        frameTitle = titleLabel.frame
@@ -64,6 +75,19 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    func loadMission(path : String){
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestPastMissions(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentMission) in
+            for i in 0..<contentMission.count{
+                self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate))
+            }
+            
+            self.collectionView?.reloadData()
+        }
     }
     
 //    override func viewDidAppear(_ animated: Bool) {
@@ -114,7 +138,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleMissions.count
+        return pastMissions.count
     } //  셀 개수
     
     // make a cell for each cell index path
@@ -124,12 +148,19 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "textList", for: indexPath as IndexPath) as! PastTextListCollectionViewCell
         
         //cell.image.image = sampleImages[indexPath.row]
-        cell.date.text = sampleDates[indexPath.row]
-        cell.mission.text = sampleMissions[indexPath.row]
+       
+        cell.date.text = pastMissions[indexPath.row].missionDate
+        cell.mission.text = pastMissions[indexPath.row].mission
 
         cell.layer.borderWidth = 1
 
         drawLine(startX: cell.frame.origin.x+150*widthRatio, startY: cell.frame.origin.y+44*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.black)
+        
+        if indexPath.row == self.pastMissions.count - 2{
+            //print("-2-2-2")
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadMission(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
+        }
         
         return cell
     }   // 셀의 내용

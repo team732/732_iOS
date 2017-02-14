@@ -70,7 +70,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         PastMissionViewController.selectedIndex = 0
         }
         
-        print("2")
+        print("pastmission")
         PastTextListViewController.container = self.listView
         
         //#
