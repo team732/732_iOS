@@ -37,7 +37,9 @@ class PublicListViewController:  UICollectionViewController{
     // MARK: Data
     var photos : [PublicPhoto] = []
     var paginationUrl : String!
-    var isPagination = false
+    var contentsCount : Int!
+    var refreshControl : UIRefreshControl!
+    var refreshSeg : Int = 0 // 0이면 최신순 1이면 인기순
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -51,32 +53,84 @@ class PublicListViewController:  UICollectionViewController{
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         setUpUI()
-        loadPic(path: "/contents?missionDate=2017-02-11&limit=20")
-        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.refreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        loadPic(path: "/missions/1/contents?limit=7")
+        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        setRefreshControl()
+        
+        
         
     }
     
+    // 리프레쉬 컨트롤을 세팅
     
-    func refreshPic(){
-        print("here")
-        self.photos.removeAll()
-        self.loadPic(path: "/contents?missionDate=2017-02-11&limit=20")
+    func setRefreshControl(){
+        refreshControl = UIRefreshControl()
+        
+        let refreshView = UIView(frame: CGRect(x: 0, y: 80, width: 0, height: 0))
+        self.collectionView?.addSubview(refreshView)
+        
+        
+        refreshControl.addTarget(self, action: #selector(PublicListViewController.pullRefresh) , for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
+        
+        refreshView.addSubview(refreshControl)
     }
     
     
+    // 바탕화면 갔다가 돌아올 때
+    
+    func reloadAppRefreshPic(){
+        self.photos.removeAll()
+        self.loadPic(path: "/missions/1/contents?limit=7")
+    }
+    
+    
+    // 당겼을 때 리프레쉬
+    func pullRefresh(){
+        
+        var path : String!
+        if refreshSeg == 0{
+            path = "/missions/1/contents?limit=7"
+        }else {
+            path = "/missions/1/contents?limit=7&sort=-like_count"
+        }
+        
+        
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestContents(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentPhoto) in
+            self.photos.removeAll()
+            for i in 0..<contentPhoto.contents!.count{
+                self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+            }
+            self.contentsCount = contentPhoto.contentsCount!
+            self.collectionView?.collectionViewLayout.invalidateLayout()
+            self.collectionView?.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    
+    
+    // 페이지 네이션, 처음 로드 등 ..
     func loadPic(path : String){
         userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
-            for i in 0..<contentPhoto.count{
-                self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto[i].contentPicture!)! as URL)! as Data)!, contentId: contentPhoto[i].contentId!))
+            for i in 0..<contentPhoto.contents!.count{
+                self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
             }
+            self.contentsCount = contentPhoto.contentsCount!
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
         }
     }
+    
     
    
     
@@ -122,7 +176,7 @@ class PublicListViewController:  UICollectionViewController{
         
         
         let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (92*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        gotoLeft.image = UIImage(named: "gotoLeft")
+        gotoLeft.image = UIImage(named: "gotoleft")
         gotoLeft.sizeToFit()
         collectionView?.addSubview(gotoLeft)
         
@@ -165,7 +219,7 @@ class PublicListViewController:  UICollectionViewController{
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
-        
+        customSC.addTarget(self, action: #selector(PublicListViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
         
@@ -175,6 +229,27 @@ class PublicListViewController:  UICollectionViewController{
         // Register cell identifier
         self.collectionView?.register(PhotoCaptionCell.self,
                                       forCellWithReuseIdentifier: self.reuseIdentifier)
+    }
+    
+    
+    //segmentedControl
+    func sortList(sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex {
+        case 0:
+            // 최신순
+            self.refreshSeg = 0
+            self.reloadAppRefreshPic()
+            break
+        case 1:
+            // 인기순
+            self.refreshSeg = 1
+            self.photos.removeAll()
+            self.loadPic(path: "/missions/1/contents?limit=7&sort=-like_count")
+            break
+        default:
+            break
+        }
+        
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
@@ -219,9 +294,9 @@ extension PublicListViewController {
                             title: "",
                             style: BeigeRoundedPhotoCaptionCellStyle())
         cell?.layer.borderWidth = 1
-        if indexPath.row == self.photos.count - 2{
+        if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadPic(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
+            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/1/contents"))
         }
         
         return cell!
