@@ -32,6 +32,7 @@
 		675A4E1B1E2FB076000781DA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E1A1E2FB076000781DA /* MainController.swift */; };
 		675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E211E2FB076000781DA /* LaunchScreen.storyboard */; };
 		675A4E2E1E2FB076000781DA /* SevenThreeTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */; };
+		676CFB9B1E53442100CB0449 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676CFB9A1E53442100CB0449 /* SettingTableViewCell.swift */; };
 		6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6789A3F81E417D3E009374BD /* DeviceResize.swift */; };
 		67A4608E1E4F324B00929AE1 /* CheckTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */; };
 		67AE84591E43486400BAF314 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67AE84571E43486400BAF314 /* Main.storyboard */; };
@@ -97,6 +98,7 @@
 		675A4E291E2FB076000781DA /* SevenThreeTwoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SevenThreeTwoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenThreeTwoTests.swift; sourceTree = "<group>"; };
 		675A4E2F1E2FB076000781DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		676CFB9A1E53442100CB0449 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceResize.swift; path = SevenThreeTwo/DeviceResize.swift; sourceTree = "<group>"; };
 		67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckTokenViewController.swift; sourceTree = "<group>"; };
 		67AE84581E43486400BAF314 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				67AFFE001E5247050088D860 /* SettingViewController.swift */,
+				676CFB9A1E53442100CB0449 /* SettingTableViewCell.swift */,
 			);
 			name = SettingView;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */,
 				37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */,
 				6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */,
+				676CFB9B1E53442100CB0449 /* SettingTableViewCell.swift in Sources */,
 				67AE84771E43881300BAF314 /* JoinInputPwCheckViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

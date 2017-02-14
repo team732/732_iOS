@@ -26,6 +26,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var date : [String] = []
     var comment : [String] = []
     var myComment : [Bool] = []
+    var replyId : [Int] = []
     var likeCountLabel : UILabel!
     
     var commentLabelHeight = UILabel()
@@ -39,18 +40,18 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         willSet(newValue){
             if newValue{
                 likeBtn.setImage(UIImage(named: "btnLikeTouchdown"), for: .normal)
-                likeCount += 1
             }else{
                 likeBtn.setImage(UIImage(named: "btnLike"), for: .normal)
-                likeCount -= 1
             }
         }
     }
     
     var selectedPic = UIImageView()
     var likeBtn : UIButton!
+    
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +71,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         commentLpgr.delaysTouchesBegan = true
         commentLpgr.delegate = self
         self.myTableView.addGestureRecognizer(commentLpgr)
+        
+      
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,8 +84,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         date.removeAll()
         comment.removeAll()
         myComment.removeAll()
+        replyId.removeAll()
         loadContent()
     }
+    
     
     func removeComment(gestureReconizer: UILongPressGestureRecognizer){
         if gestureReconizer.state != UIGestureRecognizerState.ended {
@@ -95,7 +100,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         if let index = indexPath {
             
             
-            commentAlert(isMine: myComment[index.row])
+            commentAlert(isMine: myComment[index.row],replyId: replyId[index.row])
             
         } else {
             print("Could not find index path")
@@ -107,12 +112,20 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
         apiManager.requestSelectContent { (infoContent) in
+            
+            self.nickname.append("#"+infoContent.nickname!)
+            self.date.append("")
+            self.comment.append(infoContent.contentText!)
+            
             for idx in 0..<infoContent.replies!.count{
                 self.nickname.append(infoContent.replies![idx]["nickname"].stringValue)
                 self.date.append(infoContent.replies![idx]["createdAt"].stringValue)
                 self.comment.append(infoContent.replies![idx]["reply"]["text"].stringValue)
                 self.myComment.append(infoContent.replies![idx]["isMine"].boolValue)
+                self.replyId.append(infoContent.replies![idx]["replyId"].intValue)
             }
+            
+            
             if infoContent.isLiked == 1 {
                 self.isLiked = true
             }else{
@@ -178,7 +191,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         if imageWidth > imageHeight {
             self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 193*heightRatio, width: 320*widthRatio, height: 247*heightRatio)
         }else if imageWidth < imageHeight{
-            self.selectedPic.frame = CGRect(x: (myPicView.frame.width/2 - (321*imageWidth/imageHeight*widthRatio/2) - 20)*widthRatio, y: 156*heightRatio, width: (321*imageWidth/imageHeight)*widthRatio, height: 321*heightRatio)
+            self.selectedPic.frame = CGRect(x: (myPicView.frame.width/2 - (321*imageWidth/imageHeight/2) - 20)*widthRatio, y: 156*heightRatio, width: (321*imageWidth/imageHeight)*widthRatio, height: 321*heightRatio)
         }else{
             self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 156*heightRatio, width: 320*widthRatio, height: 320*heightRatio)
         }
@@ -232,11 +245,12 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)/like", method: .post, header: ["authorization":userToken])
         apiManager.requestContentLiked { (isClickedLike) in
             if isClickedLike{
-                print("성공")
                 if self.isLiked {
                     self.isLiked = false
+                    self.likeCount -= 1
                 }else{
                     self.isLiked = true
+                    self.likeCount += 1
                 }
             }else{
                 print("실패")
@@ -335,14 +349,12 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         myTableView.isHidden = false
     }
     
-    func commentAlert(isMine : Bool){
+    func commentAlert(isMine : Bool, replyId : Int){
         
         let alertView = UIAlertController(title: "", message: "이 댓글에 관하여", preferredStyle: .actionSheet)
         
         let reportComment = UIAlertAction(title: "신고하기", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
-            
-            print("신고하기")
-            
+                        
             alertView.dismiss(animated: true, completion: nil)
         })
         
@@ -353,6 +365,14 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         
         let removeComment = UIAlertAction(title: "댓글 삭제", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            self.apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)/replies/\(replyId)", method: .delete, header: ["authorization":self.userToken!])
+            self.apiManager.requestRemoveComment(completion: { (isRemoved) in
+                if isRemoved == 0{
+                    self.reLoadComment()
+                }else{
+                    //실패
+                }
+            })
             
             alertView.dismiss(animated: true, completion: nil)
         })
