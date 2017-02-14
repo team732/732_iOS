@@ -116,14 +116,17 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
         inputText.endEditing(true) // textBox는 textFiled 오브젝트 outlet 연동할때의 이름.
         //self.bottomConstraint.constant = 0
+        self.view.frame.origin.y = 0
     }
     // 키보드가 보여지면..
     func keyboardWillShow(notification:NSNotification) {
+        print("keywillshow")
         adjustingHeight(show: false, notification: notification)
     }
     
     // 키보드가 사라지면..
     func keyboardWillHide(notification:NSNotification) {
+        print("keywillhide")
         adjustingHeight(show: true, notification: notification)
         
     }
