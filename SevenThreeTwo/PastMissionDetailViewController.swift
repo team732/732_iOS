@@ -28,6 +28,8 @@ class PastMissionDetailViewController: UICollectionViewController {
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
     
+    var receivedMissionId : Int = 0
+    
     // MARK: Data
     fileprivate let photos = PastMissionPic.allPhotos()
     
@@ -44,7 +46,7 @@ class PastMissionDetailViewController: UICollectionViewController {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
-        
+        print("어디서 왔나 \(receivedMissionId)")
         setUpUI()
     }
     
@@ -86,51 +88,61 @@ class PastMissionDetailViewController: UICollectionViewController {
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (92*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        gotoLeft.image = UIImage(named: "gotoleft")
+        let gotoLeft = UIButton(frame: CGRect(x: 30*widthRatio , y: 73*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
+        gotoLeft.addTarget(self, action: #selector(gotoLeftButtonAction), for: .touchUpInside)
         gotoLeft.sizeToFit()
         collectionView?.addSubview(gotoLeft)
         
-        let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelPic.text = "공개된"
-        labelPic.textAlignment = .center
-        labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
-        labelPic.font = labelPic.font.withSize(24*widthRatio)
-        collectionView?.addSubview(labelPic)
+        let labelDate = UILabel(frame: CGRect(x: 135*widthRatio, y: 97*heightRatio, width: 107*widthRatio, height: 11*heightRatio))
+        labelDate.text = "2017년 1월 21일의 미션"
+        labelDate.textAlignment = .center
+        labelDate.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        labelDate.font = labelDate.font.withSize(11*widthRatio)
+        collectionView?.addSubview(labelDate)
         
-        let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelList.text = "리스트"
-        labelList.textAlignment = .center
-        labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
-        labelList.font = labelList.font.withSize(24*widthRatio)
-        collectionView?.addSubview(labelList)
+        drawLine(startX: 170, startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
         
-        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
-        todayhotpic.image = UIImage(named: "todayhotpic")
-        collectionView?.addSubview(todayhotpic)
+        let labelMission = UILabel(frame: CGRect(x: 111*widthRatio, y: 137*heightRatio, width: 154*widthRatio, height: 16*heightRatio))
+        labelMission.text = "인간의 욕심은 끝이없고"
+        labelMission.textAlignment = .center
+        labelMission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
+        labelMission.font = labelMission.font.withSize(16*widthRatio)
+        collectionView?.addSubview(labelMission)
         
-        let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 198*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
+//        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
+//        todayhotpic.image = UIImage(named: "todayhotpic")
+//        collectionView?.addSubview(todayhotpic)
+        
+        let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 194*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
         //cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
         cameraBtn.setImage(UIImage(named:"camera"), for: .normal)
         collectionView?.addSubview(cameraBtn)
         
-        let shotLabel = UILabel(frame: CGRect(x: 168.5*widthRatio, y: 226*heightRatio, width: 40*widthRatio, height: 11*heightRatio))
-        shotLabel.text = "촬영하기"
+        let shotLabel = UILabel(frame: CGRect(x: 167*widthRatio, y: 223*heightRatio, width: 43*widthRatio, height: 11*heightRatio))
+        shotLabel.text = "과거 미션"
         shotLabel.textAlignment = .center
         shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
-        shotLabel.font = labelList.font.withSize(11*widthRatio)
+        shotLabel.font = shotLabel.font.withSize(11*widthRatio)
         collectionView?.addSubview(shotLabel)
+        
+        let shotLabel2 = UILabel(frame: CGRect(x: 167*widthRatio, y: 235*heightRatio, width: 43*widthRatio, height: 11*heightRatio))
+        shotLabel2.text = "수행하기"
+        shotLabel2.textAlignment = .center
+        shotLabel2.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        shotLabel2.font = shotLabel2.font.withSize(11*widthRatio)
+        collectionView?.addSubview(shotLabel2)
         
         
         let items = ["최신순", "인기순"]
         let customSC = UISegmentedControl(items: items)
         customSC.selectedSegmentIndex = 0
-        customSC.frame = CGRect(x: 85*widthRatio, y:276*heightRatio,
+        customSC.frame = CGRect(x: 88*widthRatio, y:276*heightRatio,
                                 width:200.6*widthRatio, height: 28*heightRatio)
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
-        customSC.addTarget(self, action: #selector(PublicListViewController.sortList), for: .valueChanged)
+        customSC.addTarget(self, action: #selector(PastMissionDetailViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
         
@@ -141,9 +153,28 @@ class PastMissionDetailViewController: UICollectionViewController {
         self.collectionView?.register(PhotoCaptionCell.self,
                                       forCellWithReuseIdentifier: self.reuseIdentifier)
     }
+    //segmentedControl
+    func sortList(sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex {
+        case 0:
+            // 최신순
+            //self.refreshSeg = 0
+            //self.reloadAppRefreshPic()
+            break
+        case 1:
+            // 인기순
+            //self.refreshSeg = 1
+            //self.photos.removeAll()
+            //self.loadPic(path: "/missions/1/contents?limit=10&sort=-like_count")
+            break
+        default:
+            break
+        }
+        
+    }
     
-    func settingButtonAction(){
-        print("!!!!!!")
+    func gotoLeftButtonAction(){
+        dismiss(animated: true, completion: nil)
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
