@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class SelectListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -25,10 +25,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var nickname : [String] = []
     var date : [String] = []
     var comment : [String] = []
+    var myComment : [Bool] = []
     var likeCountLabel : UILabel!
     
     var commentLabelHeight = UILabel()
-
+    
     var likeCount : Int = 0 {
         didSet{
             likeCountLabel.text = "좋아요 \(likeCount)개"
@@ -62,6 +63,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         // 옵저버를 보내 얘가 언제 불리나.. 체크한다.
         NotificationCenter.default.addObserver(self, selector: #selector(SelectListViewController.reLoadComment),name:NSNotification.Name(rawValue: "reload"), object: nil)
+        
+        // 댓글 길게 누르면 삭제 할 수 있게
+        let commentLpgr = UILongPressGestureRecognizer(target: self, action: #selector(SelectListViewController.removeComment))
+        commentLpgr.minimumPressDuration = 0.5
+        commentLpgr.delaysTouchesBegan = true
+        commentLpgr.delegate = self
+        self.myTableView.addGestureRecognizer(commentLpgr)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,7 +80,26 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         nickname.removeAll()
         date.removeAll()
         comment.removeAll()
+        myComment.removeAll()
         loadContent()
+    }
+    
+    func removeComment(gestureReconizer: UILongPressGestureRecognizer){
+        if gestureReconizer.state != UIGestureRecognizerState.ended {
+            return
+        }
+        
+        let pressPoint = gestureReconizer.location(in: self.myTableView)
+        let indexPath = self.myTableView.indexPathForRow(at: pressPoint)
+        
+        if let index = indexPath {
+            
+            
+            commentAlert(isMine: myComment[index.row])
+            
+        } else {
+            print("Could not find index path")
+        }
     }
     
     
@@ -84,6 +111,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 self.nickname.append(infoContent.replies![idx]["nickname"].stringValue)
                 self.date.append(infoContent.replies![idx]["createdAt"].stringValue)
                 self.comment.append(infoContent.replies![idx]["reply"]["text"].stringValue)
+                self.myComment.append(infoContent.replies![idx]["isMine"].boolValue)
             }
             if infoContent.isLiked == 1 {
                 self.isLiked = true
@@ -95,9 +123,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
-
     
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -141,7 +169,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         subLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         
         self.myPicView.addSubview(subLabel)
-
+        
         selectedPic.image = SelectListViewController.receivedCimg
         let imageWidth = CGFloat((selectedPic.image?.size.width)!)
         let imageHeight = CGFloat((selectedPic.image?.size.height)!)
@@ -154,9 +182,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         }else{
             self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 156*heightRatio, width: 320*widthRatio, height: 320*heightRatio)
         }
-
+        
         self.myPicView.addSubview(selectedPic)
-
+        
         //서버에서 좋아요 개수 받아온다.
         
         likeCountLabel = UILabel(frame: CGRect(x: 20*widthRatio, y: 500*heightRatio, width: 100*widthRatio, height: 13*heightRatio))
@@ -177,12 +205,12 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         let lastLine = drawLine(startX: 20, startY: 531, width: 295, height: 1, border: false, color: UIColor.black)
         
         self.myPicView.addSubview(lastLine)
-       
+        
         myTableView.frame = CGRect(x: 20*widthRatio, y: 117*heightRatio, width: 335*widthRatio, height: UIScreen.main.bounds.size.height-137*heightRatio)
         
         
         myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
-
+        
         myPicView.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
         myPicView.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
         
@@ -191,7 +219,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.view.addSubview(bottomLine)
     }
     
-   
+    
     func cancelButtonAction(){
         self.dismiss(animated: true, completion: nil)
     }
@@ -238,9 +266,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         return line
     }
-
     
-
+    
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -282,19 +310,23 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         commentLabelHeight.sizeToFit()
         
         var commentHeight = ( 55 + commentLabelHeight.frame.size.height) * heightRatio
-
+        
         if commentLabelHeight.frame.size.height == 0 {
             commentHeight = 73 * heightRatio
         }
         
         
-        
         return commentHeight
     }
     
-  
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    
     func tableViewSetUp(){
-
+        
         myTableView.separatorInset = UIEdgeInsets.init(top: 0, left: 16*widthRatio, bottom: 0, right: 16*widthRatio)
         myTableView.showsVerticalScrollIndicator = false
         myTableView.delegate = self
@@ -303,6 +335,46 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         myTableView.isHidden = false
     }
     
+    func commentAlert(isMine : Bool){
+        
+        let alertView = UIAlertController(title: "", message: "이 댓글에 관하여", preferredStyle: .actionSheet)
+        
+        let reportComment = UIAlertAction(title: "신고하기", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            
+            print("신고하기")
+            
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        let modifyComment = UIAlertAction(title: "댓글 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        
+        let removeComment = UIAlertAction(title: "댓글 삭제", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+        
+        if isMine{
+            alertView.addAction(modifyComment)
+            alertView.addAction(removeComment)
+        }else{
+            alertView.addAction(reportComment)
+        }
+     
+        alertView.addAction(cancelAction)
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+        
+    }
     
     
 }

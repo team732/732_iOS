@@ -66,7 +66,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(pwLabel)
         
         pwTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
-        pwTextField.placeholder = "비밀번호를 입력하시오.(영어 대소문자,숫자 조합6~16자리)"
+        pwTextField.placeholder = "비밀번호를 입력하시오.(영어 대소문자,숫자 가능6~16자리)"
         pwTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         pwTextField.autocorrectionType = UITextAutocorrectionType.no
         pwTextField.keyboardType = UIKeyboardType.default
