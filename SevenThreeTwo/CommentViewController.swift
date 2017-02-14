@@ -162,7 +162,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         if(textView.text.characters.count < 141){
             commentSize = commentTextView.contentSize.height
         }else{
-            textviewRangeAlert(overMsg: true,message: "과도한 댓글은 좋지 않습니다.")
+            textviewRangeAlert(overMsg: true,message: "긴 댓글은 좋지 않습니다.")
         }
     }
     
