@@ -54,6 +54,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     let placeHolderText : String = "140자 이내로 작성해주세요."
     var commentSize : CGFloat = 0.0
    
+    var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
     
     
     override func viewDidLoad() {
@@ -110,23 +111,25 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-       
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
         inputText.endEditing(true) // textBox는 textFiled 오브젝트 outlet 연동할때의 이름.
-        //self.bottomConstraint.constant = 0
+        
         self.view.frame.origin.y = 0
+        //항상 일반 한글 키보드 시점으로 맞춰주어 emoji keyboard 끝나고 바깥 부분을 터치해도 문제가 없음.
+        self.emojiFlag = 0
     }
     // 키보드가 보여지면..
     func keyboardWillShow(notification:NSNotification) {
-        print("keywillshow")
+        print("keywillshow : \(emojiFlag)")
         adjustingHeight(show: false, notification: notification)
     }
     
     // 키보드가 사라지면..
     func keyboardWillHide(notification:NSNotification) {
-        print("keywillhide")
+        print("keywillhide : \(emojiFlag)")
         adjustingHeight(show: true, notification: notification)
         
     }
@@ -137,13 +140,47 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
+        //216(normal keyboard height)+42 => emoji keyboard height
+        let changeInEmoji : CGFloat = (42 * self.heightRatio) * (show ? 1 : -1)
+        
         UIView.animate(withDuration: animationDuration, animations: { () -> Void in
+            print(changeInHeight)
             
-            self.view.frame.origin.y += changeInHeight
-            
+            //emoji 일때
+            if self.inputText.textInputMode?.primaryLanguage == nil{
+                print("emoji")
+                
+                self.view.frame.origin.y += changeInEmoji
+                
+                self.emojiFlag = 1
+                
+            }
+            //처음에 한글인지 이모지다음에 한글인지 알 수 있다면 여기서 걸러낼수 있을텐데...
+            // 일반적인 한글모드 일때
+            else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 0 {
+             
+                
+                self.view.frame.origin.y += changeInHeight
+                
+                
+            }// 이모지다음에 한글일 때
+            else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 1 {
+                
+                
+                self.view.frame.origin.y += (42 * self.heightRatio)
+                self.emojiFlag = 0
+                
+            }// 한글 제외한 언어일 때
+            else{
+                print("else language")
+                
+                self.view.frame.origin.y += changeInHeight
+                self.emojiFlag = 0
+            }
         })
         
     }
+    
     //MARK: textView에 placeholder 넣기
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
@@ -157,7 +194,6 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         if textView.text == placeHolderText{
-        
             textView.textColor = UIColor.black
             textView.text = ""
         }
@@ -183,10 +219,14 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     }
     
     func textviewRangeAlert(message: String){
+        
         let alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
             self.inputText.text.characters.removeLast()
+            //해주지 않으면 자꾸 editing이 끝나지않아 뒤에 자판이 눌림...
+            self.inputText.endEditing(true)
+            self.view.frame.origin.y = 0
             alertView.dismiss(animated: true, completion: nil)
         })
         
@@ -230,14 +270,22 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         if token != nil{
             
             self.apiManager = ApiManager(path: "/missions/1/contents", method: .post, parameters: [:], header: ["authorization":token!])
-            
+            //
+//            let imgData: NSData = UIImageJPEGRepresentation(self.receivedImg, 0.25)! as NSData
+//            
+//            let compressedImage : UIImage = UIImage(data:imgData as Data)!
+//            
+//            let resizedImage = compressedImage.resized(withPercentage: 0.5)
+//            
+//            let resizedData = UIImageJPEGRepresentation(resizedImage!, 1.0)! as NSData
+            //
             let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
             
             let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
                 print("공유하기")
-                
-                self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
+                //self.resizing(compressedImage)!
+                self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
                                 print("resultCode : \(result)")
                                 //서버 통신이 끝나야 메인으로 돌아감.
@@ -282,28 +330,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     }
     
     func resizing(_ image: UIImage) -> Data?{
-        var resizedData: NSData? = nil
-        let imgData: NSData = UIImagePNGRepresentation(image)! as NSData
         
-        print("imgData.length : \(imgData.length)")
+//        let imgData = UIImageJPEGRepresentation(image, 0.25)!
+//        
+//        let resizedImage = UIImage(data:imgData)
         
-        if imgData.length > 200000{
-            print("aaaa")
-            let resizedImage = image.resized(withPercentage: 0.5)
-            
-            resizedData = UIImagePNGRepresentation(resizedImage!)! as NSData
-            
-            if (resizedData?.length)! > 200000{
-                print("bbb")
-                return resizing(resizedImage!)
-                
-            }
-            
-        }
+        let resizedData = UIImageJPEGRepresentation((image.resized(withPercentage: 0.5))!, 0.25)
+        //UIImagePNGRepresentation((resizedImage?.resized(withPercentage: 0.5))!)
         
-        print("img size :\(imgData.length)")
-        print("resizedImg size :\(resizedData?.length)")
-        return imgData as Data
+        return resizedData
         
     }
 }
