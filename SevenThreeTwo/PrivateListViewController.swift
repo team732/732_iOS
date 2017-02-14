@@ -147,7 +147,9 @@ class PrivateListViewController: UICollectionViewController {
     }
     
     func settingButtonAction(){
-        print("!!!!!!")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingVC = storyboard.instantiateViewController(withIdentifier: "Setting")
+        self.present(settingVC, animated: true, completion: nil)
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){

@@ -53,7 +53,7 @@ class PublicListViewController:  UICollectionViewController{
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         setUpUI()
-        loadPic(path: "/missions/1/contents?limit=7")
+        loadPic(path: "/missions/1/contents?limit=10")
         NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         setRefreshControl()
@@ -67,7 +67,7 @@ class PublicListViewController:  UICollectionViewController{
     func setRefreshControl(){
         refreshControl = UIRefreshControl()
         
-        let refreshView = UIView(frame: CGRect(x: 0, y: 80, width: 0, height: 0))
+        let refreshView = UIView(frame: CGRect(x: 0, y: 80*heightRatio, width: 0, height: 0))
         self.collectionView?.addSubview(refreshView)
         
         
@@ -83,7 +83,7 @@ class PublicListViewController:  UICollectionViewController{
     
     func reloadAppRefreshPic(){
         self.photos.removeAll()
-        self.loadPic(path: "/missions/1/contents?limit=7")
+        self.loadPic(path: "/missions/1/contents?limit=10")
     }
     
     
@@ -92,9 +92,9 @@ class PublicListViewController:  UICollectionViewController{
         
         var path : String!
         if refreshSeg == 0{
-            path = "/missions/1/contents?limit=7"
+            path = "/missions/1/contents?limit=10"
         }else {
-            path = "/missions/1/contents?limit=7&sort=-like_count"
+            path = "/missions/1/contents?limit=10&sort=-like_count"
         }
         
         
@@ -244,7 +244,7 @@ class PublicListViewController:  UICollectionViewController{
             // 인기순
             self.refreshSeg = 1
             self.photos.removeAll()
-            self.loadPic(path: "/missions/1/contents?limit=7&sort=-like_count")
+            self.loadPic(path: "/missions/1/contents?limit=10&sort=-like_count")
             break
         default:
             break
