@@ -182,6 +182,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
             if overMsg{
                 self.commentTextView.text.characters.removeLast()
             }
+            alertView.dismiss(animated: true, completion: nil)
         })
         
         alertView.addAction(action)

@@ -56,15 +56,16 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myTableView.isHidden = true
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
+        loadContent()
+        viewSetUp()
+        tableViewSetUp()
         
         // 옵저버를 보내 얘가 언제 불리나.. 체크한다.
         NotificationCenter.default.addObserver(self, selector: #selector(SelectListViewController.reLoadComment),name:NSNotification.Name(rawValue: "reload"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        loadContent()
-        viewSetUp()
-        tableViewSetUp()
+        
     }
     
     func reLoadComment(){

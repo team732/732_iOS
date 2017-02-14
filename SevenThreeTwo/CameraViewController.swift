@@ -52,6 +52,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     let userToken = UserDefaults.standard
     
     let placeHolderText : String = "140자 이내로 작성해주세요."
+    var commentSize : CGFloat = 0.0
    
     
     
@@ -167,6 +168,29 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         }
         textView.resignFirstResponder()
     }
+    
+    
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
+        
+        if(textView.text.characters.count < 141){
+            commentSize = inputText.contentSize.height
+        }else{
+            textviewRangeAlert(message: "140자를 넘지 말아주세요.")
+        }
+    }
+    
+    func textviewRangeAlert(message: String){
+        let alertView = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            self.inputText.text.characters.removeLast()
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        alertView.addAction(action)
+        alertWindow(alertView: alertView)
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         
