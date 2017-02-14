@@ -65,9 +65,7 @@ class PastMissionDetailViewController: UICollectionViewController {
     // MARK: Private
     
     fileprivate func setUpUI() {
-        
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        
         // Set title
         title = "Variable height layout"
         
@@ -87,8 +85,14 @@ class PastMissionDetailViewController: UICollectionViewController {
         layout.cellPadding = collectionViewSideInset
         layout.numberOfColumns = numberOfColumns
         
+        
+        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (92*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoLeft.image = UIImage(named: "gotoleft")
+        gotoLeft.sizeToFit()
+        collectionView?.addSubview(gotoLeft)
+        
         let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelPic.text = "내사진"
+        labelPic.text = "공개된"
         labelPic.textAlignment = .center
         labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelPic.font = labelPic.font.withSize(24*widthRatio)
@@ -101,31 +105,24 @@ class PastMissionDetailViewController: UICollectionViewController {
         labelList.font = labelList.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelList)
         
-        let gotoRight = UIImageView(frame: CGRect(x: (318*widthRatio), y: (98*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        gotoRight.image = UIImage(named: "gotoright")
-        gotoRight.sizeToFit()
-        collectionView?.addSubview(gotoRight)
+        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
+        todayhotpic.image = UIImage(named: "todayhotpic")
+        collectionView?.addSubview(todayhotpic)
         
-        let traceImg = UIImageView(frame: CGRect(x: 140*widthRatio, y: 147*heightRatio, width: 91*widthRatio, height: 12*heightRatio))
-        traceImg.image = UIImage(named: "trace")
-        traceImg.sizeToFit()
-        collectionView?.addSubview(traceImg)
+        let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 198*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
+        //cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
+        cameraBtn.setImage(UIImage(named:"camera"), for: .normal)
+        collectionView?.addSubview(cameraBtn)
         
-        let settingBtn = UIButton(frame: CGRect(x: 173*widthRatio , y: 196*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
-        settingBtn.addTarget(self, action: #selector(settingButtonAction), for: .touchUpInside)
-        settingBtn.setImage(UIImage(named:"setting"), for: .normal)
-        collectionView?.addSubview(settingBtn)
-        
-        let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 226*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
-        settingLabel.text = "설정"
-        settingLabel.textAlignment = .center
-        settingLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
-        settingLabel.font = labelList.font.withSize(11*widthRatio)
-        collectionView?.addSubview(settingLabel)
+        let shotLabel = UILabel(frame: CGRect(x: 168.5*widthRatio, y: 226*heightRatio, width: 40*widthRatio, height: 11*heightRatio))
+        shotLabel.text = "촬영하기"
+        shotLabel.textAlignment = .center
+        shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        shotLabel.font = labelList.font.withSize(11*widthRatio)
+        collectionView?.addSubview(shotLabel)
         
         
-        
-        let items = ["모두 공개", "비공개"]
+        let items = ["최신순", "인기순"]
         let customSC = UISegmentedControl(items: items)
         customSC.selectedSegmentIndex = 0
         customSC.frame = CGRect(x: 85*widthRatio, y:276*heightRatio,
@@ -133,12 +130,11 @@ class PastMissionDetailViewController: UICollectionViewController {
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
-        
+        customSC.addTarget(self, action: #selector(PublicListViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
         
         drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor.black)
-        
         
         
         // Register cell identifier
