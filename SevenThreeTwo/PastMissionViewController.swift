@@ -280,6 +280,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //closeInfoView()
+        performSegue(withIdentifier: "pastToDetail", sender: self)
     } // 셀 선택시
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {

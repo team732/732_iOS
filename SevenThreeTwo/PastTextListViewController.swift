@@ -178,6 +178,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     } // 셀의 간격
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "pastListToDetail", sender: self)
         //closeInfoView()
     } // 셀 선택시
     
