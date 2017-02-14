@@ -105,15 +105,20 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     
-    /*
+    
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+     
+        if segue.identifier == "pastToDetail"
+        {
+            let destination = segue.destination as! PastMissionDetailViewController
+            
+            destination.receivedMissionId = 1
+            
+        }
      }
-     */
+ 
     
     func setUi(){
         
