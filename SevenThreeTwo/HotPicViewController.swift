@@ -103,7 +103,6 @@ class HotPicViewController: UIViewController {
         backBtn.sizeToFit()
         backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
         backBtn.addTarget(self, action:#selector(backButtonAction), for: .touchUpInside)
-        
         self.view.addSubview(backBtn)
         
         let hotPicLabel = UILabel(frame: CGRect(x: 136.5*widthRatio, y: 73*heightRatio, width: 102*widthRatio, height: 22*heightRatio))
