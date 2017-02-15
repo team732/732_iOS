@@ -8,8 +8,9 @@
 
 import UIKit
 import AVFoundation
+import Fusuma
 // Inspired by: RayWenderlich.com pinterest-basic-layout
-class PastMissionDetailViewController: UICollectionViewController {
+class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -28,8 +29,10 @@ class PastMissionDetailViewController: UICollectionViewController {
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
     
-    //밑에 넣어주면 됨.
+    //received
     var receivedMissionId : Int = 0
+    var receivedMissionDate : String = ""
+    var receivedMissionText : String = ""
     
     var apiManager : ApiManager!
     let users = UserDefaults.standard
@@ -40,6 +43,8 @@ class PastMissionDetailViewController: UICollectionViewController {
     var contentsCount : Int!
     var refreshControl : UIRefreshControl!
     var refreshSeg : Int = 0 // 0이면 최신순 1이면 인기순
+    
+    var imagePastMission : UIImage!
     
     
     
@@ -55,10 +60,10 @@ class PastMissionDetailViewController: UICollectionViewController {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
-        print("어디서 왔나 \(receivedMissionId)")
+        print("받아온 미션 아이디 \(receivedMissionId)")
         setUpUI()
         
-        loadPic(path: "/missions/1/contents?limit=10")
+        loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         setRefreshControl()
@@ -85,7 +90,7 @@ class PastMissionDetailViewController: UICollectionViewController {
     
     func reloadAppRefreshPic(){
         self.photos.removeAll()
-        self.loadPic(path: "/missions/1/contents?limit=10")
+        self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
     }
     
     
@@ -94,9 +99,9 @@ class PastMissionDetailViewController: UICollectionViewController {
         
         var path : String!
         if refreshSeg == 0{
-            path = "/missions/1/contents?limit=10"
+            path = "/missions/\(receivedMissionId)/contents?limit=10"
         }else {
-            path = "/missions/1/contents?limit=10&sort=-like_count"
+            path = "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count"
         }
         
         
@@ -171,12 +176,19 @@ class PastMissionDetailViewController: UICollectionViewController {
         
         let gotoLeft = UIButton(frame: CGRect(x: 30*widthRatio , y: 73*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
-        gotoLeft.addTarget(self, action: #selector(gotoLeftButtonAction), for: .touchUpInside)
+        //gotoLeft.addTarget(self, action: #selector(gotoLeftButtonAction), for: .touchUpInside)
         gotoLeft.sizeToFit()
         collectionView?.addSubview(gotoLeft)
         
+        let backBtnExtension = UIView(frame: CGRect(x: 16*widthRatio, y: 65*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        //backBtnExtension.layer.borderWidth = 1
+        let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(gotoLeftButtonAction))
+        backBtnExtension.isUserInteractionEnabled = true
+        backBtnExtension.addGestureRecognizer(backBtnRecognizer)
+        collectionView?.addSubview(backBtnExtension)
+        
         let labelDate = UILabel(frame: CGRect(x: 135*widthRatio, y: 97*heightRatio, width: 107*widthRatio, height: 11*heightRatio))
-        labelDate.text = "2017년 1월 21일의 미션"
+        labelDate.text = receivedMissionDate
         labelDate.textAlignment = .center
         labelDate.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         labelDate.font = labelDate.font.withSize(11*widthRatio)
@@ -185,7 +197,7 @@ class PastMissionDetailViewController: UICollectionViewController {
         drawLine(startX: 170, startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
         
         let labelMission = UILabel(frame: CGRect(x: 111*widthRatio, y: 137*heightRatio, width: 154*widthRatio, height: 16*heightRatio))
-        labelMission.text = "인간의 욕심은 끝이없고"
+        labelMission.text = receivedMissionText
         labelMission.textAlignment = .center
         labelMission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
         labelMission.font = labelMission.font.withSize(16*widthRatio)
@@ -196,7 +208,7 @@ class PastMissionDetailViewController: UICollectionViewController {
 //        collectionView?.addSubview(todayhotpic)
         
         let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 194*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
-        //cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
+        cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
         cameraBtn.setImage(UIImage(named:"camera"), for: .normal)
         collectionView?.addSubview(cameraBtn)
         
@@ -246,7 +258,7 @@ class PastMissionDetailViewController: UICollectionViewController {
             // 인기순
             self.refreshSeg = 1
             self.photos.removeAll()
-            self.loadPic(path: "/missions/1/contents?limit=10&sort=-like_count")
+            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
             break
         default:
             break
@@ -256,6 +268,22 @@ class PastMissionDetailViewController: UICollectionViewController {
     
     func gotoLeftButtonAction(){
         dismiss(animated: true, completion: nil)
+    }
+    
+    func cameraButtonAction(){
+        
+        // Show Fusuma
+        let fusuma = FusumaViewController()
+        
+        fusuma.delegate = self
+        fusuma.cropHeightRatio = 1.0
+        fusumaCropImage = false
+        fusumaTintColor = UIColor.darkGray
+        fusumaBackgroundColor = UIColor.white
+        //
+        self.present(fusuma, animated: true, completion: nil)
+
+        
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
@@ -271,6 +299,74 @@ class PastMissionDetailViewController: UICollectionViewController {
         
         self.collectionView?.addSubview(line)
     }
+    
+    // MARK: FusumaDelegate Protocol
+    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        switch source {
+        case .camera:
+            print("Image captured from Camera")
+        case .library:
+            print("Image selected from Camera Roll")
+        default:
+            print("Image selected")
+        }
+        //perform segue
+        imagePastMission = image
+        
+        
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        print("video completed and output to file: \(fileURL)")
+        //self.fileUrlLabel.text = "file output to: \(fileURL.absoluteString)"
+    }
+    
+    func fusumaDismissedWithImage(_ image: UIImage, source: FusumaMode) {
+        switch source {
+        case .camera:
+            print("Called just after dismissed FusumaViewController using Camera")
+            UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+        case .library:
+            print("Called just after dismissed FusumaViewController using Camera Roll")
+        default:
+            print("Called just after dismissed FusumaViewController")
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let selectVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
+        selectVC.receivedMissionId = receivedMissionId
+        selectVC.receivedImg = imagePastMission
+        self.present(selectVC, animated: true, completion: nil)
+        
+    }
+    
+    func fusumaCameraRollUnauthorized() {
+        
+        print("Camera roll unauthorized")
+        
+        let alert = UIAlertController(title: "Access Requested", message: "Saving image needs to access your photo album", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (action) -> Void in
+            
+            if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(url)
+            }
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func fusumaClosed() {
+        
+        print("Called when the close button is pressed")
+        
+    }
+
 }
 
 // MARK: UICollectionViewDelegate
@@ -296,7 +392,7 @@ extension PastMissionDetailViewController {
         cell?.layer.borderWidth = 1
         if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/1/contents"))
+            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/\(receivedMissionId)/contents"))
         }
         
         return cell!
@@ -307,8 +403,11 @@ extension PastMissionDetailViewController {
         let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
         SelectListViewController.receivedCimg = self.photos[indexPath.item].image
+        
+        //MARK: 추가로 missionDate랑 missionText보내야됨.
+        
         self.present(selectVC, animated: true, completion: nil)
-        print(indexPath.row)
+        //print(indexPath.row)
     }
     
 }
