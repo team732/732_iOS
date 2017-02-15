@@ -296,7 +296,7 @@ extension PublicListViewController {
         cell?.layer.borderWidth = 1
         if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/1/contents"))
+            loadPic(path: (paginationUrl.substring(from: startIndex)))
         }
         
         return cell!
