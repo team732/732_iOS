@@ -163,6 +163,11 @@ class MainController: UIViewController, FusumaDelegate {
         showButton.setImage(UIImage(named: "camera"), for: UIControlState.normal)
         showButton.frame = CGRect(x: 172*widthRatio, y: 585*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
         
+        let showBtnExtension = UIView(frame: CGRect(x: 151*widthRatio, y: 559*heightRatio, width: 73*widthRatio, height: 73*heightRatio))
+        let showBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(showButtonPressed(_:)))
+        showBtnExtension.isUserInteractionEnabled = true
+        showBtnExtension.addGestureRecognizer(showBtnRecognizer)
+        self.view.addSubview(showBtnExtension)
         subjectImage()
         
     }
