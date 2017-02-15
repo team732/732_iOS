@@ -18,7 +18,8 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var settingTableView: UITableView!
     var settingLabel : UIImageView!
     var backBtn : UIButton!
-    
+    var alarmSwt = UISwitch()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,6 @@ class SettingViewController: UIViewController {
         settingTableView.delegate = self
         settingTableView.dataSource = self
         settingTableView.bounces = false
-
     }
     
     func backButtonAction(){
@@ -78,20 +78,84 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
         
+        cell.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        cell.selectionStyle = .none
+
+        switch indexPath.row {
+        case 0:
+            cell.infoLabel.text = "내 정보"
+            cell.infoLabel.frame.origin.y += 10
+            cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
+            cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+            cell.rightImg.isHidden = true
+            break
+        case 1:
+            cell.infoLabel.text = "이메일 등록"
+            break
+        case 2:
+            cell.infoLabel.text = "비밀번호 변경"
+            break
+        case 3:
+            cell.infoLabel.text = "닉네임 변경"
+            break
+        case 4:
+            cell.infoLabel.text = "732 탈퇴하기"
+            cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+            cell.rightImg.isHidden = true
+            break
+        case 5:
+            cell.infoLabel.text = "앱 설정"
+            cell.infoLabel.frame.origin.y += 10
+            cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
+            cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+            cell.rightImg.isHidden = true
+            break
+        case 6:
+            cell.infoLabel.text = "알림 on/off"
+            cell.rightImg.isHidden = true
+            alarmSwt.frame = CGRect(x: 255*widthRatio, y: (487/10/2-16)*heightRatio, width: 24*widthRatio, height: 12*heightRatio)
+            alarmSwt.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+            alarmSwt.onTintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
+            cell.addSubview(alarmSwt)
+            break
+        case 7:
+            cell.infoLabel.text = "개인정보 처리방침 및 이용약관"
+            break
+        case 8:
+            cell.infoLabel.text = "오픈소스 라이브러리"
+            break
+        case 9:
+            cell.infoLabel.text = "732 로그아웃"
+            cell.rightImg.isHidden = true
+            cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+            break
+        default:
+            break
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 487*heightRatio/10
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        
+        
+    }
     
  
     
