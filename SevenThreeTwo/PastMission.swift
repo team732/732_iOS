@@ -15,6 +15,7 @@ class PastMission: NSObject {
     public var missionType : Int?
     public var missionDate : String?
     
+    
     init(missionId: Int?, mission: String?, missionType: Int?, missionDate: String?) {
         self.missionId = missionId
         self.mission = mission
