@@ -48,6 +48,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: Data
     var pastMissions : [PastMission] = []
     var paginationUrl : String!
+    var missionsCount : Int!
 
     
     override func viewDidLoad() {
@@ -79,17 +80,17 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     
     func loadMission(path : String){
         apiManager = ApiManager2(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
-        apiManager.requestPastMissions(pagination: { (paginationUrl) in
+        apiManager.requestPastMissions(missionsCount: { (missionsCount) in
+            self.missionsCount = missionsCount
+        }, pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
             for i in 0..<contentMission.count{
                 self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate))
             }
-            
             self.collectionView?.reloadData()
         }
     }
-    
 //    override func viewDidAppear(_ animated: Bool) {
 //        print(PastTextListViewController.container.frame)
 //        //PastTextListViewController.container.addSubview(self.collectionView)
@@ -138,7 +139,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(pastMissions.count)
+        print("pastTextListCount:\(pastMissions.count)")
         return pastMissions.count
     } //  셀 개수
     
@@ -150,25 +151,18 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         
         //cell.image.image = sampleImages[indexPath.row]
        
-        cell.date.text = pastMissions[indexPath.row].missionDate
+        cell.date.text = pastMissions[indexPath.row].missionDate!+"의 미션"
         cell.mission.text = pastMissions[indexPath.row].mission
 
         cell.layer.borderWidth = 1
 
         drawLine(startX: cell.frame.origin.x+150*widthRatio, startY: cell.frame.origin.y+44*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.black)
         
-//        if indexPath.row == self.pastMissions.count - 2{
-//            //print("-2-2-2")
-//            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-//            print("paginationUrl : "+paginationUrl)
-////            print(paginationUrl.substring(from: startIndex))
-//            // /missions?limit=5&offset=5
-//            loadMission(path: (paginationUrl.substring(from: startIndex)))
-//        }
-//        if indexPath.row < contentsCount - 2 , indexPath.row == self.pastMissions.count - 2{
-//            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-//            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/1/contents"))
-//        }
+
+        if indexPath.row < self.missionsCount - 2 , indexPath.row == self.pastMissions.count - 2{
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadMission(path: (paginationUrl.substring(from: startIndex)))
+        }
         
         return cell
     }   // 셀의 내용
@@ -190,54 +184,54 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         //closeInfoView()
     } // 셀 선택시
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        lastOffsetY = scrollView.contentOffset.y
-        
-        //print(lastOffsetY)
-        
-    }
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        
+//        lastOffsetY = scrollView.contentOffset.y
+//        
+//        //print(lastOffsetY)
+//        
+//    }
     //scrollview
     
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        let hide = scrollView.contentOffset.y >= self.lastOffsetY!//-50
-        
-        if hide {
-            closeInfoView()
-        } else {
-            openInfoView()
-        }
-    }
-    //30 ,321, 137
-    func closeInfoView() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            PastTextListViewController.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
-            self.titleLabel.addTextSpacing(spacing: -1)
-            PastTextListViewController.container.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: 603*self.heightRatio )
-            //self.view.frame.height - 64*self.heightRatio
-            //526*self.heightRatio
-            
-        })
-        
-        
-    }
-    
-    func openInfoView() {
-        UIView.animate(withDuration: 1.0, animations: {
-            
-            self.back.frame = CGRect(x:30*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            PastTextListViewController.list.frame = CGRect(x:321*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (73*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
-            
-        
-            
-            PastTextListViewController.container.frame = CGRect(x: (0), y: (141*self.heightRatio), width: self.view.frame.width, height: 526*self.heightRatio)
-            //self.frameCollectionView!
-            
-        })
-    }
+//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+//        let hide = scrollView.contentOffset.y >= self.lastOffsetY!//-50
+//        
+//        if hide {
+//            closeInfoView()
+//        } else {
+//            openInfoView()
+//        }
+//    }
+//    //30 ,321, 137
+//    func closeInfoView() {
+//        UIView.animate(withDuration: 0.5, animations: {
+//            self.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+//            PastTextListViewController.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+//            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
+//            self.titleLabel.addTextSpacing(spacing: -1)
+//            PastTextListViewController.container.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: 603*self.heightRatio )
+//            //self.view.frame.height - 64*self.heightRatio
+//            //526*self.heightRatio
+//            
+//        })
+//        
+//        
+//    }
+//    
+//    func openInfoView() {
+//        UIView.animate(withDuration: 1.0, animations: {
+//            
+//            self.back.frame = CGRect(x:30*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+//            PastTextListViewController.list.frame = CGRect(x:321*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
+//            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (73*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
+//            
+//        
+//            
+//            PastTextListViewController.container.frame = CGRect(x: (0), y: (141*self.heightRatio), width: self.view.frame.width, height: 526*self.heightRatio)
+//            //self.frameCollectionView!
+//            
+//        })
+//    }
 
     
     // MARK: - Navigation
