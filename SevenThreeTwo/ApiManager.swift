@@ -294,6 +294,7 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
+                    print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
             case .failure(_):

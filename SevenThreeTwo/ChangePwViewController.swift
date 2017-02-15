@@ -138,7 +138,7 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkButtonAction(){
-        apiManager = ApiManager(path: "/users/me/password", method: .put, parameters: ["password":oriPassword.text!,"newPassword":newPassword.text!,"reEnterPassword":reEnterPassword.text!], header: ["authorization":userToken!])
+        apiManager = ApiManager(path: "/users/me/password", method: .put, parameters: ["password":oriPassword.text!,"newPassword":newPassword.text!,"reEnterNewPassword":reEnterPassword.text!], header: ["authorization":userToken!])
         newCheckLabel.isHidden = true
         oriCheckLabel.isHidden = true
         apiManager.requestSetInfo { (isChanged) in

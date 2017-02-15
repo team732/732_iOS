@@ -51,7 +51,7 @@ class SettingViewController: UIViewController {
         self.view.addSubview(settingLabel)
         
         //gotoleft
-        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 87*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 89*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         backBtn.setImage(UIImage(named: "gotoleft"), for: .normal)
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
         backBtn.sizeToFit()
@@ -70,6 +70,33 @@ class SettingViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func unwindToSetting(segue: UIStoryboardSegue) {}
+    
+    func basicAlert(title : String){
+        let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        
+        let cancelBtn = UIAlertAction(title: "아니요", style: UIAlertActionStyle.default, handler: {
+            (UIAlertAction) in
+            
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        let okButton = UIAlertAction(title: "네", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            
+            //로그인으로 보낸다
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        alertView.addAction(okButton)
+        alertView.addAction(cancelBtn)
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+
+        
+    }
     
 }
 
@@ -90,13 +117,12 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
         
         cell.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        
+        cell.selectionStyle = .none
         
         switch indexPath.row {
         case 0:
-            cell.selectionStyle = .none
             cell.infoLabel.text = "내 정보"
-            cell.infoLabel.frame.origin.y += 10
+            cell.infoLabel.frame.origin.y += 10*heightRatio
             cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
             cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
             cell.rightImg.isHidden = true
@@ -116,9 +142,8 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.rightImg.isHidden = true
             break
         case 5:
-            cell.selectionStyle = .none
             cell.infoLabel.text = "앱 설정"
-            cell.infoLabel.frame.origin.y += 10
+            cell.infoLabel.frame.origin.y += 10*heightRatio
             cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
             cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
             cell.rightImg.isHidden = true
@@ -166,6 +191,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             self.performSegue(withIdentifier: "settingToCN", sender: self)
             break
         case 4:
+            self.basicAlert(title: "정말로 탈퇴하시겠습니까?")
             //탈퇴하기
             break
         
@@ -177,6 +203,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             break
         case 9:
             //로그아웃
+            self.basicAlert(title: "로그아웃 하시겠습니까?")
             break
         default:
             break

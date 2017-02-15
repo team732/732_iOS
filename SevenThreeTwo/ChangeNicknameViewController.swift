@@ -127,13 +127,15 @@ class ChangeNicknameViewController: UIViewController, UITextFieldDelegate {
     func checkButtonAction(){
         
         checkNicknameLabel.isHidden = true
-        if newNickname.text != reEnterNickname.text {
+        if newNickname.text == "" {
+            checkNicknameLabel.text = "닉네임 형식이 맞지않습니다"
+            checkNicknameLabel.isHidden = false
+        } else if newNickname.text != reEnterNickname.text {
             checkNicknameLabel.text = "새로운 닉네임이 일치하지 않습니다"
             checkNicknameLabel.isHidden = false
-        }
-        else{
+        } else{
             
-            apiManager = ApiManager(path: "/users/me/nickname", method: .put, parameters: ["nickanme":newNickname.text!], header: ["authorization":userToken!])
+            apiManager = ApiManager(path: "/users/me/nickname", method: .put, parameters: ["nickname":newNickname.text!], header: ["authorization":userToken!])
             
             apiManager.requestSetInfo { (isChanged) in
                 switch (isChanged){

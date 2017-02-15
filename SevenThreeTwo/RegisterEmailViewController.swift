@@ -100,6 +100,8 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
     
     func checkButtonAction(){
         checkEmailLabel.isHidden = true
+
+        apiManager = ApiManager(path: "/users/me/email", method: .put, parameters: ["email":emailTextField.text!], header: ["authorization":userToken!])
         apiManager.requestSetInfo { (isChanged) in
             switch isChanged {
             case 0:
