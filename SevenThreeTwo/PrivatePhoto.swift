@@ -1,28 +1,20 @@
 //
-//  Photo.swift
-//  StackViewPhotoCollage
+//  PrivateList.swift
+//  SevenThreeTwo
 //
-//  Created by Giancarlo on 7/4/15.
-//  Copyright (c) 2015 Giancarlo. All rights reserved.
+//  Created by 윤민섭 on 2017. 2. 15..
+//  Copyright © 2017년 윤민섭. All rights reserved.
 //
 
 import UIKit
 
-
-
-// Inspired by: RayWenderlich.com pinterest-basic-layout
-class PrivatePhoto: NSObject {
-    var image: UIImage
+class PrivatePhoto : NSObject{
     
-    init(image: UIImage) {
+    public var image: UIImage
+    public var contentId : Int
+    
+    init(image: UIImage, contentId: Int) {
         self.image = image
-    }
-    
-    static func allPhotos() -> [PrivatePhoto] {
-        var photos = [PrivatePhoto]()
-        for i in 1..<10 {
-            photos.append(PrivatePhoto( image: UIImage(named: "otter-\(i).jpg")!))
-        }
-        return photos
+        self.contentId = contentId
     }
 }

@@ -308,6 +308,7 @@ extension PublicListViewController {
         let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
         SelectListViewController.receivedCimg = self.photos[indexPath.item].image
+        SelectListViewController.receivedRange = 0
         self.present(selectVC, animated: true, completion: nil)
     }
     

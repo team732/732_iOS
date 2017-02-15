@@ -51,7 +51,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
-    
+    static var receivedRange : Int = 0 // 0 이면 공개된 게시물 1이면 내 게시물
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +76,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+
     }
     
     func reLoadComment(){
@@ -86,6 +86,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         myComment.removeAll()
         replyId.removeAll()
         loadContent()
+        
     }
     
     
@@ -99,9 +100,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         if let index = indexPath {
             
-            
-            commentAlert(isMine: myComment[index.row],replyId: replyId[index.row])
-            
+            if index.row != 0{
+                commentAlert(isMine: myComment[index.row-1],replyId: replyId[index.row-1])
+            }
         } else {
             print("Could not find index path")
         }
@@ -110,7 +111,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     func loadContent(){
         userToken = users.string(forKey: "token")
+        if SelectListViewController.receivedRange == 0 {
         apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
+        }else if SelectListViewController.receivedRange == 1{
+            apiManager = ApiManager(path: "/users/me/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
+        }
         apiManager.requestSelectContent { (infoContent) in
             
             self.nickname.append("#"+infoContent.nickname!)
@@ -125,7 +130,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 self.replyId.append(infoContent.replies![idx]["replyId"].intValue)
             }
             
-            
             if infoContent.isLiked == 1 {
                 self.isLiked = true
             }else{
@@ -133,6 +137,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             }
             self.likeCount = infoContent.likeCount!
             self.myTableView.reloadData()
+            
         }
     }
     
@@ -308,6 +313,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         cell.commentLabel.text = comment[indexPath.item]
         cell.commentLabel.frame.size.width = 295*widthRatio
         cell.commentLabel.sizeToFit()
+        cell.selectionStyle = .none
         
         return cell
     }

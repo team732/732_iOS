@@ -28,6 +28,8 @@
 		672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD1291E335043001022BF /* PublicListViewController.swift */; };
 		672DD12C1E335058001022BF /* PublicPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12B1E335058001022BF /* PublicPhoto.swift */; };
 		672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12D1E3350ED001022BF /* UIView+Extensions.swift */; };
+		673492411E548E6000379FD6 /* PrivateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673492401E548E6000379FD6 /* PrivateList.swift */; };
+		673492431E54A00700379FD6 /* PrivatePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673492421E54A00700379FD6 /* PrivatePhoto.swift */; };
 		673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */; };
 		673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */; };
 		673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD921E4A3C4000FB4152 /* ApiManager.swift */; };
@@ -57,7 +59,6 @@
 		67AFFE011E5247050088D860 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AFFE001E5247050088D860 /* SettingViewController.swift */; };
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */; };
-		67B74AC81E4F8F63007F92CA /* PrivatePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */; };
 		67C7BFE21E543295009C4506 /* ChangeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */; };
 		67CBDB241E518547003A79C0 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBDB231E518547003A79C0 /* Content.swift */; };
 		67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67EB38441E41BBC700A8E89A /* Assets.xcassets */; };
@@ -97,6 +98,8 @@
 		672DD1291E335043001022BF /* PublicListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicListViewController.swift; sourceTree = "<group>"; };
 		672DD12B1E335058001022BF /* PublicPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicPhoto.swift; sourceTree = "<group>"; };
 		672DD12D1E3350ED001022BF /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		673492401E548E6000379FD6 /* PrivateList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateList.swift; sourceTree = "<group>"; };
+		673492421E54A00700379FD6 /* PrivatePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatePhoto.swift; sourceTree = "<group>"; };
 		673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectListViewController.swift; sourceTree = "<group>"; };
 		673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		673DCD921E4A3C4000FB4152 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -130,7 +133,6 @@
 		67AFFE001E5247050088D860 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
-		67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatePhoto.swift; sourceTree = "<group>"; };
 		67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCompleteViewController.swift; sourceTree = "<group>"; };
 		67CBDB231E518547003A79C0 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		67EB38441E41BBC700A8E89A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				3703F27D1E4CF68B00C470B9 /* PublicList.swift */,
 				67CBDB231E518547003A79C0 /* Content.swift */,
 				378CF6F91E53643300C72AE9 /* PastMission.swift */,
+				673492401E548E6000379FD6 /* PrivateList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -192,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				67092A961E386B3000DB9A27 /* PrivateListViewController.swift */,
-				67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */,
+				673492421E54A00700379FD6 /* PrivatePhoto.swift */,
 			);
 			name = LeftView;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				678781A81E53FF9200FB1A27 /* ChangeNicknameViewController.swift in Sources */,
 				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
 				678781A41E53FF6900FB1A27 /* RegisterEmailViewController.swift in Sources */,
+				673492431E54A00700379FD6 /* PrivatePhoto.swift in Sources */,
 				671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */,
 				672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */,
 				67AE84711E43534600BAF314 /* LoginMainViewController.swift in Sources */,
@@ -568,11 +572,11 @@
 				3703F2811E4CF75D00C470B9 /* CommentViewController.swift in Sources */,
 				67AE84791E438F8000BAF314 /* JoinInputNicknameViewController.swift in Sources */,
 				671469011E2FCBF5006925B7 /* SnapContainerViewController.swift in Sources */,
-				67B74AC81E4F8F63007F92CA /* PrivatePhoto.swift in Sources */,
 				372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */,
 				672DD1281E33502B001022BF /* MultipleColumnLayoutAttributes.swift in Sources */,
 				3757A5671E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift in Sources */,
 				67092A971E386B3000DB9A27 /* PrivateListViewController.swift in Sources */,
+				673492411E548E6000379FD6 /* PrivateList.swift in Sources */,
 				37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */,
 				6714690A1E2FCDD1006925B7 /* TopMenuViewController.swift in Sources */,
 				378CF6FA1E53643300C72AE9 /* PastMission.swift in Sources */,

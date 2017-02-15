@@ -28,6 +28,7 @@ class ApiManager {
     //completion:(String) -> Void (ex)
     func requestContents(pagination : @escaping (String)-> Void,completion : @escaping (PublicList)->Void){
         
+        
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
                 
@@ -48,6 +49,28 @@ class ApiManager {
                 
             }
         }
+    }
+    
+    func requestMyContents(pagination : @escaping (String)-> Void, completion : @escaping (PrivateList)->Void){
+        
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { response in
+            switch (response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    let content = PrivateList(contentsCount: resp["data"]["contentsCount"].intValue, contents: resp["data"]["contents"])
+                    
+                    pagination(resp["pagination"]["nextUrl"].stringValue)
+                    completion(content)
+
+                }
+                break
+                
+            case .failure(_):
+                break
+            }
+        }
+        
     }
     
     func requestContentLiked(completion : @escaping (Bool)->Void){
@@ -72,7 +95,6 @@ class ApiManager {
     
     func requestSelectContent(completion : @escaping (Content)->Void){
         
-        print(url)
         Alamofire.request(url, method: method, headers: header).responseJSON { response in
             switch(response.result){
             case .success(_):
@@ -91,7 +113,6 @@ class ApiManager {
                 break
             }
         }
-        
     }
     
     func requestToken(completion : @escaping (String)->Void){
