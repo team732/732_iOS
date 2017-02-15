@@ -507,6 +507,7 @@
                         <segue destination="eVK-W3-NwF" kind="show" identifier="settingToEVC" id="gbc-Ii-jxE"/>
                         <segue destination="euk-O0-98B" kind="show" identifier="settingToCPW" id="4ta-ET-EO4"/>
                         <segue destination="8zp-bJ-s0P" kind="show" identifier="settingToCN" id="OGG-RR-Wug"/>
+                        <segue destination="VZe-QI-tDe" kind="show" identifier="outClickedSegue" id="gKL-cc-45e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6U-0E-7ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -780,7 +781,7 @@
         <image name="otter-6" width="1280" height="847"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MYY-Ax-zaQ"/>
+        <segue reference="gKL-cc-45e"/>
         <segue reference="giW-Mq-Fkm"/>
         <segue reference="nkZ-8T-Cc2"/>
     </inferredMetricsTieBreakers>
