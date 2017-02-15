@@ -49,6 +49,10 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     var pastMissions : [PastMission] = []
     var paginationUrl : String!
     var missionsCount : Int!
+    
+    var sendingMissionId : Int!
+    var sendingMissionText: String!
+    var sendingMissionDate: String!
 
     
     override func viewDidLoad() {
@@ -180,6 +184,11 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     } // 셀의 간격
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.sendingMissionId = pastMissions[indexPath.row].missionId
+        self.sendingMissionDate = pastMissions[indexPath.row].missionDate
+        self.sendingMissionText = pastMissions[indexPath.row].mission
+    
         performSegue(withIdentifier: "pastListToDetail", sender: self)
         //closeInfoView()
     } // 셀 선택시
@@ -242,8 +251,9 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         {
             let destination = segue.destination as! PastMissionDetailViewController
             
-            destination.receivedMissionId = 2
-            
+            destination.receivedMissionId = sendingMissionId
+            destination.receivedMissionDate = sendingMissionDate
+            destination.receivedMissionText = sendingMissionText
         }
     }
     

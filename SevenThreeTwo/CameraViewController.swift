@@ -47,6 +47,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     @IBOutlet weak var inputText: UITextView!
     
     var receivedImg : UIImage = UIImage(named : "otter-3")!
+    var receivedMissionId : Int = 0
 
     var apiManager : ApiManager!
     let userToken = UserDefaults.standard
@@ -55,6 +56,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     var commentSize : CGFloat = 0.0
    
     var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
+    
+    
     
     
     override func viewDidLoad() {
@@ -269,7 +272,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         if token != nil{
             
-            self.apiManager = ApiManager(path: "/missions/1/contents", method: .post, parameters: [:], header: ["authorization":token!])
+            self.apiManager = ApiManager(path: "/missions/\(receivedMissionId)/contents", method: .post, parameters: [:], header: ["authorization":token!])
             //
 //            let imgData: NSData = UIImageJPEGRepresentation(self.receivedImg, 0.25)! as NSData
 //            

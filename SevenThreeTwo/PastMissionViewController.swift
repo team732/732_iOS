@@ -59,6 +59,10 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     var paginationUrl : String!
     var missionsCount : Int!
     
+    var givingMissionId: Int!
+    var givingMissionText: String!
+    var givingMissionDate: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,7 +123,9 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         {
             let destination = segue.destination as! PastMissionDetailViewController
             
-            destination.receivedMissionId = 1
+            destination.receivedMissionId = givingMissionId
+            destination.receivedMissionText = givingMissionText
+            destination.receivedMissionDate = givingMissionDate
             
         }
      }
@@ -311,6 +317,10 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //closeInfoView()
+        self.givingMissionId = pastMissions[indexPath.row].missionId
+        self.givingMissionDate = pastMissions[indexPath.row].missionDate
+        self.givingMissionText = pastMissions[indexPath.row].mission
+        
         performSegue(withIdentifier: "pastToDetail", sender: self)
     } // 셀 선택시
     
