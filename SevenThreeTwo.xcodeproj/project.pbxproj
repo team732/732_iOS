@@ -35,6 +35,9 @@
 		675A4E1B1E2FB076000781DA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E1A1E2FB076000781DA /* MainController.swift */; };
 		675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A4E211E2FB076000781DA /* LaunchScreen.storyboard */; };
 		675A4E2E1E2FB076000781DA /* SevenThreeTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */; };
+		678781A41E53FF6900FB1A27 /* RegisterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678781A31E53FF6900FB1A27 /* RegisterEmailViewController.swift */; };
+		678781A61E53FF7C00FB1A27 /* ChangePwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678781A51E53FF7C00FB1A27 /* ChangePwViewController.swift */; };
+		678781A81E53FF9200FB1A27 /* ChangeNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678781A71E53FF9200FB1A27 /* ChangeNicknameViewController.swift */; };
 		6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6789A3F81E417D3E009374BD /* DeviceResize.swift */; };
 		679204151E53871600E41676 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679204141E53871600E41676 /* SettingTableViewCell.swift */; };
 		67A4608E1E4F324B00929AE1 /* CheckTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */; };
@@ -104,6 +107,9 @@
 		675A4E291E2FB076000781DA /* SevenThreeTwoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SevenThreeTwoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A4E2D1E2FB076000781DA /* SevenThreeTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SevenThreeTwoTests.swift; sourceTree = "<group>"; };
 		675A4E2F1E2FB076000781DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		678781A31E53FF6900FB1A27 /* RegisterEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterEmailViewController.swift; sourceTree = "<group>"; };
+		678781A51E53FF7C00FB1A27 /* ChangePwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePwViewController.swift; sourceTree = "<group>"; };
+		678781A71E53FF9200FB1A27 /* ChangeNicknameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeNicknameViewController.swift; sourceTree = "<group>"; };
 		6789A3F81E417D3E009374BD /* DeviceResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceResize.swift; path = SevenThreeTwo/DeviceResize.swift; sourceTree = "<group>"; };
 		679204141E53871600E41676 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		67A4608D1E4F324B00929AE1 /* CheckTokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckTokenViewController.swift; sourceTree = "<group>"; };
@@ -325,6 +331,9 @@
 			children = (
 				67AFFE001E5247050088D860 /* SettingViewController.swift */,
 				679204141E53871600E41676 /* SettingTableViewCell.swift */,
+				678781A31E53FF6900FB1A27 /* RegisterEmailViewController.swift */,
+				678781A51E53FF7C00FB1A27 /* ChangePwViewController.swift */,
+				678781A71E53FF9200FB1A27 /* ChangeNicknameViewController.swift */,
 			);
 			name = SettingView;
 			sourceTree = "<group>";
@@ -531,7 +540,9 @@
 				672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */,
 				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
 				67AFFDFE1E5225B90088D860 /* ApiManager2.swift in Sources */,
+				678781A81E53FF9200FB1A27 /* ChangeNicknameViewController.swift in Sources */,
 				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
+				678781A41E53FF6900FB1A27 /* RegisterEmailViewController.swift in Sources */,
 				671469031E2FCC22006925B7 /* VerticalScrollViewController.swift in Sources */,
 				672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */,
 				67AE84711E43534600BAF314 /* LoginMainViewController.swift in Sources */,
@@ -541,6 +552,7 @@
 				672DD12A1E335043001022BF /* PublicListViewController.swift in Sources */,
 				67CBDB241E518547003A79C0 /* Content.swift in Sources */,
 				6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */,
+				678781A61E53FF7C00FB1A27 /* ChangePwViewController.swift in Sources */,
 				67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */,
 				67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */,
 				673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */,

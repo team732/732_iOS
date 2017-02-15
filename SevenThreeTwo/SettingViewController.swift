@@ -9,17 +9,17 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-
+    
     let reuseIdentifier = "settingCell"
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
-
+    
     @IBOutlet weak var settingTableView: UITableView!
     var settingLabel : UIImageView!
     var backBtn : UIButton!
     var alarmSwt = UISwitch()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class SettingViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,8 +69,8 @@ class SettingViewController: UIViewController {
     func backButtonAction(){
         self.dismiss(animated: true, completion: nil)
     }
-
-   
+    
+    
 }
 
 extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
@@ -87,13 +87,14 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
         
         cell.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        cell.selectionStyle = .none
-
+        
+        
         switch indexPath.row {
         case 0:
+            cell.selectionStyle = .none
             cell.infoLabel.text = "내 정보"
             cell.infoLabel.frame.origin.y += 10
             cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
@@ -115,6 +116,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.rightImg.isHidden = true
             break
         case 5:
+            cell.selectionStyle = .none
             cell.infoLabel.text = "앱 설정"
             cell.infoLabel.frame.origin.y += 10
             cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
@@ -152,11 +154,37 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        switch indexPath.row {
+        case 1:
+            self.performSegue(withIdentifier: "settingToEVC", sender: self)
+            break
+        case 2:
+            self.performSegue(withIdentifier: "settingToCPW", sender: self)
+            break
+        case 3:
+            self.performSegue(withIdentifier: "settingToCN", sender: self)
+            break
+        case 4:
+            //탈퇴하기
+            break
+        
+        case 7:
+            //개인정보 취급방침
+            break
+        case 8:
+            //오픈소스
+            break
+        case 9:
+            //로그아웃
+            break
+        default:
+            break
+        }
         
         
     }
     
- 
+    
     
 }

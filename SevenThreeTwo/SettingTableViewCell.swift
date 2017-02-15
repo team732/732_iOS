@@ -31,7 +31,7 @@ class SettingTableViewCell: UITableViewCell {
         infoLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         
         
-        rightImg.frame = CGRect(x: 272*widthRatio, y: (487/10/2-8)*heightRatio, width: 24*widthRatio, height: 24*heightRatio)
+        rightImg.frame = CGRect(x: 292*widthRatio, y: (487/10/2-8)*heightRatio, width: 24*widthRatio, height: 24*heightRatio)
         rightImg.image = UIImage(named: "gotoright")
         rightImg.sizeToFit()
         
