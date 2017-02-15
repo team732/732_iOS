@@ -14,8 +14,11 @@ class SettingViewController: UIViewController {
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
+    var users = UserDefaults.standard
+    var userToken: String!
     
     @IBOutlet weak var settingTableView: UITableView!
+    
     var settingLabel : UIImageView!
     var backBtn : UIButton!
     var alarmSwt = UISwitch()
@@ -25,7 +28,7 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        
+        userToken = users.string(forKey: "token")
         viewSetUp()
         
         
@@ -72,18 +75,34 @@ class SettingViewController: UIViewController {
     
     @IBAction func unwindToSetting(segue: UIStoryboardSegue) {}
     
-    func basicAlert(title : String){
+    func outAlert(title : String, isCompletely : Bool){
+        var apiManager : ApiManager!
         let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
         
         let cancelBtn = UIAlertAction(title: "아니요", style: UIAlertActionStyle.default, handler: {
             (UIAlertAction) in
-            
             alertView.dismiss(animated: true, completion: nil)
         })
         
         let okButton = UIAlertAction(title: "네", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-            
+            if isCompletely{
+                apiManager = ApiManager(path: "/users/me", method: .delete, header: ["authorization":self.userToken!])
+                apiManager.requestSetInfo(completion: { (isDelete) in
+                    if isDelete != 0{
+                        // 탈퇴 할 수 없음
+                    }
+                })
+            }else{
+                apiManager = ApiManager(path: "/users/me/token", method: .delete, header: ["authorization":self.userToken!])
+                apiManager.requestSetInfo(completion: { (isDelete) in
+                    if isDelete != 0 {
+                        // 탈퇴 할 수 없음
+                    }
+                })
+            }
             //로그인으로 보낸다
+            apiManager = nil
+            self.performSegue(withIdentifier: "outClickedSegue", sender: self)
             alertView.dismiss(animated: true, completion: nil)
         })
         alertView.addAction(okButton)
@@ -191,7 +210,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             self.performSegue(withIdentifier: "settingToCN", sender: self)
             break
         case 4:
-            self.basicAlert(title: "정말로 탈퇴하시겠습니까?")
+            self.outAlert(title: "정말로 탈퇴하시겠습니까?",isCompletely: true)
             //탈퇴하기
             break
         
@@ -203,7 +222,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             break
         case 9:
             //로그아웃
-            self.basicAlert(title: "로그아웃 하시겠습니까?")
+            self.outAlert(title: "로그아웃 하시겠습니까?", isCompletely: false)
             break
         default:
             break
