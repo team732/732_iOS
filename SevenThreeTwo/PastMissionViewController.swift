@@ -126,15 +126,23 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
  
     
     func setUi(){
-        
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         collectionView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        
+        
         
         PastMissionViewController.back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         PastMissionViewController.back.setImage(UIImage(named:"gotoleft"), for: .normal)
         PastMissionViewController.back.sizeToFit()
         
-        PastMissionViewController.back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
+        let backBtnExtension = UIView(frame: CGRect(x: 18*widthRatio, y: 70*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        //backBtnExtension.layer.borderWidth = 1
+        let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(buttonPressed(sender:)))
+        backBtnExtension.isUserInteractionEnabled = true
+        backBtnExtension.addGestureRecognizer(backBtnRecognizer)
+        self.view.addSubview(backBtnExtension)
+        
+        //PastMissionViewController.back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
         
         view.addSubview(PastMissionViewController.back)
         
@@ -148,10 +156,16 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         view.addSubview(PastMissionViewController.titleLabel)
         
         
-        
         listBtn.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         listBtn.setImage(UIImage(named:"list"), for: .normal)
         listBtn.sizeToFit()
+        
+        let listBtnExtension = UIView(frame: CGRect(x: 313*widthRatio, y: 70*heightRatio, width: 35*widthRatio, height: 35*heightRatio))
+        //listBtnExtension.layer.borderWidth = 1
+        let listBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(listButtonClicked(_:)))
+        listBtnExtension.isUserInteractionEnabled = true
+        listBtnExtension.addGestureRecognizer(listBtnRecognizer)
+        self.view.addSubview(listBtnExtension)
         //#
         //listBtn.addTarget(self, action:#selector(listButtonPressed(sender:)), for: .touchUpInside)
         //view.addSubview(listBtn)
