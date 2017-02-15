@@ -10,17 +10,14 @@ import UIKit
 
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class PastMissionPic: NSObject {
+    
     var image: UIImage
+    var contentId : Int
     
-    init(image: UIImage) {
+    init(image: UIImage, contentId: Int) {
         self.image = image
+        self.contentId = contentId
     }
     
-    static func allPhotos() -> [PastMissionPic] {
-        var photos = [PastMissionPic]()
-        for i in 1..<10 {
-            photos.append(PastMissionPic( image: UIImage(named: "otter-\(i).jpg")!))
-        }
-        return photos
-    }
+    
 }

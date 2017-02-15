@@ -42,7 +42,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     static var list : UIButton!
     
     //
-    var apiManager : ApiManager!
+    var apiManager : ApiManager2!
     let users = UserDefaults.standard
     var userToken : String!
     // MARK: Data
@@ -63,7 +63,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         
         userToken = users.string(forKey: "token")
         
-        loadMission(path: "/missions?offset=2017-02-11&limit=10")// 수정필요
+        loadMission(path: "/missions?limit=5")
         
         
 //        frameTitle = titleLabel.frame
@@ -78,7 +78,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func loadMission(path : String){
-        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager = ApiManager2(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestPastMissions(pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
@@ -138,6 +138,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(pastMissions.count)
         return pastMissions.count
     } //  셀 개수
     
@@ -156,11 +157,18 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
 
         drawLine(startX: cell.frame.origin.x+150*widthRatio, startY: cell.frame.origin.y+44*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.black)
         
-        if indexPath.row == self.pastMissions.count - 2{
-            //print("-2-2-2")
-            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadMission(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
-        }
+//        if indexPath.row == self.pastMissions.count - 2{
+//            //print("-2-2-2")
+//            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+//            print("paginationUrl : "+paginationUrl)
+////            print(paginationUrl.substring(from: startIndex))
+//            // /missions?limit=5&offset=5
+//            loadMission(path: (paginationUrl.substring(from: startIndex)))
+//        }
+//        if indexPath.row < contentsCount - 2 , indexPath.row == self.pastMissions.count - 2{
+//            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+//            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/1/contents"))
+//        }
         
         return cell
     }   // 셀의 내용

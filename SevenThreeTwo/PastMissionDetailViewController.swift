@@ -28,10 +28,19 @@ class PastMissionDetailViewController: UICollectionViewController {
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
     
+    //밑에 넣어주면 됨.
     var receivedMissionId : Int = 0
     
+    var apiManager : ApiManager!
+    let users = UserDefaults.standard
+    var userToken : String!
     // MARK: Data
-    fileprivate let photos = PastMissionPic.allPhotos()
+    var photos : [PastMissionPic] = []
+    var paginationUrl : String!
+    var contentsCount : Int!
+    var refreshControl : UIRefreshControl!
+    var refreshSeg : Int = 0 // 0이면 최신순 1이면 인기순
+    
     
     
     required init(coder aDecoder: NSCoder) {
@@ -48,6 +57,78 @@ class PastMissionDetailViewController: UICollectionViewController {
         
         print("어디서 왔나 \(receivedMissionId)")
         setUpUI()
+        
+        loadPic(path: "/missions/1/contents?limit=10")
+        NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        setRefreshControl()
+    }
+    
+    // 리프레쉬 컨트롤을 세팅
+    
+    func setRefreshControl(){
+        refreshControl = UIRefreshControl()
+        
+        let refreshView = UIView(frame: CGRect(x: 0, y: 80*heightRatio, width: 0, height: 0))
+        self.collectionView?.addSubview(refreshView)
+        
+        
+        refreshControl.addTarget(self, action: #selector(PastMissionDetailViewController.pullRefresh) , for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.black
+        refreshControl.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
+        
+        refreshView.addSubview(refreshControl)
+    }
+    
+    
+    // 바탕화면 갔다가 돌아올 때
+    
+    func reloadAppRefreshPic(){
+        self.photos.removeAll()
+        self.loadPic(path: "/missions/1/contents?limit=10")
+    }
+    
+    
+    // 당겼을 때 리프레쉬
+    func pullRefresh(){
+        
+        var path : String!
+        if refreshSeg == 0{
+            path = "/missions/1/contents?limit=10"
+        }else {
+            path = "/missions/1/contents?limit=10&sort=-like_count"
+        }
+        
+        
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestContents(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentPhoto) in
+            self.photos.removeAll()
+            for i in 0..<contentPhoto.contents!.count{
+                self.photos.append(PastMissionPic(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+            }
+            self.contentsCount = contentPhoto.contentsCount!
+            self.collectionView?.collectionViewLayout.invalidateLayout()
+            self.collectionView?.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    // 페이지 네이션, 처음 로드 등 ..
+    func loadPic(path : String){
+        userToken = users.string(forKey: "token")
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestContents(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentPhoto) in
+            for i in 0..<contentPhoto.contents!.count{
+                self.photos.append(PastMissionPic(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+            }
+            self.contentsCount = contentPhoto.contentsCount!
+            self.collectionView?.collectionViewLayout.invalidateLayout()
+            self.collectionView?.reloadData()
+        }
     }
     
     
@@ -158,14 +239,14 @@ class PastMissionDetailViewController: UICollectionViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             // 최신순
-            //self.refreshSeg = 0
-            //self.reloadAppRefreshPic()
+            self.refreshSeg = 0
+            self.reloadAppRefreshPic()
             break
         case 1:
             // 인기순
-            //self.refreshSeg = 1
-            //self.photos.removeAll()
-            //self.loadPic(path: "/missions/1/contents?limit=10&sort=-like_count")
+            self.refreshSeg = 1
+            self.photos.removeAll()
+            self.loadPic(path: "/missions/1/contents?limit=10&sort=-like_count")
             break
         default:
             break
@@ -204,19 +285,30 @@ extension PastMissionDetailViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath
         ) -> UICollectionViewCell {
-        guard let cell = collectionView
+        let cell = collectionView
             .dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier,
                                  for: indexPath) as? PhotoCaptionCell
-            else {
-                fatalError("Could not dequeue cell")
+        
+        
+        cell?.setUpWithImage(self.photos[indexPath.row].image,
+                             title: "",
+                             style: BeigeRoundedPhotoCaptionCellStyle())
+        cell?.layer.borderWidth = 1
+        if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadPic(path: (paginationUrl.substring(from: startIndex)+"/missions/1/contents"))
         }
-        cell.setUpWithImage(photos[indexPath.item].image,
-                            title: "",
-                            style: BeigeRoundedPhotoCaptionCellStyle())
-        cell.layer.borderWidth = 1
         
-        
-        return cell
+        return cell!
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
+        SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
+        SelectListViewController.receivedCimg = self.photos[indexPath.item].image
+        self.present(selectVC, animated: true, completion: nil)
+        print(indexPath.row)
     }
     
 }
