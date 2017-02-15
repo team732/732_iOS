@@ -58,7 +58,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myTableView.isHidden = true
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
-        loadContent()
+        reloadContent()
         viewSetUp()
         tableViewSetUp()
         

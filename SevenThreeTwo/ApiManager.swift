@@ -287,8 +287,23 @@ class ApiManager {
         }
     }
     
-
     
+    func requestSetInfo(completion : @escaping(Int)->Void){
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    completion(resp["meta"]["code"].intValue)
+                }
+            case .failure(_):
+                break
+            }
+        }
+
+    }
+    
+
     
     /*
      사용 하는 컨트롤러에서

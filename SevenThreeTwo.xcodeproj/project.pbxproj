@@ -58,6 +58,7 @@
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */; };
 		67B74AC81E4F8F63007F92CA /* PrivatePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */; };
+		67C7BFE21E543295009C4506 /* ChangeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */; };
 		67CBDB241E518547003A79C0 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBDB231E518547003A79C0 /* Content.swift */; };
 		67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67EB38441E41BBC700A8E89A /* Assets.xcassets */; };
 		F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
@@ -130,6 +131,7 @@
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		67B74AC71E4F8F63007F92CA /* PrivatePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatePhoto.swift; sourceTree = "<group>"; };
+		67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCompleteViewController.swift; sourceTree = "<group>"; };
 		67CBDB231E518547003A79C0 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		67EB38441E41BBC700A8E89A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenThreeTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +336,7 @@
 				678781A31E53FF6900FB1A27 /* RegisterEmailViewController.swift */,
 				678781A51E53FF7C00FB1A27 /* ChangePwViewController.swift */,
 				678781A71E53FF9200FB1A27 /* ChangeNicknameViewController.swift */,
+				67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */,
 			);
 			name = SettingView;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				67CBDB241E518547003A79C0 /* Content.swift in Sources */,
 				6789A3F91E417D3E009374BD /* DeviceResize.swift in Sources */,
 				678781A61E53FF7C00FB1A27 /* ChangePwViewController.swift in Sources */,
+				67C7BFE21E543295009C4506 /* ChangeCompleteViewController.swift in Sources */,
 				67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */,
 				67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */,
 				673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */,

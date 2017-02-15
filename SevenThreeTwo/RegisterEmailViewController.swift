@@ -13,18 +13,24 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
+    var users = UserDefaults.standard
+    var userToken : String!
+    var apiManager : ApiManager!
 
     var backBtn : UIButton!
     var mainLabel : UILabel!
     var emailTextField : UITextField!
     var checkEmailLabel : UILabel!
     var checkBtn : UIButton!
+    var backBtnExtension : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
+        
+        userToken = users.string(forKey: "token")
         
         viewSetUp()
         // Do any additional setup after loading the view.
@@ -52,6 +58,13 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
         backBtn.sizeToFit()
         self.view.addSubview(backBtn)
+        
+        backBtnExtension = UIView(frame: CGRect(x: 30*widthRatio, y: 87*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtnExtension.backgroundColor = UIColor.clear
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
+        backBtnExtension.isUserInteractionEnabled = true
+        backBtnExtension.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(backBtnExtension)
         
         emailTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 224*heightRatio, width: 337*widthRatio, height: 13*heightRatio))
         emailTextField.placeholder = "이메일을 입력해 주세요 (아이디,비밀번호 분실시 사용됩니다.)"
@@ -86,8 +99,26 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
     
     
     func checkButtonAction(){
-        
-        
+        checkEmailLabel.isHidden = true
+        apiManager.requestSetInfo { (isChanged) in
+            switch isChanged {
+            case 0:
+                self.performSegue(withIdentifier: "complete", sender: self)
+                //성공
+                break
+            case -33:
+                self.checkEmailLabel.text = "이미 사용중인 이메일입니다."
+                self.checkEmailLabel.isHidden = false
+                break
+            case -27:
+                self.checkEmailLabel.text = "이메일 형식이 아닙니다."
+                self.checkEmailLabel.isHidden = false
+                break
+            default:
+                break
+                
+            }
+        }
     }
 
     
@@ -110,6 +141,15 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "complete"
+        {
+            let destination = segue.destination as! ChangeCompleteViewController
+            
+            destination.receivedStatusMsg = 0
+        }
     }
     
 

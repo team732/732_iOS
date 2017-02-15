@@ -14,21 +14,28 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
-    
+    var apiManager : ApiManager!
+    var users = UserDefaults.standard
+    var userToken : String!
     var backBtn : UIButton!
     var mainLabel : UILabel!
     var oriPassword : UITextField!
     var newPassword : UITextField!
     var reEnterPassword : UITextField!
     
+    var oriCheckLabel : UILabel!
+    var newCheckLabel : UILabel!
+    
     var checkBtn : UIButton!
+    var backBtnExtension : UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        
+        userToken = users.string(forKey: "token")
         viewSetUp()
         // Do any additional setup after loading the view.
     }
@@ -55,6 +62,14 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         backBtn.sizeToFit()
         self.view.addSubview(backBtn)
         
+        backBtnExtension = UIView(frame: CGRect(x: 30*widthRatio, y: 87*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtnExtension.backgroundColor = UIColor.clear
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
+        backBtnExtension.isUserInteractionEnabled = true
+        backBtnExtension.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(backBtnExtension)
+        
+        
         oriPassword = UITextField(frame: CGRect(x: 36*widthRatio, y: 229*heightRatio, width: 337*widthRatio, height: 13*heightRatio))
         oriPassword.placeholder = "기존 비밀번호를 입력해 주세요"
         oriPassword.font = UIFont.systemFont(ofSize: 12*widthRatio)
@@ -64,7 +79,16 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         oriPassword.delegate = self
         
         self.view.addSubview(oriPassword)
-
+        
+        oriCheckLabel = UILabel(frame: CGRect(x: 161*widthRatio, y: 228*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
+        oriCheckLabel.textAlignment = .right
+        oriCheckLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        oriCheckLabel.isHidden = true
+        oriCheckLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        oriCheckLabel.text = "잘못된 비밀번호 입니다."
+        
+        self.view.addSubview(oriCheckLabel)
+        
         drawLine(startX: 35, startY: 246, width: 305, height: 1, border: false, color: UIColor.black)
 
         
@@ -90,6 +114,15 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(reEnterPassword)
         
+        newCheckLabel = UILabel(frame: CGRect(x: 35*widthRatio, y: 386*heightRatio, width: 216*widthRatio, height: 13*heightRatio))
+        newCheckLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
+        newCheckLabel.isHidden = true
+        newCheckLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
+        //위에 입력한거랑 다른건지 형식에 안맞는건지 확인
+        
+        self.view.addSubview(newCheckLabel)
+        
+        
         drawLine(startX: 35, startY: 378, width: 305, height: 1, border: false, color: UIColor.black)
         
         let checkBtn = UIButton(frame: CGRect(x: 35*widthRatio , y: 422*heightRatio, width: 305*widthRatio, height: 41*heightRatio))
@@ -105,7 +138,29 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkButtonAction(){
-        
+        apiManager = ApiManager(path: "/users/me/password", method: .put, parameters: ["password":oriPassword.text!,"newPassword":newPassword.text!,"reEnterPassword":reEnterPassword.text!], header: ["authorization":userToken!])
+        newCheckLabel.isHidden = true
+        oriCheckLabel.isHidden = true
+        apiManager.requestSetInfo { (isChanged) in
+            switch (isChanged){
+            case 0:
+                self.performSegue(withIdentifier: "complete", sender: self)
+                break
+            case -26:
+                self.newCheckLabel.text = "비밀번호를 확인해주세요"
+                self.newCheckLabel.isHidden = false
+                break
+            case -28:
+                self.newCheckLabel.text = "비밀번호 형식을 확인해주세요"
+                self.newCheckLabel.isHidden = false
+                break
+            case -32:
+                self.oriCheckLabel.isHidden = false
+                break
+            default:
+                break
+            }
+        }
     }
     
     
@@ -131,6 +186,16 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
     }
     
 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "complete"
+        {
+            let destination = segue.destination as! ChangeCompleteViewController
+            
+            destination.receivedStatusMsg = 1
+        }
+    }
+    
 
     
 
