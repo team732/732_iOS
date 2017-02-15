@@ -51,7 +51,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     static var selectedIndex : Int = 0
     
     //
-    var apiManager : ApiManager!
+    var apiManager : ApiManager2!
     let users = UserDefaults.standard
     var userToken : String!
     // MARK: Data
@@ -82,11 +82,11 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         
         userToken = users.string(forKey: "token")
         
-        loadMission(path: "/missions?offset=2017-02-11&limit=10")// 수정필요
+        loadMission(path: "/missions?limit=5")
     }
     
     func loadMission(path : String){
-        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager = ApiManager2(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestPastMissions(pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
@@ -249,7 +249,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
         
-        cell.image.image = sampleImages[0]
+        cell.image.image = sampleImages[0] // 나중에 이미지 내려주시면 넣을거...
         cell.date.text = pastMissions[indexPath.row].missionDate
         cell.mission.text = pastMissions[indexPath.row].mission
         
@@ -265,7 +265,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         if indexPath.row == self.pastMissions.count - 2{
             //print("-2-2-2")
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadMission(path: (paginationUrl.substring(from: startIndex)+"&missionDate=2017-02-11"))
+            loadMission(path: (paginationUrl.substring(from: startIndex)))
         }
         
         return cell

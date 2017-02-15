@@ -203,6 +203,38 @@ class ApiManager2 {
         }
     }
     
+    func requestPastMissions(pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
+        Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
+            switch(response.result) {
+                
+            case .success(_):
+                if let json = response.result.value{
+                    let resp = JSON(json)
+                    //print("pastmissions")
+                    //print(resp)
+                    var pastMission = [PastMission]()
+                    let contents = resp["data"]["missions"]
+                    //print("contentsCount : \(contents.count)")
+                    
+                    for idx in 0..<contents.count {
+                        
+                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"]["text"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
+                        
+                        pastMission += [content]
+                    }
+                    pagination(resp["pagination"]["nextUrl"].stringValue)
+                    completion(pastMission)
+                    
+                }
+                break
+                
+            case .failure(_):
+                break
+                
+            }
+        }
+    }
+    
     
     
     /*
