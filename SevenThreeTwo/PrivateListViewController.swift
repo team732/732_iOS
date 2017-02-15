@@ -28,8 +28,15 @@ class PrivateListViewController: UICollectionViewController {
     var numberOfColumns: Int = 2
     let layout = MultipleColumnLayout()
     
+    
+    var apiManager : ApiManager!
+    let users = UserDefaults.standard
+    var userToken : String!
+    var contentsCount : Int!
+    var paginationUrl : String!
+    
     // MARK: Data
-    fileprivate let photos = PrivatePhoto.allPhotos()
+    var photos : [PrivatePhoto] = []
     
     
     required init(coder aDecoder: NSCoder) {
@@ -48,6 +55,10 @@ class PrivateListViewController: UICollectionViewController {
         setUpUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.loadPic(path: "/users/me/contents?limit=10")
+    }
+    
     
     override func viewWillTransition(
         to size: CGSize,
@@ -61,6 +72,23 @@ class PrivateListViewController: UICollectionViewController {
         layout.clearCache()
         layout.invalidateLayout()
     }
+    
+    func loadPic(path : String){
+        userToken = users.string(forKey: "token")
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestContents(pagination: { (paginationUrl) in
+            self.paginationUrl = paginationUrl
+        }) { (contentPhoto) in
+            for i in 0..<contentPhoto.contents!.count{
+                self.photos.append(PrivatePhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+            }
+            self.contentsCount = contentPhoto.contentsCount!
+            self.collectionView?.collectionViewLayout.invalidateLayout()
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    
     
     // MARK: Private
     
@@ -133,7 +161,7 @@ class PrivateListViewController: UICollectionViewController {
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
         customSC.tintColor = UIColor.darkGray
-        
+         customSC.addTarget(self, action: #selector(PrivateListViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
         
@@ -145,6 +173,27 @@ class PrivateListViewController: UICollectionViewController {
         self.collectionView?.register(PhotoCaptionCell.self,
                                       forCellWithReuseIdentifier: self.reuseIdentifier)
     }
+    
+    
+    //segmentedControl
+    func sortList(sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex {
+        case 0:
+            // 모두공개
+            self.photos.removeAll()
+            self.loadPic(path: "/users/me/contents?limit=10")
+            break
+        case 1:
+            // 비공개
+            self.photos.removeAll()
+            self.loadPic(path: "/users/me/contents?limit=10&type=private")
+            break
+        default:
+            break
+        }
+        
+    }
+
     
     func settingButtonAction(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -189,10 +238,23 @@ extension PrivateListViewController {
                             title: "",
                             style: BeigeRoundedPhotoCaptionCellStyle())
         cell.layer.borderWidth = 1
-        
+        if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadPic(path: (paginationUrl.substring(from: startIndex)+"/users/me/contents"))
+        }
         
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
+        SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
+        SelectListViewController.receivedCimg = self.photos[indexPath.item].image
+        SelectListViewController.receivedRange = 1
+        self.present(selectVC, animated: true, completion: nil)
+    }
+
     
 }
 
