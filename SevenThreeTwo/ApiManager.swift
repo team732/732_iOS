@@ -27,7 +27,8 @@ class ApiManager {
     
     //completion:(String) -> Void (ex)
     func requestContents(pagination : @escaping (String)-> Void,completion : @escaping (PublicList)->Void){
-        
+        print("############")
+        print(url)
         
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
@@ -94,7 +95,7 @@ class ApiManager {
     }
     
     func requestSelectContent(completion : @escaping (Content)->Void){
-        
+       
         Alamofire.request(url, method: method, headers: header).responseJSON { response in
             switch(response.result){
             case .success(_):
