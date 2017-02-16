@@ -172,6 +172,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.rightImg.isHidden = true
             alarmSwt.frame = CGRect(x: 255*widthRatio, y: (487/10/2-16)*heightRatio, width: 24*widthRatio, height: 12*heightRatio)
             alarmSwt.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+            alarmSwt.tintColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
             alarmSwt.onTintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
             cell.addSubview(alarmSwt)
             break
@@ -198,22 +199,25 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
+        switch indexPath.item {
+       
         case 1:
-            self.performSegue(withIdentifier: "settingToEVC", sender: self)
+            self.performSegue(withIdentifier: "settingToEVC", sender: nil)
             break
         case 2:
-            self.performSegue(withIdentifier: "settingToCPW", sender: self)
+            self.performSegue(withIdentifier: "settingToCPW", sender: nil)
             break
         case 3:
-            self.performSegue(withIdentifier: "settingToCN", sender: self)
+            self.performSegue(withIdentifier: "settingToCN", sender: nil)
             break
         case 4:
             self.outAlert(title: "정말로 탈퇴하시겠습니까?",isCompletely: true)
             //탈퇴하기
             break
-        
+        case 5:
+            break
+        case 6:
+            break
         case 7:
             //개인정보 취급방침
             break
@@ -228,8 +232,16 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             break
         }
         
+        if indexPath.item == 1 {
+            
+        }else if indexPath.item == 2{
+            
+        }
+        
         
     }
+    
+    
     
     
     

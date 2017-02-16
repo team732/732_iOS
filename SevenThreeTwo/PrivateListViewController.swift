@@ -115,12 +115,14 @@ class PrivateListViewController: UICollectionViewController {
         let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelPic.text = "내사진"
         labelPic.textAlignment = .center
+        labelPic.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelPic.font = labelPic.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelPic)
         
         let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelList.text = "리스트"
+        labelList.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelList.textAlignment = .center
         labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelList.font = labelList.font.withSize(24*widthRatio)
@@ -143,6 +145,7 @@ class PrivateListViewController: UICollectionViewController {
 
         let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 226*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
         settingLabel.text = "설정"
+        settingLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         settingLabel.textAlignment = .center
         settingLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         settingLabel.font = labelList.font.withSize(11*widthRatio)
@@ -156,13 +159,13 @@ class PrivateListViewController: UICollectionViewController {
         customSC.frame = CGRect(x: 85*widthRatio, y:276*heightRatio,
                                 width:200.6*widthRatio, height: 28*heightRatio)
         customSC.layer.cornerRadius = 5.0
-        customSC.backgroundColor = UIColor.white
+        customSC.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
         customSC.tintColor = UIColor.darkGray
          customSC.addTarget(self, action: #selector(PrivateListViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
         
-        drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         
         
