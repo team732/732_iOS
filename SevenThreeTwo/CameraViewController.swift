@@ -97,14 +97,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             inputText.frame = CGRect(x: (37.5*widthRatio), y: (318*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
         }
         
-        backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 18*widthRatio, height: 18*heightRatio)
-        //backShadow
+        backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
         backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
         backBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
-        backBtn.layer.shadowColor = UIColor.black.cgColor
-        backBtn.layer.shadowRadius = 1
-        backBtn.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
-        backBtn.layer.shadowOpacity = 1.0
+
+        
+        nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 34*widthRatio, height: 18*heightRatio)
+        nextBtn.setImage(UIImage(named:"share"), for: .normal)
+        nextBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
+        
         
         
         
@@ -113,14 +114,14 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         inputText.text = placeHolderText
         
-        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
-        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        nextBtn.setTitle("게시글 공유", for: .normal)
-        nextBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0), for: .normal)
-        nextBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-        
-        nextBtn.layer.borderWidth = 1
-        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
+//        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
+//        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+//        nextBtn.setTitle("게시글 공유", for: .normal)
+//        nextBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0), for: .normal)
+//        nextBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
+//        
+//        nextBtn.layer.borderWidth = 1
+//        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
 
   
 
