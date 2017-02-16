@@ -30,13 +30,13 @@ class CommentViewCell: UITableViewCell {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
-        nickLabel.frame = CGRect(x: 20*widthRatio, y: 18*heightRatio, width: 157*widthRatio, height: 14*heightRatio)
+        nickLabel.frame = CGRect(x: 40*widthRatio, y: 20*heightRatio, width: 157*widthRatio, height: 14*heightRatio)
         nickLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 14*widthRatio)
         
-        dateLabel.frame = CGRect(x: 246*widthRatio, y: 18*heightRatio, width: 71*widthRatio, height: 10*heightRatio)
+        dateLabel.frame = CGRect(x: 268*widthRatio, y: 20*heightRatio, width: 73*widthRatio, height: 10*heightRatio)
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 10*widthRatio)
         
-        commentLabel.frame.origin = CGPoint(x: 20*widthRatio, y: 42*heightRatio)
+        commentLabel.frame.origin = CGPoint(x: 40*widthRatio, y: 42*heightRatio)
         commentLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         commentLabel.numberOfLines = 0
         commentLabel.sizeToFit()

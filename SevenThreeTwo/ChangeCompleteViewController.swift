@@ -21,7 +21,10 @@ class ChangeCompleteViewController: UIViewController {
     var apiManager : ApiManager!
 
     var checkImg : [UIImage] = [UIImage(named: "checkComplete1")!,UIImage(named:"checkComplete2")!,UIImage(named:"checkComplete3")!]
-    
+    var checkGif : UIImage!
+    var checkImageView : UIImageView!
+    var checkTimer = Timer()
+    var checkSec : Float = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,6 +34,12 @@ class ChangeCompleteViewController: UIViewController {
         viewSetUp()
     
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        checkTimer.invalidate()
+        checkTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ChangeCompleteViewController.counter), userInfo: nil, repeats:true)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -48,9 +57,12 @@ class ChangeCompleteViewController: UIViewController {
         let completeView = UIView(frame: CGRect(x: 52*widthRatio, y: 201*heightRatio, width: 271*widthRatio, height: 327*heightRatio))
         completeView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let checkImageView = UIImageView(frame: CGRect(x: 106*widthRatio, y: 103*heightRatio, width: 59*widthRatio, height: 59*heightRatio))
-        checkImageView.image = UIImage(named: "checkComplete")
-    
+        
+        
+        checkGif = UIImage.gifImageWithName(name: "checkComplete")
+        checkImageView = UIImageView(image: checkGif)
+        checkImageView.frame = CGRect(x: 106*widthRatio, y: 103*heightRatio, width: 59*widthRatio, height: 59*heightRatio)
+        
         completeView.addSubview(checkImageView)
         
         let checkMsg = UIImageView()
@@ -80,6 +92,16 @@ class ChangeCompleteViewController: UIViewController {
         
         self.view.addSubview(completeView)
         
+    }
+    
+    func counter(){
+        checkSec += 0.1
+        if checkSec > 1.6 {
+            self.checkImageView.removeFromSuperview()
+            self.checkImageView = nil
+            changeCompleteAction()
+            checkTimer.invalidate()
+        }
     }
     
     func changeCompleteAction(){

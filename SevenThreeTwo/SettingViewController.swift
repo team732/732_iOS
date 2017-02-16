@@ -16,7 +16,6 @@ class SettingViewController: UIViewController {
     var widthRatio: CGFloat = 0.0
     var users = UserDefaults.standard
     var userToken: String!
-    
     @IBOutlet weak var settingTableView: UITableView!
     
     var settingLabel : UIImageView!
@@ -136,10 +135,10 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
         
         cell.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        cell.selectionStyle = .none
-        
+        cell.selectionStyle = .default
         switch indexPath.row {
         case 0:
+            cell.selectionStyle = .none
             cell.infoLabel.text = "내 정보"
             cell.infoLabel.frame.origin.y += 10*heightRatio
             cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
@@ -161,6 +160,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.rightImg.isHidden = true
             break
         case 5:
+            cell.selectionStyle = .none
             cell.infoLabel.text = "앱 설정"
             cell.infoLabel.frame.origin.y += 10*heightRatio
             cell.infoLabel.font = cell.infoLabel.font.withSize(11*widthRatio)
@@ -199,21 +199,18 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let registerEmailVC = storyboard.instantiateViewController(withIdentifier: "RegisterEmailViewController")
-        let changePwVC = storyboard.instantiateViewController(withIdentifier: "ChangePwViewController")
-        let changeNickVC = storyboard.instantiateViewController(withIdentifier: "ChangeNicknameViewController")
-        
+       
+         
         switch indexPath.item {
        
         case 1:
-            present(registerEmailVC, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "settingToEVC", sender: nil)
             break
         case 2:
-            present(changePwVC, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "settingToCPW", sender: nil)
             break
         case 3:
-            present(changeNickVC, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "settingToCN", sender: nil)
             break
         case 4:
             self.outAlert(title: "정말로 탈퇴하시겠습니까?",isCompletely: true)

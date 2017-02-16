@@ -390,7 +390,7 @@
         <!--Register Email View Controller-->
         <scene sceneID="mCv-aj-hOi">
             <objects>
-                <viewController id="eVK-W3-NwF" customClass="RegisterEmailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterEmailViewController" id="eVK-W3-NwF" customClass="RegisterEmailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iNW-sr-hzI"/>
                         <viewControllerLayoutGuide type="bottom" id="CVZ-k1-kVp"/>
@@ -401,7 +401,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" modalPresentationStyle="overCurrentContext" id="p0a-HH-WTV"/>
+                        <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" animates="NO" modalPresentationStyle="overCurrentContext" id="p0a-HH-WTV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tS-uB-WPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -411,7 +411,7 @@
         <!--Change Pw View Controller-->
         <scene sceneID="owq-uU-hL8">
             <objects>
-                <viewController id="euk-O0-98B" customClass="ChangePwViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePwViewController" id="euk-O0-98B" customClass="ChangePwViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZDS-JO-pBV"/>
                         <viewControllerLayoutGuide type="bottom" id="Ikn-KJ-iyO"/>
@@ -422,7 +422,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" modalPresentationStyle="overCurrentContext" id="F46-oU-2DF"/>
+                        <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" animates="NO" modalPresentationStyle="overCurrentContext" id="F46-oU-2DF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Spl-TQ-WHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -454,7 +454,7 @@
         <!--Change Nickname View Controller-->
         <scene sceneID="Ics-Lk-qrN">
             <objects>
-                <viewController id="8zp-bJ-s0P" customClass="ChangeNicknameViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeNicknameViewController" id="8zp-bJ-s0P" customClass="ChangeNicknameViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vve-jN-sU5"/>
                         <viewControllerLayoutGuide type="bottom" id="oQB-m9-rNn"/>
@@ -465,7 +465,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" modalPresentationStyle="overCurrentContext" id="giW-Mq-Fkm"/>
+                        <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" animates="NO" modalPresentationStyle="overCurrentContext" id="giW-Mq-Fkm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Liz-HI-nxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -504,10 +504,10 @@
                     </view>
                     <connections>
                         <outlet property="settingTableView" destination="oIH-0E-aEi" id="yHO-Bn-tEn"/>
-                        <segue destination="eVK-W3-NwF" kind="show" identifier="settingToEVC" id="gbc-Ii-jxE"/>
-                        <segue destination="euk-O0-98B" kind="show" identifier="settingToCPW" id="4ta-ET-EO4"/>
-                        <segue destination="8zp-bJ-s0P" kind="show" identifier="settingToCN" id="OGG-RR-Wug"/>
+                        <segue destination="euk-O0-98B" kind="show" identifier="settingToCPW" animates="NO" id="4ta-ET-EO4"/>
+                        <segue destination="8zp-bJ-s0P" kind="show" identifier="settingToCN" animates="NO" id="OGG-RR-Wug"/>
                         <segue destination="VZe-QI-tDe" kind="show" identifier="outClickedSegue" id="gKL-cc-45e"/>
+                        <segue destination="eVK-W3-NwF" kind="show" identifier="settingToEVC" animates="NO" id="IEk-Ck-u8S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6U-0E-7ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -807,8 +807,8 @@
         <image name="otter-6" width="1280" height="847"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gKL-cc-45e"/>
-        <segue reference="giW-Mq-Fkm"/>
         <segue reference="nkZ-8T-Cc2"/>
+        <segue reference="giW-Mq-Fkm"/>
+        <segue reference="MYY-Ax-zaQ"/>
     </inferredMetricsTieBreakers>
 </document>
