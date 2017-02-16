@@ -143,7 +143,14 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                         let userToken = UserDefaults.standard
                         print(isLogin["data"]["token"].stringValue)
                         userToken.set(isLogin["data"]["token"].stringValue, forKey: "token")
-                        self.present(snapContainer, animated: true, completion: nil)
+                        
+                        self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isLogin["data"]["token"].stringValue])
+                        self.apiManager.requestMissions(missionText: { (missionText) in
+                            MainController.missionText = missionText
+                        }) { (missionId) in
+                            MainController.missionId = missionId
+                            self.present(snapContainer, animated: true, completion: nil)
+                        }
                         //로그인성공
                         break
                     case -10:

@@ -200,7 +200,15 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
                                                                               rightVC: right,
                                                                               topVC: top,
                                                                               bottomVC: nil)
-            self.present(snapContainer, animated: true, completion: nil)
+            
+            self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isJoin["data"]["token"].stringValue])
+            self.apiManager.requestMissions(missionText: { (missionText) in
+                MainController.missionText = missionText
+            }) { (missionId) in
+                MainController.missionId = missionId
+                self.present(snapContainer, animated: true, completion: nil)
+            }
+
         }
         // request
         
