@@ -293,7 +293,8 @@ extension PublicListViewController {
         cell?.setUpWithImage(self.photos[indexPath.row].image,
                             title: "",
                             style: BeigeRoundedPhotoCaptionCellStyle())
-        cell?.layer.borderWidth = 1
+        cell?.layer.borderWidth = 0.5
+        cell?.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
         if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadPic(path: (paginationUrl.substring(from: startIndex)))

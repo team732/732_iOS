@@ -75,9 +75,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
       
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
+  
     
     func reLoadComment(){
         nickname.removeAll()
@@ -101,7 +99,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         if let index = indexPath {
             
             if index.row != 0{
-                commentAlert(isMine: myComment[index.row-1],replyId: replyId[index.row-1])
+                commentAlert(isMine: myComment[index.row-1],replyId: replyId[index.row-1],comment: comment[index.row])
             }
         } else {
             print("Could not find index path")
@@ -201,6 +199,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             self.selectedPic.frame = CGRect(x: 8*widthRatio, y: 156*heightRatio, width: 320*widthRatio, height: 320*heightRatio)
         }
         
+        
         self.myPicView.addSubview(selectedPic)
         
         //서버에서 좋아요 개수 받아온다.
@@ -229,10 +228,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
         
-        myPicView.layer.addBorder(edge: UIRectEdge.left, color: UIColor.black, thickness: 1)
-        myPicView.layer.addBorder(edge: UIRectEdge.right, color: UIColor.black, thickness: 1)
+        myPicView.layer.addBorder(edge: UIRectEdge.left, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), thickness: 1)
+        myPicView.layer.addBorder(edge: UIRectEdge.right, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), thickness: 1)
         
-        let bottomLine = drawLine(startX: 20 , startY: 647, width: 335, height: 1, border: false, color: UIColor.black)
+        let bottomLine = drawLine(startX: 20 , startY: 647, width: 335, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         self.view.addSubview(bottomLine)
     }
@@ -355,7 +354,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         myTableView.isHidden = false
     }
     
-    func commentAlert(isMine : Bool, replyId : Int){
+    func commentAlert(isMine : Bool, replyId : Int, comment : String){
         
         let alertView = UIAlertController(title: "", message: "이 댓글에 관하여", preferredStyle: .actionSheet)
         
@@ -366,6 +365,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         let modifyComment = UIAlertAction(title: "댓글 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
             
+            CommentModifyViewController.originalComment = comment
+            CommentModifyViewController.originalReplyId = replyId
+            self.performSegue(withIdentifier: "commentModify", sender: self)
             alertView.dismiss(animated: true, completion: nil)
         })
         
@@ -402,6 +404,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
     }
     
+        
     
 }
 

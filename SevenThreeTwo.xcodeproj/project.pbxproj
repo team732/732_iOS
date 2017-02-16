@@ -60,6 +60,7 @@
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */; };
 		67C7BFE21E543295009C4506 /* ChangeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */; };
+		67C969E51E5586BD0052C54F /* CommentModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C969E41E5586BD0052C54F /* CommentModifyViewController.swift */; };
 		67CBDB241E518547003A79C0 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBDB231E518547003A79C0 /* Content.swift */; };
 		67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67EB38441E41BBC700A8E89A /* Assets.xcassets */; };
 		F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
@@ -134,6 +135,7 @@
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCompleteViewController.swift; sourceTree = "<group>"; };
+		67C969E41E5586BD0052C54F /* CommentModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModifyViewController.swift; sourceTree = "<group>"; };
 		67CBDB231E518547003A79C0 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		67EB38441E41BBC700A8E89A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SevenThreeTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 				673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */,
 				673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */,
 				3703F2801E4CF75D00C470B9 /* CommentViewController.swift */,
+				67C969E41E5586BD0052C54F /* CommentModifyViewController.swift */,
 			);
 			name = RightView;
 			sourceTree = "<group>";
@@ -425,7 +428,7 @@
 				TargetAttributes = {
 					675A4E141E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 537GQ2WKJ4;
+						DevelopmentTeam = VANL3XS874;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -546,6 +549,7 @@
 				672739761E49E0F1009490A8 /* HotPicViewController.swift in Sources */,
 				67AE84731E43706600BAF314 /* JoinInputIDViewController.swift in Sources */,
 				67AFFDFE1E5225B90088D860 /* ApiManager2.swift in Sources */,
+				67C969E51E5586BD0052C54F /* CommentModifyViewController.swift in Sources */,
 				678781A81E53FF9200FB1A27 /* ChangeNicknameViewController.swift in Sources */,
 				67AE84751E437E3000BAF314 /* JoinInputPwViewController.swift in Sources */,
 				678781A41E53FF6900FB1A27 /* RegisterEmailViewController.swift in Sources */,
@@ -722,11 +726,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 537GQ2WKJ4;
+				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.732proj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.732project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -740,11 +744,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 537GQ2WKJ4;
+				DEVELOPMENT_TEAM = VANL3XS874;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.732proj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.732project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

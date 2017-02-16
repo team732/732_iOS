@@ -137,7 +137,6 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
             apiManager = ApiManager(path: "/users/732/token", method: .post, parameters:["loginId":idTextField.text!,"password":pwTextField.text!], header: [:])
             apiManager.requestLogin(completion: { (isLogin) in
                 self.checkUserLabel.isHidden = false
-                print(isLogin)
                 switch (isLogin["meta"]["code"]){
                     case 0:
                         self.checkUserLabel.text = ""
@@ -192,7 +191,10 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         self.view.addSubview(line)
     }
 
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
+        idTextField.endEditing(true)
+        pwTextField.endEditing(true)
+    }
     
 
  
