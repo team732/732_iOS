@@ -27,8 +27,6 @@ class ApiManager {
     
     //completion:(String) -> Void (ex)
     func requestContents(pagination : @escaping (String)-> Void,completion : @escaping (PublicList)->Void){
-        print("############")
-        print(url)
         
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
@@ -259,17 +257,16 @@ class ApiManager {
             case .failure(_):
                 break
             }
-            
         }
-
     }
-    
-    func requestMissions(completion : @escaping (JSON) -> Void){
-        Alamofire.request(url,method: method, headers: header).responseJSON { (response) in
+
+    func requestModifyComment(completion: @escaping (Int)->Void){
+        Alamofire.request(url, method: method, parameters: parameters,encoding: encode, headers: header).responseJSON { response in
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
+                    completion(resp["meta"]["code"].intValue)
                     print(resp)
                 }
                 break
@@ -277,8 +274,23 @@ class ApiManager {
                 break
             }
         }
+
     }
     
+    func requestMissions(completion: @escaping (JSON)->Void){
+        Alamofire.request(url, method: method, parameters: parameters,encoding: encode, headers: header).responseJSON { response in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                }
+                break
+            case .failure(_):
+                break
+            }
+        }
+    }
+     
     func requestPastMissions(pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
@@ -326,8 +338,6 @@ class ApiManager {
 
     }
     
-
-    
     /*
      사용 하는 컨트롤러에서
      
@@ -335,5 +345,5 @@ class ApiManager {
      print(info) -> info 는 JSON 형식 (@escaping 옆 () 안에 String 을 넣어주면 info 는 String으로 반환 단, completion안에도 String으로 넣어줘야함. 즉 이곳에서 내가 원하는 값으로 반환 받는것
      }
      */
-    
+
 }
