@@ -52,5 +52,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSCameraUsageDescription</key>
+    <string>카메라에 접근</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>포토라이브러리에 접근</string>
 </dict>
 </plist>

@@ -52,25 +52,47 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     var apiManager : ApiManager!
     let userToken = UserDefaults.standard
     
-    let placeHolderText : String = "140자 이내로 작성해주세요."
+    var placeHolderText : String = "140자 이내로 작성해주세요."
     var commentSize : CGFloat = 0.0
    
     var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
     
+    
+    //var imageWidth : CGFloat?
+    //var imageHeight : CGFloat?
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        
+        let imageWidth = CGFloat((self.receivedImg.size.width))
+        let imageHeight = CGFloat((self.receivedImg.size.height))
         
         heightRatio = userDevice.userDeviceHeight()
         
         widthRatio = userDevice.userDeviceWidth()
         
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (500)*heightRatio)
+        
+//        if imageWidth > imageHeight{
+//            print("width")
+//            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: ((375*widthRatio)/imageWidth)*heightRatio)
+//        }else if imageHeight > imageWidth{
+//            print("height")
+//            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: ((500*heightRatio)/imageHeight)*widthRatio, height: (500*heightRatio))
+//        }
+
+        if imageWidth > imageHeight{
+            print("width")
+            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: ((375*3)/4)*heightRatio)
+        }else if imageHeight > imageWidth{
+            print("height")
+            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (500*heightRatio))
+        }else{
+            print("square")
+            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (375)*heightRatio)
+        }
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 18*widthRatio, height: 18*heightRatio)
         
@@ -282,6 +304,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
 //            
 //            let resizedData = UIImageJPEGRepresentation(resizedImage!, 1.0)! as NSData
             //
+            
+            
+            //아무것도 입력 안했을 때 빈칸처리되서 들어감.
+            if self.inputText.text == placeHolderText{
+                print("empty space")
+                self.inputText.text = ""
+            
+            }
+            
             let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
             
             let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
@@ -290,7 +321,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 //self.resizing(compressedImage)!
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
-                                print("resultCode : \(result)")
+                                //print("resultCode : \(result)")
                                 //서버 통신이 끝나야 메인으로 돌아감.
                     
                                 alertView.dismiss(animated: true, completion: nil)
@@ -305,7 +336,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 
                 self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:false, completion: { (result) in
                     
-                    print("resultCode : \(result)")
+                    //print("resultCode : \(result)")
                     //서버 통신이 끝나야 메인으로 돌아감.
                     
                     alertView.dismiss(animated: true, completion: nil)
