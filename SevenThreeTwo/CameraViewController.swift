@@ -48,7 +48,9 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var grayView: UIView!
     
-    var receivedImg : UIImage = UIImage(named : "otter-3")!
+    var backBtnExtension : UIView!
+    
+    var receivedImg : UIImage = UIImage(named : "gotoleft")!
     var receivedMissionId : Int = 0
 
     var apiManager : ApiManager!
@@ -72,31 +74,18 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         let imageHeight = CGFloat((self.receivedImg.size.height))
         
         heightRatio = userDevice.userDeviceHeight()
-        
         widthRatio = userDevice.userDeviceWidth()
         
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-//        if imageWidth > imageHeight{
-//            print("width")
-//            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: ((375*widthRatio)/imageWidth)*heightRatio)
-//        }else if imageHeight > imageWidth{
-//            print("height")
-//            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: ((500*heightRatio)/imageHeight)*widthRatio, height: (500*heightRatio))
-//        }
-
         if imageWidth > imageHeight{
-            print("width")
             imageView.frame = CGRect(x: (20*widthRatio), y: (149*heightRatio), width: 335*widthRatio, height: (253*heightRatio))
             
         }else if imageHeight > imageWidth{
-            print("height")
             imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
             
         }else{
-            print("square")
             imageView.frame = CGRect(x: (20*widthRatio), y: (108*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
-            
         }
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
@@ -104,23 +93,27 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         backBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
         backBtn.sizeToFit()
         
+        backBtnExtension = UIView(frame: CGRect(x: 20*widthRatio, y: 25*heightRatio, width: 30*widthRatio, height: 30*heightRatio))
+        backBtnExtension.backgroundColor = UIColor.clear
+        //backBtnExtension.layer.borderWidth = 1
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(closeBtn(_:)))
+        backBtnExtension.isUserInteractionEnabled = true
+        backBtnExtension.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(backBtnExtension)
+        
         nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 34*widthRatio, height: 18*heightRatio)
         nextBtn.setImage(UIImage(named:"share"), for: .normal)
         nextBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
         nextBtn.sizeToFit()
         
-        
-        inputText.frame = CGRect(x: (40*widthRatio), y: (533*heightRatio), width: 295*widthRatio, height: (75)*heightRatio)
+        grayView.frame = CGRect(x: 0*widthRatio, y: 512.5*heightRatio, width: 375*widthRatio, height: 154.5*heightRatio)
+        grayView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
+
+        inputText.frame = CGRect(x: (40*widthRatio), y: (20.5*heightRatio), width: 295*widthRatio, height: (75)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        inputText.backgroundColor = UIColor.clear//UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
-        //UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        inputText.backgroundColor = UIColor.clear
+        inputText.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
         inputText.text = placeHolderText
-        
-//        let grayView = UIView(frame: CGRect(x: 0*widthRatio, y: 512.5*heightRatio, width: 375*widthRatio, height: 154.5*heightRatio))
-//        grayView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
-//        
-//        self.view.addSubview(grayView)
         
 //        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
 //        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
@@ -131,17 +124,12 @@ class CameraViewController: UIViewController,UITextViewDelegate {
 //        nextBtn.layer.borderWidth = 1
 //        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
 
-  
-
-        
 //        var line: UIView!
 //        
 //        
 //        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
 //        
 //        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
-//        
-//        
 //        view.addSubview(line)
         
         // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
@@ -185,8 +173,6 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             
             //emoji 일때
             if self.inputText.textInputMode?.primaryLanguage == nil{
-                print("emoji")
-                
                 self.view.frame.origin.y += changeInEmoji
                 
                 self.emojiFlag = 1
@@ -209,7 +195,6 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 
             }// 한글 제외한 언어일 때
             else{
-                print("else language")
                 
                 self.view.frame.origin.y += changeInHeight
                 self.emojiFlag = 0
@@ -284,7 +269,6 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     @IBAction func closeBtn(_ sender: UIButton) {
         
-        
         let alertView = UIAlertController(title: "", message: "지금 나가면 메인으로 나가게 됩니다.", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "나가기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
@@ -307,30 +291,19 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         if token != nil{
             
             self.apiManager = ApiManager(path: "/missions/\(receivedMissionId)/contents", method: .post, parameters: [:], header: ["authorization":token!])
-            //
-//            let imgData: NSData = UIImageJPEGRepresentation(self.receivedImg, 0.25)! as NSData
-//            
-//            let compressedImage : UIImage = UIImage(data:imgData as Data)!
-//            
-//            let resizedImage = compressedImage.resized(withPercentage: 0.5)
-//            
-//            let resizedData = UIImageJPEGRepresentation(resizedImage!, 1.0)! as NSData
-            //
-            
             
             //아무것도 입력 안했을 때 빈칸처리되서 들어감.
             if self.inputText.text == placeHolderText{
                 print("empty space")
                 self.inputText.text = ""
-            
             }
             
-            let alertView = UIAlertController(title: "", message: "공유 여부를 선택해주세요.", preferredStyle: .alert)
+            let alertView = UIAlertController(title: "", message: "공개 여부를 선택해주세요.", preferredStyle: .alert)
             
-            let shareAction = UIAlertAction(title: "공유하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            let shareAction = UIAlertAction(title: "공개하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
                 print("공유하기")
-                //self.resizing(compressedImage)!
+                
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
                                 //print("resultCode : \(result)")
