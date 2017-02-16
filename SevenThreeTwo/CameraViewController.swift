@@ -46,6 +46,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var inputText: UITextView!
     
+    @IBOutlet weak var grayView: UIView!
+    
     var receivedImg : UIImage = UIImage(named : "otter-3")!
     var receivedMissionId : Int = 0
 
