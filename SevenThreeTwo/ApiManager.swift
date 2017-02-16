@@ -34,7 +34,6 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value{
                     let resp = JSON(json)
-                    print(resp)
                     let content = PublicList(contentsCount: resp["data"]["contentsCount"].intValue, contents: resp["data"]["contents"])
                     
                     pagination(resp["pagination"]["nextUrl"].stringValue)
@@ -100,7 +99,6 @@ class ApiManager {
                 if let json = response.result.value{
                     let resp = JSON(json)
                     
-                    print(resp)
                     let detailContent = resp["data"]["content"]
                     let infoContent = Content(contentId: detailContent["contentId"].intValue, contentPicture: detailContent["content"]["picture"].stringValue, contentText: detailContent["content"]["text"].stringValue, userId: detailContent["userId"].intValue, nickname: detailContent["nickname"].stringValue, isMine: detailContent["isMine"].boolValue, isLiked: detailContent["isLiked"].intValue, replies: detailContent["replies"], missionId: detailContent["missionId"].intValue, createdAt: detailContent["createdAt"].stringValue, likeCount: detailContent["likeCount"].intValue, missionText: detailContent["mission"]["text"].stringValue)
                     
@@ -267,7 +265,6 @@ class ApiManager {
                 if let json = response.result.value {
                     let resp = JSON(json)
                     completion(resp["meta"]["code"].intValue)
-                    print(resp)
                 }
                 break
             case .failure(_):
@@ -277,12 +274,15 @@ class ApiManager {
 
     }
     
-    func requestMissions(completion: @escaping (JSON)->Void){
+    //오늘의 미션
+    func requestMissions(missionText: @escaping (String)->Void,missionId: @escaping (Int)->Void){
         Alamofire.request(url, method: method, parameters: parameters,encoding: encode, headers: header).responseJSON { response in
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
+                    missionText(resp["data"]["mission"]["mission"]["text"].stringValue)
+                    missionId(resp["data"]["mission"]["missionId"].intValue)
                 }
                 break
             case .failure(_):

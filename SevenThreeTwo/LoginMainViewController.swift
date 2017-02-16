@@ -28,7 +28,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
 
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-        
+                
         viewSetUp()
         // Do any additional setup after loading the view.
     }

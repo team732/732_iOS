@@ -12,12 +12,20 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    let userToken = UserDefaults.standard
+    let users = UserDefaults.standard
     var apiManager : ApiManager!
+    var userToken : String!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
+        userToken = users.string(forKey: "token")
+        apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":userToken])
+        apiManager.requestMissions(missionText: { (missionText) in
+            MainController.missionText = missionText
+        }) { (missionId) in
+            MainController.missionId = missionId
+        }
+
         return true
     }
     
@@ -35,12 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         
-        let token = self.userToken.string(forKey: "token")
-        if token != nil {
-            self.apiManager = ApiManager(path: "/token", method: .get, parameters: [:], header: ["authorization":token!])
+        userToken = users.string(forKey: "token")
+        if self.userToken != nil {
+            self.apiManager = ApiManager(path: "/token", method: .get, parameters: [:], header: ["authorization":self.userToken!])
             self.apiManager.requestToken { (isToken) in
                 if isToken != "OPEN_LOGINVC" {
-                    self.userToken.set(isToken, forKey: "token")
+                    self.users.set(isToken, forKey: "token")
+                    self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isToken])
+                    self.apiManager.requestMissions(missionText: { (missionText) in
+                        MainController.missionText = missionText
+                    }) { (missionId) in
+                        MainController.missionId = missionId
+                    }
                 }else {
                     self.tokenInvalidAlert()
                 }
@@ -53,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
         // 앱이 활성화 될 때
+        
         
     }
     
