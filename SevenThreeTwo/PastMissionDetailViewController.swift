@@ -68,6 +68,11 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         
         setRefreshControl()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.photos.removeAll()
+        self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
+    }
     
     // 리프레쉬 컨트롤을 세팅
     

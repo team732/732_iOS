@@ -267,6 +267,7 @@ class MainController: UIViewController, FusumaDelegate {
             let destination = segue.destination as! CameraViewController
             
             destination.receivedImg = imageMain
+            destination.receivedMissionId = MainController.missionId
         }
         else if segue.identifier == "mainToDetail"
         {
