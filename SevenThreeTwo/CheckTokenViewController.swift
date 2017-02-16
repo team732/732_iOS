@@ -24,7 +24,6 @@ class CheckTokenViewController: UIViewController {
         imageView = UIImageView(image: launchGif)
         imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         self.view.addSubview(imageView)
-        
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
     }
@@ -81,5 +80,8 @@ class CheckTokenViewController: UIViewController {
             performSegue(withIdentifier: "tokenToLogin", sender: self)
         }
     }
+    
+    
+    
     
 }

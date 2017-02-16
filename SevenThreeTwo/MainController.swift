@@ -20,8 +20,8 @@ class MainController: UIViewController, FusumaDelegate {
     var widthRatio: CGFloat = 0.0
     var subImage: UIImageView!
     var subLabel: UILabel!
-    
-    
+    static var missionId : Int = 0
+    static var missionText : String = ""
     @IBOutlet weak var showButton: UIButton!
     
     var imageMain : UIImage!
@@ -35,12 +35,8 @@ class MainController: UIViewController, FusumaDelegate {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         userToken = users.string(forKey: "token")
-        viewSetUp()
-        
+        self.viewSetUp()
     }
-    
-    
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -132,6 +128,7 @@ class MainController: UIViewController, FusumaDelegate {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
+                
         let mainLogo = UIImageView(frame: CGRect(x: (119*widthRatio), y: (65*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
         mainLogo.image = UIImage(named: "mainLogo")
         self.view.addSubview(mainLogo)
@@ -204,11 +201,6 @@ class MainController: UIViewController, FusumaDelegate {
         subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
         subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         
-        apiManager = ApiManager(path: "/missions", method: .get, header: ["authorization":userToken!])
-        apiManager.requestMissions { (JSON) in
-            //서버에서 불러와서 이미지 세팅
-            //서버에서 불러와서 주제 세팅
-        }
         
         subImage.image = UIImage(named: "subimage")
         
@@ -228,10 +220,10 @@ class MainController: UIViewController, FusumaDelegate {
         
         self.view.addSubview(subImage)
         
-        //서버에서 주제 던져서 세팅
         
+        //서버에서 주제 던져서 세팅
+        subLabel.text = MainController.missionText
         subLabel.numberOfLines = 0
-        subLabel.text = "인간의 욕심은 정말로 정말로 정말로"
         subLabel.textColor = UIColor.white
         subLabel.textAlignment = .center
         subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
