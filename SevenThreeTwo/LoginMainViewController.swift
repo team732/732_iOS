@@ -50,19 +50,19 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         
         
         
-        let logoLandScape = UIImageView(frame: CGRect(x: (168*widthRatio), y: (118*heightRatio), width: 41*widthRatio, height: 99*heightRatio))
+        let logoLandScape = UIImageView(frame: CGRect(x: (167*widthRatio), y: (146*heightRatio), width: 41*widthRatio, height: 99*heightRatio))
         logoLandScape.image = UIImage(named: "logoPortrait")
         self.view.addSubview(logoLandScape)
         
         
-        let loginBtn = UIButton(frame: CGRect(x: 20*widthRatio , y: 435*heightRatio, width: 335*widthRatio, height: 48*heightRatio))
+        let loginBtn = UIButton(frame: CGRect(x: 38*widthRatio , y: 431*heightRatio, width: 299*widthRatio, height: 48*heightRatio))
         loginBtn.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
         loginBtn.setImage(UIImage(named:"login"), for: .normal)
         self.view.addSubview(loginBtn)
         
         
         
-        idTextField = UITextField(frame: CGRect(x: 21*widthRatio, y: 333*heightRatio, width: 334*widthRatio, height: 28*heightRatio))
+        idTextField = UITextField(frame: CGRect(x: 38*widthRatio, y: 340*heightRatio, width: 299*widthRatio, height: 28*heightRatio))
         idTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         idTextField.autocorrectionType = UITextAutocorrectionType.no
         idTextField.attributedPlaceholder = NSAttributedString(string: "아이디 혹은 이메일", attributes: [NSForegroundColorAttributeName: placeholderColor])
@@ -73,11 +73,11 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         
         self.view.addSubview(idTextField)
         
-        drawLine(startX: 21, startY: 361, width: 334, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: 38, startY: 367, width: 299, height: 1, border: false, color: UIColor.black)
 
         
        
-        pwTextField = UITextField(frame: CGRect(x: 20*widthRatio, y: 387*heightRatio, width: 334*widthRatio, height: 28*heightRatio))
+        pwTextField = UITextField(frame: CGRect(x: 38*widthRatio, y: 388*heightRatio, width: 299*widthRatio, height: 28*heightRatio))
         pwTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         pwTextField.autocorrectionType = UITextAutocorrectionType.no
         pwTextField.keyboardType = UIKeyboardType.default
@@ -89,7 +89,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         self.view.addSubview(pwTextField)
         
         
-        checkUserLabel = UILabel(frame: CGRect(x: 118*widthRatio, y: 299*heightRatio, width: 141*widthRatio, height: 12*heightRatio))
+        checkUserLabel = UILabel(frame: CGRect(x: 118*widthRatio, y: 296*heightRatio, width: 141*widthRatio, height: 12*heightRatio))
         checkUserLabel.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         checkUserLabel.isHidden = true
         checkUserLabel.text = ""
@@ -101,15 +101,15 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         
         
         
-        drawLine(startX: 21, startY: 415, width: 334, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: 38, startY: 415, width: 299, height: 1, border: false, color: UIColor.black)
         
         
-        let joinBtn = UIButton(frame: CGRect(x: 20*widthRatio , y: 597*heightRatio, width: 335*widthRatio, height: 48*heightRatio))
+        let joinBtn = UIButton(frame: CGRect(x: 38*widthRatio , y: 580*heightRatio, width: 299*widthRatio, height: 48*heightRatio))
         joinBtn.addTarget(self, action: #selector(joinButtonAction), for: .touchUpInside)
         joinBtn.setImage(UIImage(named:"join"), for: .normal)
         self.view.addSubview(joinBtn)
         
-        let missingPw = UIButton(frame: CGRect(x: 118*widthRatio, y: 513*heightRatio, width: 142*widthRatio, height: 12*heightRatio))
+        let missingPw = UIButton(frame: CGRect(x: 118*widthRatio, y: 503*heightRatio, width: 142*widthRatio, height: 12*heightRatio))
         missingPw.setTitle("혹시 패스워드를 잊으셨나요?", for: .normal)
         missingPw.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         missingPw.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 0.56), for: .normal)

@@ -17,15 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userToken : String!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         userToken = users.string(forKey: "token")
-        apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":userToken])
-        apiManager.requestMissions(missionText: { (missionText) in
-            MainController.missionText = missionText
-        }) { (missionId) in
-            MainController.missionId = missionId
+        if userToken != nil{
+            apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":userToken])
+            apiManager.requestMissions(missionText: { (missionText) in
+                MainController.missionText = missionText
+            }) { (missionId) in
+                MainController.missionId = missionId
+            }
         }
-
         return true
     }
     
