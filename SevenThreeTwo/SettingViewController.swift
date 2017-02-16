@@ -199,16 +199,21 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let registerEmailVC = storyboard.instantiateViewController(withIdentifier: "RegisterEmailViewController")
+        let changePwVC = storyboard.instantiateViewController(withIdentifier: "ChangePwViewController")
+        let changeNickVC = storyboard.instantiateViewController(withIdentifier: "ChangeNicknameViewController")
+        
         switch indexPath.item {
        
         case 1:
-            self.performSegue(withIdentifier: "settingToEVC", sender: nil)
+            present(registerEmailVC, animated: true, completion: nil)
             break
         case 2:
-            self.performSegue(withIdentifier: "settingToCPW", sender: nil)
+            present(changePwVC, animated: true, completion: nil)
             break
         case 3:
-            self.performSegue(withIdentifier: "settingToCN", sender: nil)
+            present(changeNickVC, animated: true, completion: nil)
             break
         case 4:
             self.outAlert(title: "정말로 탈퇴하시겠습니까?",isCompletely: true)
@@ -232,13 +237,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             break
         }
         
-        if indexPath.item == 1 {
-            
-        }else if indexPath.item == 2{
-            
-        }
-        
-        
+       
     }
     
     

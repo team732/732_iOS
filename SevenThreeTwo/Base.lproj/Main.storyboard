@@ -544,21 +544,29 @@
                                     <action selector="nextBtn:" destination="xY8-U1-h6b" eventType="touchUpInside" id="HTV-vJ-8BI"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uj1-lw-sEP">
-                                <rect key="frame" x="67" y="606" width="240" height="41"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kmG-jL-vt2">
+                                <rect key="frame" x="67" y="491" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uj1-lw-sEP">
+                                        <rect key="frame" x="0.0" y="43" width="240" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="xY8-U1-h6b" id="Sxk-SS-tm4"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="xY8-U1-h6b" id="Sxk-SS-tm4"/>
-                                </connections>
-                            </textView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="KzW-3w-RrP" id="45G-wf-BTy"/>
+                        <outlet property="grayView" destination="kmG-jL-vt2" id="NqQ-st-Xlx"/>
                         <outlet property="imageView" destination="hlJ-sI-2Hf" id="8iI-us-RAM"/>
                         <outlet property="inputText" destination="uj1-lw-sEP" id="d2Y-Wk-sVE"/>
                         <outlet property="nextBtn" destination="xyf-ko-lxE" id="kxo-gE-w2Y"/>
