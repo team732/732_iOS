@@ -171,7 +171,7 @@ class PublicListViewController:  UICollectionViewController{
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (92*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (97*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.image = UIImage(named: "gotoleft")
         gotoLeft.sizeToFit()
         collectionView?.addSubview(gotoLeft)
