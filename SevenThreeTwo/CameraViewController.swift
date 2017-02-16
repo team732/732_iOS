@@ -85,34 +85,40 @@ class CameraViewController: UIViewController,UITextViewDelegate {
 
         if imageWidth > imageHeight{
             print("width")
-            imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: ((300*3)/4)*heightRatio)
-            inputText.frame = CGRect(x: (37.5*widthRatio), y: (508*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
+            imageView.frame = CGRect(x: (20*widthRatio), y: (149*heightRatio), width: 335*widthRatio, height: (253*heightRatio))
+            
         }else if imageHeight > imageWidth{
             print("height")
             imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
-            inputText.frame = CGRect(x: (37.5*widthRatio), y: (493*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
+            
         }else{
             print("square")
-            imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (300)*heightRatio)
-            inputText.frame = CGRect(x: (37.5*widthRatio), y: (318*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
+            imageView.frame = CGRect(x: (20*widthRatio), y: (108*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
+            
         }
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
         backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
         backBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
-
+        backBtn.sizeToFit()
         
         nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 34*widthRatio, height: 18*heightRatio)
         nextBtn.setImage(UIImage(named:"share"), for: .normal)
         nextBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
+        nextBtn.sizeToFit()
         
         
-        
-        
+        inputText.frame = CGRect(x: (40*widthRatio), y: (533*heightRatio), width: 295*widthRatio, height: (75)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
-        inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        inputText.backgroundColor = UIColor.clear//UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
+        //UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         inputText.text = placeHolderText
+        
+//        let grayView = UIView(frame: CGRect(x: 0*widthRatio, y: 512.5*heightRatio, width: 375*widthRatio, height: 154.5*heightRatio))
+//        grayView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
+//        
+//        self.view.addSubview(grayView)
         
 //        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
 //        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
