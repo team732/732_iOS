@@ -85,26 +85,29 @@ class CameraViewController: UIViewController,UITextViewDelegate {
 
         if imageWidth > imageHeight{
             print("width")
-            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: ((375*3)/4)*heightRatio)
+            imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: ((300*3)/4)*heightRatio)
+            inputText.frame = CGRect(x: (37.5*widthRatio), y: (508*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
         }else if imageHeight > imageWidth{
             print("height")
-            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (500*heightRatio))
+            imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
+            inputText.frame = CGRect(x: (37.5*widthRatio), y: (493*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
         }else{
             print("square")
-            imageView.frame = CGRect(x: (0*widthRatio), y: (0*heightRatio), width: 375*widthRatio, height: (375)*heightRatio)
+            imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (300)*heightRatio)
+            inputText.frame = CGRect(x: (37.5*widthRatio), y: (318*heightRatio), width: 300*widthRatio, height: (100)*heightRatio)
         }
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 18*widthRatio, height: 18*heightRatio)
-        
-        backBtn.setImage(UIImage(named:"backShadow"), for: .normal)
-        backBtn.tintColor = UIColor.white
+        //backShadow
+        backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
+        backBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
         backBtn.layer.shadowColor = UIColor.black.cgColor
         backBtn.layer.shadowRadius = 1
         backBtn.layer.shadowOffset =  CGSize(width: 0.0, height: 0.0)
         backBtn.layer.shadowOpacity = 1.0
         
         
-        inputText.frame = CGRect(x: (16*widthRatio), y: (508*heightRatio), width: 343*widthRatio, height: (114-3)*heightRatio)
+        
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         inputText.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         inputText.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
@@ -369,7 +372,11 @@ class CameraViewController: UIViewController,UITextViewDelegate {
 //        
 //        let resizedImage = UIImage(data:imgData)
         
-        let resizedData = UIImageJPEGRepresentation((image.resized(withPercentage: 0.5))!, 0.25)
+        let resizedWidthImage = image.resized(toWidth: 1080)
+        
+        let resizedData = UIImageJPEGRepresentation(resizedWidthImage!, 0.25)
+        
+        //let resizedData = UIImageJPEGRepresentation((image.resized(withPercentage: 0.5))!, 0.25)
         //UIImagePNGRepresentation((resizedImage?.resized(withPercentage: 0.5))!)
         
         return resizedData
