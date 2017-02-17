@@ -201,12 +201,14 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
                                                                               topVC: top,
                                                                               bottomVC: nil)
             
+            CheckTokenViewController.snapContainer = snapContainer
+            
             self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isJoin["data"]["token"].stringValue])
             self.apiManager.requestMissions(missionText: { (missionText) in
                 MainController.missionText = missionText
             }) { (missionId) in
                 MainController.missionId = missionId
-                self.present(snapContainer, animated: true, completion: nil)
+                self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
             }
 
         }

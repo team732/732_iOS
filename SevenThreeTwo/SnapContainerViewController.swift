@@ -125,7 +125,18 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
             // directional lock, that allows you to scroll in only one direction at any given time
             self.scrollView!.setContentOffset(newOffset, animated:  false)
         }
+    }
+    
+    func moveMiddle(){
         
+        print(self.middleVertScrollVc.view.frame.origin.x , self.middleVertScrollVc.view.frame.origin.y)
+    
+        self.scrollView!.setContentOffset(CGPoint(x: self.middleVertScrollVc.view.frame.origin.x, y: self.middleVertScrollVc.view.frame.origin.y), animated: true)
+        
+    }
+    
+    func moveToptoMiddle(){
+        middleVertScrollVc.scrollView.setContentOffset(CGPoint(x:self.middleVertScrollVc.middleVc.view.frame.origin.x,y:self.middleVertScrollVc.middleVc.view.frame.origin.y), animated: true)
     }
     
 }

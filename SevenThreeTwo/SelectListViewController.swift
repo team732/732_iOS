@@ -159,6 +159,14 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtn)
         
+        let cancelBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 51*heightRatio, width: 44*widthRatio, height: 34*heightRatio))
+        cancelBtnExtension.backgroundColor = UIColor.clear
+        let cancelBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(cancelButtonAction))
+        cancelBtnExtension.isUserInteractionEnabled = true
+        cancelBtnExtension.addGestureRecognizer(cancelBtnRecognizer)
+        
+        self.view.addSubview(cancelBtnExtension)
+        
         let dateLabel = UILabel(frame: CGRect(x: (135*widthRatio), y: (33*heightRatio), width: 115*widthRatio, height: 11*heightRatio))
         dateLabel.text = useDate() + "의 미션"
         dateLabel.textAlignment = .center

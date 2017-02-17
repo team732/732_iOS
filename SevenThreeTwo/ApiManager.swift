@@ -338,6 +338,27 @@ class ApiManager {
 
     }
     
+    func requestHotPic(completion : @escaping([UIImage])->Void){
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    var hotpicArr : [UIImage] = []
+                    for idx in 0..<resp["data"]["contents"].count{
+                        let hotPicUrl = resp["data"]["contents"][idx]["content"]["picture"].stringValue
+                        let hotPicImg = UIImage(data: NSData(contentsOf: NSURL(string: hotPicUrl)! as URL)! as Data)!
+                        hotpicArr.append(hotPicImg)
+                    }
+                    
+                    completion(hotpicArr)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     /*
      사용 하는 컨트롤러에서
      

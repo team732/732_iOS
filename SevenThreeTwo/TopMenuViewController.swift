@@ -18,7 +18,6 @@ class TopMenuViewController: UIViewController {
     var widthRatio: CGFloat = 0.0
     
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,10 +78,18 @@ class TopMenuViewController: UIViewController {
         self.view.addSubview(hotPicBtn)
         
         
-        let downBtn = UIImageView(frame: CGRect(x: (176*widthRatio), y: (600*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        downBtn.image = UIImage(named: "godown")
+        let downBtn = UIButton(frame: CGRect(x: (176*widthRatio), y: (600*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        downBtn.setImage(UIImage(named: "godown"), for: .normal)
         downBtn.sizeToFit()
+        downBtn.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         self.view.addSubview(downBtn)
+        
+        let moveExtension = UIView(frame: CGRect(x: 166*widthRatio, y: 590*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        moveExtension.backgroundColor = UIColor.clear
+        let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
+        moveExtension.isUserInteractionEnabled = true
+        moveExtension.addGestureRecognizer(moveRecog)
+        self.view.addSubview(moveExtension)
         
         
     }
@@ -120,5 +127,8 @@ class TopMenuViewController: UIViewController {
         drawLine(startX: startX, startY: startY+height, width: 1, height: -height, border: true, color: UIColor.black)
     }
     
+    func moveToMainVC(){
+        CheckTokenViewController.snapContainer.moveToptoMiddle()
+    }
     
 }

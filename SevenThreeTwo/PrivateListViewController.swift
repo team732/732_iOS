@@ -93,8 +93,6 @@ class PrivateListViewController: UICollectionViewController {
 
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
 
-        // Set title
-        title = "Variable height layout"
         
         // Set generic styling
         collectionView?.backgroundColor = UIColor.clear
@@ -128,10 +126,19 @@ class PrivateListViewController: UICollectionViewController {
         labelList.font = labelList.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelList)
         
-        let gotoRight = UIImageView(frame: CGRect(x: (318*widthRatio), y: (98*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        gotoRight.image = UIImage(named: "gotoright")
+        let gotoRight = UIButton(frame: CGRect(x: (318*widthRatio), y: (98*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoRight.setImage(UIImage(named: "gotoright"), for: .normal)
+        gotoRight.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         gotoRight.sizeToFit()
         collectionView?.addSubview(gotoRight)
+        
+        let moveExtension = UIView(frame: CGRect(x: 308*widthRatio, y: 88*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        moveExtension.backgroundColor = UIColor.clear
+        let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
+        moveExtension.isUserInteractionEnabled = true
+        moveExtension.addGestureRecognizer(moveRecog)
+        collectionView?.addSubview(moveExtension)
+        
         
         let traceImg = UIImageView(frame: CGRect(x: 140*widthRatio, y: 147*heightRatio, width: 91*widthRatio, height: 12*heightRatio))
         traceImg.image = UIImage(named: "trace")
@@ -214,6 +221,11 @@ class PrivateListViewController: UICollectionViewController {
         
         self.collectionView?.addSubview(line)
     }
+    
+    func moveToMainVC(){
+        CheckTokenViewController.snapContainer.moveMiddle()
+    }
+
 }
 
 // MARK: UICollectionViewDelegate
