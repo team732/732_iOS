@@ -324,7 +324,7 @@
         <scene sceneID="xRh-r4-Suc">
             <objects>
                 <collectionViewController storyboardIdentifier="left" id="fJU-Lj-n4c" customClass="PrivateListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lYv-aP-wph">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lYv-aP-wph">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -386,6 +386,226 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="72.799999999999997" y="65.217391304347828"/>
+        </scene>
+        <!--Privacy View Controller-->
+        <scene sceneID="HNX-Ee-Ezp">
+            <objects>
+                <viewController id="AmD-hl-5VU" customClass="PrivacyViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g48-jB-LeZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lur-Ej-yoW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B42-vi-doi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ8-O9-3N6">
+                                <rect key="frame" x="67" y="28" width="240" height="589"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utb-jK-mK3">
+                                        <rect key="frame" x="16" y="31" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XY4-BN-ARp">
+                                        <rect key="frame" x="8" y="159" width="224" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <mutableString key="text">Team732(이하 “732”)은 회원님의 개인정보를 중요시하며, 개인정보의 보호와 관련하여 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 및 개인정보 보호법 등 관련법 상의 개인정보 보호규정을 준수하고 있습니다.
+732는 개인정보처리방침을 통하여 회원님의 개인정보가 남용되거나 유출되지 않도록 최선을 다할 것이며, 회원님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있고, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
+732는 개인정보 처리방침을 Setting-개인정보취급방침 관련 페이지에서 공개함으로써 회원님이 언제나 용이하게 보실 수 있도록 조치하고 있습니다.
+단, 본 개인정보 처리방침은 정부의 법령 및 지침의 변경, 또는 보다 나은 서비스의 제공을 위하여 그 내용이 변경될 수 있으니, 회원님들께서는 업데이트시 수시로 그 내용을 확인하여 주시기 바라며, 732는 개인정보처리방침을 개정하는 경우 로그인시에 고지하거나 앱스토어를 통해 공지할 것입니다.
+
+제 1 조 #개인정보 수집에 대한 동의
+
+732는 이용자들이 732의 개인정보 취급방침 또는 이용약관의 내용에 대하여 「동의」버튼 또는 「취소」버튼을 클릭할 수 있는 절차를 마련하여, 「동의」버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다. 
+
+제 2조 #개인정보의 수집 및 이용 목적
+
+"개인정보"라 함은 생존하는 개인에 관한 정보로, 성명, 이메일 주소, 전화번호 등 개인을 식별할 수 있는 정보를 말합니다.
+
+732는 회원서비스(현재 제공 중이거나 향후 제공될 로그인 기반의 서비스)등을 통하여 이용자들에게 맞춤식 서비스를 비롯한 보다 더 향상된 양질의 서비스를 제공하기 위하여 이용자 개인의 정보를 수집하고 있습니다.
+
+732는 이용자의 사전 동의 없이는 이용자의 개인 정보를 공개하지 않으며, 수집된 정보는 아래와 같이 이용하고 있습니다.
+
+첫째, 이용자들의 개인정보를 기반으로 보다 더 유용한 서비스를 개발할 수 있습니다. 732는 신규 서비스개발이나 콘텐츠의 확충 시에 기존 이용자들이 732에 제공한 개인정보를 바탕으로 개발해야 할 서비스의 우선순위를 보다 더 효율적으로 정하고, 732는 이용자들이 필요로 할 콘텐츠를 합리적으로 선택하여 제공할 수 있습니다. 
+
+둘째, 732이 제공하는 서비스의 원활한 이용을 위하여 회원은 적법한 동의절차를 거쳐 SNS 업체가 연결을 위한 정보를 732에 제공하도록 할 수 있습니다. 732는 연결된 SNS를 원활한 서비스 제공을 위해 사용자에게서 권한이 허락된 범위 안에서 이를 활용할 수 있으며, 허락되지 않은 범위에 대해서는 절대 활용하지 않습니다. 서비스 이용을 위하여 회원으로부터 추가적인 권한의 요청을 필요로 할 경우, 각 SNS의 인증서비스를 통하여 이에 대한 사전 동의를 반드시 구할 것입니다.
+
+셋째, 732는 회원가입, 원활한 고객상담, 각종 서비스 등 기본적인 서비스 제공을 위해 아래와 같은 개인정보를 수집하고 있습니다. 
+1) 필수수집정보 :  아이디, 비밀번호, 닉네임, 전자우편 주소 등
+
+이용자의 기본적 인권 침해의 우려가 있는 민감한 개인 정보(인종, 사상 및 신조, 정치적 성향이나 범죄기록, 의료정보 등)는 기본적으로 수집하지 않습니다.
+다만 불가피하게 수집이 필요한 경우 반드시 사전에 동의 절차를 거치도록 하겠습니다.
+
+다섯째, 회원님이 제공하신 모든 정보는 상기 목적에 필요한 용도 이외로는 사용되지 않으며, 수집정보의 범위나 사용목적, 용도가 변경될 시에는 반드시 회원님들께 사전동의를 구할 것 입니다.
+
+위 정보는 가입 당시 정보만 아니라 정보수정으로 변경된 정보를 포함합니다.
+
+제 3조 #개인정보의 보유 및 이용기간
+
+732는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 개인정보를 지체 없이 파기합니다. 
+
+단, 다음의 정보에 대해서는 아래의 이유로 명시한 기간 동안 보존 합니다.
+
+- 보존 항목 : 아이디, 비밀번호, 닉네임, 전자우편 주소 등
+
+- 보존 근거 : 732의 서비스이용약관 및 개인정보취급방침에 동의
+
+- 보존 기간 : 회원으로서의 자격을 유지하는 동안
+
+제 4조 #개인정보의 파기절차 및 방법
+
+회원님의 개인정보는 원칙적으로 개인정보의 수집 및 이용목적이 달성되면 지체 없이 파기합니다.
+
+가. 파기절차
+- 회원님이 서비스를 이용하면서 입력한 정보 및 기록은 회원탈퇴시 파기됩니다.
+
+나. 파기방법
+- 전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.
+
+제 5조 #개인정보의 제3자 제공 및 공유
+
+가. 732는 회원님의 개인정보를 ‘개인정보의 수집 및 이용 목적’에서 고지한 범위 내에서 사용하며, 회원님의 사전 동의 없이는 동 범위를 초과하여 이용하거나 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.
+
+- 이용자들이 사전에 공개 또는 제3자 제공에 동의한 경우
+
+- 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우
+
+나. 732가 제공하는 서비스를 통하여 주문 및 결제가 이루어진 경우 상담 등 거래 당사자간 원활한 의사소통을 위하여 관련된 정보를 필요한 범위 내에서 거래 당사자에게 제공합니다.
+
+제 6조 #회원의 권리와 그 행사방법
+
+가. 회원님은 언제든지 문의하기를 통해 732에 연락하여 등록되어 있는 본인의 개인정보를 조회하거나 수정할 수 있으며 회원 탈퇴 절차를 통하여 개인정보 이용에 대한 동의 등을 철회할 수 있습니다.
+
+나. 회원님이 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용 또는 제공하지 않습니다. 732는 회원님의 요청에 의해 해지 또는 삭제된 개인정보는 제2조에 명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.
+
+제 7조 #회원의 의무
+
+가. 회원님은 자신의 개인정보를 보호할 의무가 있으며, 회원님 본인의 부주의나 인터넷상의 문제 등으로 개인정보가 유출되어 발생한 문제에 대하여 732는 일체의 책임을 지지 않습니다.
+
+나. 회원님의 개인정보를 최신의 상태로 정확하게 입력하시기 바랍니다. 회원님의 부정확한 정보입력으로 발생하는 문제의 책임은 회원님 자신에게 있으며, 타인의 개인정보를 도용하여 서비스 이용 시 회원자격 상실과 함께 주민등록법에 의거하여 처벌될 수 있습니다.
+
+다. 회원님은 개인정보를 보호받을 권리와 함께 스스로를 보호하고 타인의 정보를 침해하지 않을 의무도 가지고 있습니다. 아이디, 비밀번호를 포함한 회원님의 개인정보가 유출되지 않도록 조심하시고 게시물을 포함한 타인의 개인정보를 훼손하지 않도록 유의해 주십시오.
+
+라. 회원님은 『정보통신망이용촉진및정보보호등에관한법률』, 개인정보보호법, 주민등록법 등 기타 개인정보에 관한 법률을 준수하여야 합니다.
+
+제 8조 #개인정보보호 관련 문의
+
+회원님의 개인정보와 관련한 문의사항은 아래의 이메일로 연락하여 주시기 바랍니다.
+
+이메일: 732seventhreetwo@gmail.com
+
+기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.
+1. 개인분쟁조정위원회(www.1336.or.kr/1336)
+2. 정보보호마크인증위원회(www.eprivacy.or.kr/02-580-0533~4)
+3. 대검찰청 인터넷범죄수사센터(icic.sppo.go.kr/02-3480-3600)
+4. 경찰청 사이버테러대응센터(www.ctrc.go.kr/02-392-0330)
+
+</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhc-pp-9s5">
+                                        <rect key="frame" x="99" y="40" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="Utb-jK-mK3" id="GTX-Kv-l4e"/>
+                        <outlet property="borderView" destination="aJ8-O9-3N6" id="bMh-vq-ASL"/>
+                        <outlet property="contents" destination="XY4-BN-ARp" id="w5L-Cg-vUU"/>
+                        <outlet property="titleLabel" destination="qhc-pp-9s5" id="Ngc-T9-Pyv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BHv-rR-ray" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4393" y="2140"/>
+        </scene>
+        <!--Open Source View Controller-->
+        <scene sceneID="NcT-q2-tye">
+            <objects>
+                <viewController id="HYB-VW-Ysk" customClass="OpenSourceViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1t2-zq-ALr"/>
+                        <viewControllerLayoutGuide type="bottom" id="GZe-ZW-sEY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6UG-YH-3ba">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWl-iz-s6c">
+                                <rect key="frame" x="67" y="28" width="240" height="589"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fve-jG-hzW">
+                                        <rect key="frame" x="16" y="19" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rxV-x5-BN5">
+                                        <rect key="frame" x="0.0" y="230" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <mutableString key="text">- Library
+        
+       	#Alamofire 
+        https://github.com/Alamofire/Alamofire
+        Alamofire is released under the MIT license. See LICENSE for details.
+	
+	#Fusuma
+	https://github.com/ytakzk/Fusuma
+	Fusuma is released under the MIT license. See LICENSE for details.
+	
+	#SwiftyJSON
+	https://github.com/SwiftyJSON/SwiftyJSON
+	SwiftyJSON is released under the MIT license. See LICENSE for details.
+
+      	#StackViewPhotoCollage
+	https://github.com/gdaniele/StackViewPhotoCollage
+	The MIT License (MIT) 
+	Copyright (c) Giancarlo Daniele
+
+- Font
+        
+        아리따 글꼴 
+        http://www.amorepacific.com/int/ko/about-us/visual-identity/arita-typeface.html
+        © Since 1945 Amorepacific, All Rights Reserved.
+       
+Copyright © 2017 team732 All Rights Reserved</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsI-iW-sdA">
+                                        <rect key="frame" x="99" y="42" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="fve-jG-hzW" id="xrm-1a-Ou0"/>
+                        <outlet property="borderView" destination="rWl-iz-s6c" id="Fk0-Zy-BB8"/>
+                        <outlet property="contents" destination="rxV-x5-BN5" id="hSY-bT-3vB"/>
+                        <outlet property="titleLabel" destination="gsI-iW-sdA" id="w5I-lO-mhx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALB-Fa-oiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3550" y="2140"/>
         </scene>
         <!--Register Email View Controller-->
         <scene sceneID="mCv-aj-hOi">
@@ -508,6 +728,8 @@
                         <segue destination="8zp-bJ-s0P" kind="show" identifier="settingToCN" animates="NO" id="OGG-RR-Wug"/>
                         <segue destination="VZe-QI-tDe" kind="show" identifier="outClickedSegue" id="gKL-cc-45e"/>
                         <segue destination="eVK-W3-NwF" kind="show" identifier="settingToEVC" animates="NO" id="IEk-Ck-u8S"/>
+                        <segue destination="AmD-hl-5VU" kind="show" identifier="settingToPrivacy" id="j7X-q7-Gt4"/>
+                        <segue destination="HYB-VW-Ysk" kind="show" identifier="settingToOpenSource" id="g5h-F5-frd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6U-0E-7ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -714,7 +936,7 @@
         <scene sceneID="S4j-26-usl">
             <objects>
                 <collectionViewController id="P6R-Er-mpn" customClass="PastMissionDetailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9tK-9D-rNg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="9tK-9D-rNg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
