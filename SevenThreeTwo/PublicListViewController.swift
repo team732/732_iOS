@@ -224,7 +224,7 @@ class PublicListViewController:  UICollectionViewController{
                                 width:200.6*widthRatio, height: 28*heightRatio)
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
-        customSC.tintColor = UIColor.darkGray
+        customSC.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         customSC.addTarget(self, action: #selector(PublicListViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)

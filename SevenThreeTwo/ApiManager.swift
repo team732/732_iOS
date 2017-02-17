@@ -338,20 +338,37 @@ class ApiManager {
 
     }
     
-    func requestHotPic(completion : @escaping([UIImage])->Void){
+    func requestHotPic(hotPicSub : @escaping([String])->Void,hotPicCreator : @escaping([String])->Void,hotPicDate : @escaping([String])->Void,hotPicImg : @escaping([UIImage])->Void){
         Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { (response) in
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
                     var hotpicArr : [UIImage] = []
+                    var hotPicSubArr : [String] = []
+                    var hotPicCreatorArr : [String] = []
+                    var hotPicDateArr : [String] = []
+                    
                     for idx in 0..<resp["data"]["contents"].count{
                         let hotPicUrl = resp["data"]["contents"][idx]["content"]["picture"].stringValue
                         let hotPicImg = UIImage(data: NSData(contentsOf: NSURL(string: hotPicUrl)! as URL)! as Data)!
                         hotpicArr.append(hotPicImg)
+                        
+                        let creator = resp["data"]["contents"][idx]["nickname"].stringValue
+                        hotPicCreatorArr.append(creator)
+                        
+                        let subject = resp["data"]["contents"][idx]["mission"]["text"].stringValue
+                        hotPicSubArr.append(subject)
+                        
+                        let date = resp["data"]["contents"][idx]["createdAt"].stringValue
+                        hotPicDateArr.append(date)
+                        
                     }
                     
-                    completion(hotpicArr)
+                    hotPicImg(hotpicArr)
+                    hotPicCreator(hotPicCreatorArr)
+                    hotPicDate(hotPicDateArr)
+                    hotPicSub(hotPicSubArr)
                 }
             case .failure(_):
                 break
