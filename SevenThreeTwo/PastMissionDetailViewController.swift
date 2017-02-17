@@ -71,7 +71,12 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     override func viewDidAppear(_ animated: Bool) {
         
         self.photos.removeAll()
-        self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
+        if refreshSeg == 0{
+            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
+
+        }else if refreshSeg == 1{
+            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
+        }
     }
     
     // 리프레쉬 컨트롤을 세팅
@@ -239,7 +244,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
                                 width:200.6*widthRatio, height: 28*heightRatio)
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor.white
-        customSC.tintColor = UIColor.darkGray
+        customSC.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         customSC.addTarget(self, action: #selector(PastMissionDetailViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
