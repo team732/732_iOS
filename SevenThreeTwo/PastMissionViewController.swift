@@ -24,8 +24,8 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     let height = UIScreen.main.bounds.size.height
     
     var sampleImages:[UIImage] = [UIImage(named:"otter-1")!,UIImage(named:"otter-2")!,UIImage(named:"otter-3")!,UIImage(named:"otter-4")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
-    var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션","2017년 1월 23일의 미션","2017년 1월 24일의 미션","2017년 1월 25일의 미션"]
-    var sampleMissions:[String] = ["미션1","미션2","미션3","미션4","미션5","미션6"]
+    //var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션","2017년 1월 23일의 미션","2017년 1월 24일의 미션","2017년 1월 25일의 미션"]
+    //var sampleMissions:[String] = ["미션1","미션2","미션3","미션4","미션5","미션6"]
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -71,6 +71,8 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         widthRatio = userDevice.userDeviceWidth()
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.contentInset = UIEdgeInsets(top: 21*heightRatio, left: 0, bottom: 30*heightRatio, right: 0)
+        //collectionView.layer.borderWidth = 1
         if(PastMissionViewController.selectedIndex == 1){
         PastMissionViewController.selectedIndex = 0
         }
@@ -135,24 +137,21 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         collectionView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        
-        
-        PastMissionViewController.back.frame = CGRect(x:30*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
+        PastMissionViewController.back.frame = CGRect(x:31*widthRatio, y:61*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         PastMissionViewController.back.setImage(UIImage(named:"gotoleft"), for: .normal)
-        PastMissionViewController.back.sizeToFit()
+        //PastMissionViewController.back.sizeToFit()
+        PastMissionViewController.back.addTarget(self, action: #selector(buttonPressed(sender:)), for: UIControlEvents.touchUpInside)
         
-        let backBtnExtension = UIView(frame: CGRect(x: 18*widthRatio, y: 70*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        let backBtnExtension = UIView(frame: CGRect(x: 18*widthRatio, y: 57*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
         //backBtnExtension.layer.borderWidth = 1
         let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(buttonPressed(sender:)))
         backBtnExtension.isUserInteractionEnabled = true
         backBtnExtension.addGestureRecognizer(backBtnRecognizer)
         self.view.addSubview(backBtnExtension)
         
-        //PastMissionViewController.back.addTarget(self, action:#selector(buttonPressed(sender:)), for: .touchUpInside)
-        
         view.addSubview(PastMissionViewController.back)
         
-        PastMissionViewController.titleLabel.frame = CGRect(x: (137*widthRatio), y: (73*heightRatio), width: 101*widthRatio, height: 22*heightRatio)
+        PastMissionViewController.titleLabel.frame = CGRect(x: (138*widthRatio), y: (62*heightRatio), width: 101*widthRatio, height: 22*heightRatio)
         PastMissionViewController.titleLabel.text = "과거 미션들"
         PastMissionViewController.titleLabel.textAlignment = .center
         PastMissionViewController.titleLabel.textColor = UIColor.black
@@ -162,11 +161,11 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         view.addSubview(PastMissionViewController.titleLabel)
         
         
-        listBtn.frame = CGRect(x:321*widthRatio, y:73*heightRatio, width:24*widthRatio, height: 24*heightRatio)
+        listBtn.frame = CGRect(x:322*widthRatio, y:61*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         listBtn.setImage(UIImage(named:"list"), for: .normal)
-        listBtn.sizeToFit()
+        //listBtn.sizeToFit()
         
-        let listBtnExtension = UIView(frame: CGRect(x: 313*widthRatio, y: 70*heightRatio, width: 35*widthRatio, height: 35*heightRatio))
+        let listBtnExtension = UIView(frame: CGRect(x: 312*widthRatio, y: 55*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
         //listBtnExtension.layer.borderWidth = 1
         let listBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(listButtonClicked(_:)))
         listBtnExtension.isUserInteractionEnabled = true
@@ -286,7 +285,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         //cell.mission.textAlignment = .center
         
         
-        drawLine(startX: cell.frame.origin.x+114*widthRatio, startY: cell.frame.origin.y+127*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.white)
+        drawLine(startX: cell.frame.origin.x+125*widthRatio, startY: cell.frame.origin.y+138*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.white)
         
 //        if indexPath.row == self.pastMissions.count - 2{
 //            //print("-2-2-2")
@@ -306,7 +305,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 263 * widthRatio, height: 263 * heightRatio)
+        return CGSize(width: 285 * widthRatio, height: 285 * heightRatio)
     } // 셀의 사이즈
     
     

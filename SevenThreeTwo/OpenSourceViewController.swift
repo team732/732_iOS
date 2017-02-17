@@ -52,6 +52,7 @@ class OpenSourceViewController: UIViewController {
         contents.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
         contents.isEditable = false
         contents.isSelectable = false
+        contents.showsVerticalScrollIndicator = false
     }
 
     override func didReceiveMemoryWarning() {
