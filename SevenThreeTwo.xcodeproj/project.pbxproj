@@ -301,8 +301,6 @@
 				67AE84571E43486400BAF314 /* Main.storyboard */,
 				675A4E241E2FB076000781DA /* Info.plist */,
 				67EB38441E41BBC700A8E89A /* Assets.xcassets */,
-				37FFBE201E56BE020027C7F6 /* OpenSourceViewController.swift */,
-				37FFBE221E56BE1F0027C7F6 /* PrivacyViewController.swift */,
 			);
 			path = SevenThreeTwo;
 			sourceTree = "<group>";
@@ -351,6 +349,8 @@
 				678781A51E53FF7C00FB1A27 /* ChangePwViewController.swift */,
 				678781A71E53FF9200FB1A27 /* ChangeNicknameViewController.swift */,
 				67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */,
+				37FFBE201E56BE020027C7F6 /* OpenSourceViewController.swift */,
+				37FFBE221E56BE1F0027C7F6 /* PrivacyViewController.swift */,
 				67EAD43D1E561D1100ACA5D1 /* checkComplete.gif */,
 			);
 			name = SettingView;

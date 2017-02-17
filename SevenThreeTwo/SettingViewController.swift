@@ -227,10 +227,10 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
         case 6:
             break
         case 7:
-            //개인정보 취급방침
+            self.performSegue(withIdentifier: "settingToPrivacy", sender: nil)
             break
         case 8:
-            //오픈소스
+            self.performSegue(withIdentifier: "settingToOpenSource", sender: nil)
             break
         case 9:
             //로그아웃
