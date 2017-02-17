@@ -472,6 +472,9 @@ public class FusumaViewController: UIViewController {
         } else {
             print("no image crop ")
             
+            let imageWidth = CGFloat((view?.image.size.width)!)
+            let imageHeight = CGFloat((view?.image.size.height)!)
+            
             
             if (self.mode == .library) {
                 print("library")
@@ -479,9 +482,35 @@ public class FusumaViewController: UIViewController {
                     
                     self.delegate?.fusumaImageSelected((view?.image)!, source: self.mode)
                     
+                    if imageHeight/imageWidth < 0.56 || imageWidth/imageHeight > 1.78{
+                        
+                        let alertView = UIAlertController(title: "Warning", message: "가로가 지나치게 큰 사진입니다.", preferredStyle: UIAlertControllerStyle.alert)
+                        alertView.addAction(UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil))
+                        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+                        alertWindow.rootViewController = UIViewController()
+                        alertWindow.windowLevel = UIWindowLevelAlert + 1
+                        alertWindow.makeKeyAndVisible()
+                        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+                        
+                    }else if imageHeight/imageWidth > 1.78 || imageWidth/imageHeight < 0.56{
+                        
+                        let alertView = UIAlertController(title: "Warning", message: "세로가 지나치게 큰 사진입니다.", preferredStyle: UIAlertControllerStyle.alert)
+                        alertView.addAction(UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil))
+                        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+                        alertWindow.rootViewController = UIViewController()
+                        alertWindow.windowLevel = UIWindowLevelAlert + 1
+                        alertWindow.makeKeyAndVisible()
+                        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+                        
+                    }else{
+                        
                     self.dismiss(animated: true, completion: {
                         self.delegate?.fusumaDismissedWithImage((view?.image)!, source: self.mode)
                     })
+                    
+                    }
+                    
+                    
                     
                 })
             } else if (self.mode == .camera) {

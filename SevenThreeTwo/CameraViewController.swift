@@ -79,19 +79,36 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         if imageWidth > imageHeight{
+            //가로가 세로보다 긴 16:9 사진일 경우
+            if imageWidth/imageHeight > 1.4 , imageWidth/imageHeight < 1.8{
+                
+                imageView.frame = CGRect(x: (20*widthRatio), y: (181.28125*heightRatio), width: 335*widthRatio, height: (188.4375*heightRatio))
+                
+            }//일반 4:3 사진일 경우
+            else{
+                
             imageView.frame = CGRect(x: (20*widthRatio), y: (149*heightRatio), width: 335*widthRatio, height: (253*heightRatio))
+            }
             
         }else if imageHeight > imageWidth{
+            //세로가 가로보다 긴 16:9 사진일 경우
+            if imageHeight/imageWidth > 1.4 , imageHeight/imageWidth < 1.8{
+                
+            imageView.frame = CGRect(x: (75*widthRatio), y: (75*heightRatio), width: 225*widthRatio, height: (400*heightRatio))
+            }//일반 4:3 사진일 경우
+            else{
+                
             imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
-            
-        }else{
+            }
+        }//일반 정방형 사진일 경우
+        else{
             imageView.frame = CGRect(x: (20*widthRatio), y: (108*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
         }
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
-        backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
+        backBtn.setImage(UIImage(named:"backShadow"), for: .normal)
         backBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
-        backBtn.sizeToFit()
+        
         
         backBtnExtension = UIView(frame: CGRect(x: 20*widthRatio, y: 25*heightRatio, width: 30*widthRatio, height: 30*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear

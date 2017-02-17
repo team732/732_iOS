@@ -48,8 +48,6 @@ class MainController: UIViewController, FusumaDelegate {
         // Show Fusuma
         let fusuma = FusumaViewController()
         
-        //        fusumaCropImage = false
-        
         fusuma.delegate = self
         fusuma.cropHeightRatio = 1.0
         fusumaCropImage = false
