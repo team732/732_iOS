@@ -39,14 +39,17 @@ class HotPicViewController: UIViewController {
     
     @IBOutlet weak var slideshow: ImageSlideshow!
    
-    var image = UIImage(named: "otter-1")
-    var image2 = UIImage(named: "otter-2")
-    var image3 = UIImage(named: "otter-3")
-    
     var oriImageSource : [ImageSource] = []
     var localSource : [ImageSource] = []
     var apiManager: ApiManager!
     let users = UserDefaults.standard
+    var missionDateLabel : UILabel!
+    var missionLabel : UILabel!
+    var hotPicUserLabel : UILabel!
+    
+    var hotPicDate : [String] = []
+    var hotPicCreator : [String] = []
+    var hotPicSub : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +58,8 @@ class HotPicViewController: UIViewController {
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
 
-        setHotPic()
+        setHotPic(path: "/contents")
+        viewSetUp()
         // Do any additional setup after loading the view.
     }
 
@@ -72,15 +76,34 @@ class HotPicViewController: UIViewController {
         slideshow.setImageInputs(localSource)
     }
     
-    func setHotPic(){
+    func setHotPic(path : String){
+        self.oriImageSource.removeAll()
+        self.localSource.removeAll()
+        self.hotPicSub.removeAll()
+        self.hotPicDate.removeAll()
+        self.hotPicCreator.removeAll()
         let userToken = users.string(forKey: "token")
         
         slideshow.frame = CGRect(x: 20*widthRatio, y: 315*heightRatio, width: 335*widthRatio, height: 288*heightRatio)
         
-        apiManager = ApiManager(path: "/contents?start=2017-02-10&end=2017-02-16", method: .get, parameters: [:], header: ["authorization":userToken!])
-        apiManager.requestHotPic { (hotPicArr) in
-            
-            var hotPicArr : [UIImage] = hotPicArr
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestHotPic(hotPicSub: { (hotPicSub) in
+            for i in 0..<hotPicSub.count{
+                self.hotPicSub.append(hotPicSub[i])
+            }
+            self.missionLabel.text = self.hotPicSub[0]
+        }, hotPicCreator: { (hotPicCreator) in
+            for i in 0..<hotPicCreator.count{
+                self.hotPicCreator.append(hotPicCreator[i])
+            }
+            self.hotPicUserLabel.text = self.hotPicCreator[0]
+        }, hotPicDate: { (hotPicDate) in
+            for i in 0..<hotPicDate.count{
+                self.hotPicDate.append(hotPicDate[i])
+            }
+            self.missionDateLabel.text = self.hotPicDate[0]+"의 미션"
+        }) { (hotPicImg) in
+            var hotPicArr : [UIImage] = hotPicImg
             for i in 0..<hotPicArr.count{
                 self.oriImageSource.append(ImageSource(image: hotPicArr[i]))
                 hotPicArr[i] = self.cropToBounds(image: hotPicArr[i], width: 257*self.widthRatio, height: 257*self.heightRatio)
@@ -90,10 +113,14 @@ class HotPicViewController: UIViewController {
             self.slideshow.setImageInputs(self.localSource)
             self.slideshow.currentPageChanged = { (page) in
                 self.ranking.image = UIImage(named: self.rankingImg[page])
+                self.hotPicUserLabel.text = self.hotPicCreator[page]
+                self.missionLabel.text = self.hotPicSub[page]
+                self.missionDateLabel.text = self.hotPicDate[page] + "의 미션"
             }
+            self.slideshow.pageControl.currentPageIndicatorTintColor = UIColor.clear
+            self.slideshow.pageControl.pageIndicatorTintColor = UIColor.clear
             let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
             self.slideshow.addGestureRecognizer(recognizer)
-            self.viewSetUp()
 
         }
     }
@@ -126,18 +153,18 @@ class HotPicViewController: UIViewController {
         customSC.frame = CGRect(x: 88*widthRatio, y:129*heightRatio,
                                 width:200.6*widthRatio, height: 28*heightRatio)
         customSC.layer.cornerRadius = 5.0
-        customSC.backgroundColor = UIColor.white
-        customSC.tintColor = UIColor.darkGray
-        
+        customSC.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        customSC.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
+        customSC.addTarget(self, action: #selector(sortList), for: .valueChanged)
         self.view.addSubview(customSC)
         
-        drawLine(startX: 20, startY: 195, width: 115.5, height: 1, border: false, color: UIColor.black)
-        drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true, color: UIColor.black)
-        drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false, color: UIColor.black)
-        drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true, color: UIColor.black)
-        drawLine(startX: 20, startY: 647, width: 335, height: 1, border: false, color: UIColor.black)
-        drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true, color: UIColor.black)
-        drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true, color: UIColor.black)
+        drawLine(startX: 20, startY: 195, width: 115.5, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 20, startY: 647, width: 335, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         
         ranking = UIImageView(frame: CGRect(x: 162*widthRatio, y: 174*heightRatio, width: 52*widthRatio, height: 52*heightRatio))
@@ -145,30 +172,28 @@ class HotPicViewController: UIViewController {
         self.view.addSubview(ranking)
         
         // 서버에서 날짜, 그날의 주제 가져와야함 , 작성자
-        let missionDateLabel = UILabel(frame: CGRect(x: 135*widthRatio, y: 242*heightRatio, width: 107*widthRatio, height: 11*heightRatio))
-        missionDateLabel.text = "2017년 1월 21일의 미션"
+        missionDateLabel = UILabel(frame: CGRect(x: 130*widthRatio, y: 242*heightRatio, width: 117*widthRatio, height: 11*heightRatio))
         missionDateLabel.textAlignment = .center
         missionDateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         
         self.view.addSubview(missionDateLabel)
         
-        drawLine(startX: 170, startY: 266, width: 36, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: 170, startY: 266, width: 36, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
 
         
-        let missionLabel = UILabel(frame: CGRect(x: 136*widthRatio, y: 282*heightRatio, width: 104*widthRatio, height: 18*heightRatio))
-        missionLabel.text = "한여름밤의 꿈"
-        missionLabel.textAlignment = .center
+        missionLabel = UILabel(frame: CGRect(x: 82*widthRatio, y: 267*heightRatio, width: 212*widthRatio, height: 56*heightRatio))
         missionLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-        
+        missionLabel.textAlignment = .center
+        missionLabel.numberOfLines = 0
         self.view.addSubview(missionLabel)
         
         let byImage = UIImageView(frame: CGRect(x: 150*widthRatio, y: 613*heightRatio, width: 13*widthRatio, height: 11*heightRatio))
         byImage.image = UIImage(named: "by")
         self.view.addSubview(byImage)
         
-        let hotPicUserLabel = UILabel(frame: CGRect(x: 167*widthRatio, y: 612*heightRatio, width: 61*widthRatio, height: 11*heightRatio))
-        hotPicUserLabel.text = "집에가고싶다"
+        hotPicUserLabel = UILabel(frame: CGRect(x: 167*widthRatio, y: 612*heightRatio, width: 61*widthRatio, height: 11*heightRatio))
         hotPicUserLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        hotPicUserLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         self.view.addSubview(hotPicUserLabel)
         
         let gotoRight = UIImageView(frame: CGRect(x: (304*widthRatio), y: (285*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
@@ -234,6 +259,22 @@ class HotPicViewController: UIViewController {
         let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
         
         return image
+    }
+    
+    func sortList(sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex {
+        case 0:
+            // 주간
+            self.setHotPic(path: "/contents")
+            break
+        case 1:
+            self.setHotPic(path: "/contents?type=monthly")
+            // 월간
+            break
+        default:
+            break
+        }
+        
     }
     
     
