@@ -16,6 +16,7 @@ class CheckTokenViewController: UIViewController {
     var count = 0
     var launchSec = 0.0
     var imageView : UIImageView!
+    static var snapContainer : SnapContainerViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,17 @@ class CheckTokenViewController: UIViewController {
     
     func checkToken(){
         let token = userToken.string(forKey: "token")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let left = storyboard.instantiateViewController(withIdentifier: "left")
+        let middle = storyboard.instantiateViewController(withIdentifier: "middle")
+        let right = storyboard.instantiateViewController(withIdentifier: "right")
+        let top = storyboard.instantiateViewController(withIdentifier: "top")
+        
+        CheckTokenViewController.snapContainer = SnapContainerViewController.containerViewWith(left,
+                                                                                               middleVC: middle,
+                                                                                               rightVC: right,
+                                                                                               topVC: top,
+                                                                                               bottomVC: nil)
         if token != nil{
             apiManager = ApiManager(path: "/token", method: .get, parameters: [:], header: ["authorization":token!])
             
@@ -59,19 +71,7 @@ class CheckTokenViewController: UIViewController {
                 if isToken != "OPEN_LOGINVC" {
                     // 이곳에서 토큰 갱신
                     self.userToken.set(isToken, forKey: "token")
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let left = storyboard.instantiateViewController(withIdentifier: "left")
-                    let middle = storyboard.instantiateViewController(withIdentifier: "middle")
-                    let right = storyboard.instantiateViewController(withIdentifier: "right")
-                    let top = storyboard.instantiateViewController(withIdentifier: "top")
-                    
-                    let snapContainer = SnapContainerViewController.containerViewWith(left,
-                                                                                      middleVC: middle,
-                                                                                      rightVC: right,
-                                                                                      topVC: top,
-                                                                                      bottomVC: nil)
-                    
-                    self.present(snapContainer, animated: false, completion: nil)
+                    self.present(CheckTokenViewController.snapContainer, animated: false, completion: nil)
                 }else{
                     self.performSegue(withIdentifier: "tokenToLogin", sender: nil)
                 }

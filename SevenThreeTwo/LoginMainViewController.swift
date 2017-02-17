@@ -133,7 +133,8 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                                                                           rightVC: right,
                                                                           topVC: top,
                                                                           bottomVC: nil)
-               
+
+        CheckTokenViewController.snapContainer = snapContainer
             apiManager = ApiManager(path: "/users/732/token", method: .post, parameters:["loginId":idTextField.text!,"password":pwTextField.text!], header: [:])
             apiManager.requestLogin(completion: { (isLogin) in
                 self.checkUserLabel.isHidden = false
@@ -149,7 +150,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                             MainController.missionText = missionText
                         }) { (missionId) in
                             MainController.missionId = missionId
-                            self.present(snapContainer, animated: true, completion: nil)
+                            self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
                         }
                         //로그인성공
                         break

@@ -17,10 +17,10 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
         middleScrollVc.topVc = topVc
         middleScrollVc.middleVc = middleVc
         middleScrollVc.bottomVc = bottomVc
-        
         return middleScrollVc
     }
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view:
@@ -119,5 +119,7 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
             return true
         }
     }
+    
+    
     
 }

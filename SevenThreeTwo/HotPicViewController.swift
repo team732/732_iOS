@@ -45,6 +45,8 @@ class HotPicViewController: UIViewController {
     
     var oriImageSource : [ImageSource] = []
     var localSource : [ImageSource] = []
+    var apiManager: ApiManager!
+    let users = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,29 +55,7 @@ class HotPicViewController: UIViewController {
         widthRatio = userDevice.userDeviceWidth()
         heightRatio = userDevice.userDeviceHeight()
 
-        viewSetUp()
-        
-        
-        oriImageSource = [ImageSource(image: image!),ImageSource(image: image2!),ImageSource(image:image3!)]
-        
-        image =  cropToBounds(image: image!, width: 257*widthRatio, height: 257*heightRatio)
-        image2 =  cropToBounds(image: image2!, width: 257*widthRatio, height: 257*heightRatio)
-        image3 =  cropToBounds(image: image3!, width: 257*widthRatio, height: 257*heightRatio)
-        
-        localSource = [ImageSource(image: image!), ImageSource(image:image2!), ImageSource(image:image3!)]
-        
-        slideshow.frame = CGRect(x: 20*widthRatio, y: 315*heightRatio, width: 335*widthRatio, height: 288*heightRatio)
-        
-        
-        slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        slideshow.setImageInputs(localSource)
-        slideshow.currentPageChanged = { (page) in
-            self.ranking.image = UIImage(named: self.rankingImg[page])
-        }
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
-        slideshow.addGestureRecognizer(recognizer)
-        
-        
+        setHotPic()
         // Do any additional setup after loading the view.
     }
 
@@ -90,6 +70,32 @@ class HotPicViewController: UIViewController {
         slideshow.setImageInputs(oriImageSource)
         slideshow.presentFullScreenController(from: self)
         slideshow.setImageInputs(localSource)
+    }
+    
+    func setHotPic(){
+        let userToken = users.string(forKey: "token")
+        
+        slideshow.frame = CGRect(x: 20*widthRatio, y: 315*heightRatio, width: 335*widthRatio, height: 288*heightRatio)
+        
+        apiManager = ApiManager(path: "/contents?start=2017-02-10&end=2017-02-16", method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager.requestHotPic { (hotPicArr) in
+            
+            var hotPicArr : [UIImage] = hotPicArr
+            for i in 0..<hotPicArr.count{
+                self.oriImageSource.append(ImageSource(image: hotPicArr[i]))
+                hotPicArr[i] = self.cropToBounds(image: hotPicArr[i], width: 257*self.widthRatio, height: 257*self.heightRatio)
+                self.localSource.append(ImageSource(image: hotPicArr[i]))
+            }
+            
+            self.slideshow.setImageInputs(self.localSource)
+            self.slideshow.currentPageChanged = { (page) in
+                self.ranking.image = UIImage(named: self.rankingImg[page])
+            }
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
+            self.slideshow.addGestureRecognizer(recognizer)
+            self.viewSetUp()
+
+        }
     }
     
     
@@ -170,10 +176,7 @@ class HotPicViewController: UIViewController {
         gotoRight.sizeToFit()
         self.view.addSubview(gotoRight)
 
-
-        
-        
-        
+        slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
     }
     
     

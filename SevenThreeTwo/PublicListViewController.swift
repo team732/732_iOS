@@ -151,8 +151,6 @@ class PublicListViewController:  UICollectionViewController{
     
     fileprivate func setUpUI() {
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        // Set title
-        title = "Variable height layout"
         
         // Set generic styling
         collectionView?.backgroundColor = UIColor.clear
@@ -171,10 +169,19 @@ class PublicListViewController:  UICollectionViewController{
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (97*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        gotoLeft.image = UIImage(named: "gotoleft")
+        let gotoLeft = UIButton(frame: CGRect(x: (30*widthRatio), y: (97*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
         gotoLeft.sizeToFit()
+        gotoLeft.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         collectionView?.addSubview(gotoLeft)
+        
+        let moveExtension = UIView(frame: CGRect(x: 20*widthRatio, y: 87*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        moveExtension.backgroundColor = UIColor.clear
+        let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
+        moveExtension.isUserInteractionEnabled = true
+        moveExtension.addGestureRecognizer(moveRecog)
+        collectionView?.addSubview(moveExtension)
+        
         
         let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
         labelPic.text = "공개된"
@@ -236,7 +243,6 @@ class PublicListViewController:  UICollectionViewController{
         switch sender.selectedSegmentIndex {
         case 0:
             // 최신순
-            print("최신순")
             self.refreshSeg = 0
             self.reloadAppRefreshPic()
             break
@@ -269,6 +275,10 @@ class PublicListViewController:  UICollectionViewController{
     func cameraButtonAction() {
      
         
+    }
+    
+    func moveToMainVC(){
+        CheckTokenViewController.snapContainer.moveMiddle()
     }
 }
 

@@ -59,6 +59,13 @@ class SettingViewController: UIViewController {
         backBtn.sizeToFit()
         self.view.addSubview(backBtn)
         
+        let backBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 79*heightRatio, width: 54*widthRatio, height: 44*heightRatio))
+        backBtnExtension.backgroundColor = UIColor.clear
+        let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
+        backBtnExtension.isUserInteractionEnabled = true
+        backBtnExtension.addGestureRecognizer(backBtnRecognizer)
+        self.view.addSubview(backBtnExtension)
+        
         settingTableView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         settingTableView.separatorInset = UIEdgeInsets.init(top: 0, left: 12*widthRatio, bottom: 0, right: 12*widthRatio)
@@ -172,7 +179,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.rightImg.isHidden = true
             alarmSwt.frame = CGRect(x: 255*widthRatio, y: (487/10/2-16)*heightRatio, width: 24*widthRatio, height: 12*heightRatio)
             alarmSwt.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-            alarmSwt.tintColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
             alarmSwt.onTintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
             cell.addSubview(alarmSwt)
             break
