@@ -29,6 +29,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var replyId : [Int] = []
     var likeCountLabel : UILabel!
     var lockBtn : UIButton!
+    var subLabel : UILabel!
     
     var myContent : Bool = false {
         willSet(newValue){
@@ -164,7 +165,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             }else {
                 self.dateLabel.text = infoContent.missionDate! + "의 미션"
             }
+            self.subLabel.text = infoContent.missionText!
             self.dateLabel.textAlignment = .center
+            self.subLabel.textAlignment = .center
         }
     }
     
@@ -205,10 +208,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.myPicView.addSubview(firstLine)
         
-        let subLabel = UILabel(frame: CGRect(x: (72*widthRatio), y: (58*heightRatio), width: 233*widthRatio, height: 87*heightRatio))
+        subLabel = UILabel(frame: CGRect(x: (72*widthRatio), y: (58*heightRatio), width: 233*widthRatio, height: 87*heightRatio))
         subLabel.numberOfLines = 0
-        subLabel.text = MainController.missionText
-        subLabel.textAlignment = .center
         subLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         self.myPicView.addSubview(subLabel)
         
