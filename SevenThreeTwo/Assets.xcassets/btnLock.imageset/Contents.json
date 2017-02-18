@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "taj-mahal-4378_640.jpg",
+      "filename" : "btnLock.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "taj-mahal-4378_640-1.jpg",
+      "filename" : "btnLock@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "taj-mahal-4378_640-2.jpg",
+      "filename" : "btnLock@3x.png",
       "scale" : "3x"
     }
   ],

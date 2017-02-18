@@ -28,6 +28,27 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var myComment : [Bool] = []
     var replyId : [Int] = []
     var likeCountLabel : UILabel!
+    var lockBtn : UIButton!
+    
+    var myContent : Bool = false {
+        willSet(newValue){
+            if newValue{
+                lockBtn.isHidden = false
+            } else{
+                lockBtn.isHidden = true
+            }
+        }
+    }
+    
+    var isPublic : Bool = false {
+        willSet(newValue){
+            if newValue{
+                lockBtn.setImage(UIImage(named: "btnLock"), for: .normal)
+            }else{
+                lockBtn.setImage(UIImage(named: "btnLockActivated"), for: .normal)
+            }
+        }
+    }
     
     var commentLabelHeight = UILabel()
     
@@ -48,6 +69,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     var selectedPic = UIImageView()
     var likeBtn : UIButton!
+    var dateLabel : UILabel!
     
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
@@ -135,7 +157,14 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             }
             self.likeCount = infoContent.likeCount!
             self.myTableView.reloadData()
-            
+            self.myContent = infoContent.isMine!
+            self.isPublic = infoContent.isPublic!
+            if SelectListViewController.receivedRange == 0 {
+                self.dateLabel.text = self.useDate() + "의 미션"
+            }else {
+                self.dateLabel.text = infoContent.missionDate! + "의 미션"
+            }
+            self.dateLabel.textAlignment = .center
         }
     }
     
@@ -167,9 +196,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtnExtension)
         
-        let dateLabel = UILabel(frame: CGRect(x: (135*widthRatio), y: (33*heightRatio), width: 115*widthRatio, height: 11*heightRatio))
-        dateLabel.text = useDate() + "의 미션"
-        dateLabel.textAlignment = .center
+        dateLabel = UILabel(frame: CGRect(x: (135*widthRatio), y: (33*heightRatio), width: 115*widthRatio, height: 11*heightRatio))
+        
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         self.myPicView.addSubview(dateLabel)
         
@@ -218,11 +246,16 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         likeBtn.addTarget(self, action: #selector(likeButtonAction), for: .touchUpInside)
         self.myPicView.addSubview(likeBtn)
         
+        lockBtn = UIButton(frame: CGRect(x: 227*widthRatio, y: 522*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        lockBtn.addTarget(self, action: #selector(lockButtonAction), for: .touchUpInside)
+        self.myPicView.addSubview(lockBtn)
+        
+        
         let lastLine = drawLine(startX: 32, startY: 562, width: 311, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         self.myPicView.addSubview(lastLine)
         
-        myTableView.frame = CGRect(x: 0*widthRatio, y: 85*heightRatio, width: 375*widthRatio, height: (UIScreen.main.bounds.size.height-85)*heightRatio)
+        myTableView.frame = CGRect(x: 0*widthRatio, y: 85*heightRatio, width: 375*widthRatio, height: (UIScreen.main.bounds.size.height-(85*heightRatio)))
         
         
         myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
@@ -254,6 +287,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 print("실패")
             }
         }
+    }
+    
+    func lockButtonAction(){
+        
     }
     
     func useDate() -> String{

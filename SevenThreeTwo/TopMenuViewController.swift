@@ -38,7 +38,7 @@ class TopMenuViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let copyRightImg = UIImageView(frame: CGRect(x: (156*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 14*heightRatio))
+        let copyRightImg = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - 35*widthRatio, y: (113*heightRatio), width: 64*widthRatio, height: 14*heightRatio))
         copyRightImg.image = UIImage(named: "copyright")
         copyRightImg.sizeToFit()
         self.view.addSubview(copyRightImg)
@@ -50,30 +50,26 @@ class TopMenuViewController: UIViewController {
         let subscribeBtn = UIButton(frame: CGRect(x: 136*widthRatio , y: 258*heightRatio, width: 103*widthRatio, height: 18*heightRatio))
         subscribeBtn.addTarget(self, action: #selector(subscribeButtonAction), for: .touchUpInside)
         subscribeBtn.setTitle("받아보기 모음", for: .normal)
-        subscribeBtn.setTitleColor(UIColor.black, for: .normal)
+        subscribeBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), for: .normal)
         subscribeBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-        subscribeBtn.titleLabel!.font = subscribeBtn.titleLabel!.font.withSize(18*widthRatio)
         self.view.addSubview(subscribeBtn)
         
-        drawLine(startX: 170, startY: 318, width: 36, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: 170, startY: 318, width: 36, height: 1, border: false)
         
         let pastMissionBtn = UIButton(frame: CGRect(x: 145*widthRatio , y: 358*heightRatio, width: 87*widthRatio, height: 18*heightRatio))
         pastMissionBtn.addTarget(self, action: #selector(pastMissionButtonAction), for: .touchUpInside)
         pastMissionBtn.setTitle("과거 미션들", for: .normal)
-        pastMissionBtn.setTitleColor(UIColor.black, for: .normal)
+        pastMissionBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), for: .normal)
         pastMissionBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-        pastMissionBtn.titleLabel!.font = pastMissionBtn.titleLabel!.font.withSize(18*widthRatio)
 
         self.view.addSubview(pastMissionBtn)
         
-        drawLine(startX: 170, startY: 414 , width: 36, height: 1, border: false, color: UIColor.black)
-        
+        drawLine(startX: 170, startY: 414 , width: 36, height: 1, border: false)
         let hotPicBtn = UIButton(frame: CGRect(x: 144*widthRatio , y: 454*heightRatio, width: 88*widthRatio, height: 18*heightRatio))
         hotPicBtn.addTarget(self, action: #selector(hotPicButtonAction), for: .touchUpInside)
         hotPicBtn.setTitle("명예의 전당", for: .normal)
-        hotPicBtn.setTitleColor(UIColor.black, for: .normal)
+        hotPicBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), for: .normal)
         hotPicBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-        hotPicBtn.titleLabel!.font = hotPicBtn.titleLabel!.font.withSize(18*widthRatio)
 
         self.view.addSubview(hotPicBtn)
         
@@ -106,7 +102,7 @@ class TopMenuViewController: UIViewController {
         performSegue(withIdentifier: "pastToHotpic", sender: self)
     }
     
-    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool){
         
         var line: UIView!
         
@@ -115,16 +111,16 @@ class TopMenuViewController: UIViewController {
         }else{
             line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
         }
-        line.backgroundColor = color
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         
         self.view.addSubview(line)
     }
     
     func drawRectangle(startX: CGFloat,startY:CGFloat,width:CGFloat,height:CGFloat){
-        drawLine(startX: startX, startY: startY, width: width, height: 1, border: false, color: UIColor.black)
-        drawLine(startX: startX+width, startY: startY, width: 1, height: height, border: true, color: UIColor.black)
-        drawLine(startX: startX+width, startY: startY+height, width: -width, height: 1, border: false, color: UIColor.black)
-        drawLine(startX: startX, startY: startY+height, width: 1, height: -height, border: true, color: UIColor.black)
+        drawLine(startX: startX, startY: startY, width: width, height: 1, border: false)
+        drawLine(startX: startX+width, startY: startY, width: 1, height: height, border: true)
+        drawLine(startX: startX+width, startY: startY+height, width: -width, height: 1, border: false)
+        drawLine(startX: startX, startY: startY+height, width: 1, height: -height, border: true)
     }
     
     func moveToMainVC(){

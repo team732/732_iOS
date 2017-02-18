@@ -18,13 +18,15 @@ class Content: NSObject{
     public var nickname : String?
     public var isMine : Bool?
     public var isLiked : Int?
+    public var isPublic : Bool?
     public var replies : JSON?
     public var missionId : Int?
     public var createdAt : String?
     public var likeCount : Int?
     public var missionText : String?
+    public var missionDate : String?
     
-    init(contentId: Int?, contentPicture: String?, contentText: String?, userId: Int?, nickname: String?, isMine: Bool?, isLiked: Int?, replies: JSON?, missionId: Int?, createdAt: String?, likeCount: Int?, missionText: String?) {
+    init(contentId: Int?, contentPicture: String?, contentText: String?, userId: Int?, nickname: String?, isMine: Bool?, isLiked: Int?,isPublic : Bool?, replies: JSON?, missionId: Int?, createdAt: String?, likeCount: Int?, missionText: String?, missionDate: String?) {
         self.contentId = contentId
         self.contentPicture = contentPicture
         self.contentText = contentText
@@ -32,11 +34,13 @@ class Content: NSObject{
         self.nickname = nickname
         self.isMine = isMine
         self.isLiked = isLiked
+        self.isPublic = isPublic
         self.replies = replies
         self.missionId = missionId
         self.createdAt = createdAt
         self.likeCount = likeCount
         self.missionText = missionText
+        self.missionDate = missionDate
     }
     
    

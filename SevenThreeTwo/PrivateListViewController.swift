@@ -126,11 +126,12 @@ class PrivateListViewController: UICollectionViewController {
         labelList.font = labelList.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelList)
         
-        let gotoRight = UIButton(frame: CGRect(x: (318*widthRatio), y: (98*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoRight = UIButton(frame: CGRect(x: (318*widthRatio), y: (97*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoRight.setImage(UIImage(named: "gotoright"), for: .normal)
         gotoRight.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         gotoRight.sizeToFit()
         collectionView?.addSubview(gotoRight)
+        
         
         let moveExtension = UIView(frame: CGRect(x: 308*widthRatio, y: 88*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         moveExtension.backgroundColor = UIColor.clear

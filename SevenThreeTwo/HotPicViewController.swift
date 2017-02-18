@@ -28,6 +28,7 @@ class HotPicViewController: UIViewController {
     var widthRatio: CGFloat = 0.0
 
     var ranking : UIImageView!
+    var byImage = UIImageView()
 
     var rankingImg : [String] = ["honor_1st","honor_2nd","honor_3rd","honor_4th","honor_5th","honor_6th","honor_7th","honor_8th","honor_9th","honor_10th"]
 
@@ -96,7 +97,12 @@ class HotPicViewController: UIViewController {
             for i in 0..<hotPicCreator.count{
                 self.hotPicCreator.append(hotPicCreator[i])
             }
-            self.hotPicUserLabel.text = self.hotPicCreator[0]
+            let hotPicUserText = "by. " + self.hotPicCreator[0]
+            self.hotPicUserLabel.text = hotPicUserText
+            self.hotPicUserLabel.textAlignment = .center
+
+            
+            
         }, hotPicDate: { (hotPicDate) in
             for i in 0..<hotPicDate.count{
                 self.hotPicDate.append(hotPicDate[i])
@@ -113,7 +119,7 @@ class HotPicViewController: UIViewController {
             self.slideshow.setImageInputs(self.localSource)
             self.slideshow.currentPageChanged = { (page) in
                 self.ranking.image = UIImage(named: self.rankingImg[page])
-                self.hotPicUserLabel.text = self.hotPicCreator[page]
+                self.hotPicUserLabel.text = "by. "+self.hotPicCreator[page]
                 self.missionLabel.text = self.hotPicSub[page]
                 self.missionDateLabel.text = self.hotPicDate[page] + "의 미션"
             }
@@ -158,13 +164,13 @@ class HotPicViewController: UIViewController {
         customSC.addTarget(self, action: #selector(sortList), for: .valueChanged)
         self.view.addSubview(customSC)
         
-        drawLine(startX: 20, startY: 195, width: 115.5, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
-        drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
-        drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
-        drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
-        drawLine(startX: 20, startY: 647, width: 335, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
-        drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
-        drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 20, startY: 195, width: 115.5, height: 1, border: false)
+        drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true)
+        drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false)
+        drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true)
+        drawLine(startX: 20, startY: 647, width: 335, height: 1, border: false)
+        drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true)
+        drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true)
         
         
         ranking = UIImageView(frame: CGRect(x: 162*widthRatio, y: 174*heightRatio, width: 52*widthRatio, height: 52*heightRatio))
@@ -178,7 +184,7 @@ class HotPicViewController: UIViewController {
         
         self.view.addSubview(missionDateLabel)
         
-        drawLine(startX: 170, startY: 266, width: 36, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        drawLine(startX: 170, startY: 266, width: 36, height: 1, border: false)
 
         
         missionLabel = UILabel(frame: CGRect(x: 82*widthRatio, y: 267*heightRatio, width: 212*widthRatio, height: 56*heightRatio))
@@ -187,19 +193,26 @@ class HotPicViewController: UIViewController {
         missionLabel.numberOfLines = 0
         self.view.addSubview(missionLabel)
         
-        let byImage = UIImageView(frame: CGRect(x: 150*widthRatio, y: 613*heightRatio, width: 13*widthRatio, height: 11*heightRatio))
-        byImage.image = UIImage(named: "by")
-        self.view.addSubview(byImage)
         
-        hotPicUserLabel = UILabel(frame: CGRect(x: 167*widthRatio, y: 612*heightRatio, width: 61*widthRatio, height: 11*heightRatio))
-        hotPicUserLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        
+        hotPicUserLabel = UILabel(frame: CGRect(x: 20, y: 612*heightRatio, width: 335*widthRatio, height: 11*heightRatio))
+        self.hotPicUserLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*self.widthRatio)
         hotPicUserLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         self.view.addSubview(hotPicUserLabel)
         
-        let gotoRight = UIImageView(frame: CGRect(x: (304*widthRatio), y: (285*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+//        self.byImage = UIImageView(frame: CGRect(x: 50, y: 613*self.heightRatio, width: 13*self.widthRatio, height: 11*self.heightRatio))
+//        self.byImage.image = UIImage(named: "by")
+//        self.view.addSubview(byImage)
+        
+        let gotoRight = UIImageView(frame: CGRect(x: (304*widthRatio), y: (260*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoRight.image = UIImage(named: "gotoright")
         gotoRight.sizeToFit()
         self.view.addSubview(gotoRight)
+        
+        let gotoLeft = UIImageView(frame: CGRect(x: 65*widthRatio, y: 260*heightRatio, width: 24*widthRatio, height: 24*widthRatio))
+        gotoLeft.image = UIImage(named: "gotoleft")
+        gotoLeft.sizeToFit()
+        self.view.addSubview(gotoLeft)
 
         slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
     }
@@ -212,7 +225,7 @@ class HotPicViewController: UIViewController {
     
     
     
-    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool){
         
         var line: UIView!
         
@@ -221,7 +234,7 @@ class HotPicViewController: UIViewController {
         }else{
             line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
         }
-        line.backgroundColor = color
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         
         
         self.view.addSubview(line)

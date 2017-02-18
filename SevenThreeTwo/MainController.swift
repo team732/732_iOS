@@ -138,9 +138,9 @@ class MainController: UIViewController, FusumaDelegate {
         
         addCameraLansImage()
         
-        drawLine(startX: 0, startY: 328, width: 56, height: 1,border: false, color: UIColor.black)
-        drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false, color: UIColor.black)
-        drawLine(startX: 185, startY: 460, width: 1, height: 125, border:true, color: UIColor.black)
+        drawLine(startX: 0, startY: 328, width: 56, height: 1,border: false)
+        drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false)
+        drawLine(startX: 187.5, startY: 460, width: 1, height: 125, border:true)
 
         let gotoLeft = UIImageView(frame: CGRect(x: (23*widthRatio), y: (323*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.image = UIImage(named: "gotoleft")
@@ -156,7 +156,7 @@ class MainController: UIViewController, FusumaDelegate {
         drawCircle(startX: 187.5, startY: 595.5, radius: 36.5)
         
         showButton.setImage(UIImage(named: "camera"), for: UIControlState.normal)
-        showButton.frame = CGRect(x: 172*widthRatio, y: 585*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
+        showButton.frame = CGRect(x: 174*widthRatio, y: 583.5*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
         
         let showBtnExtension = UIView(frame: CGRect(x: 151*widthRatio, y: 559*heightRatio, width: 73*widthRatio, height: 73*heightRatio))
         let showBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(showButtonPressed(_:)))
@@ -167,7 +167,7 @@ class MainController: UIViewController, FusumaDelegate {
         
     }
     
-    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
+    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool){
         
         var line: UIView!
         
@@ -176,7 +176,7 @@ class MainController: UIViewController, FusumaDelegate {
         }else{
             line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
         }
-        line.backgroundColor = color
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         
         self.view.addSubview(line)
     }
@@ -187,7 +187,7 @@ class MainController: UIViewController, FusumaDelegate {
     
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.cgPath
-        shapeLayer.strokeColor = UIColor.black.cgColor
+        shapeLayer.strokeColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 1
     

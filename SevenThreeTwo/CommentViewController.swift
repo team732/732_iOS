@@ -131,7 +131,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
                 self.dismiss(animated: false, completion: nil)
                 break
             case -10:
-                self.textviewRangeAlert(overMsg: false,message: "빈 댓글은 좋지 않습니다.")
+                self.textviewRangeAlert(overMsg: false,message: "앗! 댓글을 달 수 없습니다.")
                 break
             default:
                 break
