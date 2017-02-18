@@ -25,6 +25,14 @@ extension UIImage {
     }
 }
 
+extension UITextView{
+    func addTextSpacing(spacing: CGFloat){
+        let attributedString = NSMutableAttributedString(string: self.text!)
+        attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSRange(location: 0, length: self.text!.characters.count))
+        self.attributedText = attributedString
+    }
+}
+
 class CameraViewController: UIViewController,UITextViewDelegate {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
@@ -126,11 +134,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         grayView.frame = CGRect(x: 0*widthRatio, y: 512.5*heightRatio, width: 375*widthRatio, height: 154.5*heightRatio)
         grayView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
 
-        inputText.frame = CGRect(x: (40*widthRatio), y: (20.5*heightRatio), width: 295*widthRatio, height: (75)*heightRatio)
+        inputText.frame = CGRect(x: (40*widthRatio), y: (20.5*heightRatio), width: 295*widthRatio, height: (105)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         inputText.backgroundColor = UIColor.clear
         inputText.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
         inputText.text = placeHolderText
+        //inputText.addTextSpacing(spacing: 15)
+        
         
 //        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
 //        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
