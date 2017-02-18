@@ -56,6 +56,9 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         layout.delegate = self
     }
     
+    //indicator
+    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,7 +70,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
 
         setUpUI()
         
-        loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
+        
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         setRefreshControl()
@@ -75,12 +78,22 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     override func viewDidAppear(_ animated: Bool) {
         
         self.photos.removeAll()
+        setIndicator()
         if refreshSeg == 0{
             self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
 
         }else if refreshSeg == 1{
             self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
         }
+    }
+    
+    func setIndicator(){
+        //actInd.center = CGPoint(x: UIScreen.main.bounds.width/2, y: (497.5)*heightRatio)
+        actInd.center = CGPoint(x: UIScreen.main.bounds.width/2, y: (60)*heightRatio)
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(actInd)
+        actInd.startAnimating()
     }
     
     // 리프레쉬 컨트롤을 세팅
@@ -148,6 +161,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
             self.contentsCount = contentPhoto.contentsCount!
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
+            self.actInd.stopAnimating()
         }
     }
     
@@ -202,20 +216,33 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         backBtnExtension.addGestureRecognizer(backBtnRecognizer)
         collectionView?.addSubview(backBtnExtension)
         
-        let labelDate = UILabel(frame: CGRect(x: 135*widthRatio, y: 97*heightRatio, width: 107*widthRatio, height: 11*heightRatio))
+        let labelDate = UILabel(frame: CGRect(x: 0*widthRatio, y: 97*heightRatio, width: 375*widthRatio, height: 11*heightRatio))
         labelDate.text = receivedMissionDate
         labelDate.textAlignment = .center
         labelDate.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
-        labelDate.font = labelDate.font.withSize(11*widthRatio)
         collectionView?.addSubview(labelDate)
         
         drawLine(startX: 170, startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
         
-        let labelMission = UILabel(frame: CGRect(x: 111*widthRatio, y: 137*heightRatio, width: 154*widthRatio, height: 16*heightRatio))
+        let labelMission = UILabel(frame: CGRect(x: 0*widthRatio, y: 137*heightRatio, width: 375*widthRatio, height: 16*heightRatio))
         labelMission.text = receivedMissionText
+        
+        var count : Int = 0
+        for character in (labelMission.text?.characters)! {
+            if character == "\n"{
+                count += 1
+            }
+        }
+        
+        if count == 1{
+            labelMission.frame = CGRect(x: 0*widthRatio, y: 137*heightRatio, width: 375*widthRatio, height: 33*heightRatio)
+        }else if count == 2{
+            labelMission.frame = CGRect(x: 0*widthRatio, y: 137*heightRatio, width: 375*widthRatio, height: 50*heightRatio)
+        }
+        
         labelMission.textAlignment = .center
+        labelMission.numberOfLines = 0
         labelMission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
-        labelMission.font = labelMission.font.withSize(16*widthRatio)
         collectionView?.addSubview(labelMission)
         
 //        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
@@ -248,7 +275,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         customSC.frame = CGRect(x: 88*widthRatio, y:276*heightRatio,
                                 width:200.6*widthRatio, height: 28*heightRatio)
         customSC.layer.cornerRadius = 5.0
-        customSC.backgroundColor = UIColor.white
+        customSC.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
         customSC.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         customSC.addTarget(self, action: #selector(PastMissionDetailViewController.sortList), for: .valueChanged)
         
@@ -267,12 +294,14 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         case 0:
             // 최신순
             self.refreshSeg = 0
+            setIndicator()
             self.reloadAppRefreshPic()
             break
         case 1:
             // 인기순
             self.refreshSeg = 1
             self.photos.removeAll()
+            setIndicator()
             self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
             break
         default:
@@ -296,7 +325,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         fusumaTintColor = UIColor.darkGray
         fusumaBackgroundColor = UIColor.white
         //
-        self.present(fusuma, animated: true, completion: nil)
+        self.present(fusuma, animated: false, completion: nil)
 
         
     }
@@ -351,7 +380,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         let selectVC = storyboard.instantiateViewController(withIdentifier: "CameraViewController") as! CameraViewController
         selectVC.receivedMissionId = receivedMissionId
         selectVC.receivedImg = imagePastMission
-        self.present(selectVC, animated: true, completion: nil)
+        self.present(selectVC, animated: false, completion: nil)
         
     }
     

@@ -73,7 +73,7 @@ class MainController: UIViewController, FusumaDelegate {
         fusumaTintColor = UIColor.darkGray
         fusumaBackgroundColor = UIColor.white
         //
-        self.present(fusuma, animated: true, completion: nil)
+        self.present(fusuma, animated: false, completion: nil)
     }
     
     
