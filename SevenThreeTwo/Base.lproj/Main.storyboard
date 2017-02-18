@@ -24,6 +24,7 @@
                     </view>
                     <connections>
                         <segue destination="Uar-Sx-TIx" kind="show" identifier="joinToId" id="bc0-zD-ptt"/>
+                        <segue destination="FlI-Vx-iaG" kind="presentation" identifier="findPass" animates="NO" modalPresentationStyle="overCurrentContext" id="6l0-AO-5MK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4R-DG-LlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -143,6 +144,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ztZ-0h-SRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2110" y="-679"/>
+        </scene>
+        <!--Find Pw View Controller-->
+        <scene sceneID="ixn-cZ-6hi">
+            <objects>
+                <viewController id="FlI-Vx-iaG" customClass="FindPwViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U8Y-iF-FGD"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pn7-9Z-Lcc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MbK-Gu-hrR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oCD-aC-39d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-455" y="-1518"/>
         </scene>
         <!--Join InputID View Controller-->
         <scene sceneID="vC7-aQ-aWj">
@@ -282,7 +301,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeB-aM-u4f" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeB-aM-u4f" customClass="ImageSlideshow" customModule="ImageSlideshow">
                                 <rect key="frame" x="16" y="369" width="343" height="278"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

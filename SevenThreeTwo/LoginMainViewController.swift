@@ -115,6 +115,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         missingPw.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 0.56), for: .normal)
         missingPw.titleLabel?.addTextSpacing(spacing: -0.1*widthRatio)
         missingPw.titleLabel?.textAlignment = .center
+        missingPw.addTarget(self, action: #selector(findPwButtonAction), for: .touchUpInside)
         self.view.addSubview(missingPw)
         
         
@@ -181,7 +182,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
    
     
     func findPwButtonAction(){
-        
+        self.performSegue(withIdentifier: "findPass", sender: self)
     }
     
     

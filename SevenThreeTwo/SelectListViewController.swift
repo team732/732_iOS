@@ -207,6 +207,21 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtnExtension)
         
+        let editBtn = UIButton(frame: CGRect(x: 321*widthRatio, y: 61*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        editBtn.setImage(UIImage(named: "edit"), for: .normal)
+        editBtn.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+        
+        self.view.addSubview(editBtn)
+        
+        let editBtnExtension = UIView(frame: CGRect(x: 311*widthRatio, y: 51*heightRatio, width: 44*widthRatio, height: 34*heightRatio))
+        editBtnExtension.backgroundColor = UIColor.clear
+        let editBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(editButtonAction))
+        editBtnExtension.isUserInteractionEnabled = true
+        editBtnExtension.addGestureRecognizer(editBtnRecognizer)
+        
+        self.view.addSubview(editBtnExtension)
+        
+        
         dateLabel = UILabel(frame: CGRect(x: (0*widthRatio), y: (33*heightRatio), width: 375*widthRatio, height: 11*heightRatio))
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         self.myPicView.addSubview(dateLabel)
@@ -321,13 +336,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
-    func useDate() -> String{
-        let todaysDate = NSDate()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년 M월 d일"
-        let DateInFormat = dateFormatter.string(from: todaysDate as Date)
-        
-        return DateInFormat
+    func editButtonAction(){
+        // 앨럿
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor) -> UIView{

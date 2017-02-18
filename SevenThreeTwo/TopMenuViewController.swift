@@ -91,7 +91,7 @@ class TopMenuViewController: UIViewController {
     }
     
     func subscribeButtonAction(){
-        
+        basicAlert(title: "준비중입니다")
     }
     
     func pastMissionButtonAction(){
@@ -126,5 +126,21 @@ class TopMenuViewController: UIViewController {
     func moveToMainVC(){
         CheckTokenViewController.snapContainer.moveToptoMiddle()
     }
+    
+    func basicAlert(title: String){
+        let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        alertView.addAction(action)
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+
     
 }
