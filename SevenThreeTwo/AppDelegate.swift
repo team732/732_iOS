@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 MainController.missionId = missionId
             }
         }
+        
         return true
     }
     
@@ -42,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
         userToken = users.string(forKey: "token")
         if self.userToken != nil {
             self.apiManager = ApiManager(path: "/token", method: .get, parameters: [:], header: ["authorization":self.userToken!])
@@ -51,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.users.set(isToken, forKey: "token")
                     self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isToken])
                     self.apiManager.requestMissions(missionText: { (missionText) in
+                        MainController.reEnterMain = 1
                         MainController.missionText = missionText
                     }) { (missionId) in
                         MainController.missionId = missionId

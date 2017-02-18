@@ -75,6 +75,12 @@ class DetailMissionViewController: UIViewController {
         subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
 
         self.view.addSubview(subLabel)
+        
+        let dismissExtension = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        let dismissRecognizer = UITapGestureRecognizer(target:self, action:#selector(cancelButtonAction(sender:)))
+        dismissExtension.isUserInteractionEnabled = true
+        dismissExtension.addGestureRecognizer(dismissRecognizer)
+        self.view.addSubview(dismissExtension)
     }
     
     
@@ -103,8 +109,9 @@ class DetailMissionViewController: UIViewController {
     }
     
     func cancelButtonAction(sender: UIButton!) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
+    
 
     
 

@@ -44,7 +44,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     // 기기의 너비와 높이
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
-
+    
     
     
     @IBOutlet weak var imageView: UIImageView!
@@ -60,13 +60,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     var receivedImg : UIImage = UIImage(named : "gotoleft")!
     var receivedMissionId : Int = 0
-
+    
     var apiManager : ApiManager!
     let userToken = UserDefaults.standard
     
     var placeHolderText : String = "140자 이내로 작성해주세요."
     var commentSize : CGFloat = 0.0
-   
+    
     var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
     
     
@@ -77,7 +77,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         let imageWidth = CGFloat((self.receivedImg.size.width))
         let imageHeight = CGFloat((self.receivedImg.size.height))
         
@@ -95,18 +95,18 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             }//일반 4:3 사진일 경우
             else{
                 
-            imageView.frame = CGRect(x: (20*widthRatio), y: (149*heightRatio), width: 335*widthRatio, height: (253*heightRatio))
+                imageView.frame = CGRect(x: (20*widthRatio), y: (149*heightRatio), width: 335*widthRatio, height: (253*heightRatio))
             }
             
         }else if imageHeight > imageWidth{
             //세로가 가로보다 긴 16:9 사진일 경우
             if imageHeight/imageWidth > 1.4 , imageHeight/imageWidth < 1.8{
                 
-            imageView.frame = CGRect(x: (75*widthRatio), y: (75*heightRatio), width: 225*widthRatio, height: (400*heightRatio))
+                imageView.frame = CGRect(x: (75*widthRatio), y: (75*heightRatio), width: 225*widthRatio, height: (400*heightRatio))
             }//일반 4:3 사진일 경우
             else{
                 
-            imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
+                imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
             }
         }//일반 정방형 사진일 경우
         else{
@@ -133,7 +133,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         grayView.frame = CGRect(x: 0*widthRatio, y: 512.5*heightRatio, width: 375*widthRatio, height: 154.5*heightRatio)
         grayView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
-
+        
         inputText.frame = CGRect(x: (40*widthRatio), y: (20.5*heightRatio), width: 295*widthRatio, height: (105)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         inputText.backgroundColor = UIColor.clear
@@ -142,22 +142,22 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         //inputText.addTextSpacing(spacing: 15)
         
         
-//        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
-//        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-//        nextBtn.setTitle("게시글 공유", for: .normal)
-//        nextBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0), for: .normal)
-//        nextBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-//        
-//        nextBtn.layer.borderWidth = 1
-//        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
-
-//        var line: UIView!
-//        
-//        
-//        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
-//        
-//        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
-//        view.addSubview(line)
+        //        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
+        //        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+        //        nextBtn.setTitle("게시글 공유", for: .normal)
+        //        nextBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0), for: .normal)
+        //        nextBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
+        //
+        //        nextBtn.layer.borderWidth = 1
+        //        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
+        
+        //        var line: UIView!
+        //
+        //
+        //        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
+        //
+        //        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
+        //        view.addSubview(line)
         
         // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -205,10 +205,10 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 self.emojiFlag = 1
                 
             }
-            //처음에 한글인지 이모지다음에 한글인지 알 수 있다면 여기서 걸러낼수 있을텐데...
-            // 일반적인 한글모드 일때
+                //처음에 한글인지 이모지다음에 한글인지 알 수 있다면 여기서 걸러낼수 있을텐데...
+                // 일반적인 한글모드 일때
             else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 0 {
-             
+                
                 
                 self.view.frame.origin.y += changeInHeight
                 
@@ -239,7 +239,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         }
         return true
     }
-
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         
         if textView.text == placeHolderText{
@@ -282,7 +282,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         alertView.addAction(action)
         alertWindow(alertView: alertView)
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -309,7 +309,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         alertView.addAction(cancelAction)
         
         alertWindow(alertView: alertView)
-
+        
     }
     @IBAction func nextBtn(_ sender: UIButton) {
         
@@ -333,12 +333,16 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
-                                //print("resultCode : \(result)")
-                                //서버 통신이 끝나야 메인으로 돌아감.
+                    //print("resultCode : \(result)")
+                    //서버 통신이 끝나야 메인으로 돌아감.
                     
-                                alertView.dismiss(animated: true, completion: nil)
-                                self.dismiss(animated: true, completion: nil)
-                            })
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                    
+                    
+                    alertView.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
+                })
                 
             })
             
@@ -350,6 +354,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     //print("resultCode : \(result)")
                     //서버 통신이 끝나야 메인으로 돌아감.
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
                     
                     alertView.dismiss(animated: true, completion: nil)
                     self.dismiss(animated: true, completion: nil)
@@ -377,9 +383,9 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     func resizing(_ image: UIImage) -> Data?{
         
-//        let imgData = UIImageJPEGRepresentation(image, 0.25)!
-//        
-//        let resizedImage = UIImage(data:imgData)
+        //        let imgData = UIImageJPEGRepresentation(image, 0.25)!
+        //
+        //        let resizedImage = UIImage(data:imgData)
         
         let resizedWidthImage = image.resized(toWidth: 1080)
         
