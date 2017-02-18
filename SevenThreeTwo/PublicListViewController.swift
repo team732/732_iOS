@@ -47,6 +47,11 @@ class PublicListViewController:  UICollectionViewController{
     var refreshControl : UIRefreshControl!
     var refreshSeg : Int = 0 // 0이면 최신순 1이면 인기순
     
+    //loading
+    var addView : UIView!
+    var loadingIndi : UIActivityIndicatorView!
+
+    
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
         super.init(collectionViewLayout: layout)
@@ -58,6 +63,7 @@ class PublicListViewController:  UICollectionViewController{
         userToken = users.string(forKey: "token")
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
+        setLoadingIndi()
         setUpUI()
         loadPic(path: "/missions/\(MainController.missionId)/contents?limit=10")
         NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -137,10 +143,12 @@ class PublicListViewController:  UICollectionViewController{
             for i in 0..<contentPhoto.contents!.count{
                 self.photos.append(PublicPhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
             }
+            self.addView.isHidden = true
             self.contentsCount = contentPhoto.contentsCount!
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
             MainController.mainInd.stopAnimating()
+
         }
     }
     
@@ -249,6 +257,8 @@ class PublicListViewController:  UICollectionViewController{
         drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         
+        
+        
         // Register cell identifier
         self.collectionView?.register(PhotoCaptionCell.self,
                                       forCellWithReuseIdentifier: self.reuseIdentifier)
@@ -297,6 +307,20 @@ class PublicListViewController:  UICollectionViewController{
     func moveToMainVC(){
         CheckTokenViewController.snapContainer.moveMiddle()
     }
+    
+    func setLoadingIndi(){
+        loadingIndi = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40*widthRatio, height:40*heightRatio)) as UIActivityIndicatorView
+        loadingIndi.hidesWhenStopped = true
+        loadingIndi.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        addView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 40*heightRatio, width: 375*widthRatio, height: 40*heightRatio))
+        addView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        loadingIndi.center = CGPoint(x: UIScreen.main.bounds.width/2, y: addView.frame.height / 2)
+        addView.addSubview(loadingIndi)
+        view.addSubview(addView)
+        loadingIndi.startAnimating()
+        addView.isHidden = true
+    }
+
 }
 
 // MARK: UICollectionViewDelegate
@@ -322,12 +346,18 @@ extension PublicListViewController {
                             style: BeigeRoundedPhotoCaptionCellStyle())
         cell?.layer.borderWidth = 0.5
         cell?.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
-        if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
-            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadPic(path: (paginationUrl.substring(from: startIndex)))
+        if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
+            self.addView.isHidden = false
         }
         
         return cell!
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadPic(path: (paginationUrl.substring(from: startIndex)))
+        }
     }
     
     
