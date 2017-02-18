@@ -69,15 +69,15 @@ class ChangeCompleteViewController: UIViewController {
         
         switch (receivedStatusMsg){
         case 0:
-            checkMsg.frame = CGRect(x: 79*widthRatio, y: 214*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
+            checkMsg.frame = CGRect(x: 271*widthRatio/2 - 51.5*widthRatio, y: 214*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
             checkMsg.image = self.checkImg[receivedStatusMsg]
             break
         case 1:
-            checkMsg.frame = CGRect(x: 77*widthRatio, y: 213*heightRatio, width: 107*widthRatio, height: 37*heightRatio)
+            checkMsg.frame = CGRect(x: 271*widthRatio/2 - 53.5*widthRatio, y: 213*heightRatio, width: 107*widthRatio, height: 37*heightRatio)
             checkMsg.image = self.checkImg[receivedStatusMsg]
             break
         case 2:
-            checkMsg.frame = CGRect(x: 79*widthRatio, y: 214*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
+            checkMsg.frame = CGRect(x: 271*widthRatio/2 - 51.5*widthRatio, y: 214*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
             checkMsg.image = self.checkImg[receivedStatusMsg]
             break
         default:

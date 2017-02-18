@@ -46,7 +46,9 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     
     var imagePastMission : UIImage!
     
-    
+    //loading
+    var addView : UIView!
+    var loadingIndi : UIActivityIndicatorView!
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -61,6 +63,8 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         widthRatio = userDevice.userDeviceWidth()
         
         print("받아온 미션 아이디 \(receivedMissionId)")
+        setLoadingIndi()
+
         setUpUI()
         
         loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
@@ -140,6 +144,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
             for i in 0..<contentPhoto.contents!.count{
                 self.photos.append(PastMissionPic(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
             }
+            self.addView.isHidden = true
             self.contentsCount = contentPhoto.contentsCount!
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
@@ -376,6 +381,20 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         print("Called when the close button is pressed")
         
     }
+    
+    
+    func setLoadingIndi(){
+        loadingIndi = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40*widthRatio, height:40*heightRatio)) as UIActivityIndicatorView
+        loadingIndi.hidesWhenStopped = true
+        loadingIndi.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        addView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 40*heightRatio, width: 375*widthRatio, height: 40*heightRatio))
+        addView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        loadingIndi.center = CGPoint(x: UIScreen.main.bounds.width/2, y: addView.frame.height / 2)
+        addView.addSubview(loadingIndi)
+        view.addSubview(addView)
+        loadingIndi.startAnimating()
+        addView.isHidden = true
+    }
 
 }
 
@@ -402,12 +421,18 @@ extension PastMissionDetailViewController {
         cell?.layer.borderWidth = 0.5
         cell?.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
         
-        if indexPath.row < contentsCount - 2 , indexPath.row == self.photos.count - 2{
-            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadPic(path: (paginationUrl.substring(from: startIndex)))
+        if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
+            self.addView.isHidden = false
         }
         
         return cell!
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadPic(path: (paginationUrl.substring(from: startIndex)))
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

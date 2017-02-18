@@ -314,6 +314,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 }else{
                     self.isPublic = true
                 }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
             }else{
                 self.completeAlert(title: "앗 다시 시도해주세요")
             }
