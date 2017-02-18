@@ -504,7 +504,7 @@ public class FusumaViewController: UIViewController {
                         
                     }else{
                         
-                    self.dismiss(animated: true, completion: {
+                    self.dismiss(animated: false, completion: {
                         self.delegate?.fusumaDismissedWithImage((view?.image)!, source: self.mode)
                     })
                     
