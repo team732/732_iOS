@@ -98,6 +98,14 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
       
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        if SelectListViewController.receivedRange == 1 {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+        }else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+        }
+    }
+    
   
     
     func reLoadComment(){
@@ -159,11 +167,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             self.likeCount = infoContent.likeCount!
             self.myTableView.reloadData()
             self.myContent = infoContent.isMine!
-            self.isPublic = infoContent.isPublic!
             if SelectListViewController.receivedRange == 0 {
-                self.dateLabel.text = self.useDate() + "의 미션"
+                self.dateLabel.text = infoContent.missionDate! + "의 미션"
             }else {
                 self.dateLabel.text = infoContent.missionDate! + "의 미션"
+                self.isPublic = infoContent.isPublic!
             }
             self.subLabel.text = infoContent.missionText!
             self.dateLabel.textAlignment = .center
@@ -199,8 +207,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtnExtension)
         
-        dateLabel = UILabel(frame: CGRect(x: (135*widthRatio), y: (33*heightRatio), width: 115*widthRatio, height: 11*heightRatio))
-        
+        dateLabel = UILabel(frame: CGRect(x: (0*widthRatio), y: (33*heightRatio), width: 375*widthRatio, height: 11*heightRatio))
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         self.myPicView.addSubview(dateLabel)
         
@@ -208,7 +215,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.myPicView.addSubview(firstLine)
         
-        subLabel = UILabel(frame: CGRect(x: (72*widthRatio), y: (58*heightRatio), width: 233*widthRatio, height: 87*heightRatio))
+        subLabel = UILabel(frame: CGRect(x: (0*widthRatio), y: (58*heightRatio), width: 375*widthRatio, height: 87*heightRatio))
         subLabel.numberOfLines = 0
         subLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         self.myPicView.addSubview(subLabel)
@@ -225,6 +232,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         }else{
             self.selectedPic.frame = CGRect(x: 20*widthRatio, y: 159*heightRatio, width: 335*widthRatio, height: 335*heightRatio)
         }
+        
+        let detailPicRecog = UITapGestureRecognizer(target:self, action:#selector(detailPicAction))
+        selectedPic.isUserInteractionEnabled = true
+        selectedPic.addGestureRecognizer(detailPicRecog)
         
         
         self.myPicView.addSubview(selectedPic)
@@ -273,6 +284,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         performSegue(withIdentifier: "comment", sender: self)
     }
     
+    func detailPicAction(){
+        performSegue(withIdentifier: "detailPicture", sender: self)
+    }
+    
     func likeButtonAction(){
         apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)/like", method: .post, header: ["authorization":userToken])
         apiManager.requestContentLiked { (isClickedLike) in
@@ -285,13 +300,24 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                     self.likeCount += 1
                 }
             }else{
-                print("실패")
+                self.completeAlert(title: "앗 다시 시도해주세요")
             }
         }
     }
     
     func lockButtonAction(){
-        
+        apiManager = ApiManager(path:  "/contents/\(SelectListViewController.receivedCid)/public", method: .put, header: ["authorization":self.userToken])
+        apiManager.requestPicLock { (isLocked) in
+            if isLocked == 0 {
+                if self.isPublic {
+                    self.isPublic = false
+                }else{
+                    self.isPublic = true
+                }
+            }else{
+                self.completeAlert(title: "앗 다시 시도해주세요")
+            }
+        }
     }
     
     func useDate() -> String{
@@ -408,7 +434,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 if isRemoved == 0{
                     self.reLoadComment()
                 }else{
-                    //실패
+                    self.completeAlert(title: "앗 다시 시도해주세요")
                 }
             })
             
@@ -434,7 +460,29 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
     }
     
+    func completeAlert(title : String){
+        let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
         
+        let cancelAction = UIAlertAction(title: "확인", style: .cancel) { (_) in }
+        
+        alertView.addAction(cancelAction)
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "detailPicture"
+        {
+            let destination = segue.destination as! DetailPictureViewController
+            
+            destination.receivedImg = selectedPic.image
+        }
+    }
     
 }
 

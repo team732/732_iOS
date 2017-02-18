@@ -19,15 +19,22 @@ class MainController: UIViewController, FusumaDelegate {
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
     var subImage: UIImageView!
-    var subLabel: UILabel!
+    static var subLabel: UILabel!
     static var missionId : Int = 0
-    static var missionText : String = ""
+    static var missionText : String = ""{
+        willSet(newValue){
+            if reEnterMain == 1 {
+                self.subLabel.text = newValue
+            }
+        }
+    }
     @IBOutlet weak var showButton: UIButton!
-    
+    static var reEnterMain : Int = 0
     var imageMain : UIImage!
     var users = UserDefaults.standard
     var userToken : String!
     var apiManager : ApiManager!
+    static var mainInd : UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +42,25 @@ class MainController: UIViewController, FusumaDelegate {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         userToken = users.string(forKey: "token")
+        MainController.mainInd = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40*widthRatio, height:40*heightRatio)) as UIActivityIndicatorView
         self.viewSetUp()
+        mainLoadingInd()
     }
     
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    //메인 로딩 인디케이터
+    func mainLoadingInd(){
+        MainController.mainInd.center = CGPoint(x: UIScreen.main.bounds.width/2, y: (460+(125/2))*heightRatio)
+        MainController.mainInd.hidesWhenStopped = true
+        MainController.mainInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(MainController.mainInd)
+        MainController.mainInd.startAnimating()
     }
     
     @IBAction func showButtonPressed(_ sender: AnyObject) {
@@ -197,7 +216,7 @@ class MainController: UIViewController, FusumaDelegate {
     func subjectImage(){
         
         subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
-        subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
+        MainController.subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         
         
         subImage.image = UIImage(named: "subimage")
@@ -220,13 +239,14 @@ class MainController: UIViewController, FusumaDelegate {
         
         
         //서버에서 주제 던져서 세팅
-        subLabel.text = MainController.missionText
-        subLabel.numberOfLines = 0
-        subLabel.textColor = UIColor.white
-        subLabel.textAlignment = .center
-        subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
+        
+        MainController.subLabel.text = MainController.missionText
+        MainController.subLabel.numberOfLines = 0
+        MainController.subLabel.textColor = UIColor.white
+        MainController.subLabel.textAlignment = .center
+        MainController.subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
     
-        self.view.addSubview(subLabel)
+        self.view.addSubview(MainController.subLabel)
         
     }
     
@@ -271,7 +291,7 @@ class MainController: UIViewController, FusumaDelegate {
         {
             let destination = segue.destination as! DetailMissionViewController
             destination.receivedImg = self.subImage.image!
-            destination.receivedLbl = self.subLabel
+            destination.receivedLbl = MainController.subLabel
         }
     }
     

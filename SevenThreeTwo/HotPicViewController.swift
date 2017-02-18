@@ -52,6 +52,10 @@ class HotPicViewController: UIViewController {
     var hotPicCreator : [String] = []
     var hotPicSub : [String] = []
     
+    
+    //indicator 
+    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +65,7 @@ class HotPicViewController: UIViewController {
 
         setHotPic(path: "/contents")
         viewSetUp()
-        // Do any additional setup after loading the view.
+        setIndicator()
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +73,14 @@ class HotPicViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func setIndicator(){
+        actInd.center = slideshow.center
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(actInd)
+        actInd.startAnimating()
+    }
 
     
     func didTap() {
@@ -127,7 +139,7 @@ class HotPicViewController: UIViewController {
             self.slideshow.pageControl.pageIndicatorTintColor = UIColor.clear
             let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
             self.slideshow.addGestureRecognizer(recognizer)
-
+            self.actInd.stopAnimating()
         }
     }
     

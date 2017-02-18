@@ -37,7 +37,7 @@ class PrivateListViewController: UICollectionViewController {
     
     // MARK: Data
     var photos : [PrivatePhoto] = []
-    
+    var isPublicSeg : Int = 0
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -51,8 +51,10 @@ class PrivateListViewController: UICollectionViewController {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
-        self.loadPic(path: "/users/me/contents?limit=10")
+        reloadPrivateList()
         setUpUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PrivateListViewController.reloadPrivateList),name:NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
     }
     
     
@@ -68,6 +70,15 @@ class PrivateListViewController: UICollectionViewController {
         }
         layout.clearCache()
         layout.invalidateLayout()
+    }
+    
+    func reloadPrivateList(){
+        self.photos.removeAll()
+        if isPublicSeg == 0 {
+            self.loadPic(path: "/users/me/contents?limit=10")
+        }else {
+            self.loadPic(path: "/users/me/contents?limit=10&type=private")
+        }
     }
     
     func loadPic(path : String){
@@ -110,21 +121,21 @@ class PrivateListViewController: UICollectionViewController {
         layout.cellPadding = collectionViewSideInset
         layout.numberOfColumns = numberOfColumns
         
-        let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelPic.text = "내사진"
+        let labelPic = UILabel(frame: CGRect(x: 0, y: 95*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
+        labelPic.text = "나의 사진"
         labelPic.textAlignment = .center
         labelPic.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelPic.font = labelPic.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelPic)
         
-        let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelList.text = "리스트"
+        let labelList = UILabel(frame: CGRect(x: 0*widthRatio, y: 105.5*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
+        labelList.text = "사진"
         labelList.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelList.textAlignment = .center
         labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelList.font = labelList.font.withSize(24*widthRatio)
-        collectionView?.addSubview(labelList)
+        //collectionView?.addSubview(labelList)
         
         let gotoRight = UIButton(frame: CGRect(x: (318*widthRatio), y: (97*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoRight.setImage(UIImage(named: "gotoright"), for: .normal)
@@ -188,11 +199,13 @@ class PrivateListViewController: UICollectionViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             // 모두공개
+            self.isPublicSeg = 0
             self.photos.removeAll()
             self.loadPic(path: "/users/me/contents?limit=10")
             break
         case 1:
             // 비공개
+            self.isPublicSeg = 1
             self.photos.removeAll()
             self.loadPic(path: "/users/me/contents?limit=10&type=private")
             break

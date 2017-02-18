@@ -37,7 +37,13 @@ class PublicListViewController:  UICollectionViewController{
     // MARK: Data
     var photos : [PublicPhoto] = []
     var paginationUrl : String!
-    var contentsCount : Int!
+    var contentsCountLabel : UILabel!
+    var contentsCount : Int = 0{
+        willSet(newValue){
+            contentsCountLabel.text = "\(newValue)"
+            contentsCountLabel.textAlignment = .center
+        }
+    }
     var refreshControl : UIRefreshControl!
     var refreshSeg : Int = 0 // 0이면 최신순 1이면 인기순
     
@@ -59,6 +65,8 @@ class PublicListViewController:  UICollectionViewController{
         setRefreshControl()
         
         
+        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+
     }
     
     // 리프레쉬 컨트롤을 세팅
@@ -83,7 +91,11 @@ class PublicListViewController:  UICollectionViewController{
     func reloadAppRefreshPic(){
         
         self.photos.removeAll()
-        self.loadPic(path: "/missions/\(MainController.missionId)/contents?limit=10")
+        if refreshSeg == 0{
+            self.loadPic(path: "/missions/\(MainController.missionId)/contents?limit=10")
+        }else {
+            self.loadPic(path: "/missions/\(MainController.missionId)/contents?limit=10&sort=-like_count")
+        }
     }
     
     
@@ -128,6 +140,7 @@ class PublicListViewController:  UICollectionViewController{
             self.contentsCount = contentPhoto.contentsCount!
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
+            MainController.mainInd.stopAnimating()
         }
     }
     
@@ -183,38 +196,42 @@ class PublicListViewController:  UICollectionViewController{
         collectionView?.addSubview(moveExtension)
         
         
-        let labelPic = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 79*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelPic.text = "공개된"
+        let labelPic = UILabel(frame: CGRect(x: 0*widthRatio, y: 79*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
+        labelPic.text = "모든 사진"
         labelPic.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelPic.textAlignment = .center
         labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelPic.font = labelPic.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelPic)
         
-        let labelList = UILabel(frame: CGRect(x: 152.5*widthRatio, y: 105.5*heightRatio, width: 66*widthRatio, height: 26.5*heightRatio))
-        labelList.text = "리스트"
+        let labelList = UILabel(frame: CGRect(x: 0*widthRatio, y: 105.5*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
+        labelList.text = "사진"
         labelList.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelList.textAlignment = .center
         labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
         labelList.font = labelList.font.withSize(24*widthRatio)
-        collectionView?.addSubview(labelList)
+        //collectionView?.addSubview(labelList)
        
         let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
         todayhotpic.image = UIImage(named: "todayhotpic")
         collectionView?.addSubview(todayhotpic)
         
-        let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 198*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
-        cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
-        cameraBtn.setImage(UIImage(named:"camera"), for: .normal)
-        collectionView?.addSubview(cameraBtn)
+        let numberingBox = UIImageView(frame: CGRect(x: 152.5*widthRatio, y: 187*heightRatio, width: 66*widthRatio, height: 66*heightRatio))
+        numberingBox.image = UIImage(named: "numberingBox")
+        collectionView?.addSubview(numberingBox)
         
-        let shotLabel = UILabel(frame: CGRect(x: 168.5*widthRatio, y: 226*heightRatio, width: 40*widthRatio, height: 11*heightRatio))
-        shotLabel.text = "촬영하기"
-        shotLabel.textAlignment = .center
-        shotLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
-        shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
-        shotLabel.font = labelList.font.withSize(11*widthRatio)
-        collectionView?.addSubview(shotLabel)
+        contentsCountLabel = UILabel()
+        contentsCountLabel.frame = CGRect(x: -3, y: 205*heightRatio, width: 378*widthRatio, height: 16*heightRatio)
+        contentsCountLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
+        contentsCountLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
+        collectionView?.addSubview(contentsCountLabel)
+        
+        let publicLabel = UILabel(frame: CGRect(x: 176*widthRatio, y: 226*heightRatio, width: 19*widthRatio, height: 10*heightRatio))
+        publicLabel.text = "공개"
+        publicLabel.textAlignment = .center
+        publicLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+        publicLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 10*widthRatio)
+        collectionView?.addSubview(publicLabel)
         
         
         let items = ["최신순", "인기순"]
