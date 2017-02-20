@@ -46,20 +46,22 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        mainLabel = UILabel(frame: CGRect(x: 134*widthRatio, y: 90*heightRatio, width: 107*widthRatio, height: 22*heightRatio))
+        mainLabel = UILabel(frame: CGRect(x: 138*widthRatio, y: 67.7*heightRatio, width: 101*widthRatio, height: 22*heightRatio))
         mainLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         mainLabel.textAlignment = .center
+        mainLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         mainLabel.text = "이메일 등록"
+        mainLabel.addTextSpacing(spacing: -1)
         self.view.addSubview(mainLabel)
         
         //gotoleft
-        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 87*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtn = UIButton(frame: CGRect(x: 36.7*widthRatio, y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
         backBtn.setImage(UIImage(named: "gotoleft"), for: .normal)
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
         backBtn.sizeToFit()
         self.view.addSubview(backBtn)
         
-        backBtnExtension = UIView(frame: CGRect(x: 30*widthRatio, y: 87*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
         backBtnExtension.isUserInteractionEnabled = true
@@ -67,7 +69,7 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(backBtnExtension)
         
         emailTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 224*heightRatio, width: 337*widthRatio, height: 13*heightRatio))
-        emailTextField.placeholder = "이메일을 입력해 주세요 (아이디,비밀번호 분실시 사용됩니다.)"
+        emailTextField.placeholder = "이메일을 입력해주세요 (비밀번호 분실시 사용됩니다)"
         emailTextField.font = UIFont.systemFont(ofSize: 12*widthRatio)
         emailTextField.autocorrectionType = UITextAutocorrectionType.no
         emailTextField.keyboardType = UIKeyboardType.default

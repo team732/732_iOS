@@ -118,7 +118,7 @@ class FindPwViewController: UIViewController,UITextViewDelegate {
         apiManager = ApiManager(path: "/password-reset", method: .post, parameters: ["email":emailTextView.text], header: [:])
         apiManager.requestFindPw { (enableCode) in
             if enableCode == 0 {
-                self.emailAlert(title: "전송되었습니다", isEnable: true)
+                self.emailAlert(title: "전송되었습니다!", isEnable: true)
             }else if enableCode == -27 {
                 self.emailAlert(title: "이메일형식을 확인해주세요", isEnable: false)
             }else{

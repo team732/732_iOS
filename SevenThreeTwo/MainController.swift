@@ -146,12 +146,12 @@ class MainController: UIViewController, FusumaDelegate {
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
                 
-        let mainLogo = UIImageView(frame: CGRect(x: (119*widthRatio), y: (65*heightRatio), width: 142*widthRatio, height: 15*heightRatio))
+        let mainLogo = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - 71*widthRatio, y: (65*heightRatio), width: 142*widthRatio, height: 14*heightRatio))
         mainLogo.image = UIImage(named: "mainLogo")
         self.view.addSubview(mainLogo)
         
         
-        let logoLandScape = UIImageView(frame: CGRect(x: (147*widthRatio), y: (96*heightRatio), width: 90*widthRatio, height: 61*heightRatio))
+        let logoLandScape = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - 45*widthRatio, y: (96*heightRatio), width: 90*widthRatio, height: 61*heightRatio))
         logoLandScape.image = UIImage(named: "logoLandScape")
         self.view.addSubview(logoLandScape)
         
@@ -161,14 +161,14 @@ class MainController: UIViewController, FusumaDelegate {
         drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false)
         drawLine(startX: 187.5, startY: 460, width: 1, height: 125, border:true)
 
-        let gotoLeft = UIImageView(frame: CGRect(x: (23*widthRatio), y: (323*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIImageView(frame: CGRect(x: (23*widthRatio), y: (323*heightRatio), width: 9*widthRatio, height: 11*heightRatio))
         gotoLeft.image = UIImage(named: "gotoleft")
-        gotoLeft.sizeToFit()
+        //gotoLeft.sizeToFit()
         self.view.addSubview(gotoLeft)
         
-        let gotoRight = UIImageView(frame: CGRect(x: (347*widthRatio), y: (323*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoRight = UIImageView(frame: CGRect(x: (347*widthRatio), y: (323*heightRatio), width: 9*widthRatio, height: 11*heightRatio))
         gotoRight.image = UIImage(named: "gotoright")
-        gotoRight.sizeToFit()
+        //gotoRight.sizeToFit()
         self.view.addSubview(gotoRight)
         
         drawCircle(startX: 187.5, startY: 330.5, radius: 143.5)

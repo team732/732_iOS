@@ -168,9 +168,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             self.myTableView.reloadData()
             self.myContent = infoContent.isMine!
             if SelectListViewController.receivedRange == 0 {
-                self.dateLabel.text = infoContent.missionDate! + "의 미션"
+                self.dateLabel.text = infoContent.missionDate! + "의 잠상"
             }else {
-                self.dateLabel.text = infoContent.missionDate! + "의 미션"
+                self.dateLabel.text = infoContent.missionDate! + "의 잠상"
                 self.isPublic = infoContent.isPublic!
             }
             self.subLabel.text = infoContent.missionText!
@@ -193,13 +193,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myPicView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         
-        let cancelBtn = UIButton(frame: CGRect(x: 20*widthRatio , y: 61*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        let cancelBtn = UIButton(frame: CGRect(x: 37.7*widthRatio , y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
         cancelBtn.setImage(UIImage(named: "gotoleft"), for: UIControlState.normal)
         cancelBtn.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
-        
+        cancelBtn.sizeToFit()
         self.view.addSubview(cancelBtn)
         
-        let cancelBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 51*heightRatio, width: 44*widthRatio, height: 34*heightRatio))
+        let cancelBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         cancelBtnExtension.backgroundColor = UIColor.clear
         let cancelBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(cancelButtonAction))
         cancelBtnExtension.isUserInteractionEnabled = true
@@ -207,7 +207,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtnExtension)
         
-        let editBtn = UIButton(frame: CGRect(x: 321*widthRatio, y: 61*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        let editBtn = UIButton(frame: CGRect(x: 321*widthRatio, y: 67.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         editBtn.setImage(UIImage(named: "edit"), for: .normal)
         editBtn.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         
@@ -222,11 +222,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.view.addSubview(editBtnExtension)
         
         
-        dateLabel = UILabel(frame: CGRect(x: (0*widthRatio), y: (33*heightRatio), width: 375*widthRatio, height: 11*heightRatio))
+        dateLabel = UILabel(frame: CGRect(x: 0, y: (33*heightRatio), width: 375*widthRatio, height: 11*heightRatio))
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         self.myPicView.addSubview(dateLabel)
         
-        let firstLine = drawLine(startX: 170, startY: 57, width: 36, height: 1,border:false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        let firstLine = drawLine(startX: UIScreen.main.bounds.width/2 - 18, startY: 57, width: 36, height: 1,border:false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         self.myPicView.addSubview(firstLine)
         
@@ -315,7 +315,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                     self.likeCount += 1
                 }
             }else{
-                self.completeAlert(title: "앗 다시 시도해주세요")
+                self.completeAlert(title: "앗! 다시 시도해주세요")
             }
         }
     }
@@ -331,13 +331,14 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
             }else{
-                self.completeAlert(title: "앗 다시 시도해주세요")
+                self.completeAlert(title: "앗! 다시 시도해주세요")
             }
         }
     }
     
     func editButtonAction(){
         // 앨럿
+        contentAlert(isMine: self.myContent)
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor) -> UIView{
@@ -445,7 +446,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 if isRemoved == 0{
                     self.reLoadComment()
                 }else{
-                    self.completeAlert(title: "앗 다시 시도해주세요")
+                    self.completeAlert(title: "앗! 다시 시도해주세요")
                 }
             })
             
@@ -470,6 +471,56 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
         
     }
+    
+    func contentAlert(isMine : Bool){
+        
+        let alertView = UIAlertController(title: "", message: "이 사진에 대하여", preferredStyle: .actionSheet)
+        
+        let reportComment = UIAlertAction(title: "신고하기", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        let modifyComment = UIAlertAction(title: "게시물 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        
+        let removeComment = UIAlertAction(title: "게시물 삭제", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+            
+            self.apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .delete, header: ["authorization":self.userToken])
+            self.apiManager.requestDeleteContent(completion: { (isDeleted) in
+                if isDeleted == 0 {
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                    self.completeAlert(title: "삭제되었습니다!")
+                    self.dismiss(animated: true, completion: nil)
+                }else{
+                    self.completeAlert(title: "앗! 다시 시도해주세요")
+                }
+                alertView.dismiss(animated: true, completion: nil)
+            })
+        })
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+        
+        if isMine{
+            alertView.addAction(modifyComment)
+            alertView.addAction(removeComment)
+        }else{
+            alertView.addAction(reportComment)
+        }
+        
+        alertView.addAction(cancelAction)
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+        
+    }
+    
     
     func completeAlert(title : String){
         let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)

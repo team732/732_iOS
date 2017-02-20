@@ -119,7 +119,7 @@ class HotPicViewController: UIViewController {
             for i in 0..<hotPicDate.count{
                 self.hotPicDate.append(hotPicDate[i])
             }
-            self.missionDateLabel.text = self.hotPicDate[0]+"의 미션"
+            self.missionDateLabel.text = self.hotPicDate[0]+"의 잠상"
         }) { (hotPicImg) in
             var hotPicArr : [UIImage] = hotPicImg
             for i in 0..<hotPicArr.count{
@@ -129,11 +129,12 @@ class HotPicViewController: UIViewController {
             }
             
             self.slideshow.setImageInputs(self.localSource)
+            
             self.slideshow.currentPageChanged = { (page) in
                 self.ranking.image = UIImage(named: self.rankingImg[page])
                 self.hotPicUserLabel.text = "by. "+self.hotPicCreator[page]
                 self.missionLabel.text = self.hotPicSub[page]
-                self.missionDateLabel.text = self.hotPicDate[page] + "의 미션"
+                self.missionDateLabel.text = self.hotPicDate[page] + "의 잠상"
             }
             self.slideshow.pageControl.currentPageIndicatorTintColor = UIColor.clear
             self.slideshow.pageControl.pageIndicatorTintColor = UIColor.clear
@@ -158,6 +159,7 @@ class HotPicViewController: UIViewController {
         
         let hotPicLabel = UILabel(frame: CGRect(x: 136.5*widthRatio, y: 73*heightRatio, width: 102*widthRatio, height: 22*heightRatio))
         hotPicLabel.text = "명예의 전당"
+        hotPicLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         hotPicLabel.textAlignment = .center
         hotPicLabel.addTextSpacing(spacing: -1)
         hotPicLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
@@ -180,7 +182,7 @@ class HotPicViewController: UIViewController {
         drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true)
         drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false)
         drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true)
-        drawLine(startX: 20, startY: 647, width: 335, height: 1, border: false)
+        drawLine(startX: 20, startY: 647, width: 336, height: 1, border: false)
         drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true)
         drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true)
         
@@ -290,9 +292,11 @@ class HotPicViewController: UIViewController {
         switch sender.selectedSegmentIndex {
         case 0:
             // 주간
+            actInd.startAnimating()
             self.setHotPic(path: "/contents")
             break
         case 1:
+            actInd.startAnimating()
             self.setHotPic(path: "/contents?type=monthly")
             // 월간
             break
