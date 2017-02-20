@@ -373,7 +373,7 @@ extension PublicListViewController {
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
         SelectListViewController.receivedCimg = self.photos[indexPath.item].image
         SelectListViewController.receivedRange = 0
-        self.present(selectVC, animated: true, completion: nil)
+        self.present(selectVC, animated: false, completion: nil)
     }
     
     

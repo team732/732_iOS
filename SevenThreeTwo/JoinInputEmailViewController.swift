@@ -65,18 +65,13 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
     func viewSetUp(){
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (79*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIImageView(frame: CGRect(x: (36.7*widthRatio), y: (67.7*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.image = UIImage(named: "gotoleft")
         gotoLeft.sizeToFit()
         self.view.addSubview(gotoLeft)
         
-        
-        let backBtn = UIButton(frame: CGRect(x: 44*widthRatio , y: 78*heightRatio, width: 27*widthRatio, height: 15*heightRatio))
+        let backBtn = UIButton(frame: CGRect(x: 26.7*widthRatio , y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         backBtn.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
-        backBtn.setTitle("뒤로", for: .normal)
-        backBtn.setTitleColor(UIColor.black, for: .normal)
-        backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-
         self.view.addSubview(backBtn)
         
         let emailLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 50*widthRatio, height: 15*heightRatio))
@@ -85,8 +80,12 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         emailLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         self.view.addSubview(emailLabel)
         
+        let emailSub = UILabel(frame: CGRect(x: 85*widthRatio, y: 148*heightRatio, width: 180*widthRatio, height: 11*heightRatio))
+        emailSub.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
+        emailSub.text = "(비밀번호 분실 시 사용됩니다)"
+        
         emailTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 337*widthRatio, height: 13*heightRatio))
-        emailTextField.placeholder = "이메일을 입력해 주세요 (아이디,비밀번호 분실시 사용됩니다.)"
+        emailTextField.placeholder = "이메일을 입력해주세요"
         emailTextField.font = UIFont.systemFont(ofSize: 12*widthRatio)
         emailTextField.autocorrectionType = UITextAutocorrectionType.no
         emailTextField.keyboardType = UIKeyboardType.default

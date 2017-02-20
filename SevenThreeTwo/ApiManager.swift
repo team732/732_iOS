@@ -60,7 +60,7 @@ class ApiManager {
                     
                     pagination(resp["pagination"]["nextUrl"].stringValue)
                     completion(content)
-
+                    
                 }
                 break
                 
@@ -91,13 +91,12 @@ class ApiManager {
     }
     
     func requestSelectContent(completion : @escaping (Content)->Void){
-       
+        
         Alamofire.request(url, method: method, headers: header).responseJSON { response in
             switch(response.result){
             case .success(_):
                 if let json = response.result.value{
                     let resp = JSON(json)
-                    print(resp)
                     let detailContent = resp["data"]["content"]
                     let infoContent = Content(contentId: detailContent["contentId"].intValue, contentPicture: detailContent["content"]["picture"].stringValue, contentText: detailContent["content"]["text"].stringValue, userId: detailContent["userId"].intValue, nickname: detailContent["nickname"].stringValue, isMine: detailContent["isMine"].boolValue, isLiked: detailContent["isLiked"].intValue, isPublic: detailContent["isPublic"].boolValue,replies: detailContent["replies"], missionId: detailContent["missionId"].intValue, createdAt: detailContent["createdAt"].stringValue, likeCount: detailContent["likeCount"].intValue, missionText: detailContent["mission"]["text"].stringValue, missionDate: detailContent["missionDate"].stringValue)
                     
@@ -141,30 +140,30 @@ class ApiManager {
         url = url.addingPercentEncoding( withAllowedCharacters: .urlQueryAllowed)!
         Alamofire.request(url).responseJSON{ response in
             switch(response.result){
-                case .success(_):
-                    if let json = response.result.value {
-                        let resp = JSON(json)
-                        completion(resp)
-                    }
-                    break
-                case .failure(_):
-                    break
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    completion(resp)
+                }
+                break
+            case .failure(_):
+                break
             }
         }
     }
     
     func requestJoin(completion : @escaping (JSON)->Void){
-
+        
         Alamofire.request(url, method: method, parameters: parameters).responseJSON{ response in
             switch(response.result){
-                case .success(_):
-                    if let json = response.result.value {
-                        let resp = JSON(json)
-                        completion(resp)
-                    }
-                    break
-                case .failure(_):
-                    break
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    completion(resp)
+                }
+                break
+            case .failure(_):
+                break
                 
             }
         }
@@ -175,14 +174,14 @@ class ApiManager {
         
         Alamofire.request(url, method: method, parameters: parameters).responseJSON { (response) in
             switch(response.result){
-                case .success(_):
-                    if let json = response.result.value {
-                        let resp = JSON(json)
-                        completion(resp)
-                    }
-                    break
-                case .failure(_):
-                    break
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    completion(resp)
+                }
+                break
+            case .failure(_):
+                break
             }
         }
     }
@@ -204,14 +203,11 @@ class ApiManager {
                 switch encodingResult {
                 case .success(let upload, _, _):
                     upload.responseJSON { response in
-                        //debugPrint(response)
-                        //print(response)
                         
                         let resp = JSON(response.result.value!)
                         
                         completion(resp["meta"]["code"].stringValue)
-                        //print(json["meta"]["message"].stringValue)
-                        //print(json["meta"]["code"].stringValue)
+                        
                         
                         
                     }
@@ -256,7 +252,7 @@ class ApiManager {
             }
         }
     }
-
+    
     func requestModifyComment(completion: @escaping (Int)->Void){
         Alamofire.request(url, method: method, parameters: parameters,encoding: encode, headers: header).responseJSON { response in
             switch(response.result){
@@ -270,7 +266,7 @@ class ApiManager {
                 break
             }
         }
-
+        
     }
     
     //오늘의 미션
@@ -289,7 +285,7 @@ class ApiManager {
             }
         }
     }
-     
+    
     func requestPastMissions(pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
@@ -299,7 +295,6 @@ class ApiManager {
                     let resp = JSON(json)
                     var pastMission = [PastMission]()
                     let contents = resp["data"]["missions"]
-                    print("contentsCount : \(contents.count)")
                     
                     for idx in 0..<contents.count {
                         
@@ -334,7 +329,7 @@ class ApiManager {
                 break
             }
         }
-
+        
     }
     
     func requestHotPic(hotPicSub : @escaping([String])->Void,hotPicCreator : @escaping([String])->Void,hotPicDate : @escaping([String])->Void,hotPicImg : @escaping([UIImage])->Void){
@@ -382,7 +377,6 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
             case .failure(_):
@@ -407,6 +401,34 @@ class ApiManager {
         }
     }
     
+    func requestUserInfo(completion : @escaping(Any)->Void){
+        Alamofire.request(url,method: method,headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    completion(resp["nickname"].description)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
+    func requestDeleteContent(completion : @escaping(Int)->Void){
+        Alamofire.request(url,method: method, headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    completion(resp["meta"]["code"].intValue)
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     /*
      사용 하는 컨트롤러에서
      
@@ -414,5 +436,5 @@ class ApiManager {
      print(info) -> info 는 JSON 형식 (@escaping 옆 () 안에 String 을 넣어주면 info 는 String으로 반환 단, completion안에도 String으로 넣어줘야함. 즉 이곳에서 내가 원하는 값으로 반환 받는것
      }
      */
-
+    
 }

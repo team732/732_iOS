@@ -42,18 +42,14 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let gotoLeft = UIImageView(frame: CGRect(x: (30*widthRatio), y: (79*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIImageView(frame: CGRect(x: (36.7*widthRatio), y: (67.7*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.image = UIImage(named: "gotoleft")
         gotoLeft.sizeToFit()
         self.view.addSubview(gotoLeft)
         
         
-        let backBtn = UIButton(frame: CGRect(x: 44*widthRatio , y: 78*heightRatio, width: 27*widthRatio, height: 15*heightRatio))
+        let backBtn = UIButton(frame: CGRect(x: 26.7*widthRatio , y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         backBtn.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
-        backBtn.setTitle("뒤로", for: .normal)
-        backBtn.setTitleColor(UIColor.black, for: .normal)
-        backBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
-        
         self.view.addSubview(backBtn)
         
         let pwCheckLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 100*widthRatio, height: 15*heightRatio))
@@ -63,7 +59,7 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(pwCheckLabel)
         
         checkPw = UILabel(frame: CGRect(x: 36*widthRatio, y: 209*heightRatio, width: 179*widthRatio, height: 13*heightRatio))
-        checkPw.text = "비밀번호를 다시 입력해 주세요."
+        checkPw.text = "비밀번호를 다시 입력해주세요"
         checkPw.textAlignment = .center
         checkPw.textColor =  UIColor(red: 208/255, green: 2/255, blue: 27/255, alpha: 1.0)
         checkPw.isHidden = true
@@ -72,7 +68,7 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
 
         
         pwCheckTextField = UITextField(frame: CGRect(x: 36*widthRatio, y: 183*heightRatio, width: 305*widthRatio, height: 13*heightRatio))
-        pwCheckTextField.placeholder = "비밀번호를 확인해 주세요."
+        pwCheckTextField.placeholder = "비밀번호를 입력해주세요."
         pwCheckTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         pwCheckTextField.autocorrectionType = UITextAutocorrectionType.no
         pwCheckTextField.keyboardType = UIKeyboardType.default

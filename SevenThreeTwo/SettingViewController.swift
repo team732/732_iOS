@@ -43,23 +43,24 @@ class SettingViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        settingTableView.frame = CGRect(x: 20*widthRatio, y: 160*heightRatio, width: 335*widthRatio, height: 487*heightRatio)
+        settingTableView.frame = CGRect(x: 20*widthRatio, y: 120*heightRatio, width: 335*widthRatio, height: 487*heightRatio)
         settingTableView.layer.borderWidth = 1
         
         //settingLabel
-        settingLabel = UIImageView(frame: CGRect(x: 167.5*widthRatio, y: 90*heightRatio, width: 40*widthRatio, height: 22*heightRatio))
+        settingLabel = UIImageView(frame: CGRect(x: 169*widthRatio, y: 67.7*heightRatio, width: 40*widthRatio, height: 22*heightRatio))
         settingLabel.image = UIImage(named: "settingLabel")
+        
         settingLabel.sizeToFit()
         self.view.addSubview(settingLabel)
         
         //gotoleft
-        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 89*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtn = UIButton(frame: CGRect(x: 36.7*widthRatio, y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
         backBtn.setImage(UIImage(named: "gotoleft"), for: .normal)
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
         backBtn.sizeToFit()
         self.view.addSubview(backBtn)
         
-        let backBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 79*heightRatio, width: 54*widthRatio, height: 44*heightRatio))
+        let backBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 57.7*heightRatio, width: 54*widthRatio, height: 44*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
         let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
         backBtnExtension.isUserInteractionEnabled = true
@@ -162,9 +163,9 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.infoLabel.text = "닉네임 변경"
             break
         case 4:
-            cell.infoLabel.text = "732 탈퇴하기"
-            cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+            cell.infoLabel.text = "732 로그아웃"
             cell.rightImg.isHidden = true
+            cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
             break
         case 5:
             cell.selectionStyle = .none
@@ -189,9 +190,9 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.infoLabel.text = "오픈소스 라이브러리"
             break
         case 9:
-            cell.infoLabel.text = "732 로그아웃"
-            cell.rightImg.isHidden = true
+            cell.infoLabel.text = "732 탈퇴하기"
             cell.infoLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+            cell.rightImg.isHidden = true
             break
         default:
             break
@@ -219,8 +220,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             self.performSegue(withIdentifier: "settingToCN", sender: nil)
             break
         case 4:
-            self.outAlert(title: "정말로 탈퇴하시겠습니까?",isCompletely: true)
-            //탈퇴하기
+            self.outAlert(title: "로그아웃 하시겠습니까?", isCompletely: false)
             break
         case 5:
             break
@@ -233,8 +233,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             self.performSegue(withIdentifier: "settingToOpenSource", sender: nil)
             break
         case 9:
-            //로그아웃
-            self.outAlert(title: "로그아웃 하시겠습니까?", isCompletely: false)
+            self.outAlert(title: "정말로 탈퇴하시겠습니까?",isCompletely: true)
             break
         default:
             break
