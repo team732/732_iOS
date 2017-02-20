@@ -23,7 +23,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="Uar-Sx-TIx" kind="show" identifier="joinToId" id="bc0-zD-ptt"/>
+                        <segue destination="Uar-Sx-TIx" kind="show" identifier="joinToId" animates="NO" id="bc0-zD-ptt"/>
                         <segue destination="FlI-Vx-iaG" kind="presentation" identifier="findPass" animates="NO" modalPresentationStyle="overCurrentContext" id="6l0-AO-5MK"/>
                     </connections>
                 </viewController>
@@ -177,7 +177,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="rma-YI-2ag" kind="show" identifier="JoinIdToPwSegue" id="OAb-Zu-WJh"/>
+                        <segue destination="rma-YI-2ag" kind="show" identifier="JoinIdToPwSegue" animates="NO" id="OAb-Zu-WJh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfG-9u-reS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -198,7 +198,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="9qv-Sa-A5d" kind="show" identifier="pwCheck" id="iJb-CA-Nz3"/>
+                        <segue destination="9qv-Sa-A5d" kind="show" identifier="pwCheck" animates="NO" id="iJb-CA-Nz3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86J-Sm-Bqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -219,7 +219,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="HiY-LU-D2N" kind="show" identifier="pwCheckToNick" id="LaO-jW-B7M"/>
+                        <segue destination="HiY-LU-D2N" kind="show" identifier="pwCheckToNick" animates="NO" id="LaO-jW-B7M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIS-8D-rbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,7 +261,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="VZe-QI-tDe" kind="show" identifier="emailToLogin" id="0vo-hr-DWc"/>
+                        <segue destination="VZe-QI-tDe" kind="show" identifier="emailToLogin" animates="NO" id="0vo-hr-DWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cpe-Uv-Maa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -301,7 +301,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeB-aM-u4f" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeB-aM-u4f" customClass="ImageSlideshow" customModule="ImageSlideshow">
                                 <rect key="frame" x="16" y="369" width="343" height="278"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -331,8 +331,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="bOA-x6-2cu" kind="show" identifier="pastToPast" id="cVU-vJ-jAT"/>
-                        <segue destination="VHf-zA-zXI" kind="show" identifier="pastToHotpic" id="lpE-bN-Q2h"/>
+                        <segue destination="bOA-x6-2cu" kind="show" identifier="pastToPast" animates="NO" id="cVU-vJ-jAT"/>
+                        <segue destination="VHf-zA-zXI" kind="show" identifier="pastToHotpic" animates="NO" id="lpE-bN-Q2h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBj-dl-NHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,7 +343,7 @@
         <scene sceneID="xRh-r4-Suc">
             <objects>
                 <collectionViewController storyboardIdentifier="left" id="fJU-Lj-n4c" customClass="PrivateListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lYv-aP-wph">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lYv-aP-wph">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -761,8 +761,8 @@
                         <segue destination="8zp-bJ-s0P" kind="show" identifier="settingToCN" animates="NO" id="OGG-RR-Wug"/>
                         <segue destination="VZe-QI-tDe" kind="show" identifier="outClickedSegue" id="gKL-cc-45e"/>
                         <segue destination="eVK-W3-NwF" kind="show" identifier="settingToEVC" animates="NO" id="IEk-Ck-u8S"/>
-                        <segue destination="AmD-hl-5VU" kind="show" identifier="settingToPrivacy" id="j7X-q7-Gt4"/>
-                        <segue destination="HYB-VW-Ysk" kind="show" identifier="settingToOpenSource" id="g5h-F5-frd"/>
+                        <segue destination="AmD-hl-5VU" kind="show" identifier="settingToPrivacy" animates="NO" id="j7X-q7-Gt4"/>
+                        <segue destination="HYB-VW-Ysk" kind="show" identifier="settingToOpenSource" animates="NO" id="g5h-F5-frd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6U-0E-7ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -860,7 +860,7 @@
         <scene sceneID="7pO-15-dHg">
             <objects>
                 <collectionViewController storyboardIdentifier="right" id="Bnz-Il-u6K" customClass="PublicListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IdA-bb-rXr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="IdA-bb-rXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -995,7 +995,7 @@
         <scene sceneID="S4j-26-usl">
             <objects>
                 <collectionViewController id="P6R-Er-mpn" customClass="PastMissionDetailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9tK-9D-rNg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="9tK-9D-rNg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1088,8 +1088,8 @@
         <image name="otter-6" width="1280" height="847"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MYY-Ax-zaQ"/>
         <segue reference="giW-Mq-Fkm"/>
+        <segue reference="MYY-Ax-zaQ"/>
         <segue reference="nkZ-8T-Cc2"/>
     </inferredMetricsTieBreakers>
 </document>

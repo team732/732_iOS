@@ -45,7 +45,7 @@ class DetailMissionViewController: UIViewController {
         let coverLayer = CALayer()
         coverLayer.frame = backgroundImage.bounds;
         coverLayer.backgroundColor = UIColor.black.cgColor
-        coverLayer.opacity = 0.3
+        coverLayer.opacity = 0.6
         backgroundImage.layer.addSublayer(coverLayer)
         
         self.view.addSubview(backgroundImage)
@@ -55,9 +55,19 @@ class DetailMissionViewController: UIViewController {
         cancelBtn.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         
         self.view.addSubview(cancelBtn)
-
-        let dateLabel = UILabel(frame: CGRect(x: (127*widthRatio), y: (239*heightRatio), width: 121*widthRatio, height: 11*heightRatio))
-        dateLabel.text = useDate() + "의 미션"
+        
+        let detailLabel = UIImageView(frame: CGRect(x: 116*widthRatio, y: 118*heightRatio, width: 143*widthRatio, height: 29*heightRatio))
+        detailLabel.image = UIImage(named: "DetailLabel")
+        self.view.addSubview(detailLabel)
+        
+        
+        drawCircle(startX: 187.5, startY: 330.5, radius: 143.5)
+        drawCircle(startX: 187.5, startY: 330.5, radius: 138.5)
+        
+        
+        
+        let dateLabel = UILabel(frame: CGRect(x: (127*widthRatio), y: (263*heightRatio), width: 121*widthRatio, height: 11*heightRatio))
+        dateLabel.text = useDate() + "의 잠상"
         dateLabel.textAlignment = .center
         dateLabel.textColor = UIColor.white
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
@@ -65,9 +75,9 @@ class DetailMissionViewController: UIViewController {
         
         self.view.addSubview(dateLabel)
         
-        drawLine(startX: 169, startY: 263, width: 36, height: 1,border:false, color: UIColor.white)
+        drawLine(startX: 169, startY: 285, width: 36, height: 1,border:false, color: UIColor.white)
     
-        let subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (286*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
+        let subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         subLabel.numberOfLines = 0
         subLabel.text = receivedLbl.text
         subLabel.textAlignment = .center
@@ -81,6 +91,19 @@ class DetailMissionViewController: UIViewController {
         dismissExtension.isUserInteractionEnabled = true
         dismissExtension.addGestureRecognizer(dismissRecognizer)
         self.view.addSubview(dismissExtension)
+        
+        let jamsangWord = UIImageView(frame: CGRect(x: 161*widthRatio, y: 519*heightRatio, width: 55*widthRatio, height: 61*heightRatio))
+        jamsangWord.image = UIImage(named: "jamsangWord")
+        jamsangWord.sizeToFit()
+        self.view.addSubview(jamsangWord)
+        
+        let jamsangLebel = UILabel(frame: CGRect(x: 0, y: 596*heightRatio, width: 375*widthRatio, height: 12*heightRatio))
+        jamsangLebel.text = "공간과 사물에 잠재한 현상을 이끌어내다"
+        jamsangLebel.font = UIFont(name: "Arita-dotum-Light_OTF", size: 12*widthRatio)
+        jamsangLebel.textAlignment = .center
+        jamsangLebel.textColor = UIColor.white
+        self.view.addSubview(jamsangLebel)
+        
     }
     
     
@@ -112,6 +135,19 @@ class DetailMissionViewController: UIViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
+
+    func drawCircle(startX: CGFloat,startY:CGFloat,radius: CGFloat){
+        
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: startX*widthRatio,y: startY*heightRatio), radius: radius*widthRatio, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = circlePath.cgPath
+        shapeLayer.strokeColor = UIColor.white.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 1
+        
+        view.layer.addSublayer(shapeLayer)
+    }
 
     
 

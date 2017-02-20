@@ -51,6 +51,8 @@ class PublicListViewController:  UICollectionViewController{
     var addView : UIView!
     var loadingIndi : UIActivityIndicatorView!
 
+    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
+
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -69,11 +71,19 @@ class PublicListViewController:  UICollectionViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         setRefreshControl()
-        
+        setIndicator()
         
         NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPublic"), object: nil)
 
     }
+    
+    func setIndicator(){
+        actInd.center = CGPoint(x: UIScreen.main.bounds.width/2, y: (60)*heightRatio)
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(actInd)
+    }
+
     
     // 리프레쉬 컨트롤을 세팅
     
@@ -148,7 +158,7 @@ class PublicListViewController:  UICollectionViewController{
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
             MainController.mainInd.stopAnimating()
-
+            self.actInd.stopAnimating()
         }
     }
     
@@ -190,13 +200,13 @@ class PublicListViewController:  UICollectionViewController{
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIButton(frame: CGRect(x: (30*widthRatio), y: (97*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIButton(frame: CGRect(x: (37.7*widthRatio), y: (68.7*heightRatio), width: 8.2*widthRatio, height: 8.2*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
         gotoLeft.sizeToFit()
         gotoLeft.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         collectionView?.addSubview(gotoLeft)
         
-        let moveExtension = UIView(frame: CGRect(x: 20*widthRatio, y: 87*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        let moveExtension = UIView(frame: CGRect(x: 27.7*widthRatio, y: 58.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         moveExtension.backgroundColor = UIColor.clear
         let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
         moveExtension.isUserInteractionEnabled = true
@@ -204,42 +214,36 @@ class PublicListViewController:  UICollectionViewController{
         collectionView?.addSubview(moveExtension)
         
         
-        let labelPic = UILabel(frame: CGRect(x: 0*widthRatio, y: 79*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
-        labelPic.text = "모든 사진"
+        let labelPic = UILabel(frame: CGRect(x: 0*widthRatio, y: 117*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
+        labelPic.text = "모든"
         labelPic.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelPic.textAlignment = .center
         labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
-        labelPic.font = labelPic.font.withSize(24*widthRatio)
         collectionView?.addSubview(labelPic)
         
-        let labelList = UILabel(frame: CGRect(x: 0*widthRatio, y: 105.5*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
+        let labelList = UILabel(frame: CGRect(x: 0*widthRatio, y: 143*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
         labelList.text = "사진"
         labelList.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelList.textAlignment = .center
         labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
-        labelList.font = labelList.font.withSize(24*widthRatio)
-        //collectionView?.addSubview(labelList)
+        collectionView?.addSubview(labelList)
        
-        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
-        todayhotpic.image = UIImage(named: "todayhotpic")
+        
+        let decoBox = UIImageView(frame: CGRect(x: 148*widthRatio, y: 103*heightRatio, width: 80*widthRatio, height: 80*heightRatio))
+        decoBox.image = UIImage(named: "numberingBox")
+        collectionView?.addSubview(decoBox)
+        
+        
+        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (211*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
+        todayhotpic.image = UIImage(named: "publicGoodPhotoLabel")
         collectionView?.addSubview(todayhotpic)
         
-        let numberingBox = UIImageView(frame: CGRect(x: 152.5*widthRatio, y: 187*heightRatio, width: 66*widthRatio, height: 66*heightRatio))
-        numberingBox.image = UIImage(named: "numberingBox")
-        collectionView?.addSubview(numberingBox)
         
         contentsCountLabel = UILabel()
-        contentsCountLabel.frame = CGRect(x: -3, y: 205*heightRatio, width: 378*widthRatio, height: 16*heightRatio)
+        contentsCountLabel.frame = CGRect(x: -3, y: 232*heightRatio, width: 378*widthRatio, height: 16*heightRatio)
         contentsCountLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
         contentsCountLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         collectionView?.addSubview(contentsCountLabel)
-        
-        let publicLabel = UILabel(frame: CGRect(x: 176*widthRatio, y: 226*heightRatio, width: 19*widthRatio, height: 10*heightRatio))
-        publicLabel.text = "공개"
-        publicLabel.textAlignment = .center
-        publicLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
-        publicLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 10*widthRatio)
-        collectionView?.addSubview(publicLabel)
         
         
         let items = ["최신순", "인기순"]
@@ -271,12 +275,14 @@ class PublicListViewController:  UICollectionViewController{
         case 0:
             // 최신순
             self.refreshSeg = 0
+            self.actInd.startAnimating()
             self.reloadAppRefreshPic()
             break
         case 1:
             // 인기순
             self.refreshSeg = 1
             self.photos.removeAll()
+            self.actInd.startAnimating()
             self.loadPic(path: "/missions/\(MainController.missionId)/contents?limit=10&sort=-like_count")
             break
         default:
