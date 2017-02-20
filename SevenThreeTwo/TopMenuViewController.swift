@@ -38,13 +38,13 @@ class TopMenuViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let copyRightImg = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - 35*widthRatio, y: (113*heightRatio), width: 64*widthRatio, height: 14*heightRatio))
+        let copyRightImg = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - (32*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 11*heightRatio))
         copyRightImg.image = UIImage(named: "copyright")
-        copyRightImg.sizeToFit()
+        //copyRightImg.sizeToFit()
         self.view.addSubview(copyRightImg)
         
         drawRectangle(startX:47, startY: 195, width: 282, height:339)
-        drawRectangle(startX: 52, startY: 201, width: 271, height: 327)
+        drawRectangle(startX: 52, startY: 200, width: 272, height: 329)
 
         
         let subscribeBtn = UIButton(frame: CGRect(x: 136*widthRatio , y: 258*heightRatio, width: 103*widthRatio, height: 18*heightRatio))
@@ -56,9 +56,9 @@ class TopMenuViewController: UIViewController {
         
         drawLine(startX: 170, startY: 318, width: 36, height: 1, border: false)
         
-        let pastMissionBtn = UIButton(frame: CGRect(x: 145*widthRatio , y: 358*heightRatio, width: 87*widthRatio, height: 18*heightRatio))
+        let pastMissionBtn = UIButton(frame: CGRect(x: 0*widthRatio , y: 358*heightRatio, width: 375*widthRatio, height: 18*heightRatio))
         pastMissionBtn.addTarget(self, action: #selector(pastMissionButtonAction), for: .touchUpInside)
-        pastMissionBtn.setTitle("과거 미션들", for: .normal)
+        pastMissionBtn.setTitle("지나간 잠상들", for: .normal)
         pastMissionBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), for: .normal)
         pastMissionBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
 
@@ -73,15 +73,15 @@ class TopMenuViewController: UIViewController {
 
         self.view.addSubview(hotPicBtn)
         
-        
-        let downBtn = UIButton(frame: CGRect(x: (176*widthRatio), y: (600*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        let downBtn = UIButton(frame: CGRect(x: (UIScreen.main.bounds.width/2 - (12*widthRatio)), y: (600*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         downBtn.setImage(UIImage(named: "godown"), for: .normal)
-        downBtn.sizeToFit()
+        //downBtn.sizeToFit()
         downBtn.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         self.view.addSubview(downBtn)
         
-        let moveExtension = UIView(frame: CGRect(x: 166*widthRatio, y: 590*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        let moveExtension = UIView(frame: CGRect(x: (UIScreen.main.bounds.width/2 - (17*widthRatio)), y: 595*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         moveExtension.backgroundColor = UIColor.clear
+        //moveExtension.layer.borderWidth = 1
         let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
         moveExtension.isUserInteractionEnabled = true
         moveExtension.addGestureRecognizer(moveRecog)
@@ -91,7 +91,7 @@ class TopMenuViewController: UIViewController {
     }
     
     func subscribeButtonAction(){
-        basicAlert(title: "준비중입니다")
+        basicAlert(title: "준비중입니다!")
     }
     
     func pastMissionButtonAction(){
@@ -118,7 +118,7 @@ class TopMenuViewController: UIViewController {
     
     func drawRectangle(startX: CGFloat,startY:CGFloat,width:CGFloat,height:CGFloat){
         drawLine(startX: startX, startY: startY, width: width, height: 1, border: false)
-        drawLine(startX: startX+width, startY: startY, width: 1, height: height, border: true)
+        drawLine(startX: startX+width, startY: startY, width: 1, height: height+1, border: true)
         drawLine(startX: startX+width, startY: startY+height, width: -width, height: 1, border: false)
         drawLine(startX: startX, startY: startY+height, width: 1, height: -height, border: true)
     }
