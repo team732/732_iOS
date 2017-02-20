@@ -193,10 +193,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myPicView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         
-        let cancelBtn = UIButton(frame: CGRect(x: 37.7*widthRatio , y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
+        let cancelBtn = UIButton(frame: CGRect(x: 30*widthRatio , y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         cancelBtn.setImage(UIImage(named: "gotoleft"), for: UIControlState.normal)
         cancelBtn.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
-        cancelBtn.sizeToFit()
         self.view.addSubview(cancelBtn)
         
         let cancelBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
@@ -207,7 +206,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtnExtension)
         
-        let editBtn = UIButton(frame: CGRect(x: 321*widthRatio, y: 67.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        let editBtn = UIButton(frame: CGRect(x: 322*widthRatio, y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         editBtn.setImage(UIImage(named: "edit"), for: .normal)
         editBtn.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         

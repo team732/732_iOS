@@ -165,16 +165,15 @@ class PrivateListViewController: UICollectionViewController {
         collectionView?.addSubview(decoBox)
         
         
-        let gotoRight = UIButton(frame: CGRect(x: (324*widthRatio), y: (67.7*heightRatio), width: 8.2*widthRatio, height: 8.2*heightRatio))
+        let gotoRight = UIButton(frame: CGRect(x: (318*widthRatio), y: (60*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoRight.setImage(UIImage(named: "gotoright"), for: .normal)
         gotoRight.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
-        gotoRight.sizeToFit()
         collectionView?.addSubview(gotoRight)
         
         
         
         
-        let moveExtension = UIView(frame: CGRect(x: 317.7*widthRatio, y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        let moveExtension = UIView(frame: CGRect(x: 308*widthRatio, y: 50*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         moveExtension.backgroundColor = UIColor.clear
         let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
         moveExtension.isUserInteractionEnabled = true
