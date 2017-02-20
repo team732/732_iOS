@@ -200,13 +200,12 @@ class PublicListViewController:  UICollectionViewController{
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIButton(frame: CGRect(x: (37.7*widthRatio), y: (68.7*heightRatio), width: 8.2*widthRatio, height: 8.2*heightRatio))
+        let gotoLeft = UIButton(frame: CGRect(x: (27*widthRatio), y: (60*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
-        gotoLeft.sizeToFit()
         gotoLeft.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         collectionView?.addSubview(gotoLeft)
         
-        let moveExtension = UIView(frame: CGRect(x: 27.7*widthRatio, y: 58.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        let moveExtension = UIView(frame: CGRect(x: 17*widthRatio, y: 50*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         moveExtension.backgroundColor = UIColor.clear
         let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
         moveExtension.isUserInteractionEnabled = true
