@@ -203,14 +203,13 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIButton(frame: CGRect(x: 30*widthRatio , y: 73*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIButton(frame: CGRect(x: 36.7*widthRatio , y: 67.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
         //gotoLeft.addTarget(self, action: #selector(gotoLeftButtonAction), for: .touchUpInside)
         gotoLeft.sizeToFit()
         collectionView?.addSubview(gotoLeft)
         
-        let backBtnExtension = UIView(frame: CGRect(x: 16*widthRatio, y: 65*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
-        //backBtnExtension.layer.borderWidth = 1
+        let backBtnExtension = UIView(frame: CGRect(x: 16*widthRatio, y: 55*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
         let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(gotoLeftButtonAction))
         backBtnExtension.isUserInteractionEnabled = true
         backBtnExtension.addGestureRecognizer(backBtnRecognizer)
@@ -245,9 +244,6 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         labelMission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
         collectionView?.addSubview(labelMission)
         
-//        let todayhotpic = UIImageView(frame: CGRect(x: (138*widthRatio), y: (147*heightRatio), width: 101*widthRatio, height: 12*heightRatio))
-//        todayhotpic.image = UIImage(named: "todayhotpic")
-//        collectionView?.addSubview(todayhotpic)
         
         let cameraBtn = UIButton(frame: CGRect(x: 174*widthRatio , y: 194*heightRatio, width: 29*widthRatio, height: 22*heightRatio))
         cameraBtn.addTarget(self, action: #selector(cameraButtonAction), for: .touchUpInside)
@@ -258,14 +254,12 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         shotLabel.text = "과거 미션"
         shotLabel.textAlignment = .center
         shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
-        shotLabel.font = shotLabel.font.withSize(11*widthRatio)
         collectionView?.addSubview(shotLabel)
         
         let shotLabel2 = UILabel(frame: CGRect(x: 167*widthRatio, y: 235*heightRatio, width: 43*widthRatio, height: 11*heightRatio))
         shotLabel2.text = "수행하기"
         shotLabel2.textAlignment = .center
         shotLabel2.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
-        shotLabel2.font = shotLabel2.font.withSize(11*widthRatio)
         collectionView?.addSubview(shotLabel2)
         
         
@@ -294,14 +288,14 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         case 0:
             // 최신순
             self.refreshSeg = 0
-            setIndicator()
+            self.actInd.startAnimating()
             self.reloadAppRefreshPic()
             break
         case 1:
             // 인기순
             self.refreshSeg = 1
+            self.actInd.startAnimating()
             self.photos.removeAll()
-            setIndicator()
             self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
             break
         default:

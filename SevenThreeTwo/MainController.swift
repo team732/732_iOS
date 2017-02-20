@@ -231,7 +231,7 @@ class MainController: UIViewController, FusumaDelegate {
         let coverLayer = CALayer()
         coverLayer.frame = subImage.bounds;
         coverLayer.backgroundColor = UIColor.black.cgColor
-        coverLayer.opacity = 0.3
+        coverLayer.opacity = 0.6
         subImage.layer.addSublayer(coverLayer)
         
         
