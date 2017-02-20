@@ -445,7 +445,7 @@ public class FusumaViewController: UIViewController {
                                                                 self.delegate?.fusumaImageSelected(result!, source: self.mode)
                                                                 
                                                                 
-                                                                self.dismiss(animated: true, completion: {
+                                                                self.dismiss(animated: false, completion: {
                                                                     self.delegate?.fusumaDismissedWithImage(result!, source: self.mode)
                                                                 })
                                                                 
@@ -459,7 +459,7 @@ public class FusumaViewController: UIViewController {
                                                                 self.delegate?.fusumaImageSelected(takenPhoto!, source: self.mode)
                                                                 
                                                                 
-                                                                self.dismiss(animated: true, completion: {
+                                                                self.dismiss(animated: false, completion: {
                                                                     self.delegate?.fusumaDismissedWithImage(takenPhoto!, source: self.mode)
                                                                     
                                                                     
@@ -522,7 +522,7 @@ public class FusumaViewController: UIViewController {
                     self.delegate?.fusumaImageSelected(takenPhoto!, source: self.mode)
                     
                     
-                    self.dismiss(animated: true, completion: {
+                    self.dismiss(animated: false, completion: {
                         self.delegate?.fusumaDismissedWithImage(takenPhoto!, source: self.mode)
                         
                         
