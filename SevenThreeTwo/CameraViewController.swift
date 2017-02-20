@@ -69,7 +69,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
     
-    
+    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
+
     //var imageWidth : CGFloat?
     //var imageHeight : CGFloat?
     
@@ -83,6 +84,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
+        
+        setIndicator()
         
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
@@ -328,8 +331,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             let alertView = UIAlertController(title: "", message: "공개 여부를 선택해주세요.", preferredStyle: .alert)
             
             let shareAction = UIAlertAction(title: "공개하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                self.actInd.startAnimating()
                 
-                print("공유하기")
                 
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
@@ -342,14 +345,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     alertView.dismiss(animated: true, completion: nil)
                     self.dismiss(animated: true, completion: nil)
+                    self.actInd.stopAnimating()
                 })
                 
             })
             
             let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
-                print("나만보기")
-                
+                self.actInd.startAnimating()
+               
                 self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:false, completion: { (result) in
                     
                     //print("resultCode : \(result)")
@@ -359,6 +363,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     alertView.dismiss(animated: true, completion: nil)
                     self.dismiss(animated: true, completion: nil)
+                    self.actInd.stopAnimating()
                 })
             })
             
@@ -399,5 +404,12 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         return resizedData
         
+    }
+    
+    func setIndicator(){
+        actInd.center = CGPoint(x: UIScreen.main.bounds.width/2, y: (60)*heightRatio)
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(actInd)
     }
 }
