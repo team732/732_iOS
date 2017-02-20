@@ -197,7 +197,7 @@ class PrivateListViewController: UICollectionViewController {
         
         
         
-        let items = ["모두 공개", "비공개"]
+        let items = ["전체", "비공개"]
         let customSC = UISegmentedControl(items: items)
         customSC.selectedSegmentIndex = 0
         customSC.frame = CGRect(x: 85*widthRatio, y:276*heightRatio,

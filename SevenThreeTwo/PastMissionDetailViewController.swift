@@ -203,13 +203,14 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         layout.numberOfColumns = numberOfColumns
         
         
-        let gotoLeft = UIButton(frame: CGRect(x: 36.7*widthRatio , y: 67.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        let gotoLeft = UIButton(frame: CGRect(x: 27*widthRatio , y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
         //gotoLeft.addTarget(self, action: #selector(gotoLeftButtonAction), for: .touchUpInside)
-        gotoLeft.sizeToFit()
+        //gotoLeft.sizeToFit()
         collectionView?.addSubview(gotoLeft)
         
-        let backBtnExtension = UIView(frame: CGRect(x: 16*widthRatio, y: 55*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        let backBtnExtension = UIView(frame: CGRect(x: 20*widthRatio, y: 54*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        //backBtnExtension.layer.borderWidth = 1
         let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(gotoLeftButtonAction))
         backBtnExtension.isUserInteractionEnabled = true
         backBtnExtension.addGestureRecognizer(backBtnRecognizer)
@@ -221,7 +222,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         labelDate.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         collectionView?.addSubview(labelDate)
         
-        drawLine(startX: 170, startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
+        drawLine(startX: UIScreen.main.bounds.width/2 - 18 , startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
         
         let labelMission = UILabel(frame: CGRect(x: 0*widthRatio, y: 137*heightRatio, width: 375*widthRatio, height: 16*heightRatio))
         labelMission.text = receivedMissionText
@@ -250,14 +251,14 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         cameraBtn.setImage(UIImage(named:"camera"), for: .normal)
         collectionView?.addSubview(cameraBtn)
         
-        let shotLabel = UILabel(frame: CGRect(x: 167*widthRatio, y: 223*heightRatio, width: 43*widthRatio, height: 11*heightRatio))
-        shotLabel.text = "과거 미션"
+        let shotLabel = UILabel(frame: CGRect(x: 0*widthRatio, y: 223*heightRatio, width: 375*widthRatio, height: 11*heightRatio))
+        shotLabel.text = "지나간 잠상"
         shotLabel.textAlignment = .center
         shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         collectionView?.addSubview(shotLabel)
         
-        let shotLabel2 = UILabel(frame: CGRect(x: 167*widthRatio, y: 235*heightRatio, width: 43*widthRatio, height: 11*heightRatio))
-        shotLabel2.text = "수행하기"
+        let shotLabel2 = UILabel(frame: CGRect(x: 0*widthRatio, y: 235*heightRatio, width: 375*widthRatio, height: 11*heightRatio))
+        shotLabel2.text = "표현하기"
         shotLabel2.textAlignment = .center
         shotLabel2.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         collectionView?.addSubview(shotLabel2)
@@ -467,7 +468,7 @@ extension PastMissionDetailViewController {
 
         //MARK: 추가로 missionDate랑 missionText보내야됨.
         
-        self.present(selectVC, animated: true, completion: nil)
+        self.present(selectVC, animated: false, completion: nil)
         //print(indexPath.row)
     }
     

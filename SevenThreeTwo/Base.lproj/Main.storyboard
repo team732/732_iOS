@@ -81,14 +81,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017년 1월 21일의 미션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scp-1i-Wat">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017년 1월 21일의 미션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scp-1i-Wat">
                                                     <rect key="frame" x="0.0" y="103" width="109" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인간의 욕심은 끝이없고" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReL-nd-1Y2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="인간의 욕심은 끝이없고" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReL-nd-1Y2">
                                                     <rect key="frame" x="0.0" y="145.5" width="263" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -138,7 +138,7 @@
                         <outlet property="containerView" destination="nn7-dk-Ync" id="mZl-Lx-re6"/>
                         <outlet property="listBtn" destination="wf6-cn-YNE" id="FQU-Rf-T6e"/>
                         <outlet property="listView" destination="nn7-dk-Ync" id="7Hl-Hb-kQQ"/>
-                        <segue destination="P6R-Er-mpn" kind="show" identifier="pastToDetail" id="nkZ-8T-Cc2"/>
+                        <segue destination="P6R-Er-mpn" kind="show" identifier="pastToDetail" animates="NO" id="nkZ-8T-Cc2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ztZ-0h-SRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,7 +240,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="oLP-b4-ZF9" kind="show" identifier="nickToEmail" id="Yna-y6-E3C"/>
+                        <segue destination="oLP-b4-ZF9" kind="show" identifier="nickToEmail" animates="NO" id="Yna-y6-E3C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4P-9a-6zM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -996,7 +996,7 @@
             <objects>
                 <collectionViewController id="P6R-Er-mpn" customClass="PastMissionDetailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="9tK-9D-rNg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="582"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rc6-Lt-wiF">
@@ -1047,14 +1047,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="98"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgJ-S2-YZC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgJ-S2-YZC">
                                             <rect key="frame" x="146" y="8" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-9u-jNe">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-9u-jNe">
                                             <rect key="frame" x="146" y="60" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1076,7 +1076,7 @@
                     </collectionView>
                     <connections>
                         <outlet property="collectionView" destination="bjQ-br-sBb" id="4MI-Qj-5Ii"/>
-                        <segue destination="P6R-Er-mpn" kind="show" identifier="pastListToDetail" id="LOh-CO-yOA"/>
+                        <segue destination="P6R-Er-mpn" kind="show" identifier="pastListToDetail" animates="NO" id="LOh-CO-yOA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THy-Kr-JoH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1088,8 +1088,8 @@
         <image name="otter-6" width="1280" height="847"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="giW-Mq-Fkm"/>
-        <segue reference="MYY-Ax-zaQ"/>
-        <segue reference="nkZ-8T-Cc2"/>
+        <segue reference="p0a-HH-WTV"/>
+        <segue reference="LOh-CO-yOA"/>
+        <segue reference="0vo-hr-DWc"/>
     </inferredMetricsTieBreakers>
 </document>

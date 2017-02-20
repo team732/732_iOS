@@ -35,20 +35,20 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet var listBtn: UIButton!
     
     //for animation
-    static let back = UIButton()
+    let back = UIButton()
     //static var list : CGRect?
-    static var titleLabel = UILabel()
+    let titleLabel = UILabel()
     
     
-    var lastOffsetY: CGFloat?
-    var frameBack: CGRect?
-    var frameTitle : CGRect?
-    var frameList : CGRect?
-    var frameCollectionView : CGRect?
+//    var lastOffsetY: CGFloat?
+//    var frameBack: CGRect?
+//    var frameTitle : CGRect?
+//    var frameList : CGRect?
+//    var frameCollectionView : CGRect?
     
     
     @IBOutlet weak var listView: UIView!
-    static var selectedIndex : Int = 0
+    var selectedIndex : Int = 0
     
     //
     var apiManager : ApiManager2!
@@ -73,19 +73,19 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 21*heightRatio, left: 0, bottom: 30*heightRatio, right: 0)
         //collectionView.layer.borderWidth = 1
-        if(PastMissionViewController.selectedIndex == 1){
-        PastMissionViewController.selectedIndex = 0
-        }
+//        if(PastMissionViewController.selectedIndex == 1){
+//        PastMissionViewController.selectedIndex = 0
+//        }
         
         //print("pastmission")
-        PastTextListViewController.container = self.listView
+        //PastTextListViewController.container = self.listView
         
         //#
         //self.collectionView.alpha = 1
         //self.listView.alpha = 0
         setUi()
         
-        PastTextListViewController.list = self.listBtn
+        //PastTextListViewController.list = self.listBtn
         
         userToken = users.string(forKey: "token")
         
@@ -137,35 +137,36 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         collectionView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        PastMissionViewController.back.frame = CGRect(x:31*widthRatio, y:61*heightRatio, width:24*widthRatio, height: 24*heightRatio)
-        PastMissionViewController.back.setImage(UIImage(named:"gotoleft"), for: .normal)
+        back.frame = CGRect(x:30*widthRatio, y:60*heightRatio, width:24*widthRatio, height: 24*heightRatio)
+        back.setImage(UIImage(named:"gotoleft"), for: .normal)
         //PastMissionViewController.back.sizeToFit()
-        PastMissionViewController.back.addTarget(self, action: #selector(buttonPressed(sender:)), for: UIControlEvents.touchUpInside)
+        back.addTarget(self, action: #selector(buttonPressed(sender:)), for: UIControlEvents.touchUpInside)
+        view.addSubview(back)
         
-        let backBtnExtension = UIView(frame: CGRect(x: 18*widthRatio, y: 57*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        let backBtnExtension = UIView(frame: CGRect(x: 23*widthRatio, y: 54*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
         //backBtnExtension.layer.borderWidth = 1
         let backBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(buttonPressed(sender:)))
         backBtnExtension.isUserInteractionEnabled = true
         backBtnExtension.addGestureRecognizer(backBtnRecognizer)
         self.view.addSubview(backBtnExtension)
         
-        view.addSubview(PastMissionViewController.back)
-        
-        PastMissionViewController.titleLabel.frame = CGRect(x: (138*widthRatio), y: (62*heightRatio), width: 101*widthRatio, height: 22*heightRatio)
-        PastMissionViewController.titleLabel.text = "과거 미션들"
-        PastMissionViewController.titleLabel.textAlignment = .center
-        PastMissionViewController.titleLabel.textColor = UIColor.black
-        PastMissionViewController.titleLabel.addTextSpacing(spacing: -1)
-        PastMissionViewController.titleLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
-        
-        view.addSubview(PastMissionViewController.titleLabel)
         
         
-        listBtn.frame = CGRect(x:322*widthRatio, y:61*heightRatio, width:24*widthRatio, height: 24*heightRatio)
+        titleLabel.frame = CGRect(x: (0*widthRatio), y: (60*heightRatio), width: 375*widthRatio, height: 22*heightRatio)
+        titleLabel.text = "지나간 잠상들"
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.black
+        titleLabel.addTextSpacing(spacing: -1)
+        titleLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
+        
+        view.addSubview(titleLabel)
+        
+        
+        listBtn.frame = CGRect(x:322*widthRatio, y:61.1*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         listBtn.setImage(UIImage(named:"list"), for: .normal)
         //listBtn.sizeToFit()
         
-        let listBtnExtension = UIView(frame: CGRect(x: 312*widthRatio, y: 55*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
+        let listBtnExtension = UIView(frame: CGRect(x: 312*widthRatio, y: 54*heightRatio, width: 39*widthRatio, height: 39*heightRatio))
         //listBtnExtension.layer.borderWidth = 1
         let listBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(listButtonClicked(_:)))
         listBtnExtension.isUserInteractionEnabled = true
@@ -186,25 +187,25 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func listButtonClicked(_ sender: UIButton) {
         
-        switch PastMissionViewController.selectedIndex {
+        switch selectedIndex {
         case 0: //
             UIView.animate(withDuration: 0.3, animations: {
                 self.collectionView.alpha = 0
                 self.listView.alpha = 1
                 
                 self.listBtn.setImage(UIImage(named:"listRound"), for: .normal)
-                self.listBtn.sizeToFit()
+                //self.listBtn.sizeToFit()
             })
-            PastMissionViewController.selectedIndex = 1
+            selectedIndex = 1
             break
         case 1: //
             UIView.animate(withDuration: 0.3, animations: {
                 self.collectionView.alpha = 1
                 self.listView.alpha = 0
                 self.listBtn.setImage(UIImage(named:"list"), for: .normal)
-                self.listBtn.sizeToFit()
+                //self.listBtn.sizeToFit()
             })
-            PastMissionViewController.selectedIndex = 0
+            selectedIndex = 0
             break
         default:
             return
@@ -214,7 +215,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     }
     func buttonPressed(sender: UIButton!) {
         
-        PastMissionViewController.selectedIndex = 0
+        selectedIndex = 0
         dismiss(animated: true, completion: nil)
         
     }
@@ -275,7 +276,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
         
         cell.image.image = sampleImages[0] // 나중에 이미지 내려주시면 넣을거...
-        cell.date.text = pastMissions[indexPath.row].missionDate!+"의 미션"
+        cell.date.text = pastMissions[indexPath.row].missionDate!
         cell.mission.text = pastMissions[indexPath.row].mission
         
         //        cell.mission.frame = CGRect(x: (cell.frame.origin.x+101*widthRatio), y: (cell.frame.origin.y+284*heightRatio), width: 174*widthRatio, height: 18*heightRatio)
@@ -323,13 +324,13 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         performSegue(withIdentifier: "pastToDetail", sender: self)
     } // 셀 선택시
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        
-        lastOffsetY = scrollView.contentOffset.y
-        
-        //print(lastOffsetY)
-        
-    }
+//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+//        
+//        lastOffsetY = scrollView.contentOffset.y
+//        
+//        //print(lastOffsetY)
+//        
+//    }
     //scrollview
     
 //    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {

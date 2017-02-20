@@ -27,19 +27,19 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet var collectionView: UICollectionView!
     
     //for animation
-    let back = PastMissionViewController.back
+    //let back = PastMissionViewController.back
     //let list = PastMissionViewController.list
     
-    var titleLabel = PastMissionViewController.titleLabel
+    //var titleLabel = PastMissionViewController.titleLabel
     
     
-    var lastOffsetY: CGFloat?
+    //var lastOffsetY: CGFloat?
 //    var frameBack: CGRect?
 //    var frameTitle : CGRect?
 //    var frameList : CGRect?
 //    var frameCollectionView : CGRect?
-    static var container : UIView!
-    static var list : UIButton!
+    //static var container : UIView!
+    //static var list : UIButton!
     
     //
     var apiManager : ApiManager2!
@@ -156,7 +156,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         
         //cell.image.image = sampleImages[indexPath.row]
        
-        cell.date.text = pastMissions[indexPath.row].missionDate!+"의 미션"
+        cell.date.text = pastMissions[indexPath.row].missionDate!
         cell.mission.text = pastMissions[indexPath.row].mission
 
         cell.layer.borderWidth = 1
