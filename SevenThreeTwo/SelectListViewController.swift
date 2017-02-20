@@ -491,7 +491,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             self.apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .delete, header: ["authorization":self.userToken])
             self.apiManager.requestDeleteContent(completion: { (isDeleted) in
                 if isDeleted == 0 {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                    if SelectListViewController.receivedRange == 1 {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                    }else {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+                    }
                     self.completeAlert(title: "삭제되었습니다!")
                     self.dismiss(animated: true, completion: nil)
                 }else{
