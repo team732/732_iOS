@@ -69,7 +69,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
     
-    
+    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
+
     //var imageWidth : CGFloat?
     //var imageHeight : CGFloat?
     
@@ -84,41 +85,43 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
+        setIndicator()
+        
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         if imageWidth > imageHeight{
             //가로가 세로보다 긴 16:9 사진일 경우
             if imageWidth/imageHeight > 1.4 , imageWidth/imageHeight < 1.8{
                 
-                imageView.frame = CGRect(x: (20*widthRatio), y: (181.28125*heightRatio), width: 335*widthRatio, height: (188.4375*heightRatio))
+                imageView.frame = CGRect(x: (20*widthRatio), y: (216.28125*heightRatio), width: 335*widthRatio, height: (188.4375*heightRatio))
                 
             }//일반 4:3 사진일 경우
             else{
                 
-                imageView.frame = CGRect(x: (20*widthRatio), y: (149*heightRatio), width: 335*widthRatio, height: (253*heightRatio))
+                imageView.frame = CGRect(x: (20*widthRatio), y: (184*heightRatio), width: 335*widthRatio, height: (251.25*heightRatio))
             }
             
         }else if imageHeight > imageWidth{
             //세로가 가로보다 긴 16:9 사진일 경우
             if imageHeight/imageWidth > 1.4 , imageHeight/imageWidth < 1.8{
                 
-                imageView.frame = CGRect(x: (75*widthRatio), y: (75*heightRatio), width: 225*widthRatio, height: (400*heightRatio))
+                imageView.frame = CGRect(x: (75*widthRatio), y: (110*heightRatio), width: 225*widthRatio, height: (400*heightRatio))
             }//일반 4:3 사진일 경우
             else{
                 
-                imageView.frame = CGRect(x: (37.5*widthRatio), y: (75*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
+                imageView.frame = CGRect(x: (37.5*widthRatio), y: (110*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
             }
         }//일반 정방형 사진일 경우
         else{
-            imageView.frame = CGRect(x: (20*widthRatio), y: (108*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
+            imageView.frame = CGRect(x: (20*widthRatio), y: (143*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
         }
         
-        backBtn.frame = CGRect(x: (30*widthRatio), y: (30*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
-        backBtn.setImage(UIImage(named:"backShadow"), for: .normal)
+        backBtn.frame = CGRect(x: (30*widthRatio), y: (60*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
+        backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
         backBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
         
         
-        backBtnExtension = UIView(frame: CGRect(x: 20*widthRatio, y: 25*heightRatio, width: 30*widthRatio, height: 30*heightRatio))
+        backBtnExtension = UIView(frame: CGRect(x: 27*widthRatio, y: 57*heightRatio, width: 30*widthRatio, height: 30*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
         //backBtnExtension.layer.borderWidth = 1
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(closeBtn(_:)))
@@ -126,15 +129,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         backBtnExtension.addGestureRecognizer(tapGestureRecognizer)
         self.view.addSubview(backBtnExtension)
         
-        nextBtn.frame = CGRect(x: (312*widthRatio), y: (30*heightRatio), width: 34*widthRatio, height: 18*heightRatio)
+        nextBtn.frame = CGRect(x: (311*widthRatio), y: (62*heightRatio), width: 34*widthRatio, height: 18*heightRatio)
         nextBtn.setImage(UIImage(named:"share"), for: .normal)
         nextBtn.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)
         nextBtn.sizeToFit()
         
-        grayView.frame = CGRect(x: 0*widthRatio, y: 512.5*heightRatio, width: 375*widthRatio, height: 154.5*heightRatio)
+        grayView.frame = CGRect(x: 0*widthRatio, y: 533*heightRatio, width: 375*widthRatio, height: 134*heightRatio)
         grayView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 0.17)
         
-        inputText.frame = CGRect(x: (40*widthRatio), y: (20.5*heightRatio), width: 295*widthRatio, height: (105)*heightRatio)
+        inputText.frame = CGRect(x: (23*widthRatio), y: (12*heightRatio), width: 330*widthRatio, height: (110)*heightRatio)
         inputText.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 13*widthRatio)
         inputText.backgroundColor = UIColor.clear
         inputText.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
@@ -328,8 +331,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             let alertView = UIAlertController(title: "", message: "공개 여부를 선택해주세요.", preferredStyle: .alert)
             
             let shareAction = UIAlertAction(title: "공개하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+                self.actInd.startAnimating()
                 
-                print("공유하기")
                 
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
@@ -342,14 +345,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     alertView.dismiss(animated: true, completion: nil)
                     self.dismiss(animated: true, completion: nil)
+                    self.actInd.stopAnimating()
                 })
                 
             })
             
             let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
-                print("나만보기")
-                
+                self.actInd.startAnimating()
+               
                 self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:false, completion: { (result) in
                     
                     //print("resultCode : \(result)")
@@ -359,10 +363,14 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     alertView.dismiss(animated: true, completion: nil)
                     self.dismiss(animated: true, completion: nil)
+                    self.actInd.stopAnimating()
                 })
             })
             
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in
+            
+                self.inputText.text = self.placeHolderText
+            }
             
             alertView.addAction(shareAction)
             alertView.addAction(cancelAction)
@@ -396,5 +404,12 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         return resizedData
         
+    }
+    
+    func setIndicator(){
+        actInd.center = CGPoint(x: UIScreen.main.bounds.width/2, y: (60)*heightRatio)
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(actInd)
     }
 }
