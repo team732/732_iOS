@@ -43,6 +43,15 @@ class TopMenuViewController: UIViewController {
         //copyRightImg.sizeToFit()
         self.view.addSubview(copyRightImg)
         
+        let copyRightExtension = UIView(frame: CGRect(x: (UIScreen.main.bounds.width/2 - (42*widthRatio)), y: 103*heightRatio, width: 84*widthRatio, height: 31*heightRatio))
+        copyRightExtension.backgroundColor = UIColor.clear
+        let copyRecog = UITapGestureRecognizer(target:self, action:#selector(aboutUsButtonAction))
+        copyRightExtension.isUserInteractionEnabled = true
+        copyRightExtension.addGestureRecognizer(copyRecog)
+        self.view.addSubview(copyRightExtension)
+
+        
+        
         drawRectangle(startX:47, startY: 195, width: 282, height:339)
         drawRectangle(startX: 52, startY: 200, width: 272, height: 329)
 
@@ -100,6 +109,10 @@ class TopMenuViewController: UIViewController {
     
     func hotPicButtonAction(){
         performSegue(withIdentifier: "pastToHotpic", sender: self)
+    }
+    
+    func aboutUsButtonAction(){
+        performSegue(withIdentifier: "pastToAboutUs", sender: self)
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool){

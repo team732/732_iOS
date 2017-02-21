@@ -183,8 +183,14 @@ class HotPicViewController: UIViewController {
         drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false)
         drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true)
         drawLine(startX: 20, startY: 647, width: 336, height: 1, border: false)
-        drawLine(startX: 135, startY: 192, width: 1, height: 6, border: true)
-        drawLine(startX: 238.5, startY: 192, width: 1, height: 6, border: true)
+        
+        let myungyeRight = UIImageView(frame: CGRect(x: (227.5*widthRatio), y: (189*heightRatio), width: 12*widthRatio, height: 13*heightRatio))
+        myungyeRight.image = UIImage(named: "myungyeRight")
+        self.view.addSubview(myungyeRight)
+        
+        let myungyeLeft = UIImageView(frame: CGRect(x: 135*widthRatio, y: 189*heightRatio, width: 12*widthRatio, height: 13*widthRatio))
+        myungyeLeft.image = UIImage(named: "myungyeLeft")
+        self.view.addSubview(myungyeLeft)
         
         
         ranking = UIImageView(frame: CGRect(x: 162*widthRatio, y: 174*heightRatio, width: 52*widthRatio, height: 52*heightRatio))
@@ -214,19 +220,6 @@ class HotPicViewController: UIViewController {
         hotPicUserLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         self.view.addSubview(hotPicUserLabel)
         
-//        self.byImage = UIImageView(frame: CGRect(x: 50, y: 613*self.heightRatio, width: 13*self.widthRatio, height: 11*self.heightRatio))
-//        self.byImage.image = UIImage(named: "by")
-//        self.view.addSubview(byImage)
-        
-        let gotoRight = UIImageView(frame: CGRect(x: (304*widthRatio), y: (260*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
-        gotoRight.image = UIImage(named: "gotoright")
-        gotoRight.sizeToFit()
-        self.view.addSubview(gotoRight)
-        
-        let gotoLeft = UIImageView(frame: CGRect(x: 65*widthRatio, y: 260*heightRatio, width: 24*widthRatio, height: 24*widthRatio))
-        gotoLeft.image = UIImage(named: "gotoleft")
-        gotoLeft.sizeToFit()
-        self.view.addSubview(gotoLeft)
 
         slideshow.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
     }

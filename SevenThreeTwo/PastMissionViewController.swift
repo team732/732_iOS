@@ -23,7 +23,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
-    var sampleImages:[UIImage] = [UIImage(named:"otter-1")!,UIImage(named:"otter-2")!,UIImage(named:"otter-3")!,UIImage(named:"otter-4")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
+    var sampleImages:[UIImage] = [UIImage(named:"otter-1")!]
     //var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션","2017년 1월 23일의 미션","2017년 1월 24일의 미션","2017년 1월 25일의 미션"]
     //var sampleMissions:[String] = ["미션1","미션2","미션3","미션4","미션5","미션6"]
     

@@ -56,10 +56,6 @@ class DetailPictureViewController: UIViewController , UIScrollViewDelegate{
         picImageView.isUserInteractionEnabled = true
         picImageView.addGestureRecognizer(dismissRecognizer)
         
-        
-        //self.view.addSubview(self.picImageView)
-        
-        
         scrollImg.delegate = self
         scrollImg.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
         scrollImg.backgroundColor = UIColor.black
