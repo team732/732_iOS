@@ -180,11 +180,11 @@ class HotPicViewController: UIViewController {
         
         drawLine(startX: 20, startY: 195, width: 115.5, height: 1, border: false)
         drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true)
-        drawLine(startX: 239.5, startY: 195, width: 115.5, height: 1, border: false)
+        drawLine(startX: 242.5, startY: 195, width: 115.5, height: 1, border: false)
         drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true)
         drawLine(startX: 20, startY: 647, width: 336, height: 1, border: false)
         
-        let myungyeRight = UIImageView(frame: CGRect(x: (227.5*widthRatio), y: (189*heightRatio), width: 12*widthRatio, height: 13*heightRatio))
+        let myungyeRight = UIImageView(frame: CGRect(x: (230.5*widthRatio), y: (189*heightRatio), width: 12*widthRatio, height: 13*heightRatio))
         myungyeRight.image = UIImage(named: "myungyeRight")
         self.view.addSubview(myungyeRight)
         

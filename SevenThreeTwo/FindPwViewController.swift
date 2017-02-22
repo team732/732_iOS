@@ -66,18 +66,17 @@ class FindPwViewController: UIViewController,UITextViewDelegate {
         findPwView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         
-        let findPwLabel = UILabel(frame: CGRect(x: 108*widthRatio, y: 36*heightRatio, width: 120*widthRatio, height: 22*heightRatio))
+        let findPwLabel = UILabel(frame: CGRect(x: 335*widthRatio/2 - 60*widthRatio, y: 36*heightRatio, width: 120*widthRatio, height: 22*heightRatio))
         findPwLabel.text = "비밀번호찾기"
         findPwLabel.textAlignment = .center
         findPwLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         findPwView.addSubview(findPwLabel)
         
-        let line = drawLine(startX: 150, startY: 80, width: 36, height: 1, border: false, color: UIColor.black)
+        let line = drawLine(startX: 335/2 - 18, startY: 80, width: 36, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         findPwView.addSubview(line)
         
-        let findPwMessage = UIImageView(frame: CGRect(x: 65.5*widthRatio, y: 105*heightRatio, width: 205*widthRatio, height: 29*heightRatio))
+        let findPwMessage = UIImageView(frame: CGRect(x: 335*widthRatio/2 - 102.5*widthRatio, y: 105*heightRatio, width: 205*widthRatio, height: 29*heightRatio))
         findPwMessage.image = UIImage(named: "findPass")
-        findPwMessage.sizeToFit()
         findPwView.addSubview(findPwMessage)
         
         
