@@ -178,6 +178,7 @@
                     </view>
                     <connections>
                         <segue destination="rma-YI-2ag" kind="show" identifier="JoinIdToPwSegue" animates="NO" id="OAb-Zu-WJh"/>
+                        <segue destination="AmD-hl-5VU" kind="presentation" identifier="movePrivate" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="dUf-yI-i6K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mfG-9u-reS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1107,7 +1108,8 @@
         <image name="otter-6" width="1280" height="847"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0vo-hr-DWc"/>
+        <segue reference="MYY-Ax-zaQ"/>
+        <segue reference="dUf-yI-i6K"/>
         <segue reference="nkZ-8T-Cc2"/>
         <segue reference="p0a-HH-WTV"/>
     </inferredMetricsTieBreakers>

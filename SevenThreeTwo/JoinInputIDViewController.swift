@@ -92,6 +92,22 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         checkBtn.setImage(UIImage(named:"check"), for: .normal)
         self.view.addSubview(checkBtn)
         
+        let agreeLabel = UILabel(frame: CGRect(x: UIScreen.main.bounds.width/2 - 116*widthRatio, y: 316*heightRatio, width: 232*widthRatio, height: 28*heightRatio))
+        agreeLabel.text = "확인 버튼을 누르시면  이용 약관 및 개인정보처리방침에\n동의하신 것으로 간주한 후 가입을 진행합니다"
+        agreeLabel.setLineHeight(lineHeight: 3*heightRatio)
+        agreeLabel.textAlignment = .center
+        agreeLabel.numberOfLines = 0
+        agreeLabel.textColor = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1)
+        agreeLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 10*widthRatio)
+        self.view.addSubview(agreeLabel)
+        
+        let privateBtn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2 - 18*widthRatio, y: 360*heightRatio, width: 36*widthRatio, height: 14*heightRatio))
+        privateBtn.addTarget(self, action: #selector(privateButtonAction), for: .touchUpInside)
+        privateBtn.setTitle("전문보기", for: .normal)
+        privateBtn.setTitleColor(UIColor(red:155/255, green: 155/255, blue: 155/255, alpha: 1), for: .normal)
+        privateBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 10*widthRatio)
+        self.view.addSubview(privateBtn)
+        drawLine(startX: 375 / 2 - 18, startY: 371.5, width: 36, height: 1, border: false, color: UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1))
     }
 
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool, color: UIColor){
@@ -123,6 +139,10 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         checkDuplicated()
         
     }
+    
+    func privateButtonAction(){
+        performSegue(withIdentifier: "movePrivate", sender: self)
+    }
 
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,6 +151,10 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
             let destination = segue.destination as! JoinInputPwViewController
 
             destination.receivedId = idTextField.text!
+        }
+        if segue.identifier == "movePrivate"
+        {
+            print("here")
         }
     }
     
@@ -156,5 +180,25 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         }
     }
  
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
+}
+
+
+extension UILabel {
+    
+    func setLineHeight(lineHeight: CGFloat) {
+        let text = self.text
+        if let text = text {
+            let attributeString = NSMutableAttributedString(string: text)
+            let style = NSMutableParagraphStyle()
+            
+            style.lineSpacing = lineHeight
+            attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, text.characters.count))
+            self.attributedText = attributeString
+        }
+    }
 }

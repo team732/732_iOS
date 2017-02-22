@@ -54,14 +54,14 @@ class ChangeCompleteViewController: UIViewController {
         self.view.addSubview(backView)
         
         
-        let completeView = UIView(frame: CGRect(x: 52*widthRatio, y: 201*heightRatio, width: 271*widthRatio, height: 327*heightRatio))
+        let completeView = UIView(frame: CGRect(x: 58*widthRatio, y: 204*heightRatio, width: 260*widthRatio, height: 260*heightRatio))
         completeView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         
         
         checkGif = UIImage.gifImageWithName(name: "checkComplete")
         checkImageView = UIImageView(image: checkGif)
-        checkImageView.frame = CGRect(x: 106*widthRatio, y: 103*heightRatio, width: 59*widthRatio, height: 59*heightRatio)
+        checkImageView.frame = CGRect(x: 260*widthRatio/2 - 29.5*widthRatio, y: 74*heightRatio, width: 59*widthRatio, height: 59*heightRatio)
         
         completeView.addSubview(checkImageView)
         
@@ -69,21 +69,20 @@ class ChangeCompleteViewController: UIViewController {
         
         switch (receivedStatusMsg){
         case 0:
-            checkMsg.frame = CGRect(x: 271*widthRatio/2 - 51.5*widthRatio, y: 214*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
+            checkMsg.frame = CGRect(x: 260*widthRatio/2 - 51.5*widthRatio, y: 162*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
             checkMsg.image = self.checkImg[receivedStatusMsg]
             break
         case 1:
-            checkMsg.frame = CGRect(x: 271*widthRatio/2 - 53.5*widthRatio, y: 213*heightRatio, width: 107*widthRatio, height: 37*heightRatio)
+            checkMsg.frame = CGRect(x: 260*widthRatio/2 - 53.5*widthRatio, y: 162*heightRatio, width: 106*widthRatio, height: 37*heightRatio)
             checkMsg.image = self.checkImg[receivedStatusMsg]
             break
         case 2:
-            checkMsg.frame = CGRect(x: 271*widthRatio/2 - 51.5*widthRatio, y: 214*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
+            checkMsg.frame = CGRect(x: 260*widthRatio/2 - 51.5*widthRatio, y: 162*heightRatio, width: 103*widthRatio, height: 37*heightRatio)
             checkMsg.image = self.checkImg[receivedStatusMsg]
             break
         default:
             break
         }
-        checkMsg.sizeToFit()
         completeView.addSubview(checkMsg)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(changeCompleteAction))
