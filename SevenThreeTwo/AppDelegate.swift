@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userToken : String!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-       
         
         userToken = users.string(forKey: "token")
         if userToken != nil{
@@ -33,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-   
+        
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
@@ -58,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotificaiton), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
-
+        
         
         
         return true
@@ -69,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     @objc fileprivate func tokenRefreshNotificaiton(notification: NSNotification) {
         let refreshedToken = FIRInstanceID.instanceID().token()!
+        users.set(refreshedToken, forKey: "pushToken")
         print("InstanceID token: \(refreshedToken)")
         connectToFcm()
     }
@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginMainViewController")
             self.window?.rootViewController = loginVC
             self.window?.makeKeyAndVisible()
-        
+            
         })
         
         

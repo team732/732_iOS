@@ -47,11 +47,12 @@ class HotPicViewController: UIViewController {
     var missionDateLabel : UILabel!
     var missionLabel : UILabel!
     var hotPicUserLabel : UILabel!
-    
+    var hotPicArr : [UIImage] = []
     var hotPicDate : [String] = []
     var hotPicCreator : [String] = []
     var hotPicSub : [String] = []
-    
+    var hotPicCid : [Int] = []
+    var currentPage : Int = 0
     
     //indicator 
     var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
@@ -84,9 +85,14 @@ class HotPicViewController: UIViewController {
 
     
     func didTap() {
-        slideshow.setImageInputs(oriImageSource)
-        slideshow.presentFullScreenController(from: self)
-        slideshow.setImageInputs(localSource)
+//        slideshow.setImageInputs(oriImageSource)
+//        slideshow.presentFullScreenController(from: self)
+//        slideshow.setImageInputs(localSource)
+        SelectListViewController.receivedCid = self.hotPicCid[currentPage]
+        SelectListViewController.receivedCimg = self.hotPicArr[currentPage]
+        SelectListViewController.receivedRange = 0
+        self.performSegue(withIdentifier: "hotToSelect", sender: self)
+        
     }
     
     func setHotPic(path : String){
@@ -95,6 +101,7 @@ class HotPicViewController: UIViewController {
         self.hotPicSub.removeAll()
         self.hotPicDate.removeAll()
         self.hotPicCreator.removeAll()
+        self.hotPicCid.removeAll()
         let userToken = users.string(forKey: "token")
         
         slideshow.frame = CGRect(x: 20*widthRatio, y: 315*heightRatio, width: 335*widthRatio, height: 288*heightRatio)
@@ -112,25 +119,22 @@ class HotPicViewController: UIViewController {
             let hotPicUserText = "by. " + self.hotPicCreator[0]
             self.hotPicUserLabel.text = hotPicUserText
             self.hotPicUserLabel.textAlignment = .center
-
-            
-            
         }, hotPicDate: { (hotPicDate) in
             for i in 0..<hotPicDate.count{
                 self.hotPicDate.append(hotPicDate[i])
             }
             self.missionDateLabel.text = self.hotPicDate[0]+"의 잠상"
-        }) { (hotPicImg) in
-            var hotPicArr : [UIImage] = hotPicImg
-            for i in 0..<hotPicArr.count{
-                self.oriImageSource.append(ImageSource(image: hotPicArr[i]))
-                hotPicArr[i] = self.cropToBounds(image: hotPicArr[i], width: 257*self.widthRatio, height: 257*self.heightRatio)
-                self.localSource.append(ImageSource(image: hotPicArr[i]))
+
+        }, hotPicImg: { (hotPicImg) in
+            self.hotPicArr = hotPicImg
+            for i in 0..<self.hotPicArr.count{
+                self.oriImageSource.append(ImageSource(image: self.hotPicArr[i]))
+                self.hotPicArr[i] = self.cropToBounds(image: self.hotPicArr[i], width: 257*self.widthRatio, height: 257*self.heightRatio)
+                self.localSource.append(ImageSource(image: self.hotPicArr[i]))
             }
-            
             self.slideshow.setImageInputs(self.localSource)
-            
             self.slideshow.currentPageChanged = { (page) in
+                self.currentPage = page
                 self.ranking.image = UIImage(named: self.rankingImg[page])
                 self.hotPicUserLabel.text = "by. "+self.hotPicCreator[page]
                 self.missionLabel.text = self.hotPicSub[page]
@@ -141,7 +145,13 @@ class HotPicViewController: UIViewController {
             let recognizer = UITapGestureRecognizer(target: self, action: #selector(HotPicViewController.didTap))
             self.slideshow.addGestureRecognizer(recognizer)
             self.actInd.stopAnimating()
+
+        }) { (hotPicCid) in
+            for i in 0..<hotPicCid.count{
+                self.hotPicCid.append(hotPicCid[i])
+            }
         }
+        
     }
     
     

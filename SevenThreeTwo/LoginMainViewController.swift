@@ -9,7 +9,7 @@
 import UIKit
 
 class LoginMainViewController: UIViewController , UITextFieldDelegate{
-
+    
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
     // test에 내꺼 넣고 user은 저렇게 가도 된다
@@ -22,19 +22,19 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
     let placeholderColor : UIColor = UIColor(red: 67/255, green: 68/255, blue: 67/255, alpha: 0.56)
     
     var apiManager : ApiManager!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
-                
+        
         viewSetUp()
         
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -76,9 +76,9 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         self.view.addSubview(idTextField)
         
         drawLine(startX: 38, startY: 367, width: 299, height: 1, border: false, color: UIColor.black)
-
         
-       
+        
+        
         pwTextField = UITextField(frame: CGRect(x: 38*widthRatio, y: 388*heightRatio, width: 299*widthRatio, height: 28*heightRatio))
         pwTextField.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         pwTextField.autocorrectionType = UITextAutocorrectionType.no
@@ -98,8 +98,8 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         checkUserLabel.textAlignment = .center
         checkUserLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 12*widthRatio)
         self.view.addSubview(checkUserLabel)
-
-
+        
+        
         
         
         
@@ -136,51 +136,59 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                                                                           rightVC: right,
                                                                           topVC: top,
                                                                           bottomVC: nil)
-
+        
         CheckTokenViewController.snapContainer = snapContainer
-            apiManager = ApiManager(path: "/users/732/token", method: .post, parameters:["loginId":idTextField.text!,"password":pwTextField.text!], header: [:])
-            apiManager.requestLogin(completion: { (isLogin) in
-                self.checkUserLabel.isHidden = false
-                switch (isLogin["meta"]["code"]){
-                    case 0:
-                        self.checkUserLabel.text = ""
-                        let userToken = UserDefaults.standard
-                        userToken.set(isLogin["data"]["token"].stringValue, forKey: "token")
-                        
-                        self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isLogin["data"]["token"].stringValue])
-                        self.apiManager.requestMissions(missionText: { (missionText) in
-                            MainController.missionText = missionText
-                        }) { (missionId) in
-                            MainController.missionId = missionId
+        apiManager = ApiManager(path: "/users/732/token", method: .post, parameters:["loginId":idTextField.text!,"password":pwTextField.text!], header: [:])
+        apiManager.requestLogin(completion: { (isLogin) in
+            self.checkUserLabel.isHidden = false
+            switch (isLogin["meta"]["code"]){
+            case 0:
+                self.checkUserLabel.text = ""
+                let userToken = UserDefaults.standard
+                userToken.set(isLogin["data"]["token"].stringValue, forKey: "token")
+                
+                self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isLogin["data"]["token"].stringValue])
+                self.apiManager.requestMissions(missionText: { (missionText) in
+                    MainController.missionText = missionText
+                }) { (missionId) in
+                    MainController.missionId = missionId
+                    let fcmToken : String = userToken.string(forKey: "pushToken")!
+                    
+                    self.apiManager = ApiManager(path: "/users/me/fcm", method: .put, parameters:["fcmToken":fcmToken], header: ["authorization":isLogin["data"]["token"].stringValue])
+                    self.apiManager.requestPushToken(completion: { (isPush) in
+                        if isPush == 0 {
                             self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
+                            //만약 푸시토큰을 not allow 했다면? -> 체크하기
                         }
-                        //로그인성공
-                        break
-                    case -10:
-                        self.checkUserLabel.text = "존재하지 않는 사용자입니다"
-                        //존재하지 않는 사용자
-                        break
-                    case -31:
-                        self.checkUserLabel.text = "존재하지 않는 아이디입니다"
-                        //아이디가 없음
-                        break
-                    case -32:
-                        self.checkUserLabel.text = "비밀번호를 확인해주세요"
-                        //비밀번호가 틀림
-                        break
-                    default:
-                        break
+                    })
                 }
-            })
+                //로그인성공
+                break
+            case -10:
+                self.checkUserLabel.text = "존재하지 않는 사용자입니다"
+                //존재하지 않는 사용자
+                break
+            case -31:
+                self.checkUserLabel.text = "존재하지 않는 아이디입니다"
+                //아이디가 없음
+                break
+            case -32:
+                self.checkUserLabel.text = "비밀번호를 확인해주세요"
+                //비밀번호가 틀림
+                break
+            default:
+                break
+            }
+        })
         
         
-
+        
     }
     func joinButtonAction(){
         self.performSegue(withIdentifier: "joinToId", sender: self)
     }
     
-   
+    
     
     func findPwButtonAction(){
         self.performSegue(withIdentifier: "findPass", sender: self)
@@ -200,13 +208,13 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
         
         self.view.addSubview(line)
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
         idTextField.endEditing(true)
         pwTextField.endEditing(true)
     }
     
-
- 
-
+    
+    
+    
 }
