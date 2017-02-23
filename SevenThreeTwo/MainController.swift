@@ -36,6 +36,9 @@ class MainController: UIViewController, FusumaDelegate {
     var apiManager : ApiManager!
     static var mainInd : UIActivityIndicatorView!
     
+    var closeBtnExtension : UIView!
+    var directionImage : UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -187,15 +190,31 @@ class MainController: UIViewController, FusumaDelegate {
         self.view.addSubview(showBtnExtension)
         subjectImage()
         
-        let directionImage = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        directionImage.image = UIImage(named: "")
+        directionImage = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        directionImage.image = UIImage(named: "guide_page")
         directionImage.isHidden = true
         self.view.addSubview(directionImage)
         
+        closeBtnExtension = UIView(frame: CGRect(x: 170*widthRatio, y: 53*heightRatio, width: 35*widthRatio, height: 35*heightRatio))
+        closeBtnExtension.backgroundColor = UIColor.clear
+        //closeBtnExtension.layer.borderWidth = 1
+        closeBtnExtension.isHidden = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(closeBtn))
+        closeBtnExtension.isUserInteractionEnabled = true
+        closeBtnExtension.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(closeBtnExtension)
+        
         if users.integer(forKey: "appDirection") == 0{
             directionImage.isHidden = false
+            closeBtnExtension.isHidden = false
             users.set(1, forKey: "appDirection")
         }
+    }
+    
+    func closeBtn(){
+        
+        closeBtnExtension.isHidden = true
+        directionImage.isHidden = true
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool){
