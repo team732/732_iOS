@@ -225,7 +225,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         dateLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         self.myPicView.addSubview(dateLabel)
         
-        let firstLine = drawLine(startX: UIScreen.main.bounds.width/2 - 18, startY: 57, width: 36, height: 1,border:false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
+        let firstLine = drawLine(startX: UIScreen.main.bounds.width/2/widthRatio - 18, startY: 57, width: 36, height: 1,border:false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
         self.myPicView.addSubview(firstLine)
         
@@ -538,6 +538,17 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
     }
     
+    func showToast(_ msg:String) {
+        let toast = UIAlertController()
+        toast.message = msg;
+        
+        self.present(toast, animated: true, completion: nil)
+        let duration = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: duration) {
+            toast.dismiss(animated: true, completion: nil)
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

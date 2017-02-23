@@ -332,7 +332,7 @@ class ApiManager {
         
     }
     
-    func requestHotPic(hotPicSub : @escaping([String])->Void,hotPicCreator : @escaping([String])->Void,hotPicDate : @escaping([String])->Void,hotPicImg : @escaping([UIImage])->Void){
+    func requestHotPic(hotPicSub : @escaping([String])->Void,hotPicCreator : @escaping([String])->Void,hotPicDate : @escaping([String])->Void,hotPicImg : @escaping([UIImage])->Void, hotPicContentId : @escaping([Int])->Void){
         Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { (response) in
             switch(response.result){
             case .success(_):
@@ -342,7 +342,8 @@ class ApiManager {
                     var hotPicSubArr : [String] = []
                     var hotPicCreatorArr : [String] = []
                     var hotPicDateArr : [String] = []
-                    
+                    var hotPicContentIdArr : [Int] = []
+                    print(resp)
                     for idx in 0..<resp["data"]["contents"].count{
                         let hotPicUrl = resp["data"]["contents"][idx]["content"]["picture"].stringValue
                         let hotPicImg = UIImage(data: NSData(contentsOf: NSURL(string: hotPicUrl)! as URL)! as Data)!
@@ -357,12 +358,16 @@ class ApiManager {
                         let date = resp["data"]["contents"][idx]["createdAt"].stringValue
                         hotPicDateArr.append(date)
                         
+                        let contentId = resp["data"]["contents"][idx]["contentId"].intValue
+                        hotPicContentIdArr.append(contentId)
+                        
                     }
                     
                     hotPicImg(hotpicArr)
                     hotPicCreator(hotPicCreatorArr)
                     hotPicDate(hotPicDateArr)
                     hotPicSub(hotPicSubArr)
+                    hotPicContentId(hotPicContentIdArr)
                 }
             case .failure(_):
                 break
@@ -429,6 +434,23 @@ class ApiManager {
         }
     }
     
+    
+    func requestPushToken(completion : @escaping(Int)->Void){
+        
+        Alamofire.request(url,method: method, parameters: parameters, encoding: encode ,headers: header).responseJSON { (response) in
+            switch(response.result){
+            case .success(_):
+                if let json = response.result.value {
+                    let resp = JSON(json)
+                    print(resp)
+                    completion(resp["meta"]["code"].intValue)
+                }
+            case .failure(_):
+                print("failure")
+                break
+            }
+        }
+    }
     /*
      사용 하는 컨트롤러에서
      
