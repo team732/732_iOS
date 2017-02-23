@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import UserNotifications
+import Firebase
+import FirebaseInstanceID
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var userToken : String!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+       
+        
         userToken = users.string(forKey: "token")
         if userToken != nil{
             apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":userToken])
@@ -27,7 +33,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+   
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                if granted == true{
+                    print("Allow")
+                    UIApplication.shared.registerForRemoteNotifications()
+                }else{
+                    print("Don't Allow")
+                }
+            }
+            
+        } else {
+            // Fallback on earlier version
+            let notificationSettings = UIUserNotificationSettings(
+                types: [.badge, .alert, .sound], categories: nil)
+            application.registerUserNotificationSettings(notificationSettings)
+            
+        }
+        
+        
+        FIRApp.configure()
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotificaiton), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
+
+        
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("%@", userInfo)
+    }
+    @objc fileprivate func tokenRefreshNotificaiton(notification: NSNotification) {
+        let refreshedToken = FIRInstanceID.instanceID().token()!
+        print("InstanceID token: \(refreshedToken)")
+        connectToFcm()
+    }
+    
+    func connectToFcm() {
+        FIRMessaging.messaging().connect { (error) in
+            if (error != nil) {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    
+    
+    fileprivate func firebaseDisconnect(){
+        FIRMessaging.messaging().disconnect()
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -40,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         // 앱이 백그라운드로 갈 때
+        firebaseDisconnect()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
