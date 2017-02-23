@@ -49,7 +49,7 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        mainLabel = UILabel(frame: CGRect(x: 129*widthRatio, y: 67.7*heightRatio, width: 119*widthRatio, height: 22*heightRatio))
+        mainLabel = UILabel(frame: CGRect(x: 129*widthRatio, y: 60*heightRatio, width: 119*widthRatio, height: 22*heightRatio))
         mainLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         mainLabel.textAlignment = .center
         mainLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
@@ -58,13 +58,12 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(mainLabel)
         
         //gotoleft
-        backBtn = UIButton(frame: CGRect(x: 36.7*widthRatio, y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
+        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         backBtn.setImage(UIImage(named: "gotoleft"), for: .normal)
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
-        backBtn.sizeToFit()
         self.view.addSubview(backBtn)
         
-        backBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 40*heightRatio, width: 64*widthRatio, height: 64*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
         backBtnExtension.isUserInteractionEnabled = true

@@ -47,18 +47,18 @@ class SettingViewController: UIViewController {
         settingTableView.layer.borderWidth = 1
         
         //settingLabel
-        settingLabel = UIImageView(frame: CGRect(x: 169*widthRatio, y: 67.7*heightRatio, width: 40*widthRatio, height: 22*heightRatio))
+        settingLabel = UIImageView(frame: CGRect(x: 169*widthRatio, y: 60*heightRatio, width: 40*widthRatio, height: 22*heightRatio))
         settingLabel.image = UIImage(named: "settingLabel")
         
         settingLabel.sizeToFit()
         self.view.addSubview(settingLabel)
         
         //gotoleft
-        backBtn = UIButton(frame: CGRect(x: 36.7*widthRatio, y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
+        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         backBtn.setImage(UIImage(named: "gotoleft"), for: .normal)
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
-        backBtn.sizeToFit()
         self.view.addSubview(backBtn)
+
         
         let backBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 57.7*heightRatio, width: 54*widthRatio, height: 44*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
