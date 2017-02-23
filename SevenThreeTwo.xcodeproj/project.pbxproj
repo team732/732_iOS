@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3703F27E1E4CF68B00C470B9 /* PublicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F27D1E4CF68B00C470B9 /* PublicList.swift */; };
 		3703F2811E4CF75D00C470B9 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703F2801E4CF75D00C470B9 /* CommentViewController.swift */; };
+		370C842C1E5EDB3300059DAD /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
+		370C842D1E5EDBE200059DAD /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EE6B411E5EBE9B00A46273 /* UserNotifications.framework */; };
+		370D79091E5DEFD2006FDB52 /* checkComplete.gif in Resources */ = {isa = PBXBuildFile; fileRef = 370D79081E5DEFD2006FDB52 /* checkComplete.gif */; };
 		372F749A1E35EA8600A26CA0 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372F74991E35EA8600A26CA0 /* CameraViewController.swift */; };
 		3757A5651E4B3F3900BFC24D /* PastTextListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */; };
 		3757A5671E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */; };
@@ -16,6 +19,7 @@
 		379895071E4F689A0058013E /* launchSplash.gif in Resources */ = {isa = PBXBuildFile; fileRef = 379895061E4F689A0058013E /* launchSplash.gif */; };
 		37E624DC1E5380C400D862B6 /* PastMissionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E624DB1E5380C400D862B6 /* PastMissionDetailViewController.swift */; };
 		37E624DE1E5382F200D862B6 /* PastMissionPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E624DD1E5382F200D862B6 /* PastMissionPic.swift */; };
+		37EE6B401E5EBC8500A46273 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37EE6B3F1E5EBC8500A46273 /* GoogleService-Info.plist */; };
 		37F551F01E48D0C10012C348 /* PastMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */; };
 		37F551F21E48D86E0012C348 /* PastMissionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */; };
 		37FFBE211E56BE020027C7F6 /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FFBE201E56BE020027C7F6 /* OpenSourceViewController.swift */; };
@@ -69,7 +73,6 @@
 		67CBDB241E518547003A79C0 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CBDB231E518547003A79C0 /* Content.swift */; };
 		67E811C01E5CA58900A49737 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E811BF1E5CA58900A49737 /* AboutUsViewController.swift */; };
 		67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67EB38441E41BBC700A8E89A /* Assets.xcassets */; };
-		F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,7 @@
 		34543005D58CF0DF3B38A3BD /* Pods-SevenThreeTwo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SevenThreeTwo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SevenThreeTwo/Pods-SevenThreeTwo.release.xcconfig"; sourceTree = "<group>"; };
 		3703F27D1E4CF68B00C470B9 /* PublicList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicList.swift; sourceTree = "<group>"; };
 		3703F2801E4CF75D00C470B9 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		370D79081E5DEFD2006FDB52 /* checkComplete.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkComplete.gif; sourceTree = "<group>"; };
 		372F74991E35EA8600A26CA0 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListViewController.swift; sourceTree = "<group>"; };
 		3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastTextListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +97,9 @@
 		379895061E4F689A0058013E /* launchSplash.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = launchSplash.gif; path = SevenThreeTwo/launchSplash.gif; sourceTree = "<group>"; };
 		37E624DB1E5380C400D862B6 /* PastMissionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionDetailViewController.swift; sourceTree = "<group>"; };
 		37E624DD1E5382F200D862B6 /* PastMissionPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionPic.swift; sourceTree = "<group>"; };
+		37EE6B3F1E5EBC8500A46273 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37EE6B411E5EBE9B00A46273 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		37EE6B431E5EBEB000A46273 /* SevenThreeTwo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SevenThreeTwo.entitlements; sourceTree = "<group>"; };
 		37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionViewController.swift; sourceTree = "<group>"; };
 		37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastMissionCollectionViewCell.swift; sourceTree = "<group>"; };
 		37FFBE201E56BE020027C7F6 /* OpenSourceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +166,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1AAA9337960E38FE61A1FA9 /* Pods_SevenThreeTwo.framework in Frameworks */,
+				370C842D1E5EDBE200059DAD /* UserNotifications.framework in Frameworks */,
+				370C842C1E5EDB3300059DAD /* Pods_SevenThreeTwo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +300,7 @@
 		675A4E171E2FB076000781DA /* SevenThreeTwo */ = {
 			isa = PBXGroup;
 			children = (
+				37EE6B431E5EBEB000A46273 /* SevenThreeTwo.entitlements */,
 				675A4E181E2FB076000781DA /* AppDelegate.swift */,
 				673DCD911E4A3C2C00FB4152 /* Api */,
 				67AE846E1E434AB600BAF314 /* Font */,
@@ -308,6 +317,7 @@
 				675A4E211E2FB076000781DA /* LaunchScreen.storyboard */,
 				67AE84571E43486400BAF314 /* Main.storyboard */,
 				675A4E241E2FB076000781DA /* Info.plist */,
+				37EE6B3F1E5EBC8500A46273 /* GoogleService-Info.plist */,
 				67EB38441E41BBC700A8E89A /* Assets.xcassets */,
 			);
 			path = SevenThreeTwo;
@@ -379,6 +389,7 @@
 		ADFD09B49D5C02557AD84AD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37EE6B411E5EBE9B00A46273 /* UserNotifications.framework */,
 				98F6E952EB67F432D4BE3821 /* Pods_SevenThreeTwo.framework */,
 			);
 			name = Frameworks;
@@ -446,9 +457,14 @@
 				TargetAttributes = {
 					675A4E141E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = VANL3XS874;
+						DevelopmentTeam = 3DPPXS9XMF;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					675A4E281E2FB076000781DA = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -491,6 +507,7 @@
 				67AE84591E43486400BAF314 /* Main.storyboard in Resources */,
 				675A4E231E2FB076000781DA /* LaunchScreen.storyboard in Resources */,
 				67AE846C1E4349F200BAF314 /* Arita-dotum-SemiBold_OTF.otf in Resources */,
+				37EE6B401E5EBC8500A46273 /* GoogleService-Info.plist in Resources */,
 				67AE846D1E4349F200BAF314 /* Arita-dotum-Thin_OTF.otf in Resources */,
 				67EB38451E41BBC700A8E89A /* Assets.xcassets in Resources */,
 			);
@@ -518,7 +535,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		85D683099119C75F225D7C2D /* [CP] Copy Pods Resources */ = {
@@ -747,14 +764,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E967A2C2716E71DB391C0DFD /* Pods-SevenThreeTwo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SevenThreeTwo/SevenThreeTwo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.nexters.7h32m";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VANL3XS874;
+				DEVELOPMENT_TEAM = 3DPPXS9XMF;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.732project;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.7h32m;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -765,14 +785,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 34543005D58CF0DF3B38A3BD /* Pods-SevenThreeTwo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SevenThreeTwo/SevenThreeTwo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Push Services: com.nexters.7h32m";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VANL3XS874;
+				DEVELOPMENT_TEAM = 3DPPXS9XMF;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SevenThreeTwo/Info.plist;
+				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.732project;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nexters.7h32m;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
