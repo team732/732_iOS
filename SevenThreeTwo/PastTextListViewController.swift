@@ -128,7 +128,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         
         line = UIView(frame: CGRect(x: startX, y: startY, width: width, height: height))
         
-        line.backgroundColor = color
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         
         
         self.collectionView?.addSubview(line)

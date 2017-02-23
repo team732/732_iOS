@@ -155,7 +155,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         titleLabel.frame = CGRect(x: (0*widthRatio), y: (60*heightRatio), width: 375*widthRatio, height: 22*heightRatio)
         titleLabel.text = "지나간 잠상들"
         titleLabel.textAlignment = .center
-        titleLabel.textColor = UIColor.black
+        titleLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         titleLabel.addTextSpacing(spacing: -1)
         titleLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         

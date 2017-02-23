@@ -43,6 +43,9 @@ class MainController: UIViewController, FusumaDelegate {
         widthRatio = userDevice.userDeviceWidth()
         userToken = users.string(forKey: "token")
         MainController.mainInd = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40*widthRatio, height:40*heightRatio)) as UIActivityIndicatorView
+        
+       
+        
         self.viewSetUp()
         mainLoadingInd()
     }
@@ -184,6 +187,15 @@ class MainController: UIViewController, FusumaDelegate {
         self.view.addSubview(showBtnExtension)
         subjectImage()
         
+        let directionImage = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        directionImage.image = UIImage(named: "")
+        directionImage.isHidden = true
+        self.view.addSubview(directionImage)
+        
+        if users.integer(forKey: "appDirection") == 0{
+            directionImage.isHidden = false
+            users.set(1, forKey: "appDirection")
+        }
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, border:Bool){

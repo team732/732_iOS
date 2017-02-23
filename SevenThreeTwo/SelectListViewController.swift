@@ -281,7 +281,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.myPicView.addSubview(lastLine)
         
-        myTableView.frame = CGRect(x: 0*widthRatio, y: 85*heightRatio, width: 375*widthRatio, height: (UIScreen.main.bounds.size.height-(85*heightRatio)))
+        myTableView.frame = CGRect(x: 0*widthRatio, y: 100*heightRatio, width: 375*widthRatio, height: (UIScreen.main.bounds.size.height-(100*heightRatio)))
         
         
         myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)

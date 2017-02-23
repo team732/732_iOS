@@ -93,7 +93,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         pwHideBtn = UIButton(frame: CGRect(x: 311*widthRatio , y: 178*heightRatio, width: 29*widthRatio, height: 15*heightRatio))
         pwHideBtn.addTarget(self, action: #selector(pwHideButtonAction), for: .touchUpInside)
         pwHideBtn.setTitle("보기", for: .normal)
-        pwHideBtn.setTitleColor(UIColor.black, for: .normal)
+        pwHideBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1), for: .normal)
         pwHideBtn.titleLabel!.font =  UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
         pwHideBtn.titleLabel!.font = pwHideBtn.titleLabel!.font.withSize(15*widthRatio)
         pwHideBtn.isHidden = true
@@ -110,7 +110,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         }else{
             line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
         }
-        line.backgroundColor = color
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         
         self.view.addSubview(line)
     }

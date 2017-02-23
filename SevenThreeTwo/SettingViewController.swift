@@ -178,6 +178,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
         case 6:
             cell.infoLabel.text = "알림 on/off"
             cell.rightImg.isHidden = true
+            cell.selectionStyle = .none
             alarmSwt.frame = CGRect(x: 255*widthRatio, y: (487/10/2-16)*heightRatio, width: 24*widthRatio, height: 12*heightRatio)
             alarmSwt.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
             alarmSwt.onTintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)

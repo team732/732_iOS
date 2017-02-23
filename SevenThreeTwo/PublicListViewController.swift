@@ -217,14 +217,14 @@ class PublicListViewController:  UICollectionViewController{
         labelPic.text = "모든"
         labelPic.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelPic.textAlignment = .center
-        labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
+        labelPic.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         collectionView?.addSubview(labelPic)
         
         let labelList = UILabel(frame: CGRect(x: 0*widthRatio, y: 143*heightRatio, width: 375*widthRatio, height: 26.5*heightRatio))
         labelList.text = "사진"
         labelList.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         labelList.textAlignment = .center
-        labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 24*widthRatio)
+        labelList.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 22*widthRatio)
         collectionView?.addSubview(labelList)
        
         

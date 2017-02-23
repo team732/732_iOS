@@ -180,7 +180,7 @@ class HotPicViewController: UIViewController {
         
         drawLine(startX: 20, startY: 195, width: 115.5, height: 1, border: false)
         drawLine(startX: 20, startY: 195, width: 1, height: 452, border: true)
-        drawLine(startX: 242.5, startY: 195, width: 115.5, height: 1, border: false)
+        drawLine(startX: 242.5, startY: 195, width: 113.5, height: 1, border: false)
         drawLine(startX: 355, startY: 195, width: 1, height: 452, border: true)
         drawLine(startX: 20, startY: 647, width: 336, height: 1, border: false)
         

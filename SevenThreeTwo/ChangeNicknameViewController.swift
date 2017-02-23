@@ -169,7 +169,7 @@ class ChangeNicknameViewController: UIViewController, UITextFieldDelegate {
         }else{
             line = UIView(frame: CGRect(x: startX*widthRatio, y: startY*heightRatio, width: width*widthRatio, height: height))
         }
-        line.backgroundColor = color
+        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         
         self.view.addSubview(line)
     }

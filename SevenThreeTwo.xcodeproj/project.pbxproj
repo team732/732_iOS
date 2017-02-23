@@ -32,6 +32,7 @@
 		672DD12E1E3350ED001022BF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DD12D1E3350ED001022BF /* UIView+Extensions.swift */; };
 		673492411E548E6000379FD6 /* PrivateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673492401E548E6000379FD6 /* PrivateList.swift */; };
 		673492431E54A00700379FD6 /* PrivatePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673492421E54A00700379FD6 /* PrivatePhoto.swift */; };
+		673CC4051E5F064E001DDE9A /* checkComplete.gif in Resources */ = {isa = PBXBuildFile; fileRef = 673CC4041E5F064E001DDE9A /* checkComplete.gif */; };
 		673DCD8E1E49F9B100FB4152 /* SelectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */; };
 		673DCD901E49FAA300FB4152 /* CommentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */; };
 		673DCD931E4A3C4000FB4152 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673DCD921E4A3C4000FB4152 /* ApiManager.swift */; };
@@ -62,7 +63,6 @@
 		67B5DDD11E42D0D200057546 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */; };
 		67B74AC61E4F5710007F92CA /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */; };
 		67C6A40E1E58A7C70048F77F /* DetailPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6A40D1E58A7C70048F77F /* DetailPictureViewController.swift */; };
-		67C6A4101E58BA170048F77F /* checkComplete.gif in Resources */ = {isa = PBXBuildFile; fileRef = 67C6A40F1E58BA170048F77F /* checkComplete.gif */; };
 		67C6A4121E58E8710048F77F /* FindPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6A4111E58E8710048F77F /* FindPwViewController.swift */; };
 		67C7BFE21E543295009C4506 /* ChangeCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */; };
 		67C969E51E5586BD0052C54F /* CommentModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C969E41E5586BD0052C54F /* CommentModifyViewController.swift */; };
@@ -109,6 +109,7 @@
 		672DD12D1E3350ED001022BF /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		673492401E548E6000379FD6 /* PrivateList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateList.swift; sourceTree = "<group>"; };
 		673492421E54A00700379FD6 /* PrivatePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatePhoto.swift; sourceTree = "<group>"; };
+		673CC4041E5F064E001DDE9A /* checkComplete.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkComplete.gif; sourceTree = "<group>"; };
 		673DCD8D1E49F9B100FB4152 /* SelectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectListViewController.swift; sourceTree = "<group>"; };
 		673DCD8F1E49FAA300FB4152 /* CommentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewCell.swift; sourceTree = "<group>"; };
 		673DCD921E4A3C4000FB4152 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -143,7 +144,6 @@
 		67B5DDD01E42D0D200057546 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		67B74AC51E4F5710007F92CA /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		67C6A40D1E58A7C70048F77F /* DetailPictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPictureViewController.swift; sourceTree = "<group>"; };
-		67C6A40F1E58BA170048F77F /* checkComplete.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkComplete.gif; sourceTree = "<group>"; };
 		67C6A4111E58E8710048F77F /* FindPwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPwViewController.swift; sourceTree = "<group>"; };
 		67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCompleteViewController.swift; sourceTree = "<group>"; };
 		67C969E41E5586BD0052C54F /* CommentModifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModifyViewController.swift; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 				67C7BFE11E543295009C4506 /* ChangeCompleteViewController.swift */,
 				37FFBE201E56BE020027C7F6 /* OpenSourceViewController.swift */,
 				37FFBE221E56BE1F0027C7F6 /* PrivacyViewController.swift */,
-				67C6A40F1E58BA170048F77F /* checkComplete.gif */,
+				673CC4041E5F064E001DDE9A /* checkComplete.gif */,
 			);
 			name = SettingView;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 			files = (
 				67AE84691E4349F200BAF314 /* Arita-dotum-Bold_OTF.otf in Resources */,
 				379895071E4F689A0058013E /* launchSplash.gif in Resources */,
-				67C6A4101E58BA170048F77F /* checkComplete.gif in Resources */,
+				673CC4051E5F064E001DDE9A /* checkComplete.gif in Resources */,
 				67AE846A1E4349F200BAF314 /* Arita-dotum-Light_OTF.otf in Resources */,
 				67AE846B1E4349F200BAF314 /* Arita-dotum-Medium_OTF.otf in Resources */,
 				67AE84591E43486400BAF314 /* Main.storyboard in Resources */,
