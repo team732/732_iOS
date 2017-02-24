@@ -145,7 +145,12 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         apiManager.requestSetInfo { (isChanged) in
             switch (isChanged){
             case 0:
-                self.performSegue(withIdentifier: "complete", sender: self)
+                if self.oriPassword.text! == self.newPassword.text! {
+                    self.oriCheckLabel.text = "기존 비밀번호와 같습니다."
+                    self.oriCheckLabel.isHidden = false
+                } else{
+                    self.performSegue(withIdentifier: "complete", sender: self)
+                }
                 break
             case -26:
                 self.newCheckLabel.text = "비밀번호를 확인해주세요"
@@ -156,6 +161,7 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
                 self.newCheckLabel.isHidden = false
                 break
             case -32:
+                self.oriCheckLabel.text = "잘못된 비밀번호 입니다."
                 self.oriCheckLabel.isHidden = false
                 break
             default:

@@ -21,7 +21,7 @@ class CommentViewCell: UITableViewCell {
     var nickLabel = UILabel()
     var dateLabel = UILabel()
     var commentLabel = UILabel()
-    
+    var modifyContent = UITextView()
     
     
     override func awakeFromNib() {

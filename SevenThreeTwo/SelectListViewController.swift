@@ -5,7 +5,6 @@
 //  Created by 윤민섭 on 2017. 2. 7..
 //  Copyright © 2017년 윤민섭. All rights reserved.
 //
-
 import UIKit
 
 class SelectListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate {
@@ -95,7 +94,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         commentLpgr.delegate = self
         self.myTableView.addGestureRecognizer(commentLpgr)
         
-      
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -106,7 +105,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         }
     }
     
-  
+    
     
     func reLoadComment(){
         nickname.removeAll()
@@ -141,7 +140,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     func loadContent(){
         userToken = users.string(forKey: "token")
         if SelectListViewController.receivedRange == 0 {
-        apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
+            apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
         }else if SelectListViewController.receivedRange == 1{
             apiManager = ApiManager(path: "/users/me/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
         }
@@ -403,7 +402,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         if commentLabelHeight.frame.size.height == 0 {
             commentHeight = 73 * heightRatio
         }
-
+        
         if indexPath.row == self.nickname.count - 1 {
             commentHeight += 15
         }
@@ -433,7 +432,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         let alertView = UIAlertController(title: "", message: "이 댓글에 관하여", preferredStyle: .actionSheet)
         
         let reportComment = UIAlertAction(title: "신고하기", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
-                        
+            
             alertView.dismiss(animated: true, completion: nil)
         })
         
@@ -467,7 +466,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         }else{
             alertView.addAction(reportComment)
         }
-     
+        
         alertView.addAction(cancelAction)
         
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
@@ -488,7 +487,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         })
         
         let modifyComment = UIAlertAction(title: "게시물 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-            
+            self.myTableView.isHidden = true
             alertView.dismiss(animated: true, completion: nil)
         })
         

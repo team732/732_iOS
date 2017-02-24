@@ -165,7 +165,7 @@ class MainController: UIViewController, FusumaDelegate {
         
         drawLine(startX: 0, startY: 328, width: 56, height: 1,border: false)
         drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false)
-        drawLine(startX: 187.5, startY: 460, width: 1, height: 125, border:true)
+        drawLine(startX: 187.5, startY: 460, width: 1, height: 116, border:true)
 
         let gotoLeft = UIButton(frame: CGRect(x: (10*widthRatio), y: (317*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
@@ -176,9 +176,9 @@ class MainController: UIViewController, FusumaDelegate {
         self.view.addSubview(gotoRight)
         
         drawCircle(startX: 187.5, startY: 330.5, radius: 143.5)
-        drawCircle(startX: 187.5, startY: 595.5, radius: 36.5)
+        drawCircle(startX: 187.5, startY: 586.5, radius: 36.5)
 
-        showButton.frame = CGRect(x: 174*widthRatio, y: 583.5*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
+        showButton.frame = CGRect(x: 174*widthRatio, y: 575*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
         showButton.setImage(UIImage(named: "camera"), for: .normal)
         
         let showBtnExtension = UIView(frame: CGRect(x: 151*widthRatio, y: 559*heightRatio, width: 73*widthRatio, height: 73*heightRatio))
