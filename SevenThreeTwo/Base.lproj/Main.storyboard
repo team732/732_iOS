@@ -81,14 +81,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017년 1월 21일의 미션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scp-1i-Wat">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2017년 1월 21일의 미션" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Scp-1i-Wat">
                                                     <rect key="frame" x="0.0" y="103" width="109" height="13.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인간의 욕심은 끝이없고" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReL-nd-1Y2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="인간의 욕심은 끝이없고" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReL-nd-1Y2">
                                                     <rect key="frame" x="0.0" y="145.5" width="263" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -451,14 +451,14 @@
                                         <rect key="frame" x="8" y="159" width="224" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Team732(이하 “732”)은 회원님의 개인정보를 중요시하며, 개인정보의 보호와 관련하여 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 및 개인정보 보호법 등 관련법 상의 개인정보 보호규정을 준수하고 있습니다.
+                                        <mutableString key="text">team732(이하 “732”)은 회원님의 개인정보를 중요시하며, 개인정보의 보호와 관련하여 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 및 개인정보 보호법 등 관련법 상의 개인정보 보호규정을 준수하고 있습니다.
 732는 개인정보처리방침을 통하여 회원님의 개인정보가 남용되거나 유출되지 않도록 최선을 다할 것이며, 회원님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있고, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
 732는 개인정보 처리방침을 Setting-개인정보취급방침 관련 페이지에서 공개함으로써 회원님이 언제나 용이하게 보실 수 있도록 조치하고 있습니다.
 단, 본 개인정보 처리방침은 정부의 법령 및 지침의 변경, 또는 보다 나은 서비스의 제공을 위하여 그 내용이 변경될 수 있으니, 회원님들께서는 업데이트시 수시로 그 내용을 확인하여 주시기 바라며, 732는 개인정보처리방침을 개정하는 경우 로그인시에 고지하거나 앱스토어를 통해 공지할 것입니다.
 
 제 1 조 #개인정보 수집에 대한 동의
 
-732는 이용자들이 732의 개인정보 취급방침 또는 이용약관의 내용에 대하여 「동의」버튼 또는 「취소」버튼을 클릭할 수 있는 절차를 마련하여, 「동의」버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다. 
+732는 이용자들이 732의 개인정보 취급방침 또는 이용약관의 내용에 대하여 「동의」버튼을 클릭할 수 있는 절차를 회원가입 시에 마련하여, 「확인」 버튼을 클릭하면 개인정보 수집에 대해 동의한 것으로 봅니다. 
 
 제 2조 #개인정보의 수집 및 이용 목적
 
@@ -468,9 +468,9 @@
 
 732는 이용자의 사전 동의 없이는 이용자의 개인 정보를 공개하지 않으며, 수집된 정보는 아래와 같이 이용하고 있습니다.
 
-첫째, 이용자들의 개인정보를 기반으로 보다 더 유용한 서비스를 개발할 수 있습니다. 732는 신규 서비스개발이나 콘텐츠의 확충 시에 기존 이용자들이 732에 제공한 개인정보를 바탕으로 개발해야 할 서비스의 우선순위를 보다 더 효율적으로 정하고, 732는 이용자들이 필요로 할 콘텐츠를 합리적으로 선택하여 제공할 수 있습니다. 
+첫째, 이용자들의 개인정보를 기반으로 보다 더 유용한 서비스를 개발할 수 있습니다. 732는 신규 서비스개발이나 콘텐츠의 확충 시에 기존 이용자들이 732에 제공한 개인정보를 바탕으로 개발해야 할 서비스의 우선순위를 보다 더 효율적으로 정하고, 732는 이용자들이 필요로 할 콘텐츠를 합리적으로 선택하여 제공할 수 있습니다. 서비스의 주 컨텐츠인 이용자들이 올리는 사진은 서비스의 홍보에 사용 될 수 있으며 서비스 내의 콘텐츠로도 활용 될 수 있습니다. 
 
-둘째, 732이 제공하는 서비스의 원활한 이용을 위하여 회원은 적법한 동의절차를 거쳐 SNS 업체가 연결을 위한 정보를 732에 제공하도록 할 수 있습니다. 732는 연결된 SNS를 원활한 서비스 제공을 위해 사용자에게서 권한이 허락된 범위 안에서 이를 활용할 수 있으며, 허락되지 않은 범위에 대해서는 절대 활용하지 않습니다. 서비스 이용을 위하여 회원으로부터 추가적인 권한의 요청을 필요로 할 경우, 각 SNS의 인증서비스를 통하여 이에 대한 사전 동의를 반드시 구할 것입니다.
+둘째, 732가 제공하는 서비스의 원활한 이용을 위하여 회원은 적법한 동의절차를 거쳐 SNS 업체가 연결을 위한 정보를 732에 제공하도록 할 수 있습니다. 732는 연결된 SNS를 원활한 서비스 제공을 위해 사용자에게서 권한이 허락된 범위 안에서 이를 활용할 수 있으며, 허락되지 않은 범위에 대해서는 절대 활용하지 않습니다. 서비스 이용을 위하여 회원으로부터 추가적인 권한의 요청을 필요로 할 경우, 각 SNS의 인증서비스를 통하여 이에 대한 사전 동의를 반드시 구할 것입니다.
 
 셋째, 732는 회원가입, 원활한 고객상담, 각종 서비스 등 기본적인 서비스 제공을 위해 아래와 같은 개인정보를 수집하고 있습니다. 
 1) 필수수집정보 :  아이디, 비밀번호, 닉네임, 전자우편 주소 등
@@ -522,27 +522,44 @@
 
 제 7조 #회원의 의무
 
-가. 회원님은 자신의 개인정보를 보호할 의무가 있으며, 회원님 본인의 부주의나 인터넷상의 문제 등으로 개인정보가 유출되어 발생한 문제에 대하여 732는 일체의 책임을 지지 않습니다.
+가. 회원님은 자신의 개인정보를 보호할 의무가 있으며, 회원님은 본인의 계정을 통해 발생하는 모든 활동에 책임을 지며, 계정, 팔로워, 사용자 이름 또는 기타 계정 권리를 판매, 이전, 허가 또는 양도하지 않아야 합니다. 회원님 본인의 부주의나 인터넷상의 문제 등으로 개인정보가 유출되어 발생한 문제에 대하여 732는 일체의 책임을 지지 않습니다.  
 
 나. 회원님의 개인정보를 최신의 상태로 정확하게 입력하시기 바랍니다. 회원님의 부정확한 정보입력으로 발생하는 문제의 책임은 회원님 자신에게 있으며, 타인의 개인정보를 도용하여 서비스 이용 시 회원자격 상실과 함께 주민등록법에 의거하여 처벌될 수 있습니다.
 
 다. 회원님은 개인정보를 보호받을 권리와 함께 스스로를 보호하고 타인의 정보를 침해하지 않을 의무도 가지고 있습니다. 아이디, 비밀번호를 포함한 회원님의 개인정보가 유출되지 않도록 조심하시고 게시물을 포함한 타인의 개인정보를 훼손하지 않도록 유의해 주십시오.
 
-라. 회원님은 『정보통신망이용촉진및정보보호등에관한법률』, 개인정보보호법, 주민등록법 등 기타 개인정보에 관한 법률을 준수하여야 합니다.
+라. 회원님은 초상권을 침해하는 사진, 폭력, 나체, 부분 나체, 차별, 불법, 침해, 편파, 포르노 또는 선정적인 사진이나 기타 부적절한 사진을 게시할 경우 법적인 책임은 회원에게 있으며 해당 게시물을 732에서 삭제할 수 있습니다. 또한 732 에서는 서비스의 신고하기를 통하여 3번 이상 신고 처리가 된 게시물을 삭제할 수 있으며 게시한 회원에 대하여 회원자격을 박탈할 수 있습니다.
+
+마. 회원님은 자신이 올린 사진 및 정보에 대해 보호할 의무가 있습니다. 자신이 게시한 사진들을 불법으로 사용, 판매, 배포할 수 없고 다른 회원들의 사진들도 불법으로 사용, 판매, 배포할 수 없으며 법적인 책임은 해당 회원에게 있습니다.  
+
+바. 회원님은 사람이나 단체를 폄하, 스토킹, 괴롭힘, 악용, 학대, 협박, 사칭 또는 위협해서는 안 되고, 서비스를 통해 본인이나 다른 사람의 신용카드 정보, 소셜 시큐리티 또는 그 대안이 되는 국민 식별 번호, 전체 공개되지 않은 전화번호 또는 전체 공개되지 않은 이메일 주소 등 사적인 정보나 기밀 정보를 게시할 수 없습니다.
+
+사. 회원님은 서비스를 불법적 또는 승인되지 않은 목적으로 이용할 수 없습니다.  『정보통신망이용촉진및정보보호등에관한법률』, 개인정보보호법, 주민등록법 등 기타 개인정보에 관한 법률 그리고 저작권법 등 서비스 및 콘텐츠(아래에 정의) 사용에 적용되는 모든 법률, 규칙, 규정(예: 연방, 주, 도)을 준수하여야 합니다.
+
+아. 회원님 본인의 행동, 모든 데이터, 텍스트, 파일, 정보, 사용자 이름, 이미지, 그래픽, 사진, 프로필, 오디오 및 동영상 클립, 사운드, 음악 작업, 저작물, 앱, 링크, 회원님이 서비스에 또는 서비스를 통해 제출, 게시 또는 표시하는 기타 콘텐츠 또는 자료("콘텐츠"로 통칭)에 대해서는 회원님이 전적으로 책임을 집니다.
+
+자. 회원님은 서비스 또는 732와 연관되어 있다는 허위 사실을 내포하기 위하여 서비스를 변경, 수정, 각색 또는 개조하거나 다른 웹사이트를 변경, 수정 또는 개조해서는 안 됩니다.
+
+차. 원치 않은 이메일, 댓글, 좋아요 또는 다른 형태의 영리적 또는 피해를 주는 커뮤니케이션("스팸")을 다른 732 사용자를 대상으로 만들거나 전송할 수 없습니다.
+
+카. 자동화된 기기, 스크립트, 봇, 스파이더, 크롤러, 스크래퍼를 사용하는 등의 승인되지 않은 방식으로 서비스에 계정을 만들 수 없습니다.
+
+타. 다른 사용자가 서비스를 사용 또는 즐기지 못하도록 제한해서는 안 되며, 이 이용 약관이나 기타 약관의 위반을 유도 또는 조장해서는 안 됩니다.
+
+파. 이 이용 약관을 위반할 경우 732의 단독 재량에 따라 회원님의 732 계정은 폐쇄될 수 있습니다. 회원님은 732가 서비스에 게시된 게시물에 대해 책임을 질 수 없고, 책임을 지지 않으며, 사용자가 서비스 사용에 대한 위험을 부담한다는 점을 이해하고 이에 동의합니다. 본 이용 약관의 내용이나 취지를 위반하거나 732에 관련하여 위험이나 법적 노출 가능성을 조성할 경우 회원님에게 제공되는 서비스의 전부 또는 일부가 중단될 수 있습니다.
 
 제 8조 #개인정보보호 관련 문의
 
 회원님의 개인정보와 관련한 문의사항은 아래의 이메일로 연락하여 주시기 바랍니다.
 
-이메일: 732seventhreetwo@gmail.com
+이메일: 732team@gmail.com
 
 기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.
 1. 개인분쟁조정위원회(www.1336.or.kr/1336)
 2. 정보보호마크인증위원회(www.eprivacy.or.kr/02-580-0533~4)
 3. 대검찰청 인터넷범죄수사센터(icic.sppo.go.kr/02-3480-3600)
 4. 경찰청 사이버테러대응센터(www.ctrc.go.kr/02-392-0330)
-
-</string>
+</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -1068,14 +1085,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="98"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgJ-S2-YZC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgJ-S2-YZC">
                                             <rect key="frame" x="146" y="8" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-9u-jNe">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqW-9u-jNe">
                                             <rect key="frame" x="146" y="60" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>

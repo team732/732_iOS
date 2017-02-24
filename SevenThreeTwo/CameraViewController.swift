@@ -286,6 +286,17 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         alertWindow(alertView: alertView)
     }
     
+    func showToast(_ msg:String) {
+        let toast = UIAlertController()
+        toast.message = msg;
+        
+        self.present(toast, animated: true, completion: nil)
+        let duration = DispatchTime.now() + Double(Int64(2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        
+        DispatchQueue.main.asyncAfter(deadline: duration) {
+            toast.dismiss(animated: true, completion: nil)
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -339,13 +350,37 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     //print("resultCode : \(result)")
                     //서버 통신이 끝나야 메인으로 돌아감.
                     
+                    if result == "0"{
+                        //print("정상적으로 올라감")
+                        
+                       
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil) 
+                     
+                        alertView.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
+                        self.actInd.stopAnimating()
+                        
+                    }else if result == "-44"{
+                        //print("한 주제에 올릴 수 있는 최대 공개 게시물은 3개입니다!")
+                        self.showToast("하나의 잠상에 공개할 수 있는 게시물의 수는\n최대 3개입니다!")
+                        
+                        alertView.dismiss(animated: true, completion: nil)
+                       
+                        self.actInd.stopAnimating()
+                        
+                    }else{
+                        //print("파일 업로드를 실패하였습니다.")
+                        self.showToast("게시물 업로드를 실패하였습니다.")
+                        
+                        alertView.dismiss(animated: true, completion: nil)
+                        
+                        self.actInd.stopAnimating()
+                    }
                     
                     
-                    alertView.dismiss(animated: true, completion: nil)
-                    self.dismiss(animated: true, completion: nil)
-                    self.actInd.stopAnimating()
+                    
+                 
                 })
                 
             })
@@ -358,12 +393,35 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     //print("resultCode : \(result)")
                     //서버 통신이 끝나야 메인으로 돌아감.
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                   
+                    if result == "0"{
+                        //print("정상적으로 올라감")
+                        
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                        
+                        alertView.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
+                        self.actInd.stopAnimating()
+                        
+                    }else if result == "-44"{
+                        //print("한 주제에 올릴 수 있는 최대 공개 게시물은 3개입니다!")
+                        self.showToast("한 주제에 올릴 수 있는 공개 게시물의 수는 최대 3개입니다!")
+                        
+                        alertView.dismiss(animated: true, completion: nil)
+                        
+                        self.actInd.stopAnimating()
+                        
+                    }else{
+                        //print("파일 업로드를 실패하였습니다.")
+                        self.showToast("게시물 업로드를 실패하였습니다.")
+                        
+                        alertView.dismiss(animated: true, completion: nil)
+                        
+                        self.actInd.stopAnimating()
+                    }
                     
-                    alertView.dismiss(animated: true, completion: nil)
-                    self.dismiss(animated: true, completion: nil)
-                    self.actInd.stopAnimating()
                 })
             })
             
