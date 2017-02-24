@@ -322,17 +322,18 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     func lockButtonAction(){
         apiManager = ApiManager(path:  "/contents/\(SelectListViewController.receivedCid)/public", method: .put, header: ["authorization":self.userToken])
         apiManager.requestPicLock { (isLocked) in
+            
             if isLocked == 0 {
                 if self.isPublic {
-                    self.showToast("게시물이 잠겼습니다")
+                    self.showToast("비공개되었습니다!")
                     self.isPublic = false
                 }else{
-                    self.showToast("게시물이 열렸습니다")
+                    self.showToast("공개되었습니다!")
                     self.isPublic = true
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
             }else{
-                self.completeAlert(title: "앗! 다시 시도해주세요")
+                self.completeAlert(title: "공개개수를 초과했습니다!")
             }
         }
     }
@@ -401,6 +402,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         if commentLabelHeight.frame.size.height == 0 {
             commentHeight = 73 * heightRatio
+        }
+
+        if indexPath.row == self.nickname.count - 1 {
+            commentHeight += 15
         }
         
         
@@ -498,8 +503,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                     }else {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
                     }
-                    self.completeAlert(title: "삭제되었습니다!")
-                    self.dismiss(animated: true, completion: nil)
+                    self.showToast("삭제되었습니다!")
                 }else{
                     self.completeAlert(title: "앗! 다시 시도해주세요")
                 }
@@ -549,6 +553,9 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         DispatchQueue.main.asyncAfter(deadline: duration) {
             toast.dismiss(animated: true, completion: nil)
+            if msg == "삭제되었습니다!"{
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     

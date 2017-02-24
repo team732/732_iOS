@@ -222,8 +222,8 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         labelDate.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         collectionView?.addSubview(labelDate)
         
-        drawLine(startX: UIScreen.main.bounds.width/2 - 18 , startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
-        
+        drawLine(startX: UIScreen.main.bounds.width/2/widthRatio - 18 , startY: 121, width: 36, height: 1, border: false, color: UIColor.black)
+        //
         let labelMission = UILabel(frame: CGRect(x: 0*widthRatio, y: 137*heightRatio, width: 375*widthRatio, height: 16*heightRatio))
         labelMission.text = receivedMissionText
         

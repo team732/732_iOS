@@ -161,13 +161,12 @@ class HotPicViewController: UIViewController {
         
         let backBtn = UIButton()
         
-        backBtn.frame = CGRect(x:36.7*widthRatio, y:65.7*heightRatio, width:24*widthRatio, height: 24*heightRatio)
-        backBtn.sizeToFit()
+        backBtn.frame = CGRect(x:30*widthRatio, y:60*heightRatio, width:24*widthRatio, height: 24*heightRatio)
         backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
         backBtn.addTarget(self, action:#selector(backButtonAction), for: .touchUpInside)
         self.view.addSubview(backBtn)
         
-        let hotPicLabel = UILabel(frame: CGRect(x: 136.5*widthRatio, y: 73*heightRatio, width: 102*widthRatio, height: 22*heightRatio))
+        let hotPicLabel = UILabel(frame: CGRect(x: 136.5*widthRatio, y: 60*heightRatio, width: 102*widthRatio, height: 22*heightRatio))
         hotPicLabel.text = "명예의 전당"
         hotPicLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         hotPicLabel.textAlignment = .center

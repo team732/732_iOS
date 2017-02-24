@@ -20,7 +20,6 @@ class SettingViewController: UIViewController {
     
     var settingLabel : UIImageView!
     var backBtn : UIButton!
-    var alarmSwt = UISwitch()
     
     
     override func viewDidLoad() {
@@ -124,6 +123,22 @@ class SettingViewController: UIViewController {
         
     }
     
+    func basicAlert(title: String){
+        let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+            alertView.dismiss(animated: true, completion: nil)
+        })
+        
+        alertView.addAction(action)
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.windowLevel = UIWindowLevelAlert + 1
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+    }
+
+    
 }
 
 extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
@@ -177,12 +192,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             break
         case 6:
             cell.infoLabel.text = "알림 on/off"
-            cell.rightImg.isHidden = true
-            cell.selectionStyle = .none
-            alarmSwt.frame = CGRect(x: 255*widthRatio, y: (487/10/2-16)*heightRatio, width: 24*widthRatio, height: 12*heightRatio)
-            alarmSwt.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-            alarmSwt.onTintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
-            cell.addSubview(alarmSwt)
             break
         case 7:
             cell.infoLabel.text = "개인정보 처리방침 및 이용약관"
@@ -226,6 +235,20 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
         case 5:
             break
         case 6:
+            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+
+                    })
+                } else {
+                    // Fallback on earlier versions
+                    basicAlert(title: "해당 기능은 iOS 10.0 이상만 지원합니다.")
+                }
+            }
             break
         case 7:
             self.performSegue(withIdentifier: "settingToPrivacy", sender: nil)
