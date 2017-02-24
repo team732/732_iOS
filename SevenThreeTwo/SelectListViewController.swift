@@ -324,8 +324,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         apiManager.requestPicLock { (isLocked) in
             if isLocked == 0 {
                 if self.isPublic {
+                    self.showToast("게시물이 잠겼습니다")
                     self.isPublic = false
                 }else{
+                    self.showToast("게시물이 열렸습니다")
                     self.isPublic = true
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)

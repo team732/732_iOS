@@ -28,8 +28,10 @@ class CommentModifyViewController: UIViewController,UITextViewDelegate {
                 commentTextView.frame.origin.y -= (oldValue - commentTextView.frame.size.height)
                 commentTextView.frame.size.height = oldValue
             }else if oldValue < commentTextView.frame.size.height {
-                commentTextView.frame.origin.y += (commentTextView.frame.size.height - oldValue)
-                commentTextView.frame.size.height = oldValue
+                if oldValue != 0 {
+                    commentTextView.frame.origin.y += (commentTextView.frame.size.height - oldValue)
+                    commentTextView.frame.size.height = oldValue
+                }
             }
         }
     }
@@ -87,14 +89,15 @@ class CommentModifyViewController: UIViewController,UITextViewDelegate {
         
         
         
-        commentTextView = UITextView(frame: CGRect(x: 17*widthRatio, y: 206*heightRatio, width: 303*widthRatio, height: 30*heightRatio))
+        commentTextView = UITextView(frame: CGRect(x: 17*widthRatio, y: 236*heightRatio, width: 303*widthRatio, height: 30*heightRatio))
         commentTextView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         commentTextView.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         commentTextView.delegate = self
         commentTextView.text = CommentModifyViewController.originalComment
+        commentTextView.frame.size.height = commentTextView.contentSize.height
+        commentTextView.frame.origin.y -= commentTextView.frame.size.height
         commentTextView.returnKeyType = UIReturnKeyType.done
         commentView.addSubview(commentTextView)
-        
         
         
         
@@ -131,7 +134,7 @@ class CommentModifyViewController: UIViewController,UITextViewDelegate {
                 self.dismiss(animated: false, completion: nil)
                 break
             case -10:
-                self.textviewRangeAlert(overMsg: false,message: "앗! 댓글을 달 수 없습니다.")
+                self.textviewRangeAlert(overMsg: false,message: "앗! 댓글을 달 수 없습니다")
                 break
             default:
                 break
@@ -158,11 +161,10 @@ class CommentModifyViewController: UIViewController,UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
-        
         if(textView.text.characters.count < 141){
             commentSize = commentTextView.contentSize.height
         }else{
-            textviewRangeAlert(overMsg: true,message: "긴 댓글은 좋지 않습니다.")
+            textviewRangeAlert(overMsg: true,message: "긴 댓글은 좋지 않습니다")
         }
     }
     

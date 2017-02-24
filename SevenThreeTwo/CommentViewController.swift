@@ -83,9 +83,8 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         let line = drawLine(startX: 150, startY: 80, width: 36, height: 1, border: false, color: UIColor.black)
         commentView.addSubview(line)
         
-        let spacingImg = UIImageView(frame: CGRect(x: 59*widthRatio, y: 105*heightRatio, width: 188*widthRatio, height: 12*heightRatio))
+        let spacingImg = UIImageView(frame: CGRect(x: 335*widthRatio/2 - 94*widthRatio, y: 105*heightRatio, width: 188*widthRatio, height: 11*heightRatio))
         spacingImg.image = UIImage(named: "spacing")
-        spacingImg.sizeToFit()
         commentView.addSubview(spacingImg)
 
         

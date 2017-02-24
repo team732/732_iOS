@@ -55,13 +55,12 @@ class RegisterEmailViewController: UIViewController,UITextFieldDelegate {
         self.view.addSubview(mainLabel)
         
         //gotoleft
-        backBtn = UIButton(frame: CGRect(x: 36.7*widthRatio, y: 67.7*heightRatio, width: 8.2*widthRatio, height: 8.2*heightRatio))
+        backBtn = UIButton(frame: CGRect(x: 30*widthRatio, y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         backBtn.setImage(UIImage(named: "gotoleft"), for: .normal)
         backBtn.addTarget(self, action: #selector(SettingViewController.backButtonAction), for: .touchUpInside)
-        backBtn.sizeToFit()
         self.view.addSubview(backBtn)
         
-        backBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        backBtnExtension = UIView(frame: CGRect(x: 10*widthRatio, y: 40*heightRatio, width: 64*widthRatio, height: 64*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(backButtonAction))
         backBtnExtension.isUserInteractionEnabled = true
