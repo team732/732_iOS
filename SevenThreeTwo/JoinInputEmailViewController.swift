@@ -78,7 +78,15 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
         emailLabel.text = "이메일"
         emailLabel.textAlignment = .center
         emailLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)
+        emailLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
         self.view.addSubview(emailLabel)
+        
+        let emailLabel2 = UILabel(frame: CGRect(x: 85*widthRatio, y: 148*heightRatio, width: 180*widthRatio, height: 11*heightRatio))
+        emailLabel2.text = "(아이디나 비밀번호 분실 시 사용됩니다)"
+        emailLabel2.textAlignment = .center
+        emailLabel2.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
+        emailLabel2.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
+        self.view.addSubview(emailLabel2)
         
         let emailSub = UILabel(frame: CGRect(x: 85*widthRatio, y: 148*heightRatio, width: 180*widthRatio, height: 11*heightRatio))
         emailSub.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)

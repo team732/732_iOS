@@ -167,21 +167,19 @@ class MainController: UIViewController, FusumaDelegate {
         drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false)
         drawLine(startX: 187.5, startY: 460, width: 1, height: 125, border:true)
 
-        let gotoLeft = UIImageView(frame: CGRect(x: (23*widthRatio), y: (323*heightRatio), width: 9*widthRatio, height: 11*heightRatio))
-        gotoLeft.image = UIImage(named: "gotoleft")
-        //gotoLeft.sizeToFit()
+        let gotoLeft = UIButton(frame: CGRect(x: (10*widthRatio), y: (317*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
         self.view.addSubview(gotoLeft)
         
-        let gotoRight = UIImageView(frame: CGRect(x: (347*widthRatio), y: (323*heightRatio), width: 9*widthRatio, height: 11*heightRatio))
-        gotoRight.image = UIImage(named: "gotoright")
-        //gotoRight.sizeToFit()
+        let gotoRight = UIButton(frame: CGRect(x: (341*widthRatio), y: (317*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
+        gotoRight.setImage(UIImage(named: "gotoright"), for: .normal)
         self.view.addSubview(gotoRight)
         
         drawCircle(startX: 187.5, startY: 330.5, radius: 143.5)
         drawCircle(startX: 187.5, startY: 595.5, radius: 36.5)
-        
-        showButton.setImage(UIImage(named: "camera"), for: UIControlState.normal)
+
         showButton.frame = CGRect(x: 174*widthRatio, y: 583.5*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
+        showButton.setImage(UIImage(named: "camera"), for: .normal)
         
         let showBtnExtension = UIView(frame: CGRect(x: 151*widthRatio, y: 559*heightRatio, width: 73*widthRatio, height: 73*heightRatio))
         let showBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(showButtonPressed(_:)))

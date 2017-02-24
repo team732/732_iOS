@@ -55,7 +55,7 @@ class JoinInputPwViewController: UIViewController,UITextFieldDelegate {
         
         self.view.addSubview(backBtn)
         
-        let pwLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 143*heightRatio, width: 63*widthRatio, height: 15*heightRatio))
+        let pwLabel = UILabel(frame: CGRect(x: 36*widthRatio, y: 146*heightRatio, width: 63*widthRatio, height: 15*heightRatio))
         pwLabel.text = "비밀번호"
         pwLabel.textAlignment = .center
         pwLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 15*widthRatio)

@@ -129,8 +129,6 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate {
     
     func moveMiddle(){
         
-        print(self.middleVertScrollVc.view.frame.origin.x , self.middleVertScrollVc.view.frame.origin.y)
-    
         self.scrollView!.setContentOffset(CGPoint(x: self.middleVertScrollVc.view.frame.origin.x, y: self.middleVertScrollVc.view.frame.origin.y), animated: true)
         
     }

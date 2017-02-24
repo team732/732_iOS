@@ -355,7 +355,7 @@ class ApiManager {
                         let subject = resp["data"]["contents"][idx]["mission"]["text"].stringValue
                         hotPicSubArr.append(subject)
                         
-                        let date = resp["data"]["contents"][idx]["createdAt"].stringValue
+                        let date = resp["data"]["contents"][idx]["missionDate"].stringValue
                         hotPicDateArr.append(date)
                         
                         let contentId = resp["data"]["contents"][idx]["contentId"].intValue
@@ -377,14 +377,18 @@ class ApiManager {
     
     //isPublic
     func requestPicLock(completion : @escaping(Int)->Void){
+        print("here")
         Alamofire.request(url, method: method,headers: header).responseJSON { (response) in
+            print(response.result)
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
+                    print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
             case .failure(_):
+                print("failure")
                 break
             }
         }
