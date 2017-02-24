@@ -484,7 +484,7 @@ public class FusumaViewController: UIViewController {
                     
                     if imageHeight/imageWidth < 0.56 || imageWidth/imageHeight > 1.78{
                         
-                        let alertView = UIAlertController(title: "Warning", message: "가로가 지나치게 큰 사진입니다.", preferredStyle: UIAlertControllerStyle.alert)
+                        let alertView = UIAlertController(title: "경고", message: "가로가 지나치게 큰 사진입니다.", preferredStyle: UIAlertControllerStyle.alert)
                         alertView.addAction(UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil))
                         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
                         alertWindow.rootViewController = UIViewController()
@@ -494,7 +494,7 @@ public class FusumaViewController: UIViewController {
                         
                     }else if imageHeight/imageWidth > 1.78 || imageWidth/imageHeight < 0.56{
                         
-                        let alertView = UIAlertController(title: "Warning", message: "세로가 지나치게 큰 사진입니다.", preferredStyle: UIAlertControllerStyle.alert)
+                        let alertView = UIAlertController(title: "경고", message: "세로가 지나치게 큰 사진입니다.", preferredStyle: UIAlertControllerStyle.alert)
                         alertView.addAction(UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil))
                         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
                         alertWindow.rootViewController = UIViewController()
