@@ -51,7 +51,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     var selectedIndex : Int = 0
     
     //
-    var apiManager : ApiManager2!
+    var apiManager : ApiManager!
     let users = UserDefaults.standard
     var userToken : String!
     // MARK: Data
@@ -94,7 +94,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func loadMission(path : String){
-        apiManager = ApiManager2(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
+        apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestPastMissions(missionsCount: { (missionsCount) in
             self.missionsCount = missionsCount
             //print("로드미션안에서미션카운트\(missionsCount)")

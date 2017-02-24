@@ -74,7 +74,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otter-6" translatesAutoresizingMaskIntoConstraints="NO" id="d29-W0-yh7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d29-W0-yh7">
                                                     <rect key="frame" x="0.0" y="0.0" width="263" height="263"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ox-8Y-oIi">
@@ -364,7 +364,7 @@
         <scene sceneID="xRh-r4-Suc">
             <objects>
                 <collectionViewController storyboardIdentifier="left" id="fJU-Lj-n4c" customClass="PrivateListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lYv-aP-wph">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lYv-aP-wph">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -898,7 +898,7 @@
         <scene sceneID="7pO-15-dHg">
             <objects>
                 <collectionViewController storyboardIdentifier="right" id="Bnz-Il-u6K" customClass="PublicListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IdA-bb-rXr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="IdA-bb-rXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1033,7 +1033,7 @@
         <scene sceneID="S4j-26-usl">
             <objects>
                 <collectionViewController id="P6R-Er-mpn" customClass="PastMissionDetailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9tK-9D-rNg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="9tK-9D-rNg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1122,9 +1122,6 @@
             <point key="canvasLocation" x="-3086" y="-788"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="otter-6" width="1280" height="847"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MYY-Ax-zaQ"/>
         <segue reference="dUf-yI-i6K"/>

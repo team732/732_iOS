@@ -212,7 +212,8 @@ class ApiManager {
                         
                     }
                 case .failure(let encodingError):
-                    print(encodingError)
+                    //print(encodingError)
+                    completion(encodingError as! String)
                 }
         }
         )
@@ -286,22 +287,57 @@ class ApiManager {
         }
     }
     
-    func requestPastMissions(pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
+//    func requestPastMissions(pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
+//        Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
+//            switch(response.result) {
+//                
+//            case .success(_):
+//                if let json = response.result.value{
+//                    let resp = JSON(json)
+//                    var pastMission = [PastMission]()
+//                    let contents = resp["data"]["missions"]
+//                    
+//                    for idx in 0..<contents.count {
+//                        
+//                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
+//                        
+//                        pastMission += [content]
+//                    }
+//                    pagination(resp["pagination"]["nextUrl"].stringValue)
+//                    completion(pastMission)
+//                    
+//                }
+//                break
+//                
+//            case .failure(_):
+//                break
+//                
+//            }
+//        }
+//    }
+    
+    func requestPastMissions(missionsCount : @escaping (Int)-> Void,pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
             switch(response.result) {
                 
             case .success(_):
                 if let json = response.result.value{
                     let resp = JSON(json)
+                    //print("apimanager2-pastmissions")
+                    //print(resp)
                     var pastMission = [PastMission]()
                     let contents = resp["data"]["missions"]
                     
+                    //print("contentsCount : \(contents.count)")
+                    //missionsCount
                     for idx in 0..<contents.count {
                         
-                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
+                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"]["text"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
                         
                         pastMission += [content]
                     }
+                    
+                    missionsCount(resp["data"]["missionsCount"].intValue)
                     pagination(resp["pagination"]["nextUrl"].stringValue)
                     completion(pastMission)
                     
@@ -314,7 +350,7 @@ class ApiManager {
             }
         }
     }
-    
+
     
     func requestSetInfo(completion : @escaping(Int)->Void){
         Alamofire.request(url, method: method, parameters: parameters, encoding: encode, headers: header).responseJSON { (response) in
