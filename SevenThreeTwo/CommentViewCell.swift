@@ -41,6 +41,7 @@ class CommentViewCell: UITableViewCell {
         commentLabel.numberOfLines = 0
         commentLabel.sizeToFit()
         
+        
         contentView.addSubview(dateLabel)
         contentView.addSubview(nickLabel)
         contentView.addSubview(commentLabel)

@@ -364,7 +364,7 @@
         <scene sceneID="xRh-r4-Suc">
             <objects>
                 <collectionViewController storyboardIdentifier="left" id="fJU-Lj-n4c" customClass="PrivateListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lYv-aP-wph">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lYv-aP-wph">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -898,7 +898,7 @@
         <scene sceneID="7pO-15-dHg">
             <objects>
                 <collectionViewController storyboardIdentifier="right" id="Bnz-Il-u6K" customClass="PublicListViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="IdA-bb-rXr">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="IdA-bb-rXr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -969,11 +969,12 @@
                         <segue destination="p5x-Be-Qnw" kind="presentation" identifier="comment" animates="NO" modalPresentationStyle="overCurrentContext" id="5u0-MN-HG3"/>
                         <segue destination="POY-v5-pm0" kind="presentation" identifier="commentModify" animates="NO" modalPresentationStyle="overCurrentContext" id="CeU-wi-jlb"/>
                         <segue destination="YaG-JM-GBt" kind="show" identifier="detailPicture" animates="NO" id="Flw-Oa-B3y"/>
+                        <segue destination="f5M-xo-A5e" kind="show" identifier="modifyContent" animates="NO" id="edp-QR-K5m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUt-XT-wKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1706" y="63"/>
+            <point key="canvasLocation" x="1704.8" y="62.518740629685162"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="cbN-ex-zYn">
@@ -1033,7 +1034,7 @@
         <scene sceneID="S4j-26-usl">
             <objects>
                 <collectionViewController id="P6R-Er-mpn" customClass="PastMissionDetailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="9tK-9D-rNg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9tK-9D-rNg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1121,10 +1122,28 @@
             </objects>
             <point key="canvasLocation" x="-3086" y="-788"/>
         </scene>
+        <!--Content Modify View Controller-->
+        <scene sceneID="MvV-27-Nsf">
+            <objects>
+                <viewController id="f5M-xo-A5e" customClass="ContentModifyViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hVt-2I-LBN"/>
+                        <viewControllerLayoutGuide type="bottom" id="vAx-Oo-gq7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fKG-rY-3Fl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DFI-b0-DTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1651" y="863"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MYY-Ax-zaQ"/>
-        <segue reference="dUf-yI-i6K"/>
+        <segue reference="gKL-cc-45e"/>
+        <segue reference="j7X-q7-Gt4"/>
         <segue reference="p0a-HH-WTV"/>
         <segue reference="nkZ-8T-Cc2"/>
     </inferredMetricsTieBreakers>

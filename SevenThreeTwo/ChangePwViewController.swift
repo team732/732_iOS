@@ -77,6 +77,7 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         oriPassword.autocorrectionType = UITextAutocorrectionType.no
         oriPassword.keyboardType = UIKeyboardType.default
         oriPassword.returnKeyType = UIReturnKeyType.done
+        oriPassword.isSecureTextEntry = true
         oriPassword.delegate = self
         
         self.view.addSubview(oriPassword)
@@ -100,7 +101,7 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         newPassword.keyboardType = UIKeyboardType.default
         newPassword.returnKeyType = UIReturnKeyType.done
         newPassword.delegate = self
-        
+        newPassword.isSecureTextEntry = true
         self.view.addSubview(newPassword)
         
         drawLine(startX: 35, startY: 332, width: 305, height: 1, border: false, color: UIColor.black)
@@ -112,7 +113,8 @@ class ChangePwViewController: UIViewController, UITextFieldDelegate {
         reEnterPassword.keyboardType = UIKeyboardType.default
         reEnterPassword.returnKeyType = UIReturnKeyType.done
         reEnterPassword.delegate = self
-        
+        reEnterPassword.isSecureTextEntry = true
+
         self.view.addSubview(reEnterPassword)
         
         newCheckLabel = UILabel(frame: CGRect(x: 35*widthRatio, y: 386*heightRatio, width: 216*widthRatio, height: 13*heightRatio))

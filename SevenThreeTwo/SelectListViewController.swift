@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class SelectListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate {
+class SelectListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate,UITextViewDelegate {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
@@ -70,10 +70,14 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var selectedPic = UIImageView()
     var likeBtn : UIButton!
     var dateLabel : UILabel!
-    
+    var cancelBtn : UIButton!
+    var cancelBtnExtension : UIView!
+    var editBtn : UIButton!
+    var editBtnExtension : UIView!
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
     static var receivedRange : Int = 0 // 0 이면 공개된 게시물 1이면 내 게시물
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -192,12 +196,12 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         self.myPicView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
         
-        let cancelBtn = UIButton(frame: CGRect(x: 30*widthRatio , y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        cancelBtn = UIButton(frame: CGRect(x: 30*widthRatio , y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         cancelBtn.setImage(UIImage(named: "gotoleft"), for: UIControlState.normal)
         cancelBtn.addTarget(self, action: #selector(cancelButtonAction), for: .touchUpInside)
         self.view.addSubview(cancelBtn)
         
-        let cancelBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
+        cancelBtnExtension = UIView(frame: CGRect(x: 26.7*widthRatio, y: 57.7*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         cancelBtnExtension.backgroundColor = UIColor.clear
         let cancelBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(cancelButtonAction))
         cancelBtnExtension.isUserInteractionEnabled = true
@@ -205,13 +209,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         self.view.addSubview(cancelBtnExtension)
         
-        let editBtn = UIButton(frame: CGRect(x: 322*widthRatio, y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
+        editBtn = UIButton(frame: CGRect(x: 322*widthRatio, y: 60*heightRatio, width: 24*widthRatio, height: 24*heightRatio))
         editBtn.setImage(UIImage(named: "edit"), for: .normal)
         editBtn.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         
         self.view.addSubview(editBtn)
         
-        let editBtnExtension = UIView(frame: CGRect(x: 311*widthRatio, y: 51*heightRatio, width: 44*widthRatio, height: 34*heightRatio))
+        editBtnExtension = UIView(frame: CGRect(x: 311*widthRatio, y: 51*heightRatio, width: 44*widthRatio, height: 34*heightRatio))
         editBtnExtension.backgroundColor = UIColor.clear
         let editBtnRecognizer = UITapGestureRecognizer(target:self, action:#selector(editButtonAction))
         editBtnExtension.isUserInteractionEnabled = true
@@ -284,8 +288,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         
         myPicView.frame = CGRect(x: 0, y: 0, width: 335*widthRatio, height: lastLine.frame.origin.y)
-        
-        
     }
     
     
@@ -487,7 +489,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         })
         
         let modifyComment = UIAlertAction(title: "게시물 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-            self.myTableView.isHidden = true
+            self.performSegue(withIdentifier: "modifyContent", sender: self)
             alertView.dismiss(animated: true, completion: nil)
         })
         
@@ -566,8 +568,13 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             
             destination.receivedImg = selectedPic.image
         }
+        
+        if segue.identifier == "modifyContent"
+        {
+            let destination = segue.destination as! ContentModifyViewController
+            destination.receivedText = comment[0]
+        }
     }
-    
 }
 
 extension CALayer {

@@ -48,6 +48,7 @@ class HotPicViewController: UIViewController {
     var missionLabel : UILabel!
     var hotPicUserLabel : UILabel!
     var hotPicArr : [UIImage] = []
+    var hotPicImg : [UIImage] = []
     var hotPicDate : [String] = []
     var hotPicCreator : [String] = []
     var hotPicSub : [String] = []
@@ -89,7 +90,8 @@ class HotPicViewController: UIViewController {
 //        slideshow.presentFullScreenController(from: self)
 //        slideshow.setImageInputs(localSource)
         SelectListViewController.receivedCid = self.hotPicCid[currentPage]
-        SelectListViewController.receivedCimg = self.hotPicArr[currentPage]
+        SelectListViewController.receivedCimg = self.hotPicImg[currentPage]
+        print(hotPicArr[currentPage])
         SelectListViewController.receivedRange = 0
         self.performSegue(withIdentifier: "hotToSelect", sender: self)
         
@@ -127,6 +129,7 @@ class HotPicViewController: UIViewController {
 
         }, hotPicImg: { (hotPicImg) in
             self.hotPicArr = hotPicImg
+            self.hotPicImg = hotPicImg
             for i in 0..<self.hotPicArr.count{
                 self.oriImageSource.append(ImageSource(image: self.hotPicArr[i]))
                 self.hotPicArr[i] = self.cropToBounds(image: self.hotPicArr[i], width: 257*self.widthRatio, height: 257*self.heightRatio)

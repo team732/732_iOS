@@ -19,6 +19,7 @@ class MainController: UIViewController, FusumaDelegate {
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
     var subImage: UIImageView!
+    var subOriImage : UIImage!
     static var subLabel: UILabel!
     static var missionId : Int = 0
     static var missionText : String = ""{
@@ -165,7 +166,7 @@ class MainController: UIViewController, FusumaDelegate {
         
         drawLine(startX: 0, startY: 328, width: 56, height: 1,border: false)
         drawLine(startX: 319, startY: 328, width: 56, height: 1, border:false)
-        drawLine(startX: 187.5, startY: 460, width: 1, height: 116, border:true)
+        drawLine(startX: 187.5, startY: 460, width: 1, height: 125, border:true)
 
         let gotoLeft = UIButton(frame: CGRect(x: (10*widthRatio), y: (317*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         gotoLeft.setImage(UIImage(named: "gotoleft"), for: .normal)
@@ -176,9 +177,9 @@ class MainController: UIViewController, FusumaDelegate {
         self.view.addSubview(gotoRight)
         
         drawCircle(startX: 187.5, startY: 330.5, radius: 143.5)
-        drawCircle(startX: 187.5, startY: 586.5, radius: 36.5)
+        drawCircle(startX: 187.5, startY: 595.5, radius: 36.5)
 
-        showButton.frame = CGRect(x: 174*widthRatio, y: 575*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
+        showButton.frame = CGRect(x: 174*widthRatio, y: 583.5*heightRatio, width: 29*widthRatio, height: 22*heightRatio)
         showButton.setImage(UIImage(named: "camera"), for: .normal)
         
         let showBtnExtension = UIView(frame: CGRect(x: 151*widthRatio, y: 559*heightRatio, width: 73*widthRatio, height: 73*heightRatio))
@@ -244,11 +245,12 @@ class MainController: UIViewController, FusumaDelegate {
     
     func subjectImage(){
         
+        subOriImage = UIImage(named: "subimage")
+        let cropImage = cropToBounds(image: UIImage(named: "subimage")!, width: 277*widthRatio, height: 277*heightRatio)
         subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
         MainController.subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
+        subImage.image = cropImage
         
-        
-        subImage.image = UIImage(named: "subimage")
         
         subImage.layer.masksToBounds = false
         subImage.layer.cornerRadius = subImage.frame.height/2
@@ -305,6 +307,39 @@ class MainController: UIViewController, FusumaDelegate {
         
     }
     
+    func cropToBounds(image: UIImage, width: CGFloat, height: CGFloat) -> UIImage {
+        
+        let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
+        
+        let contextSize: CGSize = contextImage.size
+        
+        var posX: CGFloat = 0.0
+        var posY: CGFloat = 0.0
+        var cgwidth: CGFloat = width
+        var cgheight: CGFloat = height
+        
+        // See what size is longer and create the center off of that
+        if contextSize.width > contextSize.height {
+            posX = ((contextSize.width - contextSize.height) / 2)
+            posY = 0
+            cgwidth = contextSize.height
+            cgheight = contextSize.height
+        } else {
+            posX = 0
+            posY = ((contextSize.height - contextSize.width) / 2)
+            cgwidth = contextSize.width
+            cgheight = contextSize.width
+        }
+        
+        let rect: CGRect = CGRect(x:posX, y:posY, width:cgwidth, height:cgheight)
+        
+        let imageRef: CGImage = contextImage.cgImage!.cropping(to: rect)!
+        
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        
+        return image
+    }
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -319,7 +354,7 @@ class MainController: UIViewController, FusumaDelegate {
         else if segue.identifier == "mainToDetail"
         {
             let destination = segue.destination as! DetailMissionViewController
-            destination.receivedImg = self.subImage.image!
+            destination.receivedImg = self.subOriImage
             destination.receivedLbl = MainController.subLabel
         }
     }
