@@ -63,6 +63,10 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     var givingMissionText: String!
     var givingMissionDate: String!
     
+    //loading
+    var addView : UIView!
+    var loadingIndi : UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -84,13 +88,26 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         //self.collectionView.alpha = 1
         //self.listView.alpha = 0
         setUi()
-        
+        setLoadingIndi()
         //PastTextListViewController.list = self.listBtn
         
         userToken = users.string(forKey: "token")
         
         loadMission(path: "/missions?limit=10")
         
+    }
+    
+    func setLoadingIndi(){
+        loadingIndi = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40*widthRatio, height:40*heightRatio)) as UIActivityIndicatorView
+        loadingIndi.hidesWhenStopped = true
+        loadingIndi.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        addView = UIView(frame: CGRect(x: 0, y: self.view.frame.height - 40*heightRatio, width: 375*widthRatio, height: 40*heightRatio))
+        addView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+        loadingIndi.center = CGPoint(x: UIScreen.main.bounds.width/2, y: addView.frame.height / 2)
+        addView.addSubview(loadingIndi)
+        view.addSubview(addView)
+        loadingIndi.startAnimating()
+        addView.isHidden = true
     }
     
     func loadMission(path : String){
@@ -104,6 +121,8 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
               for i in 0..<contentMission.count{
                 self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate))
             }
+            self.addView.isHidden = true
+            
             self.collectionView?.reloadData()
         }
     }
@@ -294,14 +313,22 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
 //            loadMission(path: (paginationUrl.substring(from: startIndex)))
 //        }
 
-        if indexPath.row < self.missionsCount! - 2 , indexPath.row == self.pastMissions.count - 2{
+        if indexPath.row < self.missionsCount! - 3 , indexPath.row == self.pastMissions.count - 3{
             
-            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-            loadMission(path: (paginationUrl.substring(from: startIndex)))
+            addView.isHidden = false
         }
 
         return cell
     }   // 셀의 내용
+    
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row < self.missionsCount! - 3 , indexPath.row == self.pastMissions.count - 3{
+            
+            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
+            loadMission(path: (paginationUrl.substring(from: startIndex)))
+        }
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

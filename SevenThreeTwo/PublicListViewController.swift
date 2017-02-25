@@ -334,7 +334,7 @@ extension PublicListViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        
+        print("photoCount:\(photos.count)")
         return photos.count
     }
     

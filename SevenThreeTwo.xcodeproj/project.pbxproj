@@ -227,8 +227,8 @@
 			children = (
 				671469091E2FCDD1006925B7 /* TopMenuViewController.swift */,
 				37F551EF1E48D0C10012C348 /* PastMissionViewController.swift */,
-				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
 				672739751E49E0F1009490A8 /* HotPicViewController.swift */,
+				37F551F11E48D86E0012C348 /* PastMissionCollectionViewCell.swift */,
 				3757A5641E4B3F3900BFC24D /* PastTextListViewController.swift */,
 				3757A5661E4B3F4B00BFC24D /* PastTextListCollectionViewCell.swift */,
 				37E624DB1E5380C400D862B6 /* PastMissionDetailViewController.swift */,
