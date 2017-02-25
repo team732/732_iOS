@@ -29,11 +29,7 @@ extension UITextView: UITextViewDelegate{
         self.delegate = self
         
     }
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+
     
     /*
      키보드 올라갈 때 화면 올림
@@ -49,7 +45,6 @@ extension UITextView: UITextViewDelegate{
     public func setKeyboardNotification(target: UIView!){
         
         targetView = target
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -70,12 +65,11 @@ extension UITextView: UITextViewDelegate{
     }
     
     public func adjustingHeight(show:Bool, notification:NSNotification) {
-        print("use here")
         var userInfo = notification.userInfo!
         let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
-        let changeInHeight = -(keyboardFrame.height)
-        let changeInEmoji : CGFloat = -(42 * heightRatio)
+        let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
+        let changeInEmoji : CGFloat = (42 * heightRatio) * (show ? 1 : -1)
         
         UIView.animate(withDuration: animationDuration, animations: { () -> Void in
             
@@ -101,6 +95,10 @@ extension UITextView: UITextViewDelegate{
             }
         })
         
+    }
+    
+    public func removeObserver(){
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
