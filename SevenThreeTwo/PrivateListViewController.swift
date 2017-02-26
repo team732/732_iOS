@@ -65,6 +65,7 @@ class PrivateListViewController: UICollectionViewController {
         setUpUI()
         setIndicator()
         NotificationCenter.default.addObserver(self, selector: #selector(PrivateListViewController.reloadPrivateList),name:NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+        
     }
     
     
@@ -83,6 +84,7 @@ class PrivateListViewController: UICollectionViewController {
     }
     
     func reloadPrivateList(){
+        print("reload")
         self.photos.removeAll()
         if isPublicSeg == 0 {
             self.loadPic(path: "/users/me/contents?limit=10")
@@ -92,6 +94,7 @@ class PrivateListViewController: UICollectionViewController {
     }
     
     func loadPic(path : String){
+        self.addView.isHidden = false
         userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
@@ -299,9 +302,7 @@ extension PrivateListViewController {
                             style: BeigeRoundedPhotoCaptionCellStyle())
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
-        if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
-            self.addView.isHidden = false
-        }
+ 
         return cell
     }
     
@@ -309,6 +310,8 @@ extension PrivateListViewController {
         if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadPic(path: (paginationUrl.substring(from: startIndex)))
+        }else{
+            self.addView.isHidden = true
         }
     }
 
