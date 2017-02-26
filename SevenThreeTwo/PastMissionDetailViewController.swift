@@ -74,17 +74,19 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         setRefreshControl()
-    }
-    override func viewDidAppear(_ animated: Bool) {
         
         self.photos.removeAll()
         setIndicator()
-        if refreshSeg == 0{
-            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
+//        if refreshSeg == 0{
+        self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
+//            
+//        }else if refreshSeg == 1{
+//            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
+//        }
 
-        }else if refreshSeg == 1{
-            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
-        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     func setIndicator(){
