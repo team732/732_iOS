@@ -111,6 +111,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func loadMission(path : String){
+        self.addView.isHidden = false
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestPastMissions(missionsCount: { (missionsCount) in
             self.missionsCount = missionsCount
@@ -313,18 +314,15 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
 //            loadMission(path: (paginationUrl.substring(from: startIndex)))
 //        }
 
-        if indexPath.row < self.missionsCount! - 3 , indexPath.row == self.pastMissions.count - 3{
-            
-            addView.isHidden = false
-        }
 
         return cell
     }   // 셀의 내용
     
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row < self.missionsCount! - 3 , indexPath.row == self.pastMissions.count - 3{
-            
+        if indexPath.row > self.missionsCount! - 3 {
+            self.addView.isHidden = true
+        }else if indexPath.row < self.missionsCount! - 3 , indexPath.row == self.pastMissions.count - 3{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadMission(path: (paginationUrl.substring(from: startIndex)))
         }
