@@ -116,7 +116,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
 //            imageView.frame = CGRect(x: (20*widthRatio), y: (143*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
 //        }
         
-        
+        if imageWidth > imageHeight {
+            imageView.frame = CGRect(x: 20*widthRatio, y: 183*heightRatio, width: 335*widthRatio, height: (335*imageHeight/imageWidth)*heightRatio)
+        }else if imageWidth < imageHeight{
+            imageView.frame = CGRect(x: (view.frame.width/2 - (400*imageWidth/imageHeight/2))*widthRatio, y: 110*heightRatio, width: (400*imageWidth/imageHeight)*widthRatio, height: 400*heightRatio)
+        }else{
+            imageView.frame = CGRect(x: 20*widthRatio, y: 142*heightRatio, width: 335*widthRatio, height: 335*heightRatio)
+        }
         
         backBtn.frame = CGRect(x: (30*widthRatio), y: (60*heightRatio), width: 24*widthRatio, height: 24*heightRatio)
         backBtn.setImage(UIImage(named:"gotoleft"), for: .normal)
