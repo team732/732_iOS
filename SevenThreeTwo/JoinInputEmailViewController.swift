@@ -215,7 +215,15 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
                 MainController.missionText = missionText
             }) { (missionId) in
                 MainController.missionId = missionId
-                self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
+                let fcmToken : String = userToken.string(forKey: "pushToken")!
+                
+                self.apiManager = ApiManager(path: "/users/me/fcm", method: .put, parameters:["fcmToken":fcmToken], header: ["authorization":isJoin["data"]["token"].stringValue])
+                self.apiManager.requestPushToken(completion: { (isPush) in
+                    if isPush == 0 {
+                        self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
+                        //만약 푸시토큰을 not allow 했다면? -> 체크하기
+                    }
+                })
             }
 
         }
@@ -227,6 +235,10 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.emailTextField.endEditing(true)
     }
 
 }

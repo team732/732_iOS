@@ -287,34 +287,6 @@ class ApiManager {
         }
     }
     
-//    func requestPastMissions(pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
-//        Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
-//            switch(response.result) {
-//                
-//            case .success(_):
-//                if let json = response.result.value{
-//                    let resp = JSON(json)
-//                    var pastMission = [PastMission]()
-//                    let contents = resp["data"]["missions"]
-//                    
-//                    for idx in 0..<contents.count {
-//                        
-//                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
-//                        
-//                        pastMission += [content]
-//                    }
-//                    pagination(resp["pagination"]["nextUrl"].stringValue)
-//                    completion(pastMission)
-//                    
-//                }
-//                break
-//                
-//            case .failure(_):
-//                break
-//                
-//            }
-//        }
-//    }
     
     func requestPastMissions(missionsCount : @escaping (Int)-> Void,pagination : @escaping (String)-> Void,completion : @escaping ([PastMission])->Void){
         Alamofire.request(url,method: method,parameters: parameters,encoding: encode, headers: header).responseJSON{ response in
@@ -361,6 +333,7 @@ class ApiManager {
                     print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
+                break
             case .failure(_):
                 break
             }
@@ -405,6 +378,7 @@ class ApiManager {
                     hotPicSub(hotPicSubArr)
                     hotPicContentId(hotPicContentIdArr)
                 }
+                break
             case .failure(_):
                 break
             }
@@ -423,6 +397,7 @@ class ApiManager {
                     print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
+                break
             case .failure(_):
                 print("failure")
                 break
@@ -440,6 +415,7 @@ class ApiManager {
                     let resp = JSON(json)
                     completion(resp["meta"]["code"].intValue)
                 }
+                break
             case .failure(_):
                 break
             }
@@ -454,6 +430,7 @@ class ApiManager {
                     let resp = JSON(json)
                     completion(resp["nickname"].description)
                 }
+                break
             case .failure(_):
                 break
             }
@@ -468,6 +445,7 @@ class ApiManager {
                     let resp = JSON(json)
                     completion(resp["meta"]["code"].intValue)
                 }
+                break
             case .failure(_):
                 break
             }
@@ -482,9 +460,9 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
+                break
             case .failure(_):
                 print("failure")
                 break
@@ -494,20 +472,15 @@ class ApiManager {
     
     func requestModifyContent(completion : @escaping(Int)->Void){
         
-        print(parameters)
-        print(url)
-        print(method)
-        
         Alamofire.request(url,method: method, parameters: parameters, encoding: encode ,headers: header).responseJSON { (response) in
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    print(resp)
                     completion(resp["meta"]["code"].intValue)
                 }
+                break
             case .failure(_):
-                print("failure")
                 break
             }
         }

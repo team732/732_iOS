@@ -172,4 +172,8 @@ class JoinInputPwCheckViewController: UIViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.pwCheckTextField.endEditing(true)
+    }
 }

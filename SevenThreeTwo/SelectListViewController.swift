@@ -104,8 +104,6 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     override func viewDidDisappear(_ animated: Bool) {
         if SelectListViewController.receivedRange == 1 {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
-        }else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
         }
     }
     
