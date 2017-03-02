@@ -51,7 +51,7 @@ class DeviceResize {
             DeviceType.IPHONE_6_P,
             DeviceType.IPHONE_7,
             DeviceType.IPHONE_7_P,
-            ]
+        ]
         for modelName in modelNameList {
             if modelName.height == model.height{
                 return modelName
