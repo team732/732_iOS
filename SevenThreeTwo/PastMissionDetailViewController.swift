@@ -46,10 +46,12 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     
     var imagePastMission : UIImage!
     
+    var cameraBtnExtension : UIView!
+    
     //loading
     var addView : UIView!
     var loadingIndi : UIActivityIndicatorView!
-    
+        
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
         super.init(collectionViewLayout: layout)
@@ -72,6 +74,8 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPast"), object: nil)
         
         setRefreshControl()
         
@@ -254,10 +258,11 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         collectionView?.addSubview(cameraBtn)
         
         let shotLabel = UILabel(frame: CGRect(x: 0*widthRatio, y: 223*heightRatio, width: 375*widthRatio, height: 11*heightRatio))
-        shotLabel.text = "지나간 잠상"
+        shotLabel.text = "지나간 잠상\n표현하기"
         shotLabel.textAlignment = .center
         shotLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         collectionView?.addSubview(shotLabel)
+        
         
         let shotLabel2 = UILabel(frame: CGRect(x: 0*widthRatio, y: 235*heightRatio, width: 375*widthRatio, height: 11*heightRatio))
         shotLabel2.text = "표현하기"
@@ -265,6 +270,13 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         shotLabel2.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         collectionView?.addSubview(shotLabel2)
         
+        cameraBtnExtension = UIView(frame: CGRect(x: 158*widthRatio, y: 184*heightRatio, width: 60*widthRatio, height: 65*heightRatio))
+        cameraBtnExtension.backgroundColor = UIColor.clear
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(cameraButtonAction))
+        cameraBtnExtension.isUserInteractionEnabled = true
+        cameraBtnExtension.addGestureRecognizer(tapGestureRecognizer)
+        collectionView?.addSubview(cameraBtnExtension)
         
         let items = ["최신순", "인기순"]
         let customSC = UISegmentedControl(items: items)
@@ -322,6 +334,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         fusumaTintColor = UIColor.darkGray
         fusumaBackgroundColor = UIColor.white
         //
+        MainController.isPastCameraClicked = 1
         self.present(fusuma, animated: false, completion: nil)
 
         

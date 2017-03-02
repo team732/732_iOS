@@ -103,7 +103,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
               for i in 0..<contentMission.count{
-                self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate))
+                self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate, missionPic: contentMission[i].missionPic))
             }
             self.addView.isHidden = true
             
@@ -175,16 +175,6 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         listBtnExtension.isUserInteractionEnabled = true
         listBtnExtension.addGestureRecognizer(listBtnRecognizer)
         self.view.addSubview(listBtnExtension)
-        //#
-        //listBtn.addTarget(self, action:#selector(listButtonPressed(sender:)), for: .touchUpInside)
-        //view.addSubview(listBtn)
-        
-        //for animation
-//        frameBack = PastMissionViewController.back.frame
-//        frameTitle = PastMissionViewController.titleLabel.frame
-//        frameList = listBtn.frame
-//        frameCollectionView = collectionView.frame
-        
         
     }
     
@@ -222,33 +212,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         dismiss(animated: true, completion: nil)
         
     }
-    //#
-//    func listButtonPressed(sender: UIButton!) {
-//        
-//        switch PastMissionViewController.selectedIndex {
-//        case 0: //
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.collectionView.alpha = 0
-//                self.listView.alpha = 1
-//                
-//            self.listBtn.setImage(UIImage(named:"listRound"), for: .normal)
-//                self.listBtn.sizeToFit()
-//            })
-//            PastMissionViewController.selectedIndex = 1
-//            break
-//        case 1: //
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.collectionView.alpha = 1
-//                self.listView.alpha = 0
-//                self.listBtn.setImage(UIImage(named:"list"), for: .normal)
-//                self.listBtn.sizeToFit()
-//            })
-//            PastMissionViewController.selectedIndex = 0
-//            break
-//        default:
-//            return
-//        }
-//    }
+
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
         
@@ -278,7 +242,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
         
-        cell.image.image = sampleImages[0] // 나중에 이미지 내려주시면 넣을거...
+        cell.image.image = pastMissions[indexPath.row].missionPic
         cell.date.text = pastMissions[indexPath.row].missionDate!
         cell.mission.text = pastMissions[indexPath.row].mission
         

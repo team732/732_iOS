@@ -48,6 +48,8 @@ class MainController: UIViewController, FusumaDelegate {
     var closeBtnExtension : UIView!
     var directionImage : UIImageView!
     
+    static var isPastCameraClicked = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

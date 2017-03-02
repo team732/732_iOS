@@ -305,7 +305,7 @@ class ApiManager {
                     
                     for idx in 0..<contents.count {
                         
-                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"]["text"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
+                        let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"]["text"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue, missionPic:UIImage(data: NSData(contentsOf: NSURL(string: contents[idx]["mission"]["picture"].stringValue)! as URL)! as Data)!)
                         
                         pastMission += [content]
                     }

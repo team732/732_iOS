@@ -14,13 +14,17 @@ class PastMission: NSObject {
     public var mission : String?
     public var missionType : Int?
     public var missionDate : String?
+    public var missionPic : UIImage?
     
-    
-    init(missionId: Int?, mission: String?, missionType: Int?, missionDate: String?) {
+    init(missionId: Int?, mission: String?, missionType: Int?, missionDate: String?, missionPic: UIImage?) {
         self.missionId = missionId
         self.mission = mission
         self.missionType = missionType
         self.missionDate = missionDate
+        self.missionPic = missionPic
     }
+    
+    
+    
     
 }
