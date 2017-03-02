@@ -76,7 +76,8 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     var editBtnExtension : UIView!
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
-    static var receivedRange : Int = 0 // 0 이면 공개된 게시물 1이면 내 게시물
+    static var receivedRange : Int = 0 // 0 이면 공개된 게시물 1이면 내 게시물 2이면 과거 게시물
+    static var receivedIndex : Int = 0
     var isContentDeleted = 0
     
     override func viewDidLoad() {
@@ -103,9 +104,20 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     override func viewDidDisappear(_ animated: Bool) {
         if isContentDeleted == 1 {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPast"), object: nil)
+            switch(SelectListViewController.receivedRange){
+            case 0:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublicDelete"), object: nil)
+                break
+            case 1:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivateDelete"), object: nil)
+                break
+            case 2:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPastDelete"), object: nil)
+                break
+            default:
+                break
+            }
+     
             isContentDeleted = 0
         }
         
@@ -145,9 +157,11 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     
     func loadContent(){
         userToken = users.string(forKey: "token")
-        if SelectListViewController.receivedRange == 0 {
-            apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
-        }else if SelectListViewController.receivedRange == 1{
+        
+        if SelectListViewController.receivedRange == 0 || SelectListViewController.receivedRange == 2 {
+             apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
+            
+        }else if SelectListViewController.receivedRange == 1 {
             apiManager = ApiManager(path: "/users/me/contents/\(SelectListViewController.receivedCid)", method: .get, header: ["authorization":userToken])
         }
         apiManager.requestSelectContent { (infoContent) in
@@ -486,27 +500,22 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         
         let alertView = UIAlertController(title: "", message: "이 사진에 대하여", preferredStyle: .actionSheet)
         
-        let reportComment = UIAlertAction(title: "신고하기", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+        let reportContent = UIAlertAction(title: "신고하기", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
             
             alertView.dismiss(animated: true, completion: nil)
         })
         
-        let modifyComment = UIAlertAction(title: "게시물 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
+        let modifyContent = UIAlertAction(title: "게시물 수정", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
             self.performSegue(withIdentifier: "modifyContent", sender: self)
             alertView.dismiss(animated: true, completion: nil)
         })
         
         
-        let removeComment = UIAlertAction(title: "게시물 삭제", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
+        let removeContent = UIAlertAction(title: "게시물 삭제", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) in
             
             self.apiManager = ApiManager(path: "/contents/\(SelectListViewController.receivedCid)", method: .delete, header: ["authorization":self.userToken])
             self.apiManager.requestDeleteContent(completion: { (isDeleted) in
                 if isDeleted == 0 {
-                    if SelectListViewController.receivedRange == 1 {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
-                    }else {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
-                    }
                     self.isContentDeleted = 1
                     self.showToast("삭제되었습니다!")
                 }else{
@@ -519,10 +528,10 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
         let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in }
         
         if isMine{
-            alertView.addAction(modifyComment)
-            alertView.addAction(removeComment)
+            alertView.addAction(modifyContent)
+            alertView.addAction(removeContent)
         }else{
-            alertView.addAction(reportComment)
+            alertView.addAction(reportContent)
         }
         
         alertView.addAction(cancelAction)

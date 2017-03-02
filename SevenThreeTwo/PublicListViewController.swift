@@ -74,6 +74,7 @@ class PublicListViewController:  UICollectionViewController{
         setIndicator()
         
         NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.refreshAfterDelete),name:NSNotification.Name(rawValue: "reloadPublicDelete"), object: nil)
 
     }
     
@@ -101,6 +102,11 @@ class PublicListViewController:  UICollectionViewController{
         refreshView.addSubview(refreshControl)
     }
     
+    //삭제시
+    func refreshAfterDelete(){
+        self.photos.remove(at: SelectListViewController.receivedIndex)
+        self.collectionView?.reloadData()
+    }
     
     // 바탕화면 갔다가 돌아올 때
     
@@ -334,7 +340,6 @@ extension PublicListViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        
         return photos.count
     }
     
@@ -372,6 +377,7 @@ extension PublicListViewController {
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
         SelectListViewController.receivedCimg = self.photos[indexPath.item].image
         SelectListViewController.receivedRange = 0
+        SelectListViewController.receivedIndex = indexPath.item
         self.present(selectVC, animated: false, completion: nil)
     }
     

@@ -77,16 +77,13 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPast"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.refreshAfterDelete),name:NSNotification.Name(rawValue: "reloadPastDelete"), object: nil)
+
         setRefreshControl()
-        
         self.photos.removeAll()
         setIndicator()
-//        if refreshSeg == 0{
         self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
-//            
-//        }else if refreshSeg == 1{
-//            self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10&sort=-like_count")
-//        }
+
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -125,6 +122,12 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         self.photos.removeAll()
         self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
     }
+    
+    func refreshAfterDelete(){
+        self.photos.remove(at: SelectListViewController.receivedIndex)
+        self.collectionView?.reloadData()
+    }
+  
     
     
     // 당겼을 때 리프레쉬
@@ -481,8 +484,8 @@ extension PastMissionDetailViewController {
         let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
         SelectListViewController.receivedCimg = self.photos[indexPath.item].image
-        SelectListViewController.receivedRange = 0
-
+        SelectListViewController.receivedRange = 2
+        SelectListViewController.receivedIndex = indexPath.item
         //MARK: 추가로 missionDate랑 missionText보내야됨.
         
         self.present(selectVC, animated: false, completion: nil)

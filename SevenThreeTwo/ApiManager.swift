@@ -35,7 +35,7 @@ class ApiManager {
                 if let json = response.result.value{
                     let resp = JSON(json)
                     let content = PublicList(contentsCount: resp["data"]["contentsCount"].intValue, contents: resp["data"]["contents"])
-                    
+
                     pagination(resp["pagination"]["nextUrl"].stringValue)
                     completion(content)
                     
@@ -91,6 +91,7 @@ class ApiManager {
     }
     
     func requestSelectContent(completion : @escaping (Content)->Void){
+       
         
         Alamofire.request(url, method: method, headers: header).responseJSON { response in
             switch(response.result){
@@ -279,7 +280,6 @@ class ApiManager {
                     let resp = JSON(json)
                     
                     let missionArr = [resp["data"]["mission"]["mission"]["text"].stringValue,resp["data"]["mission"]["mission"]["picture"].stringValue]
-                    print(missionArr)
                     mission(missionArr)
                     missionId(resp["data"]["mission"]["missionId"].intValue)
                 }

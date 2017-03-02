@@ -65,6 +65,7 @@ class PrivateListViewController: UICollectionViewController {
         setUpUI()
         setIndicator()
         NotificationCenter.default.addObserver(self, selector: #selector(PrivateListViewController.reloadPrivateList),name:NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PrivateListViewController.refreshAfterDelete),name:NSNotification.Name(rawValue: "reloadPrivateDelete"), object: nil)
         
     }
     
@@ -91,6 +92,11 @@ class PrivateListViewController: UICollectionViewController {
         }else {
             self.loadPic(path: "/users/me/contents?limit=10&type=private")
         }
+    }
+    
+    func refreshAfterDelete(){
+        self.photos.remove(at: SelectListViewController.receivedIndex)
+        self.collectionView?.reloadData()
     }
     
     func loadPic(path : String){
@@ -322,6 +328,7 @@ extension PrivateListViewController {
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
         SelectListViewController.receivedCimg = self.photos[indexPath.item].image
         SelectListViewController.receivedRange = 1
+        SelectListViewController.receivedIndex = indexPath.item
         self.present(selectVC, animated: false, completion: nil)
     }
 
