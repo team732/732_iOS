@@ -286,7 +286,7 @@ public class FusumaViewController: UIViewController {
     }
     
     func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
-        print("drawline")
+        
         var line: UIView!
         
         
@@ -336,7 +336,7 @@ public class FusumaViewController: UIViewController {
     @IBAction func closeButtonPressed(_ sender: UIButton) {
         
         if (self.mode == .library) {
-            print("library")
+            
             self.dismiss(animated: true, completion: {
                 
                 self.delegate?.fusumaClosed()
@@ -440,7 +440,7 @@ public class FusumaViewController: UIViewController {
                                                         })*/
                                                         
                                                         if (self.mode == .library) {
-                                                            print("library")
+                                                            
                                                             DispatchQueue.main.async(execute: {
                                                                 self.delegate?.fusumaImageSelected(result!, source: self.mode)
                                                                 
@@ -452,7 +452,7 @@ public class FusumaViewController: UIViewController {
                                                             })
                                                         } else if (self.mode == .camera) {
                                                             
-                                                            print("camera")
+                                                            
                                                             DispatchQueue.main.async(execute: {
                                                                 
                                                                 
@@ -470,14 +470,14 @@ public class FusumaViewController: UIViewController {
                 }
             })
         } else {
-            print("no image crop ")
+            
             
             let imageWidth = CGFloat((view?.image.size.width)!)
             let imageHeight = CGFloat((view?.image.size.height)!)
             
             
             if (self.mode == .library) {
-                print("library")
+                
                 DispatchQueue.main.async(execute: {
                     
                     self.delegate?.fusumaImageSelected((view?.image)!, source: self.mode)
@@ -515,7 +515,7 @@ public class FusumaViewController: UIViewController {
                 })
             } else if (self.mode == .camera) {
                 
-                print("camera")
+               
                 DispatchQueue.main.async(execute: {
                     
                     

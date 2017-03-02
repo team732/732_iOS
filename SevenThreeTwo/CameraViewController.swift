@@ -89,32 +89,6 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-//        if imageWidth > imageHeight{
-//            //가로가 세로보다 긴 16:9 사진일 경우
-//            if imageWidth/imageHeight > 1.4 , imageWidth/imageHeight < 1.8{
-//                
-//                imageView.frame = CGRect(x: (20*widthRatio), y: (216.28125*heightRatio), width: 335*widthRatio, height: (188.4375*heightRatio))
-//                
-//            }//일반 4:3 사진일 경우
-//            else{
-//                
-//                imageView.frame = CGRect(x: (20*widthRatio), y: (184*heightRatio), width: 335*widthRatio, height: (251.25*heightRatio))
-//            }
-//            
-//        }else if imageHeight > imageWidth{
-//            //세로가 가로보다 긴 16:9 사진일 경우
-//            if imageHeight/imageWidth > 1.4 , imageHeight/imageWidth < 1.8{
-//                
-//                imageView.frame = CGRect(x: (75*widthRatio), y: (110*heightRatio), width: 225*widthRatio, height: (400*heightRatio))
-//            }//일반 4:3 사진일 경우
-//            else{
-//                
-//                imageView.frame = CGRect(x: (37.5*widthRatio), y: (110*heightRatio), width: 300*widthRatio, height: (400*heightRatio))
-//            }
-//        }//일반 정방형 사진일 경우
-//        else{
-//            imageView.frame = CGRect(x: (20*widthRatio), y: (143*heightRatio), width: 335*widthRatio, height: (335)*heightRatio)
-//        }
         
         if imageWidth > imageHeight {
             imageView.frame = CGRect(x: 20*widthRatio, y: 183*heightRatio, width: 335*widthRatio, height: (335*imageHeight/imageWidth)*heightRatio)
@@ -131,7 +105,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         backBtnExtension = UIView(frame: CGRect(x: 27*widthRatio, y: 57*heightRatio, width: 30*widthRatio, height: 30*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
-        //backBtnExtension.layer.borderWidth = 1
+      
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(closeBtn(_:)))
         backBtnExtension.isUserInteractionEnabled = true
         backBtnExtension.addGestureRecognizer(tapGestureRecognizer)
@@ -150,28 +124,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         inputText.backgroundColor = UIColor.clear
         inputText.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
         inputText.text = placeHolderText
-        //inputText.addTextSpacing(spacing: 15)
-        
-        
-        //        nextBtn.frame = CGRect(x: (12*widthRatio), y: ((622-3)*heightRatio), width: 351*widthRatio, height: 45*heightRatio)
-        //        nextBtn.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-        //        nextBtn.setTitle("게시글 공유", for: .normal)
-        //        nextBtn.setTitleColor(UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0), for: .normal)
-        //        nextBtn.titleLabel?.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
-        //
-        //        nextBtn.layer.borderWidth = 1
-        //        nextBtn.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0).cgColor
-        
-        //        var line: UIView!
-        //
-        //
-        //        line = UIView(frame: CGRect(x: 0*widthRatio, y: 622*heightRatio, width: 375*widthRatio, height: 0.5*heightRatio))
-        //
-        //        line.backgroundColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1.0)//UIColor.gray
-        //        view.addSubview(line)
-        
-        // 키패드에게 알림을 줘서 키보드가 보여질 때 사라질 때의 함수를 실행시킨다
-        NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -186,13 +139,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     }
     // 키보드가 보여지면..
     func keyboardWillShow(notification:NSNotification) {
-        print("keywillshow : \(emojiFlag)")
+        
         adjustingHeight(show: false, notification: notification)
     }
     
     // 키보드가 사라지면..
     func keyboardWillHide(notification:NSNotification) {
-        print("keywillhide : \(emojiFlag)")
+        
         adjustingHeight(show: true, notification: notification)
         
     }
@@ -203,11 +156,11 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         let keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
-        //216(normal keyboard height)+42 => emoji keyboard height
+        
         let changeInEmoji : CGFloat = (42 * self.heightRatio) * (show ? 1 : -1)
         
         UIView.animate(withDuration: animationDuration, animations: { () -> Void in
-            print(changeInHeight)
+            
             
             //emoji 일때
             if self.inputText.textInputMode?.primaryLanguage == nil{
@@ -216,8 +169,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 self.emojiFlag = 1
                 
             }
-                //처음에 한글인지 이모지다음에 한글인지 알 수 있다면 여기서 걸러낼수 있을텐데...
-                // 일반적인 한글모드 일때
+              
             else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 0 {
                 
                 
@@ -262,7 +214,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         
         if textView.text == ""{
-            textView.textColor = UIColor.gray//UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
+            textView.textColor = UIColor.gray
             textView.text = placeHolderText
         }
         textView.resignFirstResponder()
@@ -343,7 +295,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             
             //아무것도 입력 안했을 때 빈칸처리되서 들어감.
             if self.inputText.text == placeHolderText{
-                print("empty space")
+                
                 self.inputText.text = ""
             }
             
@@ -355,11 +307,10 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
-                    //print("resultCode : \(result)")
-                    //서버 통신이 끝나야 메인으로 돌아감.
+                    
                     
                     if result == "0"{
-                        //print("정상적으로 올라감")
+                        
                         
                        
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
@@ -370,7 +321,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         self.actInd.stopAnimating()
                         
                     }else if result == "-44"{
-                        //print("한 주제에 올릴 수 있는 최대 공개 게시물은 3개입니다!")
+                        
                         self.showToast("하나의 잠상에 공개할 수 있는 게시물의 수는\n최대 3개입니다!")
                         
                         alertView.dismiss(animated: true, completion: nil)
@@ -378,7 +329,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         self.actInd.stopAnimating()
                         
                     }else{
-                        //print("파일 업로드를 실패하였습니다.")
+                        
                         self.showToast("게시물 업로드를 실패하였습니다.")
                         
                         alertView.dismiss(animated: true, completion: nil)
@@ -399,11 +350,10 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                
                 self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:false, completion: { (result) in
                     
-                    //print("resultCode : \(result)")
-                    //서버 통신이 끝나야 메인으로 돌아감.
+                    
                    
                     if result == "0"{
-                        //print("정상적으로 올라감")
+                        
                         
                         
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
@@ -414,7 +364,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         self.actInd.stopAnimating()
                         
                     }else if result == "-44"{
-                        //print("한 주제에 올릴 수 있는 최대 공개 게시물은 3개입니다!")
+                        
                         self.showToast("한 주제에 올릴 수 있는 공개 게시물의 수는 최대 3개입니다!")
                         
                         alertView.dismiss(animated: true, completion: nil)
@@ -422,7 +372,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         self.actInd.stopAnimating()
                         
                     }else{
-                        //print("파일 업로드를 실패하였습니다.")
+                        
                         self.showToast("게시물 업로드를 실패하였습니다.")
                         
                         alertView.dismiss(animated: true, completion: nil)
@@ -457,16 +407,13 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     func resizing(_ image: UIImage) -> Data?{
         
-        //        let imgData = UIImageJPEGRepresentation(image, 0.25)!
-        //
-        //        let resizedImage = UIImage(data:imgData)
+     
         
         let resizedWidthImage = image.resized(toWidth: 1080)
         
         let resizedData = UIImageJPEGRepresentation(resizedWidthImage!, 0.25)
         
-        //let resizedData = UIImageJPEGRepresentation((image.resized(withPercentage: 0.5))!, 0.25)
-        //UIImagePNGRepresentation((resizedImage?.resized(withPercentage: 0.5))!)
+        
         
         return resizedData
         

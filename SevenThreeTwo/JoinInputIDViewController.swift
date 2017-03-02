@@ -154,7 +154,7 @@ class JoinInputIDViewController: UIViewController,UITextFieldDelegate {
         }
         if segue.identifier == "movePrivate"
         {
-            print("here")
+            
         }
     }
     

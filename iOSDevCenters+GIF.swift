@@ -13,7 +13,7 @@ extension UIImage {
     
     public class func gifImageWithData(data: NSData) -> UIImage? {
         guard let source = CGImageSourceCreateWithData(data, nil) else {
-            print("image doesn't exist")
+            
             return nil
         }
         

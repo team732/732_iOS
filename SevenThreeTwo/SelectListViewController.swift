@@ -133,7 +133,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                 commentAlert(isMine: myComment[index.row-1],replyId: replyId[index.row-1],comment: comment[index.row])
             }
         } else {
-            print("Could not find index path")
+            
         }
     }
     

@@ -212,7 +212,7 @@ class ApiManager {
                         
                     }
                 case .failure(let encodingError):
-                    //print(encodingError)
+                    
                     completion(encodingError as! String)
                 }
         }
@@ -295,13 +295,11 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value{
                     let resp = JSON(json)
-                    //print("apimanager2-pastmissions")
-                    //print(resp)
+                    
                     var pastMission = [PastMission]()
                     let contents = resp["data"]["missions"]
                     
-                    //print("contentsCount : \(contents.count)")
-                    //missionsCount
+                    
                     for idx in 0..<contents.count {
                         
                         let content = PastMission(missionId: contents[idx]["missionId"].intValue, mission: contents[idx]["mission"]["text"].stringValue, missionType: contents[idx]["missionType"].intValue, missionDate: contents[idx]["missionDate"].stringValue)
@@ -330,7 +328,7 @@ class ApiManager {
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    print(resp)
+                    
                     completion(resp["meta"]["code"].intValue)
                 }
                 break
@@ -352,7 +350,7 @@ class ApiManager {
                     var hotPicCreatorArr : [String] = []
                     var hotPicDateArr : [String] = []
                     var hotPicContentIdArr : [Int] = []
-                    print(resp)
+                    
                     for idx in 0..<resp["data"]["contents"].count{
                         let hotPicUrl = resp["data"]["contents"][idx]["content"]["picture"].stringValue
                         let hotPicImg = UIImage(data: NSData(contentsOf: NSURL(string: hotPicUrl)! as URL)! as Data)!
@@ -387,19 +385,19 @@ class ApiManager {
     
     //isPublic
     func requestPicLock(completion : @escaping(Int)->Void){
-        print("here")
+        
         Alamofire.request(url, method: method,headers: header).responseJSON { (response) in
-            print(response.result)
+            
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    print(resp)
+                    
                     completion(resp["meta"]["code"].intValue)
                 }
                 break
             case .failure(_):
-                print("failure")
+                
                 break
             }
         }
@@ -464,7 +462,7 @@ class ApiManager {
                 }
                 break
             case .failure(_):
-                print("failure")
+                
                 break
             }
         }
@@ -485,12 +483,6 @@ class ApiManager {
             }
         }
     }
-    /*
-     사용 하는 컨트롤러에서
-     
-     apiManager.request() { (info) in
-     print(info) -> info 는 JSON 형식 (@escaping 옆 () 안에 String 을 넣어주면 info 는 String으로 반환 단, completion안에도 String으로 넣어줘야함. 즉 이곳에서 내가 원하는 값으로 반환 받는것
-     }
-     */
+    
     
 }

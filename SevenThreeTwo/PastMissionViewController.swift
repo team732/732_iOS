@@ -24,8 +24,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     let height = UIScreen.main.bounds.size.height
     
     var sampleImages:[UIImage] = [UIImage(named:"otter-1")!]
-    //var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션","2017년 1월 23일의 미션","2017년 1월 24일의 미션","2017년 1월 25일의 미션"]
-    //var sampleMissions:[String] = ["미션1","미션2","미션3","미션4","미션5","미션6"]
+   
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -36,21 +35,15 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     //for animation
     let back = UIButton()
-    //static var list : CGRect?
     let titleLabel = UILabel()
     
-    
-//    var lastOffsetY: CGFloat?
-//    var frameBack: CGRect?
-//    var frameTitle : CGRect?
-//    var frameList : CGRect?
-//    var frameCollectionView : CGRect?
+
     
     
     @IBOutlet weak var listView: UIView!
     var selectedIndex : Int = 0
     
-    //
+    
     var apiManager : ApiManager!
     let users = UserDefaults.standard
     var userToken : String!
@@ -70,26 +63,16 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //print("s=\(PastMissionViewController.selectedIndex)")
+        
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 21*heightRatio, left: 0, bottom: 30*heightRatio, right: 0)
-        //collectionView.layer.borderWidth = 1
-//        if(PastMissionViewController.selectedIndex == 1){
-//        PastMissionViewController.selectedIndex = 0
-//        }
-        
-        //print("pastmission")
-        //PastTextListViewController.container = self.listView
-        
-        //#
-        //self.collectionView.alpha = 1
-        //self.listView.alpha = 0
+
         setUi()
         setLoadingIndi()
-        //PastTextListViewController.list = self.listBtn
+      
         
         userToken = users.string(forKey: "token")
         
@@ -115,7 +98,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestPastMissions(missionsCount: { (missionsCount) in
             self.missionsCount = missionsCount
-            //print("로드미션안에서미션카운트\(missionsCount)")
+           
         }, pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
@@ -285,7 +268,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("pastmissionCount:\(pastMissions.count)")
+        
         return pastMissions.count
     } //  셀 개수
     
@@ -299,20 +282,12 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         cell.date.text = pastMissions[indexPath.row].missionDate!
         cell.mission.text = pastMissions[indexPath.row].mission
         
-        //        cell.mission.frame = CGRect(x: (cell.frame.origin.x+101*widthRatio), y: (cell.frame.origin.y+284*heightRatio), width: 174*widthRatio, height: 18*heightRatio)
-        //print(cell.frame.origin.x)
-        //print(cell.frame.origin.y)
-        //cell.mission.frame = CGRect(x: (cell.frame.origin.x-48), y: (cell.frame.origin.y+143*heightRatio), width: 263*widthRatio, height: 18*heightRatio)
-        //cell.mission.textAlignment = .center
+        
         
         
         drawLine(startX: cell.frame.origin.x+125*widthRatio, startY: cell.frame.origin.y+138*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.white)
         
-//        if indexPath.row == self.pastMissions.count - 2{
-//            //print("-2-2-2")
-//            let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
-//            loadMission(path: (paginationUrl.substring(from: startIndex)))
-//        }
+
 
 
         return cell
@@ -349,49 +324,6 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         performSegue(withIdentifier: "pastToDetail", sender: self)
     } // 셀 선택시
     
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        
-//        lastOffsetY = scrollView.contentOffset.y
-//        
-//        //print(lastOffsetY)
-//        
-//    }
-    //scrollview
-    
-//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-//        let hide = scrollView.contentOffset.y >= self.lastOffsetY!//-50
-//        
-//        if hide {
-//            closeInfoView()
-//        } else {
-//            openInfoView()
-//        }
-//    }
-//    //30 ,321, 137
-//    func closeInfoView() {
-//        UIView.animate(withDuration: 0.5, animations: {
-//            PastMissionViewController.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-//            self.listBtn.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-//            PastMissionViewController.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
-//            PastMissionViewController.titleLabel.addTextSpacing(spacing: -1)
-//            self.collectionView.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: self.view.frame.height - 64*self.heightRatio )
-//            
-//        })
-//        
-//        
-//    }
-//    
-//    func openInfoView() {
-//        UIView.animate(withDuration: 1.0, animations: {
-//            
-//            PastMissionViewController.back.frame = self.frameBack!
-//            self.listBtn.frame = self.frameList!
-//            PastMissionViewController.titleLabel.frame = self.frameTitle!
-//            self.collectionView.frame = CGRect(x: (0), y: (141*self.heightRatio), width: self.view.frame.width, height: self.view.frame.height  )
-//            //self.frameCollectionView!
-//            
-//        })
-//    }
     
     
 }

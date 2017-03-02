@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                 if granted == true{
-                    print("Allow")
+                    
                     UIApplication.shared.registerForRemoteNotifications()
                 }else{
-                    print("Don't Allow")
+                    
                 }
             }
             
@@ -64,21 +64,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("%@", userInfo)
+        
     }
     @objc fileprivate func tokenRefreshNotificaiton(notification: NSNotification) {
         let refreshedToken = FIRInstanceID.instanceID().token()!
         users.set(refreshedToken, forKey: "pushToken")
-        print("InstanceID token: \(refreshedToken)")
+        
         connectToFcm()
     }
     
     func connectToFcm() {
         FIRMessaging.messaging().connect { (error) in
             if (error != nil) {
-                print("Unable to connect with FCM. \(error)")
+                
             } else {
-                print("Connected to FCM.")
+                
             }
         }
     }

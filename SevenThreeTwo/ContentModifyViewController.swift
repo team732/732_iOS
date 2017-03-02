@@ -120,7 +120,7 @@ class ContentModifyViewController: UIViewController , UITextViewDelegate{
     
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
-        print(textView.text.characters.count)
+        
         if(textView.text.characters.count < 141){
             
         }else{
