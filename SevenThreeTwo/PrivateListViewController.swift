@@ -84,7 +84,7 @@ class PrivateListViewController: UICollectionViewController {
     }
     
     func reloadPrivateList(){
-        print("reload")
+        
         self.photos.removeAll()
         if isPublicSeg == 0 {
             self.loadPic(path: "/users/me/contents?limit=10")

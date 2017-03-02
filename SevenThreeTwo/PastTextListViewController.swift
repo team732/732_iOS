@@ -64,22 +64,14 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         //frameBack = back.frame
         
         viewSetUp()
-        //print("textlist")
+        
         
         userToken = users.string(forKey: "token")
         
         loadMission(path: "/missions?limit=10")
         
         
-        //        frameTitle = titleLabel.frame
-        //        frameList = list.frame
-        //        frameCollectionView = collectionView.frame
         
-        //        mission.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: self.view.frame.height - 64*self.heightRatio )
-        //        date.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: self.view.frame.height - 64*self.heightRatio )
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     func loadMission(path : String){
@@ -95,25 +87,9 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
             self.collectionView?.reloadData()
         }
     }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        print(PastTextListViewController.container.frame)
-    //        //PastTextListViewController.container.addSubview(self.collectionView)
-    //    }
+    
     
     func viewSetUp(){
-        
-        //        collectionView.frame.origin.x = 0*widthRatio
-        //        collectionView.frame.origin.y = 128*heightRatio
-        //collectionView.frame.width = UIScreen.main.bounds.size.width
-        //collectionView.frame.height = UIScreen.main.bounds.size.height
-        
-        
-        //        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        //        flow.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        //        flow.itemSize = CGSize(width: 335*widthRatio , height: 98*heightRatio)
-        //        flow.minimumInteritemSpacing = 3*widthRatio
-        //        flow.minimumLineSpacing = 20*heightRatio
-        
         
         
         self.collectionView.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
@@ -143,7 +119,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("pastTextListCount:\(pastMissions.count)")
+        
         return pastMissions.count
     } //  셀 개수
     
@@ -192,56 +168,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         performSegue(withIdentifier: "pastListToDetail", sender: self)
         //closeInfoView()
     } // 셀 선택시
-    
-    //    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    //
-    //        lastOffsetY = scrollView.contentOffset.y
-    //
-    //        //print(lastOffsetY)
-    //
-    //    }
-    //scrollview
-    
-    //    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-    //        let hide = scrollView.contentOffset.y >= self.lastOffsetY!//-50
-    //
-    //        if hide {
-    //            closeInfoView()
-    //        } else {
-    //            openInfoView()
-    //        }
-    //    }
-    //    //30 ,321, 137
-    //    func closeInfoView() {
-    //        UIView.animate(withDuration: 0.5, animations: {
-    //            self.back.frame = CGRect(x:22*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-    //            PastTextListViewController.list.frame = CGRect(x:316*self.widthRatio, y:33*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-    //            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (33*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
-    //            self.titleLabel.addTextSpacing(spacing: -1)
-    //            PastTextListViewController.container.frame = CGRect(x: (0), y: (64*self.heightRatio), width: self.view.frame.width, height: 603*self.heightRatio )
-    //            //self.view.frame.height - 64*self.heightRatio
-    //            //526*self.heightRatio
-    //
-    //        })
-    //
-    //
-    //    }
-    //
-    //    func openInfoView() {
-    //        UIView.animate(withDuration: 1.0, animations: {
-    //
-    //            self.back.frame = CGRect(x:30*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-    //            PastTextListViewController.list.frame = CGRect(x:321*self.widthRatio, y:73*self.heightRatio, width:24*self.widthRatio, height: 24*self.heightRatio)
-    //            self.titleLabel.frame = CGRect(x: (137*self.widthRatio), y: (73*self.heightRatio), width: 101*self.widthRatio, height: 22*self.heightRatio)
-    //
-    //
-    //
-    //            PastTextListViewController.container.frame = CGRect(x: (0), y: (141*self.heightRatio), width: self.view.frame.width, height: 526*self.heightRatio)
-    //            //self.frameCollectionView!
-    //
-    //        })
-    //    }
-    
+        
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

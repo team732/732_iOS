@@ -384,14 +384,12 @@ extension FSCameraView {
     @objc func focus(_ recognizer: UITapGestureRecognizer) {
         
         
-        print("focus1!!!!!!")
+        
         let point = recognizer.location(in: self)
         let viewsize = self.bounds.size
         let newPoint = CGPoint(x: point.y/viewsize.height , y: 1.0-point.x/viewsize.width)
         
-        print(point)
-        print(viewsize)
-        print(newPoint)
+        
         
         
         let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -407,13 +405,13 @@ extension FSCameraView {
         
         if device?.isFocusModeSupported(AVCaptureFocusMode.autoFocus) == true {
 
-            print("aaaaa")
+            
             device?.focusMode = AVCaptureFocusMode.autoFocus
             device?.focusPointOfInterest = newPoint
         }
 
         if device?.isExposureModeSupported(AVCaptureExposureMode.continuousAutoExposure) == true {
-            print("bbbbb")
+            
             device?.exposureMode = AVCaptureExposureMode.continuousAutoExposure
             device?.exposurePointOfInterest = newPoint
         }

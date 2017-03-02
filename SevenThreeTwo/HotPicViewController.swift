@@ -91,7 +91,7 @@ class HotPicViewController: UIViewController {
 //        slideshow.setImageInputs(localSource)
         SelectListViewController.receivedCid = self.hotPicCid[currentPage]
         SelectListViewController.receivedCimg = self.hotPicImg[currentPage]
-        print(hotPicArr[currentPage])
+        
         SelectListViewController.receivedRange = 0
         self.performSegue(withIdentifier: "hotToSelect", sender: self)
         

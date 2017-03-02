@@ -65,7 +65,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         heightRatio = userDevice.userDeviceHeight()
         widthRatio = userDevice.userDeviceWidth()
         
-        print("받아온 미션 아이디 \(receivedMissionId)")
+        
         setLoadingIndi()
 
         setUpUI()
@@ -473,7 +473,7 @@ extension PastMissionDetailViewController {
         //MARK: 추가로 missionDate랑 missionText보내야됨.
         
         self.present(selectVC, animated: false, completion: nil)
-        //print(indexPath.row)
+        
     }
     
 }
