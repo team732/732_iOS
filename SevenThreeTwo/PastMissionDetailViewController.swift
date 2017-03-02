@@ -151,7 +151,6 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     
     // 페이지 네이션, 처음 로드 등 ..
     func loadPic(path : String){
-        self.addView.isHidden = false
         userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
@@ -419,7 +418,6 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         loadingIndi.center = CGPoint(x: UIScreen.main.bounds.width/2, y: addView.frame.height / 2)
         addView.addSubview(loadingIndi)
         view.addSubview(addView)
-        loadingIndi.startAnimating()
         addView.isHidden = true
     }
 
@@ -457,6 +455,8 @@ extension PastMissionDetailViewController {
         if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadPic(path: (paginationUrl.substring(from: startIndex)))
+            loadingIndi.startAnimating()
+            self.addView.isHidden = false
         }else{
             self.addView.isHidden = true
         }
