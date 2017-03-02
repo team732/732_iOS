@@ -77,7 +77,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     static var receivedCid : Int = 0
     static var receivedCimg : UIImage?
     static var receivedRange : Int = 0 // 0 이면 공개된 게시물 1이면 내 게시물
-    
+    var isContentDeleted = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +102,12 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-
+        if isContentDeleted == 1 {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPast"), object: nil)
+            isContentDeleted = 0
+        }
         
     }
     
@@ -502,6 +507,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
                     }else {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
                     }
+                    self.isContentDeleted = 1
                     self.showToast("삭제되었습니다!")
                 }else{
                     self.completeAlert(title: "앗! 다시 시도해주세요")
