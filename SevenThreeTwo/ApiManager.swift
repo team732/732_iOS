@@ -271,13 +271,16 @@ class ApiManager {
     }
     
     //오늘의 미션
-    func requestMissions(missionText: @escaping (String)->Void,missionId: @escaping (Int)->Void){
+    func requestMissions(mission: @escaping ([String])->Void,missionId: @escaping (Int)->Void){
         Alamofire.request(url, method: method, parameters: parameters,encoding: encode, headers: header).responseJSON { response in
             switch(response.result){
             case .success(_):
                 if let json = response.result.value {
                     let resp = JSON(json)
-                    missionText(resp["data"]["mission"]["mission"]["text"].stringValue)
+                    
+                    let missionArr = [resp["data"]["mission"]["mission"]["text"].stringValue,resp["data"]["mission"]["mission"]["picture"].stringValue]
+                    print(missionArr)
+                    mission(missionArr)
                     missionId(resp["data"]["mission"]["missionId"].intValue)
                 }
                 break

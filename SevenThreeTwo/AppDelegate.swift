@@ -25,8 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userToken = users.string(forKey: "token")
         if userToken != nil{
             apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":userToken])
-            apiManager.requestMissions(missionText: { (missionText) in
-                MainController.missionText = missionText
+            apiManager.requestMissions(mission: { (mission) in
+                MainController.missionText = mission[0]
+                MainController.missionImg = mission[1]
             }) { (missionId) in
                 MainController.missionId = missionId
             }
@@ -113,9 +114,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if isToken != "OPEN_LOGINVC" {
                     self.users.set(isToken, forKey: "token")
                     self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isToken])
-                    self.apiManager.requestMissions(missionText: { (missionText) in
+                    self.apiManager.requestMissions(mission: { (mission) in
                         MainController.reEnterMain = 1
-                        MainController.missionText = missionText
+                        MainController.missionText = mission[0]
+                        MainController.missionImg = mission[1]
                     }) { (missionId) in
                         MainController.missionId = missionId
                     }

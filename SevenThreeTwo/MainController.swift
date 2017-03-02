@@ -18,14 +18,22 @@ class MainController: UIViewController, FusumaDelegate {
     
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
-    var subImage: UIImageView!
-    var subOriImage : UIImage!
+    static var subImage: UIImageView!
+    static var subOriImage : UIImage!
     static var subLabel: UILabel!
     static var missionId : Int = 0
     static var missionText : String = ""{
         willSet(newValue){
             if reEnterMain == 1 {
                 self.subLabel.text = newValue
+            }
+        }
+    }
+    static var missionImg : String = ""{
+        willSet(newValue){
+            if reEnterMain == 1 {
+                MainController.subOriImage = UIImage(data: NSData(contentsOf: NSURL(string: newValue)! as URL)! as Data)!
+                MainController.subImage.image = MainController.subOriImage
             }
         }
     }
@@ -188,7 +196,7 @@ class MainController: UIViewController, FusumaDelegate {
         showBtnExtension.addGestureRecognizer(showBtnRecognizer)
         self.view.addSubview(showBtnExtension)
         subjectImage()
-        
+        subjectText()
         directionImage = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         directionImage.image = UIImage(named: "guide_page")
         directionImage.isHidden = true
@@ -245,40 +253,42 @@ class MainController: UIViewController, FusumaDelegate {
     
     func subjectImage(){
         
-        subOriImage = UIImage(named: "subimage")
-        let cropImage = cropToBounds(image: UIImage(named: "subimage")!, width: 277*widthRatio, height: 277*heightRatio)
-        subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
-        MainController.subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
-        subImage.image = cropImage
+        MainController.subImage = UIImageView(frame: CGRect(x: (49*widthRatio), y: (192*heightRatio), width: 277*widthRatio, height: 277*heightRatio))
+        
+        MainController.subOriImage = UIImage(data: NSData(contentsOf: NSURL(string: MainController.missionImg)! as URL)! as Data)!
+        let cropImage = cropToBounds(image: MainController.subOriImage, width: 277, height: 277)
+    
+        MainController.subImage.image = cropImage
         
         
-        subImage.layer.masksToBounds = false
-        subImage.layer.cornerRadius = subImage.frame.height/2
-        subImage.clipsToBounds = true
+        MainController.subImage.layer.masksToBounds = false
+        MainController.subImage.layer.cornerRadius = MainController.subImage.frame.height/2
+        MainController.subImage.clipsToBounds = true
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(imageTapped(img:)))
-        subImage.isUserInteractionEnabled = true
-        subImage.addGestureRecognizer(tapGestureRecognizer)
+        MainController.subImage.isUserInteractionEnabled = true
+        MainController.subImage.addGestureRecognizer(tapGestureRecognizer)
  
         let coverLayer = CALayer()
-        coverLayer.frame = subImage.bounds;
+        coverLayer.frame = MainController.subImage.bounds;
         coverLayer.backgroundColor = UIColor.black.cgColor
         coverLayer.opacity = 0.6
-        subImage.layer.addSublayer(coverLayer)
+        MainController.subImage.layer.addSublayer(coverLayer)
         
         
-        self.view.addSubview(subImage)
+        self.view.addSubview(MainController.subImage)
         
-        
+    }
+    
+    func subjectText(){
         //서버에서 주제 던져서 세팅
-        
+        MainController.subLabel = UILabel(frame: CGRect(x: (68*widthRatio), y: (290*heightRatio), width: 240*widthRatio, height: 90*heightRatio))
         MainController.subLabel.text = MainController.missionText
         MainController.subLabel.numberOfLines = 0
         MainController.subLabel.textColor = UIColor.white
         MainController.subLabel.textAlignment = .center
         MainController.subLabel.font = UIFont(name: "Arita-dotum-SemiBold_OTF", size: 22*widthRatio)
-    
-        self.view.addSubview(MainController.subLabel)
         
+        self.view.addSubview(MainController.subLabel)
     }
     
     
@@ -315,8 +325,8 @@ class MainController: UIViewController, FusumaDelegate {
         
         var posX: CGFloat = 0.0
         var posY: CGFloat = 0.0
-        var cgwidth: CGFloat = width
-        var cgheight: CGFloat = height
+        var cgwidth: CGFloat = width*widthRatio
+        var cgheight: CGFloat = height*heightRatio
         
         // See what size is longer and create the center off of that
         if contextSize.width > contextSize.height {
@@ -354,7 +364,7 @@ class MainController: UIViewController, FusumaDelegate {
         else if segue.identifier == "mainToDetail"
         {
             let destination = segue.destination as! DetailMissionViewController
-            destination.receivedImg = self.subOriImage
+            destination.receivedImg = MainController.subOriImage
             destination.receivedLbl = MainController.subLabel
         }
     }
