@@ -51,7 +51,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     //loading
     var addView : UIView!
     var loadingIndi : UIActivityIndicatorView!
-    
+        
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
         super.init(collectionViewLayout: layout)
@@ -74,6 +74,8 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPast"), object: nil)
         
         setRefreshControl()
         
@@ -332,6 +334,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         fusumaTintColor = UIColor.darkGray
         fusumaBackgroundColor = UIColor.white
         //
+        MainController.isPastCameraClicked = 1
         self.present(fusuma, animated: false, completion: nil)
 
         

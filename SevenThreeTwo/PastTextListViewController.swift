@@ -19,26 +19,11 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
     let width = UIScreen.main.bounds.size.width
     let height = UIScreen.main.bounds.size.height
     
-    //var sampleImages:[UIImage] = [UIImage(named:"otter-1")!,UIImage(named:"otter-2")!,UIImage(named:"otter-3")!,UIImage(named:"otter-4")!,UIImage(named:"otter-5")!,UIImage(named:"otter-6")!]
-    //var sampleDates:[String] = ["2017년 1월 20일의 미션","2017년 1월 21일의 미션","2017년 1월 22일의 미션","2017년 1월 23일의 미션","2017년 1월 24일의 미션","2017년 1월 25일의 미션","2017년 1월 26일의 미션","2017년 1월 27일의 미션","2017년 1월 28일의 미션","2017년 1월 29일의 미션","2017년 1월 30일의 미션","2017년 1월 31일의 미션"]
-    //var sampleMissions:[String] = ["미션1","미션2","미션3","미션4","미션5","미션6","미션7","미션8","미션9","미션10","미션11","미션12"]
+   
     
     @IBOutlet var collectionView: UICollectionView!
     
-    //for animation
-    //let back = PastMissionViewController.back
-    //let list = PastMissionViewController.list
     
-    //var titleLabel = PastMissionViewController.titleLabel
-    
-    
-    //var lastOffsetY: CGFloat?
-    //    var frameBack: CGRect?
-    //    var frameTitle : CGRect?
-    //    var frameList : CGRect?
-    //    var frameCollectionView : CGRect?
-    //static var container : UIView!
-    //static var list : UIButton!
     
     //
     var apiManager : ApiManager!
@@ -82,7 +67,7 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
             for i in 0..<contentMission.count{
-                self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate))
+                self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate, missionPic : contentMission[i].missionPic))
             }
             self.collectionView?.reloadData()
         }

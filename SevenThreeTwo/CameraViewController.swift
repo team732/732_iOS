@@ -70,7 +70,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     var emojiFlag : Int = 0   // 0 처음에 들어왔을 때 /1 이모지 다음으로 들어왔을 때
     
     var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
-
+    
     //var imageWidth : CGFloat?
     //var imageHeight : CGFloat?
     
@@ -105,7 +105,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         backBtnExtension = UIView(frame: CGRect(x: 27*widthRatio, y: 57*heightRatio, width: 30*widthRatio, height: 30*heightRatio))
         backBtnExtension.backgroundColor = UIColor.clear
-      
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(closeBtn(_:)))
         backBtnExtension.isUserInteractionEnabled = true
         backBtnExtension.addGestureRecognizer(tapGestureRecognizer)
@@ -124,7 +124,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         inputText.backgroundColor = UIColor.clear
         inputText.textColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1.0)
         inputText.text = placeHolderText
-                NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -169,7 +169,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 self.emojiFlag = 1
                 
             }
-              
+                
             else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 0 {
                 
                 
@@ -312,10 +312,15 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     if result == "0"{
                         
                         
-                       
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil) 
-                     
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPrivate"), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
+                        
+                        if MainController.isPastCameraClicked == 1 {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPast"), object: nil)
+                            MainController.isPastCameraClicked = 0
+                        }
+                        
                         alertView.dismiss(animated: true, completion: nil)
                         self.dismiss(animated: true, completion: nil)
                         self.actInd.stopAnimating()
@@ -325,7 +330,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         self.showToast("하나의 잠상에 공개할 수 있는 게시물의 수는\n최대 3개입니다!")
                         
                         alertView.dismiss(animated: true, completion: nil)
-                       
+                        
                         self.actInd.stopAnimating()
                         
                     }else{
@@ -339,7 +344,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                     
                     
                     
-                 
+                    
                 })
                 
             })
@@ -347,11 +352,11 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             let noShareAction = UIAlertAction(title: "나만보기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 
                 self.actInd.startAnimating()
-               
+                
                 self.apiManager.requestUpload(imageData: self.resizing(self.receivedImg)!, text: self.inputText.text, share:false, completion: { (result) in
                     
                     
-                   
+                    
                     if result == "0"{
                         
                         
@@ -384,7 +389,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             })
             
             let cancelAction = UIAlertAction(title: "취소", style: .cancel) { (_) in
-            
+                
                 self.inputText.text = self.placeHolderText
             }
             
@@ -407,7 +412,7 @@ class CameraViewController: UIViewController,UITextViewDelegate {
     
     func resizing(_ image: UIImage) -> Data?{
         
-     
+        
         
         let resizedWidthImage = image.resized(toWidth: 1080)
         
