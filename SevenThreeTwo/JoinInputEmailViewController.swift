@@ -211,8 +211,9 @@ class JoinInputEmailViewController: UIViewController,UITextFieldDelegate {
             CheckTokenViewController.snapContainer = snapContainer
             
             self.apiManager = ApiManager(path: "/missions/today", method: .get, header: ["authorization":isJoin["data"]["token"].stringValue])
-            self.apiManager.requestMissions(missionText: { (missionText) in
-                MainController.missionText = missionText
+            self.apiManager.requestMissions(mission: { (mission) in
+                MainController.missionText = mission[0]
+                MainController.missionImg = mission[1]
             }) { (missionId) in
                 MainController.missionId = missionId
                 let fcmToken : String = userToken.string(forKey: "pushToken")!
