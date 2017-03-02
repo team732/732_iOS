@@ -145,7 +145,6 @@ class PublicListViewController:  UICollectionViewController{
     
     // 페이지 네이션, 처음 로드 등 ..
     func loadPic(path : String){
-        self.addView.isHidden = false
         userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
@@ -360,6 +359,7 @@ extension PublicListViewController {
         if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadPic(path: (paginationUrl.substring(from: startIndex)))
+            self.addView.isHidden = false
         }else{
             self.addView.isHidden = true
         }

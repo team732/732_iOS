@@ -38,7 +38,7 @@ class TopMenuViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
         
-        let copyRightImg = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - (32*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 11*heightRatio))
+        let copyRightImg = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - (32*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 12*heightRatio))
         copyRightImg.image = UIImage(named: "copyright")
         //copyRightImg.sizeToFit()
         self.view.addSubview(copyRightImg)
@@ -52,8 +52,8 @@ class TopMenuViewController: UIViewController {
 
         
         
-        drawRectangle(startX:47, startY: 195, width: 282, height:339)
-        drawRectangle(startX: 52, startY: 200, width: 272, height: 329)
+        drawRectangle(startX:48, startY: 197, width: 279, height:335)
+        drawRectangle(startX: 52, startY: 201, width: 271, height: 327)
 
         
         let subscribeBtn = UIButton(frame: CGRect(x: 136*widthRatio , y: 258*heightRatio, width: 103*widthRatio, height: 18*heightRatio))

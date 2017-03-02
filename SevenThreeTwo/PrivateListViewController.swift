@@ -94,7 +94,6 @@ class PrivateListViewController: UICollectionViewController {
     }
     
     func loadPic(path : String){
-        self.addView.isHidden = false
         userToken = users.string(forKey: "token")
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
@@ -310,6 +309,7 @@ extension PrivateListViewController {
         if indexPath.row < contentsCount - 1 , indexPath.row == self.photos.count - 1{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadPic(path: (paginationUrl.substring(from: startIndex)))
+            self.addView.isHidden = false
         }else{
             self.addView.isHidden = true
         }
