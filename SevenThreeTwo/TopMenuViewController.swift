@@ -12,7 +12,7 @@ class TopMenuViewController: UIViewController {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
     
-    // test에 내꺼 넣고 user은 저렇게 가도 된다
+    
     
     var heightRatio: CGFloat = 0.0
     var widthRatio: CGFloat = 0.0
@@ -40,7 +40,7 @@ class TopMenuViewController: UIViewController {
         
         let copyRightImg = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width/2 - (32*widthRatio), y: (113*heightRatio), width: 64*widthRatio, height: 12*heightRatio))
         copyRightImg.image = UIImage(named: "copyright")
-        //copyRightImg.sizeToFit()
+        
         self.view.addSubview(copyRightImg)
         
         let copyRightExtension = UIView(frame: CGRect(x: (UIScreen.main.bounds.width/2 - (42*widthRatio)), y: 103*heightRatio, width: 84*widthRatio, height: 31*heightRatio))
@@ -84,13 +84,13 @@ class TopMenuViewController: UIViewController {
         
         let downBtn = UIButton(frame: CGRect(x: (UIScreen.main.bounds.width/2 - (12*widthRatio)), y: (600*heightRatio), width: 24*widthRatio, height: 24*heightRatio))
         downBtn.setImage(UIImage(named: "godown"), for: .normal)
-        //downBtn.sizeToFit()
+        
         downBtn.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
         self.view.addSubview(downBtn)
         
         let moveExtension = UIView(frame: CGRect(x: (UIScreen.main.bounds.width/2 - (17*widthRatio)), y: 595*heightRatio, width: 34*widthRatio, height: 34*heightRatio))
         moveExtension.backgroundColor = UIColor.clear
-        //moveExtension.layer.borderWidth = 1
+        
         let moveRecog = UITapGestureRecognizer(target:self, action:#selector(moveToMainVC))
         moveExtension.isUserInteractionEnabled = true
         moveExtension.addGestureRecognizer(moveRecog)
@@ -100,7 +100,7 @@ class TopMenuViewController: UIViewController {
     }
     
     func subscribeButtonAction(){
-        basicAlert(title: "준비중입니다!")
+        basicAlert(title: "준비중입니다!",message:"")
     }
     
     func pastMissionButtonAction(){
@@ -108,7 +108,8 @@ class TopMenuViewController: UIViewController {
     }
     
     func hotPicButtonAction(){
-        performSegue(withIdentifier: "pastToHotpic", sender: self)
+        basicAlert(title: "준비중입니다!",message:"해당 기능은 4월 1일 이후에 사용 가능합니다.")
+        //performSegue(withIdentifier: "pastToHotpic", sender: self)
     }
     
     func aboutUsButtonAction(){
@@ -140,8 +141,8 @@ class TopMenuViewController: UIViewController {
         CheckTokenViewController.snapContainer.moveToptoMiddle()
     }
     
-    func basicAlert(title: String){
-        let alertView = UIAlertController(title: title, message: "", preferredStyle: .alert)
+    func basicAlert(title: String,message: String){
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 alertView.dismiss(animated: true, completion: nil)

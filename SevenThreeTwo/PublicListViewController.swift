@@ -68,7 +68,7 @@ class PublicListViewController:  UICollectionViewController{
         setLoadingIndi()
         setUpUI()
         loadPic(path: "/missions/\(MainController.missionId)/contents?limit=10")
-        NotificationCenter.default.addObserver(self, selector: #selector(PublicListViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+
         
         setRefreshControl()
         setIndicator()
