@@ -93,6 +93,7 @@ class CommentViewController: UIViewController,UITextViewDelegate {
         commentTextView.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         commentTextView.delegate = self
         commentTextView.returnKeyType = UIReturnKeyType.done
+        commentTextView.becomeFirstResponder()
         commentView.addSubview(commentTextView)
         
         

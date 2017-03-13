@@ -124,7 +124,7 @@ class ContentModifyViewController: UIViewController , UITextViewDelegate{
         if(textView.text.characters.count < 141){
             
         }else{
-            textviewRangeAlert(overMsg: true,message: "긴 댓글은 좋지 않습니다.")
+            textviewRangeAlert(overMsg: true,message: "긴 설명은 좋지 않습니다.")
         }
     }
     

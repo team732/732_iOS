@@ -123,14 +123,13 @@ class PublicListViewController:  UICollectionViewController{
     
     // 당겼을 때 리프레쉬
     func pullRefresh(){
-        
+        userToken = users.string(forKey: "token")
         var path : String!
         if refreshSeg == 0{
             path = "/missions/\(MainController.missionId)/contents?limit=10"
         }else {
             path = "/missions/\(MainController.missionId)/contents?limit=10&sort=-like_count"
         }
-        
         
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestContents(pagination: { (paginationUrl) in
