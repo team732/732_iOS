@@ -73,7 +73,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         setUpUI()
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+      
         
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPast"), object: nil)
         
@@ -132,7 +132,7 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     
     // 당겼을 때 리프레쉬
     func pullRefresh(){
-        
+        userToken = users.string(forKey: "token")
         var path : String!
         if refreshSeg == 0{
             path = "/missions/\(receivedMissionId)/contents?limit=10"

@@ -186,7 +186,7 @@ class SelectListViewController: UIViewController,UITableViewDelegate,UITableView
             self.likeCount = infoContent.likeCount!
             self.myTableView.reloadData()
             self.myContent = infoContent.isMine!
-            if SelectListViewController.receivedRange == 0 {
+            if SelectListViewController.receivedRange == 0 || SelectListViewController.receivedRange == 2{
                 self.dateLabel.text = infoContent.missionDate! + "의 잠상"
             }else {
                 self.dateLabel.text = infoContent.missionDate! + "의 잠상"
