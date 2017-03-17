@@ -263,7 +263,8 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource{
             break
         }
         
-       
+        self.settingTableView.deselectRow(at: indexPath, animated: true)
+
     }
     
     
