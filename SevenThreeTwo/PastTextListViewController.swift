@@ -138,8 +138,12 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         
         drawLine(startX: cell.frame.origin.x+150*widthRatio, startY: cell.frame.origin.y+44*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.black)
         
+        //print("카운트 : \(self.missionsCount!)")
+        //print("indx : \(indexPath.row)")
+        //print(self.pastMissions.count)
         
-        if indexPath.row < self.missionsCount - 7 , indexPath.row == self.pastMissions.count - 7{
+        if indexPath.row < self.missionsCount - 2 , indexPath.row == self.pastMissions.count - 1{
+            //print("bb")
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadMission(path: (paginationUrl.substring(from: startIndex)))
         }

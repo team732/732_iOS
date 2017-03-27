@@ -270,11 +270,13 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row > self.missionsCount! - 3 {
+        //항상 새로부르면 3개씩 부르기 때문에 
+        if indexPath.row >= self.missionsCount! - 4 {
             self.addView.isHidden = true
-        }else if indexPath.row < self.missionsCount! - 3 , indexPath.row == self.pastMissions.count - 3{
+        }else if indexPath.row < self.missionsCount! - 4 , indexPath.row == self.pastMissions.count - 1{
             let startIndex = paginationUrl.index(paginationUrl.startIndex, offsetBy: 20)
             loadMission(path: (paginationUrl.substring(from: startIndex)))
+            self.addView.isHidden = false
         }
     }
     
