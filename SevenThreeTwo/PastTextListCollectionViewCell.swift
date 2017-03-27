@@ -33,9 +33,9 @@ class PastTextListCollectionViewCell: UICollectionViewCell {
         date.textAlignment = .center
         
         
-        mission.frame = CGRect(x: (0*widthRatio), y: (60*self.heightRatio), width: 335*widthRatio, height: 16*heightRatio )
         mission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
         mission.textAlignment = .center
+        mission.numberOfLines = 0
     }
     
 }

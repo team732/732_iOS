@@ -119,6 +119,21 @@ class PastTextListViewController: UIViewController, UICollectionViewDataSource, 
         cell.date.text = pastMissions[indexPath.row].missionDate!
         cell.mission.text = pastMissions[indexPath.row].mission
         
+        //cell에서 하거나 if else 둘다 안사용하면 떨림현상 발생
+        var count : Int = 0
+        for character in (cell.mission.text?.characters)! {
+            if character == "\n"{
+                count += 1
+            }
+        }
+        if count == 0{
+            cell.mission.frame = CGRect(x: (0*widthRatio), y: (60*self.heightRatio), width: 335*widthRatio, height: 16*heightRatio )
+        }else{
+            cell.mission.frame = CGRect(x: (0*widthRatio), y: (60*self.heightRatio), width: 335*widthRatio, height: 32*heightRatio )
+        }
+       
+        //
+        
         cell.layer.borderWidth = 1
         
         drawLine(startX: cell.frame.origin.x+150*widthRatio, startY: cell.frame.origin.y+44*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.black)

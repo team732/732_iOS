@@ -245,8 +245,19 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         cell.image.image = pastMissions[indexPath.row].missionPic
         cell.date.text = pastMissions[indexPath.row].missionDate!
         cell.mission.text = pastMissions[indexPath.row].mission
-        
-        
+        //
+        var count : Int = 0
+        for character in (cell.mission.text?.characters)! {
+            if character == "\n"{
+                count += 1
+            }
+        }
+        if count == 0{
+            cell.mission.frame = CGRect(x: (11*widthRatio), y: (154*self.heightRatio), width: 263*widthRatio, height: 18*heightRatio )
+        }else{
+            cell.mission.frame = CGRect(x: (11*widthRatio), y: (154*self.heightRatio), width: 263*widthRatio, height: 36*heightRatio )
+        }
+        //
         
         
         drawLine(startX: cell.frame.origin.x+125*widthRatio, startY: cell.frame.origin.y+138*heightRatio, width: 36*widthRatio, height: 1*heightRatio, color: UIColor.white)

@@ -34,10 +34,9 @@ class PastMissionCollectionViewCell: UICollectionViewCell {
         date.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 11*widthRatio)
         date.textAlignment = .center
         
-        
-        mission.frame = CGRect(x: (11*widthRatio), y: (154*self.heightRatio), width: 263*widthRatio, height: 18*heightRatio )
         mission.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 18*widthRatio)
         mission.textAlignment = .center
+        mission.numberOfLines = 0
         
         self.makeItCircle()
         
