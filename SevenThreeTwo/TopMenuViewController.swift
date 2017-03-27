@@ -108,8 +108,8 @@ class TopMenuViewController: UIViewController {
     }
     
     func hotPicButtonAction(){
-        basicAlert(title: "준비중입니다!",message:"해당 기능은 4월 1일 이후에 사용 가능합니다.")
-        //performSegue(withIdentifier: "pastToHotpic", sender: self)
+        //basicAlert(title: "준비중입니다!",message:"해당 기능은 4월 1일 이후에 사용 가능합니다.")
+        performSegue(withIdentifier: "pastToHotpic", sender: self)
     }
     
     func aboutUsButtonAction(){

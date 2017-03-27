@@ -45,6 +45,9 @@ class PrivateListViewController: UICollectionViewController {
     var loadingIndi : UIActivityIndicatorView!
 
     var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
+    
+    //게시물이 없을 때
+    var photosEmptyLabel : UILabel!
 
     
     required init(coder aDecoder: NSCoder) {
@@ -97,6 +100,12 @@ class PrivateListViewController: UICollectionViewController {
     func refreshAfterDelete(){
         self.photos.remove(at: SelectListViewController.receivedIndex)
         self.collectionView?.reloadData()
+        
+        if self.photos.count == 0{
+            self.photosEmptyLabel.isHidden = false
+        }else{
+            self.photosEmptyLabel.isHidden = true
+        }
     }
     
     func loadPic(path : String){
@@ -113,6 +122,12 @@ class PrivateListViewController: UICollectionViewController {
             self.collectionView?.collectionViewLayout.invalidateLayout()
             self.collectionView?.reloadData()
             self.actInd.stopAnimating()
+            
+            if self.photos.count == 0{
+                self.photosEmptyLabel.isHidden = false
+            }else{
+                self.photosEmptyLabel.isHidden = true
+            }
         }
     }
     
@@ -218,7 +233,12 @@ class PrivateListViewController: UICollectionViewController {
         
         drawLine(startX: -3, startY: 328, width: 375, height: 1, border: false, color: UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1))
         
-        
+        photosEmptyLabel = UILabel(frame: CGRect(x: 0*widthRatio, y: 400*heightRatio, width: 375*widthRatio, height: 20.5*heightRatio))
+        photosEmptyLabel.text = "당신의 '시선'을 표현해주세요."
+        photosEmptyLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 22/255, alpha: 1)
+        photosEmptyLabel.textAlignment = .center
+        photosEmptyLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 16*widthRatio)
+        collectionView?.addSubview(photosEmptyLabel)
         
         // Register cell identifier
         self.collectionView?.register(PhotoCaptionCell.self,
