@@ -39,7 +39,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             center.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
                 if granted == true{
                     
-                    UIApplication.shared.registerForRemoteNotifications()
+                    if self.users.integer(forKey: "pushCheck") == 0{
+                        
+                        UIApplication.shared.registerForRemoteNotifications()
+                        self.users.set(1, forKey: "pushCheck")
+                        
+                    }else{
+                        print("not call register!!")
+                    }
+                    
+                    
                 }else{
                     
                 }
