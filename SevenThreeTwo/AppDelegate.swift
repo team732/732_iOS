@@ -44,8 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         UIApplication.shared.registerForRemoteNotifications()
                         self.users.set(1, forKey: "pushCheck")
                         
-                    }else{
-                        print("not call register!!")
                     }
                     
                     
@@ -55,11 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
         } else {
-            // Fallback on earlier version
             let notificationSettings = UIUserNotificationSettings(
                 types: [.badge, .alert, .sound], categories: nil)
             application.registerUserNotificationSettings(notificationSettings)
-            
         }
         
         
@@ -77,30 +73,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     @objc fileprivate func tokenRefreshNotificaiton(notification: NSNotification) {
-        let refreshedToken = FIRInstanceID.instanceID().token()!
-        users.set(refreshedToken, forKey: "pushToken")
+        
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            users.set(refreshedToken, forKey: "pushToken")
+        }
         
         connectToFcm()
     }
     
+
     func connectToFcm() {
+        
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return
+        }
+        
+        
+        FIRMessaging.messaging().disconnect()
+        
         FIRMessaging.messaging().connect { (error) in
-            if (error != nil) {
-                
-            } else {
-                
-            }
+            
         }
     }
-    
     
     fileprivate func firebaseDisconnect(){
         FIRMessaging.messaging().disconnect()
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .sandbox)
-        //FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .prod)
+        
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: .unknown)
     }
     

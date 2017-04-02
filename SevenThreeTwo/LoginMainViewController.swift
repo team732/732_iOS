@@ -153,15 +153,24 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                     MainController.missionImg = mission[1]
                 }) { (missionId) in
                     MainController.missionId = missionId
-                    let fcmToken : String = userToken.string(forKey: "pushToken")!
+                    if let fcmToken : String = userToken.string(forKey: "pushToken"){
                     
-                    self.apiManager = ApiManager(path: "/users/me/fcm", method: .put, parameters:["fcmToken":fcmToken], header: ["authorization":isLogin["data"]["token"].stringValue])
-                    self.apiManager.requestPushToken(completion: { (isPush) in
-                        if isPush == 0 {
-                            self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
-                            //만약 푸시토큰을 not allow 했다면? -> 체크하기
-                        }
-                    })
+                        self.apiManager = ApiManager(path: "/users/me/fcm", method: .put, parameters:["fcmToken":fcmToken], header: ["authorization":isLogin["data"]["token"].stringValue])
+                        self.apiManager.requestPushToken(completion: { (isPush) in
+                            if isPush == 0 {
+                                self.present(CheckTokenViewController.snapContainer, animated: true, completion: nil)
+                                //만약 푸시토큰을 not allow 했다면? -> 체크하기
+                            }
+                        })
+                    }else{
+                        let alertView = UIAlertController(title: "경고", message: "푸시토큰이 유효하지 않습니다.\n앱을 재설치 해주세요!", preferredStyle: UIAlertControllerStyle.alert)
+                        alertView.addAction(UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil))
+                        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+                        alertWindow.rootViewController = UIViewController()
+                        alertWindow.windowLevel = UIWindowLevelAlert + 1
+                        alertWindow.makeKeyAndVisible()
+                        alertWindow.rootViewController?.present(alertView, animated: true, completion: nil)
+                    }
                 }
                 //로그인성공
                 break
