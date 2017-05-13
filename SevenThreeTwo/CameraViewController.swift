@@ -325,6 +325,8 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         self.dismiss(animated: true, completion: nil)
                         self.actInd.stopAnimating()
                         
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "presentSharingView"), object: nil)
+                        
                     }else if result == "-44"{
                         
                         self.showToast("하나의 잠상에 공개할 수 있는 게시물의 수는\n최대 3개입니다!")
@@ -367,6 +369,9 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         alertView.dismiss(animated: true, completion: nil)
                         self.dismiss(animated: true, completion: nil)
                         self.actInd.stopAnimating()
+                        
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "presentSharingView"), object: nil)
                         
                     }else if result == "-44"{
                         

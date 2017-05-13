@@ -62,6 +62,9 @@ class MainController: UIViewController, FusumaDelegate {
         
         self.viewSetUp()
         mainLoadingInd()
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(MainController.presentSharingView),name:NSNotification.Name(rawValue: "presentSharingView"), object: nil)
     }
     
     
@@ -352,6 +355,16 @@ class MainController: UIViewController, FusumaDelegate {
         return image
     }
     
+    func presentSharingView(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let shareVC = storyboard.instantiateViewController(withIdentifier: "sharingVC")
+        
+        
+        self.present(shareVC, animated: false, completion: nil)
+    
+        
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
