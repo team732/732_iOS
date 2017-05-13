@@ -8,6 +8,8 @@
 //import Foundation
 import UIKit
 
+
+
 class SharingViewController: UIViewController {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
@@ -36,7 +38,11 @@ class SharingViewController: UIViewController {
     var line = UIView()
     var line2 = UIView()
     
-    static var receivedImage : UIImage = UIImage(named:"default")!
+    
+    static var receivedImage = UIImage(named:"gotoleft")
+    
+    var finishFlag = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +52,7 @@ class SharingViewController: UIViewController {
         
         setView()
         
+         //NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.removeWholeViews),name:NSNotification.Name(rawValue: "dismissCameraView"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,29 +146,24 @@ class SharingViewController: UIViewController {
     }
     func instaAction(){
         print("insta")
+
+        //InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: SharingViewController.receivedImage!, instagramCaption: "하하하하핳", view: self.view)
+        
+        InstagramManager.sharedManager.sendImageDirectlyToInstagram(image: SharingViewController.receivedImage!)
+        //바로 앱으로연결될때만 가능...
+        self.performSegue(withIdentifier: "unwindToMain", sender: self)
+        
     }
     func facebookAction(){
         print("face")
     }
     func dismissAction(){
-        print("ddddd")
-        dismiss(animated: false, completion: nil)
+        
+        self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
     
     
-    
-    func drawLine(startX: CGFloat,startY: CGFloat,width: CGFloat, height: CGFloat, color: UIColor){
-        
-        var line: UIView!
-        
-        
-        line = UIView(frame: CGRect(x: startX, y: startY, width: width, height: height))
-        
-        line.backgroundColor = color
-        
-        
-        self.view.addSubview(line)
-    }
+   
     
     /*
      // MARK: - Navigation

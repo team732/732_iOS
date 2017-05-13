@@ -10,6 +10,7 @@
 import UIKit
 import Fusuma
 
+
 class MainController: UIViewController, FusumaDelegate {
     
     let userDevice = DeviceResize(testDeviceModel: DeviceType.IPHONE_7,userDeviceModel: (Float(ScreenSize.SCREEN_WIDTH),Float(ScreenSize.SCREEN_HEIGHT)))
@@ -50,6 +51,9 @@ class MainController: UIViewController, FusumaDelegate {
     
     static var isPastCameraClicked = 0
     
+    
+    static var receivedImgForShare : UIImage = UIImage(named:"default")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -64,7 +68,7 @@ class MainController: UIViewController, FusumaDelegate {
         mainLoadingInd()
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(MainController.presentSharingView),name:NSNotification.Name(rawValue: "presentSharingView"), object: nil)
+        
     }
     
     
@@ -355,17 +359,11 @@ class MainController: UIViewController, FusumaDelegate {
         return image
     }
     
-    func presentSharingView(){
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let shareVC = storyboard.instantiateViewController(withIdentifier: "sharingVC")
-        
-        
-        self.present(shareVC, animated: false, completion: nil)
+
     
+    @IBAction func unwindToMain(_ sender: UIStoryboardSegue) {
         
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

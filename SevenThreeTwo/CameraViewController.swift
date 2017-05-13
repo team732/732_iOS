@@ -128,7 +128,11 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        
+       
+        
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with: UIEvent?) {
         inputText.endEditing(true) // textBox는 textFiled 오브젝트 outlet 연동할때의 이름.
@@ -304,7 +308,6 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             let shareAction = UIAlertAction(title: "공개하기", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
                 self.actInd.startAnimating()
                 
-                
                 self.apiManager.requestUpload(imageData:self.resizing(self.receivedImg)!, text: self.inputText.text, share:true, completion: { (result) in
                     
                     
@@ -322,10 +325,20 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         }
                         
                         alertView.dismiss(animated: true, completion: nil)
-                        self.dismiss(animated: true, completion: nil)
+                        
+                        WaterMarkUtil.sharedUtil.waterMarking(targetView: self.imageView, waterMarkImage: UIImage(named:"watermark")!, completion: { (result) in
+                            
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let shareVC = storyboard.instantiateViewController(withIdentifier: "sharingVC")
+                        
+                        SharingViewController.receivedImage = result
+                        
+                        self.present(shareVC, animated: false, completion: nil)
+                            
+                        })
                         self.actInd.stopAnimating()
                         
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "presentSharingView"), object: nil)
+                        
                         
                     }else if result == "-44"{
                         
@@ -367,11 +380,21 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadPublic"), object: nil)
                         
                         alertView.dismiss(animated: true, completion: nil)
-                        self.dismiss(animated: true, completion: nil)
+                        
+                        WaterMarkUtil.sharedUtil.waterMarking(targetView: self.imageView, waterMarkImage: UIImage(named:"watermark")!, completion: { (result) in
+                            
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let shareVC = storyboard.instantiateViewController(withIdentifier: "sharingVC")
+                            
+                            SharingViewController.receivedImage = result
+                            
+                            self.present(shareVC, animated: false, completion: nil)
+                            
+                        })
+                        
                         self.actInd.stopAnimating()
                         
                         
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "presentSharingView"), object: nil)
                         
                     }else if result == "-44"{
                         
@@ -405,6 +428,11 @@ class CameraViewController: UIViewController,UITextViewDelegate {
             alertWindow(alertView: alertView)
             
         }
+    }
+    
+    func dismissCameraView(){
+    
+        dismiss(animated: false, completion: nil)
     }
     
     func alertWindow(alertView: UIAlertController){
