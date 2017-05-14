@@ -66,15 +66,11 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
         }
     }
     
-//    func postImageToInstagram(image: UIImage) {
-//        UIImageWriteToSavedPhotosAlbum(image, self, #selector(InstagramManager.image(_:didFinishSavingWithError:contextInfo:)), nil)
-//    }
-//    func sendImageToInstagram(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo:UnsafeRawPointer) {
+
     
     
     func sendImageDirectlyToInstagram(image: UIImage) {
         
-        UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
         
 //        if error != nil {
 //            print(error)
@@ -87,7 +83,6 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
         
         if let lastAsset = fetchResult.firstObject {
             let localIdentifier = lastAsset.localIdentifier
-            //let u = "instagram://library?LocalIdentifier=" + localIdentifier
             let u = "instagram://library?LocalIdentifier=" + localIdentifier
             
             let url = NSURL(string: u)!

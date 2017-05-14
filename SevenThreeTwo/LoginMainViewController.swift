@@ -163,7 +163,7 @@ class LoginMainViewController: UIViewController , UITextFieldDelegate{
                             }
                         })
                     }else{
-                        let alertView = UIAlertController(title: "경고", message: "푸시토큰이 유효하지 않습니다.\n앱을 재설치 해주세요!", preferredStyle: UIAlertControllerStyle.alert)
+                        let alertView = UIAlertController(title: "경고", message: "Push 알림설정 중 문제가 발생했습니다.\n앱을 재설치 해주세요!", preferredStyle: UIAlertControllerStyle.alert)
                         alertView.addAction(UIAlertAction(title: "확인", style: UIAlertActionStyle.default, handler: nil))
                         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
                         alertWindow.rootViewController = UIViewController()

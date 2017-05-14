@@ -162,11 +162,12 @@ class CameraViewController: UIViewController,UITextViewDelegate {
         let changeInHeight = (keyboardFrame.height) * (show ? 1 : -1)
         
         let changeInEmoji : CGFloat = (42 * self.heightRatio) * (show ? 1 : -1)
+        let initialLanguage = inputText.textInputMode?.primaryLanguage
         
         UIView.animate(withDuration: animationDuration, animations: { () -> Void in
             
             
-            //emoji 일때
+            //emoji 키보드 일때
             if self.inputText.textInputMode?.primaryLanguage == nil{
                 self.view.frame.origin.y += changeInEmoji
                 
@@ -174,26 +175,29 @@ class CameraViewController: UIViewController,UITextViewDelegate {
                 
             }
                 
-            else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 0 {
-                
-                
-                self.view.frame.origin.y += changeInHeight
-                
-                
-            }// 이모지다음에 한글일 때
-            else if self.inputText.textInputMode?.primaryLanguage == "ko-KR" && self.emojiFlag == 1 {
+                // 이모지다음에 초기 지정 키보드일 때
+            else if self.inputText.textInputMode?.primaryLanguage == initialLanguage && self.emojiFlag == 1 {
                 
                 
                 self.view.frame.origin.y += (42 * self.heightRatio)
                 self.emojiFlag = 0
                 
-            }// 한글 제외한 언어일 때
+            }// 일반 키보드 경우
             else{
                 
                 self.view.frame.origin.y += changeInHeight
-                self.emojiFlag = 0
+                //self.emojiFlag = 0
             }
         })
+        
+        
+        
+        //범위 밖 충돌 현상 또는 3rd party keyboard 버그 발생시
+        if self.view.frame.origin.y < -258.0 || keyboardFrame.height == 0.0{
+            
+            self.view.frame.origin.y = -216.0
+        }
+        
         
     }
     

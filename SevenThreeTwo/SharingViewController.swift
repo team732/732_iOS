@@ -7,8 +7,9 @@
 //
 //import Foundation
 import UIKit
-
-
+import FacebookShare
+import FBSDKCoreKit
+import FBSDKShareKit
 
 class SharingViewController: UIViewController {
     
@@ -145,25 +146,52 @@ class SharingViewController: UIViewController {
         
     }
     func instaAction(){
-        print("insta")
-
-        //InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: SharingViewController.receivedImage!, instagramCaption: "하하하하핳", view: self.view)
         
-        InstagramManager.sharedManager.sendImageDirectlyToInstagram(image: SharingViewController.receivedImage!)
+
+        InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: SharingViewController.receivedImage!, instagramCaption: "하하하하핳", view: self.view)
+        
+        
+        //UIImageWriteToSavedPhotosAlbum(SharingViewController.receivedImage!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        
+        
+        
         //바로 앱으로연결될때만 가능...
-        self.performSegue(withIdentifier: "unwindToMain", sender: self)
+        //self.performSegue(withIdentifier: "unwindToMain", sender: self)
         
     }
     func facebookAction(){
-        print("face")
+        
+        
+        let photo = FBSDKSharePhoto(image: SharingViewController.receivedImage!, userGenerated: true)
+        
+        let content = FBSDKSharePhotoContent()
+        content.photos = [photo as Any]
+        
+        let shareDialog = FBSDKShareDialog()
+        shareDialog.mode = .native
+        shareDialog.shareContent = content
+        shareDialog.fromViewController = self
+        shareDialog.show()
+        
+
+        
     }
     func dismissAction(){
         
         self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
     
+    //
     
-   
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        
+        InstagramManager.sharedManager.sendImageDirectlyToInstagram(image: image)
+        self.performSegue(withIdentifier: "unwindToMain", sender: self)
+        
+    }
+    
+    
+    
     
     /*
      // MARK: - Navigation
