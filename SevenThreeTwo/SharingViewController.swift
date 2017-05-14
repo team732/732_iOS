@@ -42,7 +42,7 @@ class SharingViewController: UIViewController {
     
     static var receivedImage = UIImage(named:"gotoleft")
     
-    var finishFlag = false
+    
     
     
     override func viewDidLoad() {
@@ -53,7 +53,6 @@ class SharingViewController: UIViewController {
         
         setView()
         
-         //NotificationCenter.default.addObserver(self, selector: #selector(CameraViewController.removeWholeViews),name:NSNotification.Name(rawValue: "dismissCameraView"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,13 +62,9 @@ class SharingViewController: UIViewController {
     func setView(){
         
         wholeView.frame = CGRect(x: 0*widthRatio, y: 0*heightRatio, width: 375*widthRatio, height: 667*heightRatio)
-        //wholeView.rframe(x: 0, y: 0, width: 375, height: 667)
+        
         wholeView.backgroundColor = UIColor(red: 13/255, green: 13/255, blue: 13/255, alpha: 0.87)
         
-//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(blackViewAction))
-//        wholeView.isUserInteractionEnabled = true
-//        wholeView.addGestureRecognizer(tapGestureRecognizer)
-//        
         
         upperView.frame = CGRect(x: 20*widthRatio, y: 113*heightRatio, width: 335*widthRatio, height: 321*heightRatio)
 
@@ -124,7 +119,7 @@ class SharingViewController: UIViewController {
         bottomLabel.text = "아니요, 그냥 게시하겠습니다"
         bottomLabel.font = UIFont(name: "Arita-dotum-Medium_OTF", size: 14*widthRatio)
         bottomLabel.textColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
-        
+        bottomLabel.textAlignment = .center
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissAction))
         bottomLabel.isUserInteractionEnabled = true
         bottomLabel.addGestureRecognizer(tapGestureRecognizer)
@@ -147,13 +142,14 @@ class SharingViewController: UIViewController {
     }
     func instaAction(){
         
+        
+        
 
         InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: SharingViewController.receivedImage!, instagramCaption: "하하하하핳", view: self.view)
         
+        bottomLabel.text = "완료하겠습니다"
         
         //UIImageWriteToSavedPhotosAlbum(SharingViewController.receivedImage!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-        
-        
         
         //바로 앱으로연결될때만 가능...
         //self.performSegue(withIdentifier: "unwindToMain", sender: self)
@@ -168,12 +164,13 @@ class SharingViewController: UIViewController {
         content.photos = [photo as Any]
         
         let shareDialog = FBSDKShareDialog()
-        shareDialog.mode = .native
+        shareDialog.mode = .shareSheet
         shareDialog.shareContent = content
         shareDialog.fromViewController = self
         shareDialog.show()
         
-
+        bottomLabel.text = "완료하겠습니다"
+        
         
     }
     func dismissAction(){
@@ -181,7 +178,7 @@ class SharingViewController: UIViewController {
         self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
     
-    //
+    
     
     func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         
