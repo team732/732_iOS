@@ -51,9 +51,10 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     //loading
     var addView : UIView!
     var loadingIndi : UIActivityIndicatorView!
-        
+    
+    var photoArr = [UIImage?]()
+    
     required init(coder aDecoder: NSCoder) {
-        let layout = MultipleColumnLayout()
         super.init(collectionViewLayout: layout)
         layout.delegate = self
     }
@@ -71,9 +72,6 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         setLoadingIndi()
 
         setUpUI()
-        
-        
-      
         
         NotificationCenter.default.addObserver(self, selector: #selector(PastMissionDetailViewController.reloadAppRefreshPic),name:NSNotification.Name(rawValue: "reloadPast"), object: nil)
         
@@ -120,11 +118,13 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
     
     func reloadAppRefreshPic(){
         self.photos.removeAll()
+        self.photoArr.removeAll()
         self.loadPic(path: "/missions/\(receivedMissionId)/contents?limit=10")
     }
     
     func refreshAfterDelete(){
         self.photos.remove(at: SelectListViewController.receivedIndex)
+        self.photoArr.remove(at: SelectListViewController.receivedIndex)
         self.collectionView?.reloadData()
     }
   
@@ -146,8 +146,10 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
             self.photos.removeAll()
+            self.photoArr.removeAll()
             for i in 0..<contentPhoto.contents!.count{
-                self.photos.append(PastMissionPic(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+                self.photos.append(PastMissionPic(image: contentPhoto.contents![i]["content"]["picture"].stringValue, contentId: contentPhoto.contents![i]["contentId"].intValue))
+                self.photoArr.append(nil)
             }
             self.contentsCount = contentPhoto.contentsCount!
             self.collectionView?.collectionViewLayout.invalidateLayout()
@@ -164,7 +166,8 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
             for i in 0..<contentPhoto.contents!.count{
-                self.photos.append(PastMissionPic(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+                self.photos.append(PastMissionPic(image: contentPhoto.contents![i]["content"]["picture"].stringValue, contentId: contentPhoto.contents![i]["contentId"].intValue))
+                self.photoArr.append(nil)
             }
             self.addView.isHidden = true
             self.contentsCount = contentPhoto.contentsCount!
@@ -436,6 +439,18 @@ class PastMissionDetailViewController: UICollectionViewController,FusumaDelegate
         view.addSubview(addView)
         addView.isHidden = true
     }
+    
+    func getPhotos(index: Int) -> UIImage{
+        
+        if photoArr[index] == nil {
+            let url = URL(string: photos[index].image)
+            let data = try! Data(contentsOf: url!)
+            return UIImage(data: data)!
+        } else{
+            return photoArr[index]!
+        }
+        
+    }
 
 }
 
@@ -454,11 +469,14 @@ extension PastMissionDetailViewController {
         let cell = collectionView
             .dequeueReusableCell(withReuseIdentifier: self.reuseIdentifier,
                                  for: indexPath) as? PhotoCaptionCell
-        
-        
-        cell?.setUpWithImage(self.photos[indexPath.row].image,
-                             title: "",
-                             style: BeigeRoundedPhotoCaptionCellStyle())
+        DispatchQueue.global().async {
+            let image = self.getPhotos(index: indexPath.item)
+            DispatchQueue.main.async {
+                cell?.setUpWithImage(image,
+                                     title: "",
+                                     style: BeigeRoundedPhotoCaptionCellStyle())
+            }
+        }
         cell?.layer.borderWidth = 0.5
         cell?.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
         
@@ -483,7 +501,7 @@ extension PastMissionDetailViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let selectVC = storyboard.instantiateViewController(withIdentifier: "SelectListViewController")
         SelectListViewController.receivedCid = self.photos[indexPath.item].contentId
-        SelectListViewController.receivedCimg = self.photos[indexPath.item].image
+        SelectListViewController.receivedCimg = getPhotos(index: indexPath.item)
         SelectListViewController.receivedRange = 2
         SelectListViewController.receivedIndex = indexPath.item
         //MARK: 추가로 missionDate랑 missionText보내야됨.
@@ -501,9 +519,8 @@ extension PastMissionDetailViewController: MultipleColumnLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForPhotoAtIndexPath indexPath: IndexPath,
                         withWidth width: CGFloat) -> CGFloat {
-        let photo = photos[indexPath.item]
         let boundingRect = CGRect(x: 0, y: 0, width: width, height: CGFloat(MAXFLOAT))
-        return AVMakeRect(aspectRatio: photo.image.size, insideRect: boundingRect).height
+        return AVMakeRect(aspectRatio: getPhotos(index: indexPath.item).size, insideRect: boundingRect).height
     }
     
     func collectionView(_ collectionView: UICollectionView,

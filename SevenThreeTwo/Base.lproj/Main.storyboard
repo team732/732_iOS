@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f96-8p-eH1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f96-8p-eH1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -590,6 +590,7 @@
         <!--Open Source View Controller-->
         <scene sceneID="NcT-q2-tye">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALB-Fa-oiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="HYB-VW-Ysk" customClass="OpenSourceViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1t2-zq-ALr"/>
@@ -675,13 +676,13 @@
                         <outlet property="titleLabel" destination="gsI-iW-sdA" id="w5I-lO-mhx"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ALB-Fa-oiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3550" y="2140"/>
         </scene>
         <!--Register Email View Controller-->
         <scene sceneID="mCv-aj-hOi">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6tS-uB-WPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RegisterEmailViewController" id="eVK-W3-NwF" customClass="RegisterEmailViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iNW-sr-hzI"/>
@@ -696,13 +697,13 @@
                         <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" animates="NO" modalPresentationStyle="overCurrentContext" id="p0a-HH-WTV"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6tS-uB-WPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2660" y="2140"/>
         </scene>
         <!--Change Pw View Controller-->
         <scene sceneID="owq-uU-hL8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Spl-TQ-WHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ChangePwViewController" id="euk-O0-98B" customClass="ChangePwViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZDS-JO-pBV"/>
@@ -717,13 +718,14 @@
                         <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" animates="NO" modalPresentationStyle="overCurrentContext" id="F46-oU-2DF"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Spl-TQ-WHM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1740" y="2140"/>
         </scene>
         <!--Change Complete View Controller-->
         <scene sceneID="bbb-fQ-xFg">
             <objects>
+                <exit id="kPz-60-2tp" userLabel="Exit" sceneMemberID="exit"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oWG-ja-Khr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="X5q-gp-BzF" customClass="ChangeCompleteViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r4E-D7-T84"/>
@@ -738,14 +740,13 @@
                         <segue destination="kPz-60-2tp" kind="unwind" identifier="unwindToSetting" animates="NO" unwindAction="unwindToSettingWithSegue:" id="zz1-lw-zdO"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oWG-ja-Khr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="kPz-60-2tp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1715" y="3132"/>
         </scene>
         <!--Change Nickname View Controller-->
         <scene sceneID="Ics-Lk-qrN">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Liz-HI-nxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ChangeNicknameViewController" id="8zp-bJ-s0P" customClass="ChangeNicknameViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vve-jN-sU5"/>
@@ -760,13 +761,13 @@
                         <segue destination="X5q-gp-BzF" kind="presentation" identifier="complete" animates="NO" modalPresentationStyle="overCurrentContext" id="giW-Mq-Fkm"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Liz-HI-nxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-802" y="2140"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="ZzG-n7-2pp">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T6U-0E-7ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Setting" id="qg0-sf-k6J" customClass="SettingViewController" customModule="SevenThreeTwo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c1v-LA-UE9"/>
@@ -804,7 +805,6 @@
                         <segue destination="HYB-VW-Ysk" kind="show" identifier="settingToOpenSource" animates="NO" id="g5h-F5-frd"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T6U-0E-7ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1740" y="1236.4317841079462"/>
         </scene>
@@ -1167,7 +1167,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="gKL-cc-45e"/>
         <segue reference="j7X-q7-Gt4"/>
-        <segue reference="p0a-HH-WTV"/>
+        <segue reference="F46-oU-2DF"/>
         <segue reference="nkZ-8T-Cc2"/>
     </inferredMetricsTieBreakers>
 </document>

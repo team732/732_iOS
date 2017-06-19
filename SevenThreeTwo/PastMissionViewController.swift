@@ -27,7 +27,6 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
    
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
    
     @IBOutlet var containerView: UIView!
     
@@ -37,7 +36,7 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
     let back = UIButton()
     let titleLabel = UILabel()
     
-
+    var photoArr = [UIImage?]()
     
     
     @IBOutlet weak var listView: UIView!
@@ -98,12 +97,13 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         apiManager = ApiManager(path: path, method: .get, parameters: [:], header: ["authorization":userToken!])
         apiManager.requestPastMissions(missionsCount: { (missionsCount) in
             self.missionsCount = missionsCount
-           
+            
         }, pagination: { (paginationUrl) in
             self.paginationUrl = paginationUrl
         }) { (contentMission) in
               for i in 0..<contentMission.count{
                 self.pastMissions.append(PastMission(missionId: contentMission[i].missionId, mission: contentMission[i].mission, missionType: contentMission[i].missionType, missionDate: contentMission[i].missionDate, missionPic: contentMission[i].missionPic))
+                self.photoArr.append(nil)
             }
             self.addView.isHidden = true
             
@@ -242,9 +242,26 @@ class PastMissionViewController: UIViewController, UICollectionViewDataSource, U
         // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath as IndexPath) as! PastMissionCollectionViewCell
         
-        cell.image.image = pastMissions[indexPath.row].missionPic
-        cell.date.text = pastMissions[indexPath.row].missionDate!
-        cell.mission.text = pastMissions[indexPath.row].mission
+        if photoArr[indexPath.row] == nil {
+            DispatchQueue.global(qos: .userInitiated).async {
+                let url = NSURL(string: self.pastMissions[indexPath.row].missionPic!)! as URL
+                let data = try! NSData(contentsOf: url) as Data
+                DispatchQueue.main.async {
+                    if let image = UIImage(data: data){
+                        cell.image.image = image
+                        cell.date.text = self.pastMissions[indexPath.row].missionDate!
+                        cell.mission.text = self.pastMissions[indexPath.row].mission
+                        
+                        self.photoArr[indexPath.row] = image
+                    }
+                }
+            }
+        } else{
+            cell.image.image = photoArr[indexPath.row]
+            cell.date.text = self.pastMissions[indexPath.row].missionDate!
+            cell.mission.text = self.pastMissions[indexPath.row].mission
+        }
+        
         //
         var count : Int = 0
         for character in (cell.mission.text?.characters)! {

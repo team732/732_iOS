@@ -43,12 +43,12 @@ class PrivateListViewController: UICollectionViewController {
     //loading
     var addView : UIView!
     var loadingIndi : UIActivityIndicatorView!
-
+    
     var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x:0,y:0, width:40, height:40)) as UIActivityIndicatorView
     
     //게시물이 없을 때
     var photosEmptyLabel : UILabel!
-
+    
     
     required init(coder aDecoder: NSCoder) {
         let layout = MultipleColumnLayout()
@@ -73,7 +73,7 @@ class PrivateListViewController: UICollectionViewController {
     }
     
     
- 
+    
     override func viewWillTransition(
         to size: CGSize,
         with coordinator: UIViewControllerTransitionCoordinator) {
@@ -115,13 +115,17 @@ class PrivateListViewController: UICollectionViewController {
             self.paginationUrl = paginationUrl
         }) { (contentPhoto) in
             for i in 0..<contentPhoto.contents!.count{
-                self.photos.append(PrivatePhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+                DispatchQueue.global().async {
+                    self.photos.append(PrivatePhoto(image:  UIImage(data: NSData(contentsOf: NSURL(string: contentPhoto.contents![i]["content"]["picture"].stringValue)! as URL)! as Data)!, contentId: contentPhoto.contents![i]["contentId"].intValue))
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                        self.addView.isHidden = true
+                        self.contentsCount = contentPhoto.contentsCount!
+                        self.collectionView?.collectionViewLayout.invalidateLayout()
+                        self.actInd.stopAnimating()
+                    }
+                }
             }
-            self.addView.isHidden = true
-            self.contentsCount = contentPhoto.contentsCount!
-            self.collectionView?.collectionViewLayout.invalidateLayout()
-            self.collectionView?.reloadData()
-            self.actInd.stopAnimating()
             
             if self.photos.count == 0{
                 self.photosEmptyLabel.isHidden = false
@@ -148,9 +152,9 @@ class PrivateListViewController: UICollectionViewController {
     // MARK: Private
     
     fileprivate func setUpUI() {
-
+        
         self.view.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1.0)
-
+        
         
         // Set generic styling
         collectionView?.backgroundColor = UIColor.clear
@@ -208,7 +212,7 @@ class PrivateListViewController: UICollectionViewController {
         settingBtn.addTarget(self, action: #selector(settingButtonAction), for: .touchUpInside)
         settingBtn.setImage(UIImage(named:"setting"), for: .normal)
         collectionView?.addSubview(settingBtn)
-
+        
         let settingLabel = UILabel(frame: CGRect(x: 175*widthRatio, y: 237*heightRatio, width: 20*widthRatio, height: 11*heightRatio))
         settingLabel.text = "설정"
         settingLabel.textColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
@@ -227,7 +231,7 @@ class PrivateListViewController: UICollectionViewController {
         customSC.layer.cornerRadius = 5.0
         customSC.backgroundColor = UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
         customSC.tintColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1)
-         customSC.addTarget(self, action: #selector(PrivateListViewController.sortList), for: .valueChanged)
+        customSC.addTarget(self, action: #selector(PrivateListViewController.sortList), for: .valueChanged)
         
         collectionView?.addSubview(customSC)
         
@@ -268,7 +272,7 @@ class PrivateListViewController: UICollectionViewController {
         }
         
     }
-
+    
     
     func settingButtonAction(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -300,8 +304,8 @@ class PrivateListViewController: UICollectionViewController {
         actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         view.addSubview(actInd)
     }
-
-
+    
+    
 }
 
 // MARK: UICollectionViewDelegate
@@ -327,7 +331,7 @@ extension PrivateListViewController {
                             style: BeigeRoundedPhotoCaptionCellStyle())
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor(red: 68/255, green: 67/255, blue: 68/255, alpha: 1).cgColor
- 
+        
         return cell
     }
     
@@ -340,7 +344,7 @@ extension PrivateListViewController {
             self.addView.isHidden = true
         }
     }
-
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -351,7 +355,7 @@ extension PrivateListViewController {
         SelectListViewController.receivedIndex = indexPath.item
         self.present(selectVC, animated: false, completion: nil)
     }
-
+    
     
 }
 
@@ -370,7 +374,7 @@ extension PrivateListViewController: MultipleColumnLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         heightForAnnotationAtIndexPath indexPath: IndexPath,
                         withWidth width: CGFloat) -> CGFloat {
-
+        
         return ceil(0)
     }
 }

@@ -11,10 +11,10 @@ import UIKit
 // Inspired by: RayWenderlich.com pinterest-basic-layout
 class PastMissionPic: NSObject {
     
-    var image: UIImage
+    var image: String
     var contentId : Int
     
-    init(image: UIImage, contentId: Int) {
+    init(image: String, contentId: Int) {
         self.image = image
         self.contentId = contentId
     }
